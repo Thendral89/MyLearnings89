@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Mark Type --></label>
+    <name>Mark_Type__c</name>
+    <picklistValues>
+        <masterLabel>Certification</masterLabel>
+        <translation><!-- Certification --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Collective</masterLabel>
+        <translation><!-- Collective --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Color</masterLabel>
+        <translation><!-- Color --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Device</masterLabel>
+        <translation><!-- Device --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Packaging</masterLabel>
+        <translation><!-- Packaging --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pattern</masterLabel>
+        <translation><!-- Pattern --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product</masterLabel>
+        <translation><!-- Product --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Service</masterLabel>
+        <translation><!-- Service --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Shape</masterLabel>
+        <translation><!-- Shape --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Shapes of Goods</masterLabel>
+        <translation><!-- Shapes of Goods --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Slogan</masterLabel>
+        <translation><!-- Slogan --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Smell</masterLabel>
+        <translation><!-- Smell --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sound</masterLabel>
+        <translation><!-- Sound --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Three Dimension</masterLabel>
+        <translation><!-- Three Dimension --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Trademark</masterLabel>
+        <translation><!-- Trademark --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Trademark/Servicemark</masterLabel>
+        <translation><!-- Trademark/Servicemark --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Two Dimensional</masterLabel>
+        <translation><!-- Two Dimensional --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Word</masterLabel>
+        <translation><!-- Word --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

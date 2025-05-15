@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AdminView</fullName>
+    <columns>MasterLabel</columns>
+    <columns>ObjectName__c</columns>
+    <columns>DeveloperName</columns>
+    <columns>FolderName__c</columns>
+    <columns>Sub_Folder__c</columns>
+    <columns>IsDocuSign__c</columns>
+    <columns>IsEmails__c</columns>
+    <columns>IsDocketing__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>AdminView</label>
+</ListView>

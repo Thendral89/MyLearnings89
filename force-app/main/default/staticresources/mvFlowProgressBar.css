@@ -1,0 +1,11 @@
+c-mv-flow-progress-bar .slds-progress-bar__value {
+    background-color: green;
+}
+
+c-mv-flow-progress-bar .slds-progress__list .slds-is-completed .slds-progress__marker_icon {
+    color: green;
+}
+
+c-mv-flow-progress-bar .slds-progress {
+    max-width: 82%;
+}

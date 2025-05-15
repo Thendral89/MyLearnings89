@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PersonToShareWith__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Person To Share With</label>
+    <referenceTo>SymphonyLF__Person__c</referenceTo>
+    <relationshipLabel>ApexSharings</relationshipLabel>
+    <relationshipName>ApexSharings</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

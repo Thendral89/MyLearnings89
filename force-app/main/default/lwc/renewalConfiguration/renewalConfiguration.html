@@ -1,0 +1,129 @@
+<template>
+    <!-- Show the Add button only if user has View Permission -->
+    <template if:true={hasViewAccess}>    
+        <c-reusable-spinner-with-text-cmp if:true={isSpinner} spinner-text={spinnerText}></c-reusable-spinner-with-text-cmp>
+        <div class="slds-col slds-size_12-of-12">
+            <template if:true={hasAddAccess}>
+                <div> 
+                    <!-- Show the Add button only if user has Add Permission -->
+                    <lightning-button variant="brand" label="Add Configuration" title="Add" onclick={handleAdd} class="slds-m-left_x-small slds-float_right"></lightning-button>
+                </div>
+                <BR>
+                <BR>
+            </template>            
+            <div class="tabulator-container">
+                <div class="slds-m-around_medium" data-id="renewalConfigurationTable"></div>
+            </div>
+        </div>
+        <template if:true={showModalUI}>
+            <div class="slds-modal slds-fade-in-open slds-backdrop">
+                <div class="slds-modal__container">
+                    <lightning-record-edit-form class="RenewalConfiguration" object-api-name="SymphonyLF__Client_Renewal_Configuration__c" record-id={renewalRecordId} onsubmit={handleSubmit} onsuccess={handleSuccess} onerror={handleError}>
+                        <div class="slds-modal__header">
+                            <h2 class="slds-text-heading_medium slds-hyphenate">{actionText}</h2>
+                        </div>
+                        <!-- <lightning-messages></lightning-messages> -->
+                        <div style="overflow:visible;" class="slds-modal__content slds-p-around_medium">
+                            <p style="color:red;">{errorMessage}</p>
+                            <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}>
+                                <lightning-accordion-section name="Renewal Generation" label="Renewal Generation">
+                                    <div class="slds-grid slds-gutters" style="text-align: left">                               
+                                        <div class="slds-col slds-size_1-of-2">
+                                            <lightning-input-field field-name="SymphonyLF__Asset_Type__c">
+                                            </lightning-input-field>
+                                            <lightning-input-field field-name="SymphonyLF__Default_Billing_Currency__c">
+                                            </lightning-input-field>
+                                            <template if:true={isEdit}>
+                                                <lightning-input-field field-name="SymphonyLF__Is_Active__c">
+                                                </lightning-input-field>
+                                            </template>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2">
+                                            <!-- <lightning-input-field field-name="SymphonyLF__Renewal_Start_Date__c">
+                                            </lightning-input-field> -->
+                                            <template if:false={isEdit}>
+                                                <lightning-input-field field-name="SymphonyLF__Renewal_Start_Date__c" value={today}>
+                                                </lightning-input-field>
+                                              </template>
+                                              <template if:true={isEdit}>
+                                                <lightning-input-field field-name="SymphonyLF__Renewal_Start_Date__c">
+                                                </lightning-input-field>
+                                              </template>
+                                            <lightning-input-field field-name="SymphonyLF__Renewal_Stop_Date__c">
+                                            </lightning-input-field>
+                                        </div>
+                                    </div>
+                                </lightning-accordion-section>
+                                <lightning-accordion-section name="Default Renewal Instruction" label="Default Renewal Instruction">
+                                    <div class="slds-grid slds-gutters" style="text-align: left">                               
+                                        <div class="slds-col slds-size_1-of-2">
+                                            <!-- <lightning-input-field field-name="SymphonyLF__Instruction_Type__c" onchange={instructionTypeSelect} required>
+                                            </lightning-input-field> -->
+                                            <template if:false={isEdit}>
+                                                <lightning-input-field field-name="SymphonyLF__Instruction_Type__c" value="Automatic" onchange={instructionTypeSelect} required>
+                                                </lightning-input-field>
+                                              </template>
+                                              <template if:true={isEdit}>
+                                                <lightning-input-field field-name="SymphonyLF__Instruction_Type__c" onchange={instructionTypeSelect} required>
+                                                </lightning-input-field>
+                                              </template>
+                                        </div>
+                                        <div if:true={showDefaultInstruction} class="slds-col slds-size_1-of-2">
+                                            <lightning-input-field field-name="SymphonyLF__Default_Instruction__c" required={showDefaultInstruction}>
+                                            </lightning-input-field>
+                                        </div>
+                                    </div>
+                                </lightning-accordion-section>
+                                <lightning-accordion-section name="Renewal Cycle" label="Renewal Cycle">
+                                    <div class="slds-grid slds-gutters" style="text-align: left">                               
+                                        <div class="slds-col slds-size_1-of-2">
+                                            <lightning-input-field field-name="SymphonyLF__Instruction_Window__c">
+                                            </lightning-input-field>
+                                            <lightning-input-field field-name="SymphonyLF__Start_Month__c">
+                                            </lightning-input-field>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2">
+                                            <lightning-input-field field-name="SymphonyLF__Instruction_Deadline__c">
+                                            </lightning-input-field>
+                                        </div>
+                                    </div>
+                                </lightning-accordion-section>
+                            </lightning-accordion>
+                        </div>
+                        <div class="slds-modal__footer slds-text-align_center">
+                            <lightning-button variant="neutral" label="Cancel" onclick={hideModal}
+                                class="slds-m-right_xx-small"></lightning-button>
+                            <lightning-button type="submit" variant="brand" label="Save" disabled={submitDisabled}
+                                class="slds-m-top_small" onclick={validateFields}></lightning-button>
+                        </div>
+                    </lightning-record-edit-form>
+                </div>
+            </div>
+        </template>    
+    </template>
+
+    <template if:true={showDeleteModal}>
+        <section role="dialog" tabindex="-1" aria-modal="true"
+                 class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                <h2 class="slds-text-heading_medium">Delete Renewal Configuration</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                <p>Are you sure you want to delete?</p>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="neutral" label="Cancel"
+                                        onclick={hideDeleteModal} class="slds-m-right_small">
+                    </lightning-button>
+                    <lightning-button variant="brand" label="Delete"
+                                        onclick={handleConfirmDelete}>
+                    </lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+      
+
+</template>

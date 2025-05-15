@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Area_of_Law_AOL__c</fullName>
+    <externalId>false</externalId>
+    <label>Area of Law for file setup?</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Agreement</fullName>
+                <default>false</default>
+                <label>Agreement</label>
+            </value>
+            <value>
+                <fullName>Board of Governors</fullName>
+                <default>false</default>
+                <label>Board of Governors</label>
+            </value>
+            <value>
+                <fullName>Cancellation Action</fullName>
+                <default>false</default>
+                <label>Cancellation Action</label>
+            </value>
+            <value>
+                <fullName>Copyright</fullName>
+                <default>false</default>
+                <label>Copyright</label>
+            </value>
+            <value>
+                <fullName>Due Diligence</fullName>
+                <default>false</default>
+                <label>Due Diligence</label>
+            </value>
+            <value>
+                <fullName>Discipline</fullName>
+                <default>false</default>
+                <label>Discipline</label>
+            </value>
+            <value>
+                <fullName>Litigation</fullName>
+                <default>false</default>
+                <label>Litigation</label>
+            </value>
+            <value>
+                <fullName>Opinion</fullName>
+                <default>false</default>
+                <label>Opinion</label>
+            </value>
+            <value>
+                <fullName>Opposition</fullName>
+                <default>false</default>
+                <label>Opposition</label>
+            </value>
+            <value>
+                <fullName>Patent</fullName>
+                <default>false</default>
+                <label>Patent</label>
+            </value>
+            <value>
+                <fullName>Trademark</fullName>
+                <default>false</default>
+                <label>Trademark</label>
+            </value>
+            <value>
+                <fullName>Bankruptcy</fullName>
+                <default>false</default>
+                <label>Bankruptcy</label>
+            </value>
+            <value>
+                <fullName>Counseling</fullName>
+                <default>false</default>
+                <label>Counseling</label>
+            </value>
+            <value>
+                <fullName>Post Grant Proceeding</fullName>
+                <default>false</default>
+                <label>Post Grant Proceeding</label>
+            </value>
+            <value>
+                <fullName>Design</fullName>
+                <default>false</default>
+                <label>Design</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

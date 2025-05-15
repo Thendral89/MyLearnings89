@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Initiation Point --></label>
+    <name>InitiationPoint__c</name>
+    <picklistValues>
+        <masterLabel>Group</masterLabel>
+        <translation><!-- Group --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Person</masterLabel>
+        <translation><!-- Person --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>User</masterLabel>
+        <translation><!-- User --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

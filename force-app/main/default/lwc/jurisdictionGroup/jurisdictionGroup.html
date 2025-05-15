@@ -1,0 +1,41 @@
+<!--
+  @author            : Nikhil Agarwal
+-->
+<template>
+    <div class="demo-only demo-only--sizing slds-grid slds-wrap" if:true={showJurisdictionGroup}>
+        <symphonylf-multi-select-pick-list-with-search
+                class="jurisdictionGroup slds-size_6-of-12"
+                multi-select="true"
+                onselectoption={handleSelectedJurisdictionGroups} 
+                options={jurisdictionGroupValues} 
+                selected-values={selectedJurisdictionGroups}
+                label="Select Jurisdiction Groups"
+                icon-name="custom:custom64">
+        </symphonylf-multi-select-pick-list-with-search>
+        <symphonylf-multi-select-pick-list-with-search  
+                class="jurisdiction slds-size_6-of-12 slds-p-left_small"
+                multi-select="true"
+                onselectoption={handleSelectedJurisdictions} 
+                options={countryValues} 
+                selected-values={selectedJurisdictions}
+                label="Select Jurisdiction"
+                icon-name="custom:custom64">
+        </symphonylf-multi-select-pick-list-with-search>
+    </div>
+    
+    <div class="slds-size_12-of-12" if:true={showDataTable}>
+        <lightning-input style="padding-top: 0px;padding-bottom: 6px;" type="search" onkeyup={handleSearch} placeholder="Search Jurisdiction"></lightning-input>
+        <div   class={tableContainer} > 
+            <lightning-datatable 
+                key-field="uniqueId"
+                data={tableList}
+                columns={column}
+                onrowselection={getSelectedRows}
+                selected-rows={preSelectedRows}
+                sorted-by={sortBy}
+                sorted-direction={sortDirection}
+                onsort={handleSortData}>
+            </lightning-datatable>
+        </div>
+    </div>
+</template>

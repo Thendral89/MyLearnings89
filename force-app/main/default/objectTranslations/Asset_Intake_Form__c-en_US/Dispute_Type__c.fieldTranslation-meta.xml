@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Dispute Type --></label>
+    <name>Dispute_Type__c</name>
+    <picklistValues>
+        <masterLabel>Arbitration</masterLabel>
+        <translation><!-- Arbitration --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Breach of Contract</masterLabel>
+        <translation><!-- Breach of Contract --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Chemicals:Chemicals used in industry</label>
+    <protected>false</protected>
+    <values>
+        <field>Class__c</field>
+        <value xsi:type="xsd:string">001</value>
+    </values>
+    <values>
+        <field>Languages__c</field>
+        <value xsi:type="xsd:string">English</value>
+    </values>
+    <values>
+        <field>Specification__c</field>
+        <value xsi:type="xsd:string">Chemicals used in industry, science and photography, as well as in agriculture, horticulture and forestry; unprocessed artificial resins, unprocessed plastics; manures; fire extinguishing compositions; tempering and soldering preparations; chemical substances for preserving foodstuffs; tanning substances; adhesives used in industry</value>
+    </values>
+</CustomMetadata>

@@ -1,0 +1,19 @@
+<template>
+	<c-reusable-spinner-cmp show-modal-spinner={showSpinner}></c-reusable-spinner-cmp>
+	<div class="slds-p-top-medium slds-text-align_center">
+		Are you sure you do not want to continue with the Conflict Check Process? It's an Irreversible Process!
+	</div>
+	<div class="slds-p-bottom-medium slds-text-align_center">
+		Click on Finish to exit the Conflict Check Process.
+	</div>
+
+	<div class="slds-clearfix slds-m-top_small">
+		<div class="slds-align_absolute-center">
+			<lightning-button  variant="Neutral" label="Cancel" title="Primary action"
+				onclick={cancelButton} class="slds-m-left_x-small"></lightning-button>
+				
+			<lightning-button variant="brand" label="Finish" title="Primary action"
+				onclick={finishButton} class="slds-m-left_x-small"></lightning-button>
+		</div>
+	</div>
+</template>

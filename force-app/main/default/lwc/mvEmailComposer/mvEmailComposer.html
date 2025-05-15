@@ -1,0 +1,263 @@
+<!--
+  @description       : This is the template for the Email Composer component
+  @last modified on  : 04-26-2025
+-->
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+
+    <template if:false={isLoading}>
+            <div class="email-composer-container">
+                <!-- TOP SUBJECT for REPLY/FORWARD only (read-only + Edit icon) -->
+                <!-- <template if:true={showTopReadOnlySubject}>
+                    <div class="top-subject-container">
+                        <label class="slds-p-right_small">Subject:</label>
+                        <span>{subject}</span>
+                        
+                        <lightning-button-icon 
+                            icon-name="utility:edit"
+                            variant="container"
+                            alternative-text="Edit Subject"
+                            title="Edit Subject"
+                            onclick={handleEditSubject}
+                            class="slds-p-left_small">
+                        </lightning-button-icon>
+                    </div>
+                </template> -->
+                <!-- From Field -->
+                <div class="form-row">
+                    <label class="form-label">From</label>
+                    <lightning-combobox
+                        class="form-input"
+                        name="fromAddress"
+                        value={fromAddress}
+                        placeholder="Select From Address"
+                        options={fromAddresses}
+                        onchange={handleFromChange}>
+                    </lightning-combobox>
+                </div>
+
+                <!-- To, CC, and BCC Fields -->
+                <div class="form-row">
+                    <label class="form-label">To</label>
+                    <div class="to-field-wrapper">
+                        <div class="to-field-container">
+                            <c-multi-select-email-input
+                                class="to-field form-input"
+                                placeholder="Search/Add Email"
+                                onvaluechange={handleRecipientChange}
+                                data-field="toAddresses"
+                                data-id="toField"
+                                value={toAddresses}>
+                            </c-multi-select-email-input>
+                            <div class="to-field-buttons">
+                                <!-- <button class="toggle-button" onclick={toggleCCField}>CC</button> -->
+                                <button class="toggle-button" onclick={toggleBCCField}>BCC</button>
+                                <lightning-button-icon
+                                    icon-name="utility:adduser"
+                                    variant="bare"
+                                    alternative-text="Open Active Directory"
+                                    onclick={openActiveDirectory}
+                                    class="directory-icon">
+                                </lightning-button-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <label class="form-label">CC</label>
+                    <c-multi-select-email-input
+                        class="form-input"
+                        placeholder="Search/Add Email"
+                        onvaluechange={handleRecipientChange}
+                        data-field="ccAddresses"
+                        value={ccAddresses}>
+                    </c-multi-select-email-input>
+                </div>
+                <template if:true={showBCCField}>
+                    <div class="form-row">
+                        <label class="form-label">BCC</label>
+                        <c-multi-select-email-input
+                            class="form-input"
+                            placeholder="Search/Add Email"
+                            onvaluechange={handleRecipientChange}
+                            data-field="bccAddresses"
+                            value={bccAddresses}>
+                        </c-multi-select-email-input>
+                    </div>
+                </template>
+
+                <!-- Subject -->
+                <div class="form-row">
+                    <label class="form-label">Subject</label>
+                    <lightning-input
+                        class="form-input"
+                        type="text"
+                        variant="label-hidden"
+                        placeholder="Enter Subject"
+                        value={subject}
+                        onchange={handleSubjectChange}>
+                    </lightning-input>
+                </div>
+                <!-- <template  if:true={isAdmin}> -->
+                    <template if:true={assignedUserIds.length}>
+                        <div class="form-row">
+                            <label class="form-label">Select Attorney / Paralegal For Approval</label>
+                            <lightning-record-picker
+                                label="Select Attorney / Paralegal For Approval"
+                                placeholder="Search Users…"
+                                object-api-name="User"
+                                value={selectedAssignedTo}
+                                filter={userPickerFilter}
+                                onchange={handleUserSelection}
+                                variant="label-hidden"
+                                class="form-input">
+                            </lightning-record-picker>
+                        </div>
+                    </template>
+                <!-- </template> -->
+
+                <!-- Template Folder and Template Selection -->
+                <template if:true={isTemplateVisible}>
+                    <div class="form-row-body">
+                        <div class="template-folder">
+                            <label class="form-label">Template Folder</label>
+                            <lightning-combobox
+                                class="form-input"
+                                name="templateFolder"
+                                variant="label-hidden"                                
+                                placeholder="Select Folder"
+                                options={templateFolders}
+                                value={selectedFolder}
+                                onchange={handleFolderChange}>
+                            </lightning-combobox>
+                        </div>
+                        <div class="email-template">
+                            <label class="form-label">Email Template</label>
+                            <lightning-combobox
+                                class="form-input"
+                                name="template"
+                                variant="label-hidden"
+                                placeholder="Select Template"
+                                options={filteredTemplates}
+                                value={selectedTemplate}
+                                onchange={handleTemplateChange}>
+                            </lightning-combobox>
+                        </div>
+                    </div>
+                </template>
+                
+
+                <!-- Email Body -->
+                <!-- <div class="form-row">
+                    <lightning-input-rich-text
+                        label="Body"
+                        value={body}
+                        onchange={handleBodyChange}
+                        class="body-field customHeight"
+                        data-id="bodyInput">
+                    </lightning-input-rich-text>
+                </div> -->
+                <div class="form-row">
+                    <c-ckeditor4
+                        class="ckEditorLwc body-field"
+                        value={body}
+                        onpassback={handleBodyChange}
+                        data-id="bodyInput">
+                    </c-ckeditor4>
+                </div>
+
+                <!-- Attach Files -->
+                <template if:true={isAttachmentVisible}>
+                    <div class="form-row-attachment slds-grid slds-grid_vertical slds-gutters">
+                        <!-- Include iManage Document Checkbox -->
+                        <div class="slds-col">
+                            <lightning-input 
+                                type="checkbox" 
+                                label="Include iManage Document" 
+                                onchange={handleManageDocChange}>
+                            </lightning-input>
+                        </div>
+
+                        <!-- Attach Files Upload Section -->
+                        <div class="slds-col">
+                            <label class="form-label"><b>Attach Files</b></label>
+                            <lightning-file-upload 
+                                multiple 
+                                record-id={recordId} 
+                                onuploadfinished={handleFileUpload} 
+                                class="form-input">
+                            </lightning-file-upload>
+                        </div>
+                                    </div>
+                </template>
+                <template if:true={attachedFiles.length}>
+                    <div class="form-row">
+                        <label class="form-label">Attachments</label>
+                        <div class="attachment-grid">
+                            <template for:each={attachedFiles} for:item="file">
+                                <div key={file.id} class="custom-pill slds-fade-in-open" data-id={file.id}>
+                                    <span class="pill-label" title={file.name} data-id={file.id} onclick={handleFileDownload}>
+                                        {file.name}
+                                    </span>
+                                    <span class="pill-remove" data-id={file.id} onclick={removeFile}>×</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            <div class="email-composer-fixed-footer">
+                <div class="slds-grid slds-grid_align-end slds-p-around_small">
+                    <div class="slds-m-horizontal_small">
+                        <lightning-input type="toggle" label="Sync to iManage" checked={syncToIManage} onchange={handleSyncToggle}>
+                        </lightning-input>
+                    </div>
+                    <lightning-button label="Add Template" variant="brand" icon-name="utility:add"  onclick={toggleTemplateVisibility}   class="slds-m-horizontal_small"></lightning-button>
+                    <lightning-button label="Attachments" variant="brand" icon-name="utility:attach"  onclick={toggleAttachmentVisibility} class="slds-m-horizontal_small"></lightning-button>
+                    <lightning-button label="Send" variant="brand" icon-name="utility:send"  onclick={sendEmail} class="slds-m-horizontal_small"  disabled={isSendDisabled}></lightning-button>
+                    <div if:true={isInitiatedFromReportExternal}> 
+                        <lightning-button label="Send For Approval" variant="brand" icon-name="utility:approval" onclick={handleSendForApproval} class="slds-m-horizontal_small" disabled={isSendForApprovalDisabled}></lightning-button>
+                    </div>
+                </div>
+            </div>
+                
+    </template>
+
+    <template if:true={isDirectoryModalOpen}>
+        <c-multi-select-email-popup-directory
+            record-id={recordId}
+            label='Select Emails'
+            placeholder='Search and select emails'
+            onemailselected={handleDirectoryValueChange}
+            onclose={handlePopupClose}>
+        </c-multi-select-email-popup-directory>
+    </template>
+
+    <template if:true={isFlowModalOpen}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-03"
+            class="slds-modal slds-fade-in-open slds-modal_medium">
+            <div class="slds-modal__container">
+                <span class="slds-modal__close">
+                    <lightning-button-icon icon-name="utility:close" onclick={handleCancelImanage}
+                        alternative-text="Cancel and Close" class=""
+                        title="Cancel and Close"></lightning-button-icon>
+                </span>
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-05" class="slds-modal__title slds-hyphenate" tabindex="-1">
+                        iManage Files</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-4">
+                    <lightning-flow 
+                        flow-api-name={flowApiName}
+                        flow-input-variables={flowInputVariables}
+                        onstatuschange={handleFlowFinish}>
+                    </lightning-flow>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+</template>

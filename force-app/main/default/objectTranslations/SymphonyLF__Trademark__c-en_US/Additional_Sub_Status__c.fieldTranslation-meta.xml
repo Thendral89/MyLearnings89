@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Additional Sub Status --></label>
+    <name>Additional_Sub_Status__c</name>
+    <picklistValues>
+        <masterLabel>Abandoned</masterLabel>
+        <translation><!-- Abandoned --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Closed</masterLabel>
+        <translation><!-- Closed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Completed</masterLabel>
+        <translation><!-- Completed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Monitoring</masterLabel>
+        <translation><!-- Monitoring --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Paris convention filing</masterLabel>
+        <translation><!-- Paris convention filing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Track one (prioritized)</masterLabel>
+        <translation><!-- Track one (prioritized) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transferred Back to Client</masterLabel>
+        <translation><!-- Transferred Back to Client --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transition</masterLabel>
+        <translation><!-- Transition --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Under Secrecy Order</masterLabel>
+        <translation><!-- Under Secrecy Order --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

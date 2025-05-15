@@ -1,0 +1,292 @@
+<!--
+  @description       : 
+  @author            : Nikhil Agarwal
+-->
+<apex:page renderAs="pdf" standardStylesheets="false" applyBodyTag="false" standardController="Task" extensions="TaskPDFController"
+           contentType="application/pdf" applyHtmlTag="false" sidebar="false" showHeader="false"
+           pageStyle="all">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <style type="text/css" media="print">
+            @page {
+            margin-top: 13%;  
+            margin-bottom:13%;
+            margin-right: 10%;
+            margin-left:7%;
+            size: A4 portrait;
+            
+            
+            }
+            * {
+            margin: 2px;
+            padding: 0px;
+            }
+            .tableStyle {
+            border-collapse: collapse;
+            border-spacing: 0px 0px;
+            width: 100%;
+            }
+            .colStyle1 { width:130px; text-align:left; padding-top:8px;padding-right:15px; padding-bottom:8px;}
+            .colStyle2 { width:200px; padding-right:10px; padding-top:8px; padding-bottom:8px;}
+            .sectionHeader, .subHeader {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            }
+            .pagenumber:before {
+            content: counter(page);
+            }
+            .pagecount:before {
+            content: counter(pages);
+            }
+            .footer {
+            display: block;
+            padding: 10px;
+            position: running(footer);
+            }
+            .right {
+            float: right;
+            }
+            .tableStyle {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid black; /* Ensures outer border is black */
+            }
+            
+            .tableStyle td, 
+            .tableStyle th {
+            border: 1px solid black; 
+            padding: 8px;
+            margin: 0;
+            }
+            
+            .tableStyle tr {
+            border: 1px solid black; 
+            }
+        </style>
+    </head>
+    
+    <body>
+        <apex:form >
+            <apex:pageBlock >
+                <apex:repeat value="{!Task}" var="a">
+                    <!-- Task Information Section in Table -->
+                    <div class="sectionHeader">Task Information</div>
+                    <table class="tableStyle" border="1">
+                        <thead>         
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding-right: 20px; padding-top: 8px; padding-bottom: 8px; width: 150px;"><b>Subject</b></td>
+                                <td style="padding-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+                                    <apex:outputText value="{!a.Subject}" />
+                                </td>
+                            </tr>
+                           <!--  <tr>
+                                <td style="padding-right: 20px; padding-top: 8px; padding-bottom: 8px; width: 150px;"><b>Title</b></td>
+                                <td style="padding-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+                                    <apex:outputText value="{!a.SymphonyIPM__Title__c}" />
+                                </td>
+                            </tr> -->
+                            <tr>
+                                <td style="padding-right: 20px; padding-top: 8px; padding-bottom: 8px; width: 150px;"><b>Direction</b></td>
+                                <td style="padding-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+                                    <apex:outputText value="{!a.Direction__c}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-right: 20px; padding-top: 8px; padding-bottom: 8px; width: 150px;"><b>Assigned To</b></td>
+                                <td style="padding-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+                                    <apex:outputText value="{!a.Owner.Name}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-right: 20px; padding-top: 8px; padding-bottom: 8px; width: 150px;"><b>Status</b></td>
+                                <td style="padding-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+                                    <apex:outputText value="{!a.Status}" />
+                                </td>
+                            </tr>                     
+                            <tr>
+    <td style="padding-right: 20px; padding-top: 8px; padding-bottom: 8px; width: 150px;"><b>Related To</b></td>
+    <td style="padding-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+        <apex:outputText value="{!relatedObjectFieldValue}" />
+    </td>
+</tr>
+
+                            <tr>
+                                <td style="padding-right: 20px; padding-top: 8px; padding-bottom: 8px; width: 150px;"><b>Due Date</b></td>
+                                <td style="padding-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+                                    <apex:outputText value="{0,date,dd/MM/yyyy}">
+                                        <apex:param value="{!a.ActivityDate}" />
+                                    </apex:outputText>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-right: 20px; padding-top: 8px; padding-bottom: 8px; width: 150px;"><b>Priority</b></td>
+                                <td style="padding-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+                                    <apex:outputText value="{!a.Priority}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-right: 20px; padding-top: 8px; padding-bottom: 8px; width: 150px;"><b>Last Modified Date</b></td>
+                                <td style="padding-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+                                    <apex:outputText value="{0,date,dd/MM/yyyy hh:mm a}">
+                                        <apex:param value="{!a.LastModifiedDate}" />
+                                    </apex:outputText>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-right: 20px; padding-top: 8px; padding-bottom: 8px; width: 150px;"><b>Created Date</b></td>
+                                <td style="padding-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+                                    <apex:outputText value="{0,date,dd/MM/yyyy hh:mm a}">
+                                        <apex:param value="{!a.CreatedDate}" />
+                                    </apex:outputText>
+                                </td>
+                            </tr>                                                                      
+                            <tr>
+                                <td style="padding-right: 20px; padding-top: 8px; padding-bottom: 8px; width: 150px;"><b>Task Type</b></td>
+                                <td style="padding-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+                                    <apex:outputText value="{!a.Task_Type__c}" />
+                                </td>
+                            </tr>                   
+                        </tbody>
+                    </table>
+                    
+                    <!-- Comments Section in Table -->
+                    <div class="subHeader" style="margin-top: 20px;">Comments</div>
+                    <table class="tableStyle" border="1">             
+                        <tbody>
+                            <tr>
+                                <td style="padding-right: 20px; padding-top: 8px; padding-bottom: 8px; width: 150px;"><b>Comment</b></td>
+                                <td style="padding-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+                                    <apex:outputText value="{!SUBSTITUTE(a.Description, '<p>', '<p style=width:650px;text-align:justify>')}" escape="false" />
+                                </td>
+                            </tr>
+                            <!-- <tr>
+                                <td style="padding-right: 20px; padding-top: 8px; padding-bottom: 8px; width: 150px;"><b>Attorney's Comment</b></td>
+                                <td style="padding-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+                                    <apex:outputText value="{!SUBSTITUTE(a.Attorney_Comment__c, '<p>', '<p style=width:650px;text-align:justify>')}" escape="false" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-right: 20px; padding-top: 8px; padding-bottom: 8px; width: 150px;"><b> Agent's Comment</b></td>
+                                <td style="padding-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+                                    <apex:outputText value="{!SUBSTITUTE(a.Agent_Comment__c, '<p>', '<p style=width:650px;text-align:justify>')}" escape="false" />
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                    
+                    <!-- Attachments Section in Table -->
+                    <apex:outputPanel rendered="{!contentVersionSize > 0}">
+                        <!-- Attachments Header with Page Break Handling -->
+                        <div class="subHeader" style="margin-top: 20px; page-break-before: auto;">
+                            Attachments
+                            <apex:outputText value="({!contentVersionSize})" />
+                        </div>
+                        
+                        <!-- Table for Attachments -->
+                        <table class="tableStyle" border="1" style="border-collapse: collapse; page-break-inside: avoid; width: 100%; table-layout: fixed;">
+                            <thead>
+                                <tr>
+                                    <th class="colStyle1" style="padding: 8px;">&nbsp;&nbsp;Attachment Title</th>
+                                    <th class="colStyle2" style="padding: 8px;">&nbsp;&nbsp;Created Date</th>
+                                </tr>
+                            </thead>
+                            <tbody style="page-break-inside: avoid;">
+                                <apex:repeat value="{!contentVersionList}" var="cv">
+                                    <tr style="page-break-inside: avoid;">
+                                        <td style="padding: 8px;">
+                                            <apex:outputText value="{!cv.Title}" />
+                                        </td>
+                                        <td style="padding: 8px;">
+                                            <apex:outputText value="{0,date,dd/MM/yyyy, hh:mm a}">
+                                                <apex:param value="{!cv.CreatedDate}" />
+                                            </apex:outputText>
+                                        </td>
+                                    </tr>
+                                </apex:repeat>
+                            </tbody>
+                        </table>
+                    </apex:outputPanel>
+                    
+                    
+                    <!-- Related Asset Information Section -->
+                     <!--<apex:outputPanel >
+                        <div style="{!IF(contentVersionSize > 0, '', 'page-break-before: always;')} margin-top: 20px; page-break-inside: avoid;">
+                            <div class="subHeader">Related Asset Information</div>
+                            <table class="tableStyle" border="1" style="border-collapse: collapse; page-break-inside: avoid;">
+                                <thead>
+                                    <tr>
+                                        <th class="colStyle1" style="padding: 8px; text-align: center;">Asset Fields</th>
+                                        <apex:repeat value="{!patentList}" var="p" id="headerRepeat">
+                                            <th class="colStyle2" style="padding: 8px; text-align: center;">Asset Records {!p.Legacy_Docket_No__c}</th>
+                                        </apex:repeat>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: 8px;">Asset Image</td>
+                                        <apex:repeat value="{!patentList}" var="p">
+                                            <td style="padding: 8px;"><apex:outputText value="{!p.SymphonyIPM__Asset_Image__c}" /></td>
+                                        </apex:repeat>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px;">Legacy Docket No.</td>
+                                        <apex:repeat value="{!patentList}" var="p">
+                                            <td style="padding: 8px;"><apex:outputText value="{!p.Legacy_Docket_No__c}" /></td>
+                                        </apex:repeat>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px;">Country Code</td>
+                                        <apex:repeat value="{!patentList}" var="p">
+                                            <td style="padding: 8px;"><apex:outputText value="{!p.SymphonyIPM__Country_Code__c}" /></td>
+                                        </apex:repeat>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px;">Title</td>
+                                        <apex:repeat value="{!patentList}" var="p">
+                                            <td style="padding: 8px;"><apex:outputText value="{!p.SymphonyIPM__Title_of_Invention__c}" /></td>
+                                        </apex:repeat>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px;">Application No.</td>
+                                        <apex:repeat value="{!patentList}" var="p">
+                                            <td style="padding: 8px;"><apex:outputText value="{!p.SymphonyIPM__Application_Number__c}" /></td>
+                                        </apex:repeat>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px;">Filing Date</td>
+                                        <apex:repeat value="{!patentList}" var="p">
+                                            <td style="padding: 8px;"><apex:outputText value="{!p.SymphonyIPM__Application_Date__c}" /></td>
+                                        </apex:repeat>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px;">Patent No.</td>
+                                        <apex:repeat value="{!patentList}" var="p">
+                                            <td style="padding: 8px;"><apex:outputText value="{!p.SymphonyIPM__Patent_Number__c}" /></td>
+                                        </apex:repeat>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px;">Issue Date of Patent</td>
+                                        <apex:repeat value="{!patentList}" var="p">
+                                            <td style="padding: 8px;"><apex:outputText value="{!p.SymphonyIPM__Issue_Date_of_Patent__c}" /></td>
+                                        </apex:repeat>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px;">Status</td>
+                                        <apex:repeat value="{!patentList}" var="p">
+                                            <td style="padding: 8px;"><apex:outputText value="{!p.SymphonyIPM__Status__c}" /></td>
+                                        </apex:repeat>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </apex:outputPanel>-->
+                    
+                </apex:repeat>
+            </apex:pageBlock>
+        </apex:form>
+    </body>
+</apex:page>

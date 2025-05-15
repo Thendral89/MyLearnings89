@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- User To Share With --></label>
+    <name>UserToShareWith__c</name>
+    <relationshipLabel><!-- ApexSharings (User To Share With) --></relationshipLabel>
+</CustomFieldTranslation>

@@ -1,0 +1,126 @@
+<template>
+    <div class="slds-card "> <!-- sticky -> Css is causing issue currently -->
+    <!-- Header Section -->
+    <template if:true={recordName}>
+        <div class="header-container slds-grid ">
+            <div>
+                <div class="object-logo-box">
+                    <img src={logoUrl}  alt="Object Logo" class="object-logo" />
+                </div>
+            </div>
+            <div>
+                <h1 class={textHeading}>{recordName}</h1>
+
+                <div class="slds-col slds-m-right_small docketNumber">
+                    <span>{docketNumber}</span>
+                  </div>
+            </div>
+            <div class="slds-col_bump-left">
+                <div class="slds-grid slds-grid_align-end">
+                    <template lwc:if={editMode}>
+                        
+                        <div class="slds-align_absolute-center">
+                            <div class="slds-grid slds-grid_vertical-align-center">
+                                <div class="slds-col">
+                            <lightning-button
+                                class=""
+                                label="Cancel"
+                                variant="destructive"
+                                onclick={handleReset}
+                            ></lightning-button>
+                        </div>
+                        <div class="slds-col">
+                            <lightning-button
+                                class="slds-m-left_medium slds-m-right_medium"
+                                onclick={handleSave}
+                                label="Save"
+                                variant="brand"
+                            ></lightning-button>
+                            </div>
+                        </div>
+                        </div>
+                    </template>
+                    <template lwc:else></template>
+                </div>
+            </div>
+            <!--div>
+                <div> 
+                    <template if:true={summary}>
+                        <span class="slds-badge slds-theme_success" title="Patent">{summary.patent}</span>
+                        <span class="slds-badge slds-theme_warning" title="Trademark">{summary.trademark}</span>
+                        <span class="slds-badge slds-badge_inverse" title="Design">{summary.design}</span>
+                    </template>
+                </div>
+            </div-->
+        </div>
+    </template>
+
+    <template if:true={fieldSetData}>
+        <lightning-record-edit-form 
+            record-id={recordId} 
+            object-api-name={objectApiName}
+            onsubmit={handleSubmit}
+            onsuccess={handleSuccess}
+            onerror={handleError}
+        >
+            <div class="slds-grid slds-wrap">
+                <template for:each={fieldSetData} for:item="field">
+                    <div key={field.fieldApiName} class="slds-col slds-size_1-of-3 slds-col-underline">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-3 slds-p-around_xx-small">
+                                <span>{field.label}</span>
+                            </div>
+                            <div class="slds-col slds-size_2-of-3 slds-p-around_xx-small">
+                                <template lwc:if={field.editMode}>
+                                    <div tabindex="0">
+                                        <lightning-input-field field-name={field.fieldApiName} variant="label-hidden"></lightning-input-field>
+                                    </div>
+                                    
+                                </template>
+                                <template lwc:else>
+                                    <div data-fieldapiname={field.fieldApiName} class="slds-grid" onclick={handleEdit}>
+                                        <div class="slds-col slds-badge">
+                                            <lightning-output-field class="bold-text slds-line-clamp" variant="label-hidden" field-name={field.fieldApiName}></lightning-output-field>
+                                        </div>
+                                        
+                                        <div class="slds-col_bump-left">
+                                            <div class={field.isEditableCss}>
+                                                <lightning-button-icon icon-name="utility:edit"  size="small"   variant="bare" alternative-text="View More"></lightning-button-icon>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <div class="slds-hide">
+            <lightning-button
+                                class="slds-m-left_medium slds-m-right_medium"
+                                type="submit"
+                                label="Save"
+                                variant="brand"
+                            ></lightning-button>
+                        </div>
+
+                        <template if:true={isLoading}>
+                            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                        </template>
+        </lightning-record-edit-form>
+    </template>
+
+    <template if:true={error}>
+        <div class="slds-text-color_error">
+            Error loading field set: {error.body.message}
+        </div>
+    </template>
+
+    <c-lwc-mv-keywords 
+        record-id={recordId}
+        object-api-name={objectApiName}
+    ></c-lwc-mv-keywords>
+    
+</div>
+</template>

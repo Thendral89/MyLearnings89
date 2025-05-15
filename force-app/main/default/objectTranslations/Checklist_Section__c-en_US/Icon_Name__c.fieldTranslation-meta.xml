@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Icon Name --></label>
+    <name>Icon_Name__c</name>
+    <picklistValues>
+        <masterLabel>Utility:sender_email</masterLabel>
+        <translation><!-- Utility:sender_email --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>action:question_post_action</masterLabel>
+        <translation><!-- action:question_post_action --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>action:web_link</masterLabel>
+        <translation><!-- action:web_link --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:account</masterLabel>
+        <translation><!-- standard:account --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:assignment</masterLabel>
+        <translation><!-- standard:assignment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:attach</masterLabel>
+        <translation><!-- standard:attach --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:bill_of_materials</masterLabel>
+        <translation><!-- standard:bill_of_materials --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:bundle_policy</masterLabel>
+        <translation><!-- standard:bundle_policy --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:campaign</masterLabel>
+        <translation><!-- standard:campaign --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:customers</masterLabel>
+        <translation><!-- standard:customers --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:data_graph</masterLabel>
+        <translation><!-- standard:data_graph --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:datashares</masterLabel>
+        <translation><!-- standard:datashares --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:display_text</masterLabel>
+        <translation><!-- standard:display_text --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:document_preview</masterLabel>
+        <translation><!-- standard:document_preview --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:entitlement</masterLabel>
+        <translation><!-- standard:entitlement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:entitlement_policy</masterLabel>
+        <translation><!-- standard:entitlement_policy --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:entity</masterLabel>
+        <translation><!-- standard:entity --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:folder</masterLabel>
+        <translation><!-- standard:folder --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:home</masterLabel>
+        <translation><!-- standard:home --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:impact_strategy_assignment</masterLabel>
+        <translation><!-- standard:impact_strategy_assignment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:location</masterLabel>
+        <translation><!-- standard:location --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:opportunity_contact_role</masterLabel>
+        <translation><!-- standard:opportunity_contact_role --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:person_name</masterLabel>
+        <translation><!-- standard:person_name --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:photo</masterLabel>
+        <translation><!-- standard:photo --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:poll</masterLabel>
+        <translation><!-- standard:poll --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:product_request</masterLabel>
+        <translation><!-- standard:product_request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:product_transfer_state</masterLabel>
+        <translation><!-- standard:product_transfer_state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:question_feed</masterLabel>
+        <translation><!-- standard:question_feed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:recipe</masterLabel>
+        <translation><!-- standard:recipe --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:record_consent</masterLabel>
+        <translation><!-- standard:record_consent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:record_create</masterLabel>
+        <translation><!-- standard:record_create --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:record_signature_task</masterLabel>
+        <translation><!-- standard:record_signature_task --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:related_list</masterLabel>
+        <translation><!-- standard:related_list --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:report</masterLabel>
+        <translation><!-- standard:report --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:sales_value</masterLabel>
+        <translation><!-- standard:sales_value --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>standard:task</masterLabel>
+        <translation><!-- standard:task --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>utility:announcement</masterLabel>
+        <translation><!-- utility:announcement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>utility:edit_form</masterLabel>
+        <translation><!-- utility:edit_form --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>utility:gsheet</masterLabel>
+        <translation><!-- utility:gsheet --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>utility:keyboard_dismiss</masterLabel>
+        <translation><!-- utility:keyboard_dismiss --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>utility:lock</masterLabel>
+        <translation><!-- utility:lock --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>utility:money</masterLabel>
+        <translation><!-- utility:money --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>utility:spinner</masterLabel>
+        <translation><!-- utility:spinner --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,128 @@
+<template>
+    <template if:false={showRichText}>
+        <div class="slds-grid slds-container_fluid slds-grid_vertical-align-start">
+            <lightning-input onclick={handleInputClick}
+                placeholder={placeholder}
+                value={inputValue}
+                variant="label-hidden"
+                class="slds-grow">
+            </lightning-input>
+            <template if:true={showShareButton}>
+                <lightning-button 
+                    variant="Brand" 
+                    label="Share"
+                    class="slds-m-left_small"
+                    onclick={handleInputClick}>
+                </lightning-button>
+            </template>      
+        </div>
+    </template>
+
+    <template if:true={showRichText}>
+        <lightning-input-rich-text onchange={handleChange} formats={formats}>
+            <lightning-rich-text-toolbar-button-group
+                slot="toolbar"
+                aria-label="Custom button group"
+            >
+                <lightning-rich-text-toolbar-button
+                    icon-name="utility:image"
+                    icon-alternative-text="Add image"
+                    onclick={handleAddimage}
+                >
+                </lightning-rich-text-toolbar-button>
+                <lightning-rich-text-toolbar-button
+                    icon-name="utility:adduser"
+                    icon-alternative-text="Add User"
+                    onclick={handleAddUser}
+                >
+                </lightning-rich-text-toolbar-button>
+                <lightning-rich-text-toolbar-button
+                    icon-name="utility:emoji"
+                    icon-alternative-text="Add emoji"
+                    onclick={handleAddEmoji}
+                >
+            </lightning-rich-text-toolbar-button>
+            </lightning-rich-text-toolbar-button-group>
+        </lightning-input-rich-text>
+
+        <div class="slds-grid slds-grid_align-spread slds-m-vertical_small">
+            <div class="slds-col">
+                <lightning-button-icon
+                icon-name="utility:attach"
+                variant="bare"
+                alternative-text="Attach Files"
+                title="Attach Files"
+                onclick={handleAttachFile}
+                class="slds-p-around_xx-small"
+            ></lightning-button-icon>
+                <!-- <c-file-uploader
+                    record-id={currentRecordId}
+                    onfileadded={handleFileAdded}
+                    onfileremoved={handleFileRemoved}
+                    onfilescleared={handleFilesCleared}>
+                </c-file-uploader> -->
+            </div>
+            
+            <div class="slds-col">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <lightning-button 
+                            variant="destructive" 
+                            label="Close" 
+                            title="Close" 
+                            onclick={handleClose} 
+                        ></lightning-button> 
+                     </div>
+                     <div class="slds-col">
+                        <lightning-button 
+                            variant="brand" 
+                            label="Share" 
+                            title="Primary action" 
+                            onclick={handleShare} 
+                            disabled={isShareDisable}>
+                        </lightning-button>  
+                     </div>
+                </div>
+                
+            </div>
+        </div>
+    </template>
+    
+    <!-- Uploaded Files Tiles-->
+    <div class="slds-grid slds-wrap slds-gutters_xx-small">
+        <template for:each={uploadedFiles} for:item="file">
+            <div key={file.Id} class="slds-col slds-large-size_4-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-around_xx-small">
+                <div class="slds-box slds-box_x-small slds-m-vertical_xx-small my-pill">
+                    <div class="slds-grid slds-grid_vertical-align-center">
+                        <div class="slds-col slds-size_10-of-12 slds-grow-none">
+                            <div class="slds-media slds-media_center">
+                                <div class="slds-media__figure">
+                                    <lightning-icon icon-name={file.fileIconName} alternative-text='image' size='Small' title='image'></lightning-icon>
+                                </div>
+                                <div class="slds-media__body slds-truncate">
+                                    <span class="slds-truncate">{file.Name} • {file.Size} • {file.FileType}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_2-of-12 slds-text-align_right">
+                            <lightning-button-icon 
+                                icon-name="utility:close"  
+                                alternative-text="close" 
+                                title="close" 
+                                variant='bare-inverse' 
+                                onclick={handleRemoveFile}
+                                data-id={file.Id}>
+                            </lightning-button-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+        </template>
+    </div>
+
+    <!-- File Uploader Modal Component -->
+     <template if:true={openFileUploader}>
+        <c-file-uploader-modal oninsert={handleSelectedFiles} onclose={handleCloseFileModal} property={property}></c-file-uploader-modal>
+     </template>
+        
+</template>

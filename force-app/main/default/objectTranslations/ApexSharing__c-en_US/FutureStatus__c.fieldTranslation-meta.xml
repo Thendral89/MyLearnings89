@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Future Status --></label>
+    <name>FutureStatus__c</name>
+    <picklistValues>
+        <masterLabel>Aborted</masterLabel>
+        <translation><!-- Aborted --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Access Level Changed</masterLabel>
+        <translation><!-- Access Level Changed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pending</masterLabel>
+        <translation><!-- Pending --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Shared</masterLabel>
+        <translation><!-- Shared --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transaction Finalizer (ie. Error happend in code. Please contact System Admin)</masterLabel>
+        <translation><!-- Transaction Finalizer (ie. Error happend in code. Please contact System Admin) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

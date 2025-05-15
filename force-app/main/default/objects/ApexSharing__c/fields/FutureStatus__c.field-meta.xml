@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FutureStatus__c</fullName>
+    <externalId>false</externalId>
+    <label>Future Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pending</fullName>
+                <default>true</default>
+                <label>Pending</label>
+            </value>
+            <value>
+                <fullName>Shared</fullName>
+                <default>false</default>
+                <label>Shared</label>
+            </value>
+            <value>
+                <fullName>Aborted</fullName>
+                <default>false</default>
+                <label>Aborted</label>
+            </value>
+            <value>
+                <fullName>Transaction Finalizer</fullName>
+                <default>false</default>
+                <label>Transaction Finalizer (ie. Error happend in code. Please contact System Admin)</label>
+            </value>
+            <value>
+                <fullName>Access Level Changed</fullName>
+                <default>false</default>
+                <label>Access Level Changed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

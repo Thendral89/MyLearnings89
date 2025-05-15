@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Leather goods: Leather &amp; imitations of l</label>
+    <protected>false</protected>
+    <values>
+        <field>Class__c</field>
+        <value xsi:type="xsd:string">018</value>
+    </values>
+    <values>
+        <field>Languages__c</field>
+        <value xsi:type="xsd:string">English</value>
+    </values>
+    <values>
+        <field>Specification__c</field>
+        <value xsi:type="xsd:string">Leather and imitations of leather; animal skins, and hides; luggage and carrying bags; umbrellas and parasols; walking sticks; whips, harness and saddlery; collars, leashes and clothing for animals</value>
+    </values>
+</CustomMetadata>

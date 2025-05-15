@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Intake Form DraftedAt --></label>
+    <name>Intake_Form_DraftedAt__c</name>
+    <picklistValues>
+        <masterLabel>Applicants</masterLabel>
+        <translation><!-- Applicants --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Basic Details</masterLabel>
+        <translation><!-- Basic Details --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Inventors</masterLabel>
+        <translation><!-- Inventors --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jurisdiction</masterLabel>
+        <translation><!-- Jurisdiction --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

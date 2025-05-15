@@ -1,0 +1,118 @@
+<template>
+    <lightning-card title="">
+        <lightning-spinner if:true={isShowSpinner} alternative-text="Loading" size="xx-small"  class="slds-spinner_fullpage"></lightning-spinner>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-p-bottom_small" >
+                <lightning-button-icon class="slds-float_right" icon-name="utility:refresh"  variant="brand" alternative-text="Settings" onclick={handleRefresh}></lightning-button-icon>
+            </div>
+            <!-- Table displaying the data -->
+            <div class="slds-size_1-of-1 custom-table-container">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Created Date</th>
+                            <th>Status</th>
+                            <th style="width:8rem">Secretary</th>
+                            <th style="width:8rem">Attorney</th>
+                            <th style="width:8rem">Double Checker</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={instancesData} for:item="row">
+                            <tr key={row.checkListId}>
+                                <td>{row.checkListName}</td>
+                                <td>{row.createdDate}</td>
+                                <td>{row.status}</td>
+                                <td>
+                                    <div class="slds-grid slds-grid_vertical-align-center slds-align_absolute-center">
+                                        <span if:true={row.isWaringMessage}><b>{row.initialAssignmentMessage}</b></span>
+                                        <span>{row.secretaryUser}</span>
+                                        <span>
+                                            <lightning-button-icon if:true={row.secretaryEdit} icon-name="utility:edit" size="small"
+                                                alternative-text="Secretary Edit" onclick={handleEditClick}
+                                                data-usertype="Secretary" data-checklistid={row.checkListId}
+                                                data-checklistcode={row.checkListCode} title="Secretary Edit"
+                                                data-userid={row.secretary}
+                                                class="slds-m-left_small"></lightning-button-icon>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="slds-grid slds-grid_vertical-align-center slds-align_absolute-center">
+                                        <span>{row.attorneyUser}</span>
+                                        <lightning-button-icon if:true={row.attorneyEdit} icon-name="utility:edit" size="small"
+                                            alternative-text="Attorney Edit" data-checklistid={row.checkListId}
+                                            data-userid={row.attorney} data-checklistcode={row.checkListCode}
+                                            data-usertype="Attorney" onclick={handleEditClick} title="Attorney Edit"
+                                            class="slds-m-left_small"></lightning-button-icon>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="slds-grid slds-grid_vertical-align-center slds-align_absolute-center">
+                                        <span>{row.doubleCheckerUser}</span>
+                                        <lightning-button-icon if:true={row.doubleCheckerEdit} icon-name="utility:edit" size="small"
+                                            alternative-text="Double Checker Edit" data-checklistid={row.checkListId}
+                                            data-checklistcode={row.checkListCode} data-usertype="DoubleChecker"
+                                            onclick={handleEditClick} data-userid={row.doubleChecker}
+                                            title="Double Checker Edit"
+                                            class="slds-m-left_small"></lightning-button-icon>
+                                    </div>
+                                </td>
+                                <td><lightning-button label="Open" data-checklistid={row.checkListId} onclick={OpenCheckListInstance}></lightning-button></td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </lightning-card>
+    <template if:true={isShowModal}>
+        
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- modal header start -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={hideModalBox}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{modalHeading}</h2>
+                </header>
+
+                <!-- modal body start -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    
+                    <div class="slds-m-around_medium">
+                        <div if:true={isError} style="color: red;">
+                            Please choose User
+                        </div>
+                        <div if:true={isChecklistError} style="color: red;">
+                            Secretary and Double Checker cannot be same.
+                        </div>
+                        <symphonylf-dynamic-search-and-select -label="" object-name="User"
+                            class="custom-lookup-dropdown" search-field-names={searchFields}
+                            query-field-names={queryFields} dropdown-option-fields="1,2"
+                            selected-record-representation="1" icon-name="custom:custom91"
+                            onselected={handleSelectedUserRecord} limit=50 final-sel-id={userId}
+                            where-clause={userFilterCondition} min-search-txt-len=0 placeholder={placeholder}>
+                        </symphonylf-dynamic-search-and-select>
+                    </div>
+                </div>
+
+                <!-- modal footer start-->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={hideModalBox}>Cancel</button>
+                    <lightning-button variant="brand" label="Save" title="Save" onclick={handleSave}
+                        class="slds-m-left_x-small"></lightning-button>
+                </footer>
+
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

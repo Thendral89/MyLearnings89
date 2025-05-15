@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- is_external_as_normal --></label>
+    <name>is_external_as_normal__c</name>
+</CustomFieldTranslation>

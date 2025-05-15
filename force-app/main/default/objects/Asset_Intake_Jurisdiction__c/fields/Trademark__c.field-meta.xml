@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trademark__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Trademark</label>
+    <referenceTo>SymphonyLF__Trademark__c</referenceTo>
+    <relationshipLabel>Asset Intake Jurisdictions</relationshipLabel>
+    <relationshipName>Asset_Intake_Jurisdictions</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

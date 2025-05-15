@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>metics and cleaning preparations: Bleach</label>
+    <protected>false</protected>
+    <values>
+        <field>Class__c</field>
+        <value xsi:type="xsd:string">003</value>
+    </values>
+    <values>
+        <field>Languages__c</field>
+        <value xsi:type="xsd:string">English</value>
+    </values>
+    <values>
+        <field>Specification__c</field>
+        <value xsi:type="xsd:string">Bleaching preparations and other substances for laundry use; cleaning, polishing, scouring and abrasive preparations; non-medicated soaps; perfumery, essential oils, non-medicated cosmetics, non-medicated hair lotions; non-medicated dentifrices</value>
+    </values>
+</CustomMetadata>

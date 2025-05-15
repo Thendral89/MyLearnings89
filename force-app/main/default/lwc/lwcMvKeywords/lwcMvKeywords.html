@@ -1,0 +1,57 @@
+<template>
+    <template lwc:if={showKeywords}>
+        <div class="slds-p-around_xx-small">
+            <!--h2 class="slds-text-heading_medium">
+                <code> Keywords </code> 
+                <lightning-button icon-name="utility:add" variant="base" label="Add" title="Add" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+    
+            </h2-->
+    
+            <c-dynamic-search-and-select 
+                                    label="Select Keywords"
+                                    object-name="SymphonyLF__Keyword__c" 
+                                    placeholder="Search Keywords"
+                                    search-field-names="Name"
+                                    query-field-names="Name"
+                                    dropdown-option-fields="1"
+                                    selected-record-representation="1"
+                                    icon-name="custom:custom18"
+                                    onselected ={handleAddKeyword}
+                                    onadd={onKeywordsChange}
+                                    no-result-msg={noResultMsg}
+                                    add-icon={addIcon}
+                                    final-sel-id ={selectedCaseId}
+                                    where-clause={clientIdCondition}
+                                    min-search-txt-len = 0
+                                    selection-criteria="m"
+                                    hide-pills
+                                    disable-auto-dropdown={disableAutoDropdown}
+                                    limit= 50>  
+                                </c-dynamic-search-and-select>
+    
+            <template lwc:if={keywords}>
+                <template for:each={keywords} for:item="keyword">
+                    <!--lightning-badge class="badgeColor" key={keyword.associationId} label={keyword.keywordName} icon-name="utility:priority"></lightning-badge-->
+    
+                    <span class="slds-badge" key={keyword.associationId}>
+                        <span class="slds-badge__icon slds-badge__icon_left">
+                            <span class="slds-icon_container" title={keyword.keywordName}>
+                                <lightning-icon icon-name="utility:priority" size="xx-small" class="badgeColor" 
+                                    alternative-text={keyword.keywordName}>
+                                </lightning-icon>
+                            </span>
+                        </span>{keyword.keywordName}
+                        <!-- <span class="slds-badge__icon slds-badge__icon_right">
+                            <span class="slds-icon_container" title="Remove">
+                                <lightning-button-icon name={keyword.associationId} variant="bare" icon-name="action:remove" alternative-text="Remove"  size="small" title="Remove" onclick={handleRemoveTheKeyword}></lightning-button-icon>
+                            </span>
+                        </span> -->
+                    </span>
+                </template>
+            </template>
+            <template lwc:else></template>
+            
+        </div>
+        </template>
+        <template lwc:else></template>
+</template>

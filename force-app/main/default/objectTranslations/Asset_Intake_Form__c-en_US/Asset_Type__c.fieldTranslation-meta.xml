@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Asset Type --></label>
+    <name>Asset_Type__c</name>
+    <picklistValues>
+        <masterLabel>Design</masterLabel>
+        <translation><!-- Design --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Existing Design Family</masterLabel>
+        <translation><!-- Existing Design Family --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Existing Mark</masterLabel>
+        <translation><!-- Existing Mark --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Existing Patent Family</masterLabel>
+        <translation><!-- Existing Patent Family --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Design Family</masterLabel>
+        <translation><!-- New Design Family --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Mark</masterLabel>
+        <translation><!-- New Mark --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Patent Family</masterLabel>
+        <translation><!-- New Patent Family --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Opposition</masterLabel>
+        <translation><!-- Opposition --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Patent</masterLabel>
+        <translation><!-- Patent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Trademark</masterLabel>
+        <translation><!-- Trademark --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

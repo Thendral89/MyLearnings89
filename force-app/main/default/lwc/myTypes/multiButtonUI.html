@@ -1,0 +1,5 @@
+<template>
+    <template for:each={typeAttributes.buttons} for:item="btn">
+        <lightning-button key={btn.name} variant={btn.variant} label={btn.name} onclick={btn.function} disabled={btn.disabled} class="slds-m-left_x-small"></lightning-button>
+    </template>
+</template>

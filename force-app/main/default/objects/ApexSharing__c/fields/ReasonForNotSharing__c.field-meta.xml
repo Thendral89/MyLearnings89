@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ReasonForNotSharing__c</fullName>
+    <externalId>false</externalId>
+    <label>Reason For Not Sharing</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>User Record Absent</fullName>
+                <default>false</default>
+                <label>User Record Absent</label>
+            </value>
+            <value>
+                <fullName>User Is Inactive</fullName>
+                <default>false</default>
+                <label>User Is Inactive</label>
+            </value>
+            <value>
+                <fullName>Key Mismatch Between Person Record And User Record</fullName>
+                <default>false</default>
+                <label>Key Mismatch Between Person Record And User Record</label>
+            </value>
+            <value>
+                <fullName>Key Missing On Person/ User</fullName>
+                <default>false</default>
+                <label>Key Missing On Person/ User</label>
+            </value>
+            <value>
+                <fullName>Group Missing</fullName>
+                <default>false</default>
+                <label>Group Missing</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

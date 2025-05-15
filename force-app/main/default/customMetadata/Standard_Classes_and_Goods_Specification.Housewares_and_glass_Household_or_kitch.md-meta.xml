@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Housewares and glass: Household or kitch</label>
+    <protected>false</protected>
+    <values>
+        <field>Class__c</field>
+        <value xsi:type="xsd:string">021</value>
+    </values>
+    <values>
+        <field>Languages__c</field>
+        <value xsi:type="xsd:string">English</value>
+    </values>
+    <values>
+        <field>Specification__c</field>
+        <value xsi:type="xsd:string">Household or kitchen utensils and containers; combs and sponges; brushes, except paintbrushes; brush-making materials; articles for cleaning purposes; unworked or semi-worked glass, except building glass; glassware, porcelain and earthenware</value>
+    </values>
+</CustomMetadata>

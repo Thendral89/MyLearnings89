@@ -1,0 +1,11 @@
+.mass-actions {
+    background: #032d60;
+    border-bottom: 2px solid #f5f6f7;
+    margin: 0;
+    padding: 6px;
+}
+
+.action-heading {
+    color: rgb(243 243 243);
+    vertical-align: middle;
+}

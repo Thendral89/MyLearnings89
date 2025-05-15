@@ -1,0 +1,154 @@
+<template>
+    <lightning-card data-id="lcConflictCheck">
+        <template if:false={recordId}>
+        <div class="topDiv">
+            <div class="mainDiv">
+                <div class="mainheader">
+                    <div style="display:flex;justify-content:center;">
+                        <div style="width:100%;" class="footerBoxAnnouncement">
+                            <template if:true={showannouncement}>
+                            <c-reusable-announcement show-languages="true"
+                                containerstyleclass="slds-card reviewAnnouncement"
+                                announcementheader={ccDashboardHeader} announcements={ccDashboardAnnouncement}>
+                            </c-reusable-announcement>
+                        </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+         <div> 
+            <div class="slds-grid slds-wrap">
+                 <div class="slds-col slds-size_12-of-12">
+                    <div class="topDiv">
+                        <div class="mainDiv">
+                            <div class="mainheader">
+                                <div style="display:flex;justify-content:center;">
+                                    <div style="width:100%;" class="footerBox">
+                                        <div>
+                                            <lightning-button if:true={showInitiateCCButton} variant="brand" label="Initiate Conflict Check" title="Initiate Conflict Check" onclick={initiateNewConflictCheck} class="slds-m-left_x-small"></lightning-button>
+                                            <lightning-button if:true={showEngageButton} variant="success" label="Engage" title="Engage" onclick={engageClient} class="slds-m-left_x-small"></lightning-button>
+                                            <lightning-button if:true={showDonotEngageButton} variant="destructive" label="Do not Engage" title="Do Not Engage" onclick={donotEngageClient} class="slds-m-left_x-small"></lightning-button>
+                                            
+                                            
+                                        </div>
+                                        <BR>
+                                          
+                                    <div class="scrollmenu scrollable-container" style="overflow-x: auto; width: 100%;">
+                                        <div data-id="selectedRecordId" class="selectedRecord"><div onload={onloadConflickCheckDashboard} data-id="MCCIPConflictCheckDashboard"></div></div>
+                                    </div>
+                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+       </div>
+
+       <template if:true={initiateCCForm}>
+            <c-cc-new-request onclosepopup ={onclosepopup}></c-cc-new-request>
+       </template>
+
+
+       <template if:true={isAreaOfLawNotExists}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-010" aria-modal="true"
+            aria-describedby="modal-content-id-11" class="slds-modal slds-fade-in-open slds-modal_small">
+            <div class="slds-modal__container">
+                <!-- modal header start -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={hideAreaOfLawModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-021" class="slds-text-heading_medium slds-hyphenate">Select Area Of Law
+                    </h2>
+                </header>
+
+                <!-- modal body start -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-021">
+                    
+                    <label class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;">
+															Area Of Law</label>
+														<c-lwc-picklist object-api-name="Conflict_Check__c"
+															field-api-name="Area_of_Law_AOL__c"
+															variant="label-hidden"
+															onvalueselected={onAreaOfLawSelected}>
+														</c-lwc-picklist>
+
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+       <template if:true={isShowEngagementModal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <!-- modal header start -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={hideEngagementModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">{modalName} Application Intake Form
+                    </h2>
+                </header>
+
+                <!-- modal body start -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-02">
+                    <!-- <div if:true={isPatentIntakeForm}><c-application-intake-form onshowengagementmodalclose={closeEngagementModal} client-id={selectedClientId}></c-application-intake-form></div> -->
+                    <div if:true={isPatentIntakeForm}><c-lwc-patent-intake-form-new onshowengagementmodalclose={closeEngagementModal} client-id={selectedClientId} conflict-check-id={conflictCheckSelectedRecordId}></c-lwc-patent-intake-form-new></div>
+                    <!-- <div if:true={isDisignIntakeForm}><c-lwc-design-intake-form-new onshowengagementmodalclose={closeEngagementModal} client-id={selectedClientId} conflict-check-id={conflictCheckSelectedRecordId}></c-lwc-design-intake-form-new></div> -->
+                    <!-- <div if:true={isTrademarkIntakeForm}><c-lwc-trademark-intake-form-new onshowengagementmodalclose={closeEngagementModal} client-id={selectedClientId} conflict-check-id={conflictCheckSelectedRecordId}></c-lwc-trademark-intake-form-new></div> -->
+                    <!-- <div if:true={isCopyrightIntakeForm}><c-copyright-intake-form onshowengagementmodalclose={closeEngagementModal} client-id={selectedClientId} conflict-check-id={conflictCheckSelectedRecordId}></c-copyright-intake-form></div> -->
+                    <!-- <div if:true={isDisputeIntakeForm}><c-d-o-i-f-formnew onshowengagementmodalclose={closeEngagementModal} client-id={selectedClientId} conflict-check-id={conflictCheckSelectedRecordId}></c-d-o-i-f-formnew></div> -->
+                    <!-- <div if:true={isAgreementIntakeForm}><c-lwc-agreement-intake-form-new onshowengagementmodalclose={closeEngagementModal} client-id={selectedClientId} conflict-check-id={conflictCheckSelectedRecordId}></c-lwc-agreement-intake-form-new></div> -->
+                    <!-- <div if:true={isGMIntakeForm}><c-lwc-general-matter-intakr-form onshowengagementmodalclose={closeEngagementModal} client-id={selectedClientId} conflict-check-id={conflictCheckSelectedRecordId}></c-lwc-general-matter-intakr-form></div> -->
+                    <!-- <div if:true={isPatentIntakeForm}><c-lwc-patent-intake-form onshowengagementmodalclose={closeEngagementModal} client-id={selectedClientId} conflict-check-id={conflictCheckSelectedRecordId}></c-lwc-patent-intake-form></div> -->
+                    
+                    <!-- <c-lwc-engage conflict-check-id = {conflictCheckSelectedRecordId} onshowengagementmodalclose={closeEngagementModal}></c-lwc-engage> -->
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <template if:true={isShowDoNotEngagementModal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-3" class="slds-modal slds-fade-in-open slds-modal_medium">
+            <div class="slds-modal__container">
+                <!-- modal header start -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={hideDonotEngagementModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-05" class="slds-text-heading_medium slds-hyphenate"> ** Warning **
+                    </h2>
+                </header>
+
+                <!-- modal body start -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-04">
+                    <c-lwc-donot-engage conflict-check-id = {conflictCheckSelectedRecordId}
+                    selected-client-id = {selectedClientId} selected-client-status = {selectedClientStatus}
+                        onshowdonotengagementmodal={closeDonotEngagementModal}></c-lwc-donot-engage>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    </lightning-card>
+</template>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Asset Information --></label>
+        <name>ASSETINFORMATION</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HIGHLIGHTSPANEL --></label>
+        <name>HIGHLIGHTSPANEL</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Information --></label>
+        <name>INFORMATION</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- INFORMATION --></label>
+        <name>INFORMATION_READ</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- System Information --></label>
+        <name>SYSTEMINFORMATION</name>
+    </fieldSets>
+    <layouts>
+        <layout>Custom Docketing Activity Layout</layout>
+        <sections>
+            <label><!-- Additional Details --></label>
+            <section>Additional Details</section>
+        </sections>
+        <sections>
+            <label><!-- Assignment Details --></label>
+            <section>Assignment Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Delegation Details --></label>
+            <section>Delegation Details</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

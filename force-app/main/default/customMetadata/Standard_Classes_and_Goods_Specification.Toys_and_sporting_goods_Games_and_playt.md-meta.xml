@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Toys and sporting goods: Games and playt</label>
+    <protected>false</protected>
+    <values>
+        <field>Class__c</field>
+        <value xsi:type="xsd:string">028</value>
+    </values>
+    <values>
+        <field>Languages__c</field>
+        <value xsi:type="xsd:string">English</value>
+    </values>
+    <values>
+        <field>Specification__c</field>
+        <value xsi:type="xsd:string">Games, toys and playthings; video game apparatus; gymnastic and sporting articles; decorations for Christmas trees</value>
+    </values>
+</CustomMetadata>

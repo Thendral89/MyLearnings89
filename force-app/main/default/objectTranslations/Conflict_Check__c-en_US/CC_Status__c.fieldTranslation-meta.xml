@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Status --></label>
+    <name>CC_Status__c</name>
+    <picklistValues>
+        <masterLabel>Conflict Check Completed</masterLabel>
+        <translation><!-- Conflict Check Completed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Conflict Check Pending</masterLabel>
+        <translation><!-- Conflict Check Pending --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Conflict Check Skipped</masterLabel>
+        <translation><!-- Conflict Check Skipped --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Progress</masterLabel>
+        <translation><!-- In Progress --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Matter Created</masterLabel>
+        <translation><!-- Matter Created --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>On Hold</masterLabel>
+        <translation><!-- On Hold --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Submitted</masterLabel>
+        <translation><!-- Submitted --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Watch Action Status --></label>
+    <name>Watch_Action_Status__c</name>
+    <picklistValues>
+        <masterLabel>Follow-Up</masterLabel>
+        <translation><!-- Follow-Up --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No Further Action</masterLabel>
+        <translation><!-- No Further Action --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Report Now</masterLabel>
+        <translation><!-- Report Now --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unaddressed</masterLabel>
+        <translation><!-- Unaddressed --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

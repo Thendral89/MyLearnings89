@@ -1,0 +1,4 @@
+.customModalWidth .slds-modal__container {
+    width:     60rem;
+    max-width: 95%;
+  }

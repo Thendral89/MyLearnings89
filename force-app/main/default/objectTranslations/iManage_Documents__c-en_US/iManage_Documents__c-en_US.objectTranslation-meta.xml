@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>iManage Documents</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>iManage Documents</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Compact Layout --></label>
+        <name>Compact_Layout</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Details --></label>
+        <name>Details</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- System Information --></label>
+        <name>System_Information</name>
+    </fieldSets>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

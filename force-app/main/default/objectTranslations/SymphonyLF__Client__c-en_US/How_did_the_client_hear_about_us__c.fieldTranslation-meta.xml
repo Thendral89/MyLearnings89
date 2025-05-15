@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- How did the client hear about us ? --></label>
+    <name>How_did_the_client_hear_about_us__c</name>
+    <picklistValues>
+        <masterLabel>Cold Call</masterLabel>
+        <translation><!-- Cold Call --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Family or Friend</masterLabel>
+        <translation><!-- Family or Friend --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Google Ad</masterLabel>
+        <translation><!-- Google Ad --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Print or Digital ABC Ad</masterLabel>
+        <translation><!-- Print or Digital ABC Ad --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Proposal</masterLabel>
+        <translation><!-- Proposal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Referral from current client or another Attorney</masterLabel>
+        <translation><!-- Referral from current client or another Attorney --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

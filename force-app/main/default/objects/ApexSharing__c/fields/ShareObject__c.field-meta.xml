@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ShareObject__c</fullName>
+    <externalId>false</externalId>
+    <label>Share Object</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>SymphonyLF__Patent__Share</fullName>
+                <default>false</default>
+                <label>SymphonyLF__Patent__Share</label>
+            </value>
+            <value>
+                <fullName>SymphonyLF__Copyright__Share</fullName>
+                <default>false</default>
+                <label>SymphonyLF__Copyright__Share</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

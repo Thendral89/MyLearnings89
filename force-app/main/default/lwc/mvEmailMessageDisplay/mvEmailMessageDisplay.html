@@ -1,0 +1,91 @@
+<!--
+  @description       : Email Message Display
+  @last modified on  : 02-12-2025
+-->
+<template>
+    
+    <lightning-card>
+        <!-- Spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-text-align_center slds-m-top_medium">
+                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+            </div>
+        </template>
+        <div class="container">
+            <!-- Email Content -->
+            <div class="email-message-display">
+                <div class="email-container">
+                    <template if:true={emailMessage}>
+                        <!-- Header -->
+                        <div class="email-header">
+                            <p class="subject" title={emailMessage.Subject}>{emailMessage.Subject}</p>
+                            <p class="date" title={emailMessage.Subject}>{emailMessage.CreatedDate}</p>
+                        </div>
+        
+                        <!-- Sender and Recipients -->
+                        <div class="email-metadata">
+                            <!-- From -->
+                            <p>
+                                <strong>
+                                <span class="bold-name">{emailMessage.FromName}</span></strong>
+                                <span>
+                                    &lt;<a href="mailto:{emailMessage.FromAddress}">{emailMessage.FromAddress}</a>&gt;
+                                </span>
+                            </p>
+        
+                            <!-- To -->
+                            <p><strong>To:</strong> {emailMessage.ToAddress}</p>
+        
+                            <!-- CC -->
+                            <template if:true={emailMessage.CcAddress}>
+                                <p><strong>Cc:</strong> {emailMessage.CcAddress}</p>
+                            </template>
+        
+                            <!-- BCC -->
+                            <template if:true={emailMessage.BccAddress}>
+                                <p><strong>Bcc:</strong> {emailMessage.BccAddress}</p>
+                            </template>
+                        </div>
+        
+                        <template if:true={hasAttachment}>
+                            <c-mass-files-download object-api-name="EmailMessage" record-id={emailMessageId}></c-mass-files-download>
+                        </template>
+                    </template>
+        
+                    <!-- <template if:true={emailMessage}>
+                        <div class="email-body">
+                            <template if:true={isRichText}>
+                                <lightning-formatted-rich-text style="line-height: 1.5; margin: 0; padding: 0;" value={emailMessage.HtmlBody}></lightning-formatted-rich-text>
+                            </template>
+                            <template if:false={isRichText}>
+                                <pre>{emailMessage.TextBody}</pre>
+                            </template>
+                        </div>
+                    </template> -->
+                    <template if:true={emailMessage}>
+                        <div 
+                            class="responsive-email-body" 
+                            lwc:dom="manual"  
+                        ></div>
+                    </template>
+                </div>
+            </div>
+            
+
+            <!-- Email Tracker Display -->
+            <div class="email-tracker-display">
+                <c-mv-email-tracker-display record-id={recordId}></c-mv-email-tracker-display>
+            </div>
+        </div>
+        
+        <!-- Error Message -->
+        <template if:false={isLoading}>
+            <template if:false={emailMessage}>
+                <div class="slds-text-align_center slds-text-color_error slds-m-top_medium">
+                    <lightning-icon icon-name="utility:error" size="large" alternative-text="Error"></lightning-icon>
+                    <p class="slds-text-title_bold">Email message is unavailable or inaccessible.</p>
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>

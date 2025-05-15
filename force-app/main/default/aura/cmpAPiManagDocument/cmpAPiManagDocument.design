@@ -1,0 +1,12 @@
+<design:component>	
+    <design:attribute name="recordId" label="recordId" />	
+    <design:attribute name="IsMatterDocuments" label="IsMatterDocuments" />
+    <design:attribute name="IsDocketing" label="IsDocketing" />
+    <design:attribute name="iManageEmailObjectId" label="iManage Docketing Activity Id" />
+    
+    <design:attribute name="selectedfielsItems" label="iManage Selected File Ids" />
+    <design:attribute name="IsCollaborationDocument" label="IsCollaborationDocument" />
+    
+    
+    
+</design:component>

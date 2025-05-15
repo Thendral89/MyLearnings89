@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Address --></label>
+        <name>Address</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- ApplicantAddress --></label>
+        <name>ApplicantAddress</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Billing Address --></label>
+        <name>Billing_Address</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Compact Layout --></label>
+        <name>Compact_Layout</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Details --></label>
+        <name>Details</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Details --></label>
+        <name>Details_Read</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Inactive Address --></label>
+        <name>Inactive_Address</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Mailing Address --></label>
+        <name>Mailing_Address</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- System Information --></label>
+        <name>System_Information</name>
+    </fieldSets>
+</CustomObjectTranslation>

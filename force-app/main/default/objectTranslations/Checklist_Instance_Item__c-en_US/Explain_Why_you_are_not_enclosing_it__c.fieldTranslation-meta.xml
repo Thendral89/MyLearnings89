@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Explain why you are not enclosing it --></label>
+    <name>Explain_Why_you_are_not_enclosing_it__c</name>
+</CustomFieldTranslation>

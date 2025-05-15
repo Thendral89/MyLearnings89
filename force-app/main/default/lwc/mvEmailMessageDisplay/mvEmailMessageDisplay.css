@@ -1,0 +1,144 @@
+.email-container {
+    padding: 0.5rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box; /* Ensure padding is included in width */
+    overflow-x: hidden; /* Prevent content overflow */
+}
+
+.slds-grid {
+    display: flex;
+    flex-wrap: wrap; /* Wrap items to prevent overflow */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    gap: 1rem; /* Space between elements */
+}
+
+.slds-col {
+    max-width: 100%; /* Prevent columns from exceeding parent */
+    flex-grow: 1; /* Allow elements to resize */
+    box-sizing: border-box; /* Include padding in size calculations */
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    width: 100%; /* Full width */
+    height: auto; /* Adapt height */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    box-sizing: border-box; /* Include padding in size */
+}
+
+.email-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
+}
+
+.email-message-display {
+    flex: 7; /* Take up 70% width */
+    padding: 1rem;
+    min-width: 0; /* Prevent content overflow */
+    overflow: hidden; /* Prevent accidental overflow */
+    box-sizing: border-box; /* Include padding in size */
+}
+
+.email-tracker-display {
+    flex: 3; /* Take up 30% width */
+    padding: 1rem;
+    border-left: 1px solid #ddd;
+    min-width: 0; /* Prevent content overflow */
+    overflow: hidden; /* Prevent accidental overflow */
+    box-sizing: border-box; /* Include padding in size */
+}
+
+.subject {
+    font-size: 1.5rem;
+    font-weight: bold;
+    white-space: nowrap; /* Prevents wrapping */
+    overflow: hidden; /* Ensures overflow text is hidden */
+    text-overflow: ellipsis; /* Adds ellipsis for truncated text */
+    width: 100%; /* Ensures it takes up full available width */
+    max-width: 80%; /* Limits the width to avoid overlapping other elements */
+    display: inline-block; /* Ensures proper alignment */
+}
+
+.date {
+    font-size: 0.9rem;
+    color: #666;
+    white-space: nowrap; /* Keeps the date on one line */
+}
+
+.email-metadata {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: #555;
+}
+.bold-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.email-body {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    line-height: 1.5;
+    margin: 0;
+    white-space: normal;
+    word-wrap: break-word; /* Break long words to fit in the container */
+    overflow-wrap: break-word;
+}
+
+.email-body p {
+    margin: 0; /* Remove paragraph margins */
+    padding: 0; /* Remove padding from paragraphs */
+}
+
+.email-body br {
+    margin: 0; /* Remove any margin on line breaks */
+}
+
+.email-body pre {
+    white-space: pre-wrap; /* Ensure the preformatted text wraps properly */
+    margin: 0; /* Remove any margins */
+    padding: 0; /* Remove padding */
+}
+
+.responsive-email-body {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 1000px; /* Set a suitable max height */
+    overflow-y: auto; /* Vertical scroll if content overflows */
+    word-wrap: break-word;
+    overflow-wrap: break-word;  
+    white-space: normal;
+    box-sizing: border-box;
+    padding: 1rem;
+    display: block;
+
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+/* Ensuring images, especially the logo, are centered */
+.responsive-email-body img {
+    display: block; 
+    max-width: 100% !important; 
+    height: auto !important;   
+}
+
+/* Ensuring any table cells do not overflow */
+.responsive-email-body td,
+.responsive-email-body th {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* For any other block-level elements inside the email content */
+.responsive-email-body * {
+    max-width: 100% !important;
+    word-wrap: break-word;
+}

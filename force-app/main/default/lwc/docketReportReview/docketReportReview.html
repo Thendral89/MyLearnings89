@@ -1,0 +1,64 @@
+<template>
+      <div class="slds-p-around_xxxx-small">  
+        <div class="slds-m-top_medium slds-text-align_right">
+            <template if:true={isLegalAssistant}>
+                <lightning-button
+                  label="Submit For Review"
+                  variant="brand"
+                  class="slds-m-right_small"
+                  onclick={handleSubmitForReview}
+                  disabled={isRequestedChanges}>
+                </lightning-button>
+            </template>
+            <template if:true={isAttorneyOrParalegal}>
+                <lightning-button
+                    label="Reviewed"
+                    variant="brand"
+                    onclick={handleReviewed}
+                    class="slds-m-right_small"
+                    disabled={isInitiated}>
+                </lightning-button>
+        
+                <lightning-button
+                    label="Request Changes"
+                    variant="brand"
+                    onclick={openCommentModal}
+                    disabled={isInitiated}>
+                </lightning-button>
+            </template>
+        </div>
+      </div>
+
+    <template if:true={showCommentModal}>
+      <div class="slds-modal slds-fade-in-open slds-backdrop">
+        <div class="slds-modal__container" style="max-width: 60vw; width: 50vw;">
+            <lightning-record-edit-form
+            object-api-name="Docket_Report_External__c"
+            record-id={recordId}
+            onsuccess={handleCommentSuccess}
+            onsubmit={handleCommentSubmit}>
+                <div class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium slds-hyphenate">Request Changes</h2>
+                </div>
+                <div style="overflow:visible;" class="slds-modal__content slds-p-around_medium">
+                  <lightning-input-field field-name="Attorney_Comments__c">
+                  </lightning-input-field>
+                </div>
+                <div class="slds-modal__footer slds-text-align_right slds-p-around_medium">          
+                  <lightning-button 
+                      variant="neutral" 
+                      label="Cancel" 
+                      onclick={closeCommentModal}
+                      class="slds-m-right_small">
+                  </lightning-button>
+                  <lightning-button 
+                      variant="brand" 
+                      type="submit" 
+                      label="Submit">
+                  </lightning-button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+    </div>
+    </template>
+  </template>

@@ -1,0 +1,77 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:availableForFlowScreens" access="global">
+    
+    <aura:attribute name="vRichText" type="String" access="global" />
+    <aura:attribute name="vOutRichText" type="String" access="global" />
+    <aura:attribute name="vLimit" type="Integer" access="global" default='3000' />
+    <aura:attribute name="vAttribute" type="String" access="global" default='inputRichText' />
+	<aura:attribute name="IsShow" type="Boolean" default = "false"/>
+    
+   <aura:attribute name="divHeight" type="Integer" default="100" />
+
+   
+    
+	 <lightning:card title=""> 
+        <aura:set attribute="actions">
+            
+           <aura:if isTrue="{!v.vRichText.length >= v.vLimit }" >
+            	<lightning:icon iconName="utility:error" size="x-small" class="error-icn" variant="error" />&nbsp;
+           </aura:if> 
+            
+          <aura:if isTrue="{!v.vRichText.length>0}" >
+              <lightning:icon iconName="utility:success" size="x-small" class="success-icn" variant="Success" />&nbsp;
+              
+              
+               <aura:if isTrue="{!v.vAttribute == 'inputRichText'}" >
+                   {!v.vRichText.length-7}/{!v.vLimit}
+                <aura:set attribute="else">
+                    {!v.vRichText.length}/{!v.vLimit}    
+                </aura:set>   
+              </aura:if> 
+              
+    		<aura:set attribute="else">
+                
+      				<lightning:icon iconName="utility:warning" size="x-small" class="warning-icn" variant="warning" />&nbsp;
+                
+                 <aura:if isTrue="{!v.vAttribute == 'inputRichText'}" >
+                     0/{!v.vLimit}
+                <aura:set attribute="else">
+                    0/{!v.vLimit}    
+                </aura:set>   
+              </aura:if> 
+                
+    		</aura:set>
+              
+  		</aura:if> 
+          
+            
+            
+ 	</aura:set>
+</lightning:card> 
+    
+    <aura:if isTrue="{!v.IsShow}">
+        <div  class="slds-box editor slds-text-longform" >
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick='{!c.closeModal}'>
+                            <lightning:icon iconName="utility:close" alternativeText="Close" variant="inverse" size="small"/>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                    </header>
+                    
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate inlineTitle slds-p-top--large slds-p-horizontal--medium slds-p-bottom--medium slds-text-heading--medium"></h2>
+                        <div class='modal__content'>
+                          <lightning:flow aura:id="flowData" onstatuschange="{!c.statusChange}"/>
+                             
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+    
+    
+    
+</aura:component>

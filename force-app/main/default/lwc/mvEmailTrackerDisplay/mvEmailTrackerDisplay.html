@@ -1,0 +1,71 @@
+<!--
+  @description       : Email Tracker Display
+  @last modified on  : 05-05-2025
+-->
+<template>
+    <lightning-spinner if:true={showSpinner}></lightning-spinner>
+    <template if:true={hasTrackers} for:each={formattedEmailTrackerList} for:item="tracker" for:index="index">
+        <div key={tracker.Id} class="slds-grid slds-grid_align-spread hoverable">
+            <div class="slds-col slds-large-size_8-of-12 slds-small-size_6-of-12">
+                <div class="slds-col slds-grid">
+                    <div class="slds-col">
+                        <lightning-icon variant="inverse" icon-name="utility:new_window" class="custom-icon-color"
+                                        size="x-small"
+                                        onclick={handleNavigateToTrackerDetail}
+                                        data-record-id={tracker.Id}>
+                        </lightning-icon>
+                        <a data-id={tracker.Id} onclick={handleRecordClick} class="slds-text-body_regular" style="margin-left: 8px;">
+                            <b>{tracker.Name}</b>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-large-size_4-of-12 slds-small-size_6-of-12">
+                <div class="slds-col slds-grid slds-size_1-of-1 slds-grid_align-end">
+                    <!-- <lightning-formatted-date-time class="slds-p-right_x-small" value={tracker.CreatedDate}>
+                    </lightning-formatted-date-time> -->
+                    <span class="slds-p-right_xxx-small" style="font-size: 0.8em;">{tracker.CreatedDate}</span>
+                </div>
+            </div>
+        </div>
+
+        <div key={tracker.Id} class="slds-grid itemRows-subvalue row-bottom slds-p-bottom_xx-small">
+            <div class="slds-col slds-size_1-of-1 slds-p-right_x-small slds-p-left_x-large">
+                <div class="slds-col slds-large-size_8-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                    <template if:false={hideRelated}>
+                        <c-my-task-popover-container if:true={tracker.SymphonyLF__Email_RelatedToId__c} onclick={handleNavigateToAssetId} record-id={tracker.SymphonyLF__Email_RelatedToId__c} record-name={tracker.relatedName} data-record-id={tracker.SymphonyLF__Email_RelatedToId__c}>
+                        </c-my-task-popover-container>
+                    </template>
+                    
+                </div>
+                <div class="slds-m-top_x-small">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_3-of-12 truncate"><strong>Status</strong></div>
+                        <div class="slds-col slds-size_9-of-12"><strong>:</strong>
+                            <lightning-formatted-text class="slds-p-left_small" value={tracker.SymphonyLF__Tracking_Status__c}></lightning-formatted-text>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-m-top_x-small">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_3-of-12 truncate"><strong>Matter</strong></div>
+                        <div class="slds-col slds-size_9-of-12"><strong>:</strong>
+                            <lightning-formatted-text class="slds-p-left_small" value={tracker.SymphonyLF__Related_Record_Name__c}></lightning-formatted-text>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="slds-m-top_x-small">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_3-of-12 truncate"><strong>Asset Type</strong></div>
+                        <div class="slds-col slds-size_9-of-12"><strong>:</strong>
+                            <lightning-formatted-text class="slds-p-left_small" value={tracker.Asset_Type__c}></lightning-formatted-text>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </template>
+    <template if:false={hasTrackers}>
+        <div class="slds-m-top_medium slds-text-align_center">No Email Trackers available for this Email.</div>
+    </template>
+</template>

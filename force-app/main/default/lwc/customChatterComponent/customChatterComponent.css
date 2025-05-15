@@ -1,0 +1,30 @@
+.bodyHeader{
+    background-color: #f3f3f3;
+    border-radius: 10px;
+}
+.circleButton {
+    --slds-c-button-radius-border: 50%;
+}
+.circleInput{
+    --slds-c-input-radius-border: 1rem;
+
+}
+.bodyContent{
+    width: 100%; /* Make the feed span full width */
+    max-width: 100%; /* Prevent constraints */
+}
+.slds-spinner_container  {
+    /* position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; */
+    /* z-index: 9050; */
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.2s ease;
+    border-radius: 0.25rem;
+}

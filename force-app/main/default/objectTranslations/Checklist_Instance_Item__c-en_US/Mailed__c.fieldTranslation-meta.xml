@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Mailed --></label>
+    <name>Mailed__c</name>
+    <picklistValues>
+        <masterLabel>Envelope: Preprinted envelope or label is used, addressed to:   MAIL STOP ISSUE FEE, Commissioner for Patents, P. O. Box 1450, Alexandria, VA 22313-1450</masterLabel>
+        <translation><!-- Envelope: Preprinted envelope or label is used, addressed to:   MAIL STOP ISSUE FEE, Commissioner for Patents, P. O. Box 1450, Alexandria, VA 22313-1450 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mail certificate: (1) includes mail certificate, and (2) is signed and dated</masterLabel>
+        <translation><!-- Mail certificate: (1) includes mail certificate, and (2) is signed and dated --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Postcard:  (1) billing attorney initials, and (2) list of all papers being sent and the pages of each</masterLabel>
+        <translation><!-- Postcard:  (1) billing attorney initials, and (2) list of all papers being sent and the pages of each --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

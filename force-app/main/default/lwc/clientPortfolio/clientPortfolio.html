@@ -1,0 +1,60 @@
+<template>
+    <div class="intersectionObserver"></div>
+    <template lwc:if={showTable}>
+        
+        <div class="slds-grid slds-gutters slds-grid_align-spread">
+            <span class="slds-col padding" data-filtertype="All" onclick={handleFilters}>
+                <button style="width:7rem" class="tile"><img src={orgIcon}  alt="Object Logo" class="object-logo" /> All
+                    <div class="notification" role="status">{totalCount}</div>
+                </button>
+            </span>
+
+            <span class="slds-col padding" data-filtertype="Patent" onclick={handleFilters}>
+                <button class="tile"><img src={patentIcon}  alt="Object Logo" class="object-logo" /> Patents
+                    <div class="notification" role="status">{patentsCount}</div>
+                </button>
+            </span>
+            <span class="slds-col padding" data-filtertype="Trademark" onclick={handleFilters}>
+                <button class="tile"><img src={trademarkIcon}  alt="Object Logo" class="object-logo" /> Trademarks
+                    <div class="notification" role="status">{trademarksCount}</div>
+                </button>
+            </span>
+            <span class="slds-col padding" data-filtertype="Design" onclick={handleFilters}>
+
+                <button class="tile"><img src={designIcon}  alt="Object Logo" class="object-logo" /> Designs
+                    <div class="notification" role="status">{designsCount}</div>
+                </button>
+            </span>
+            <span class="slds-col padding" data-filtertype="Copyright" onclick={handleFilters}>
+
+                <button class="tile"><img src={copyrightIcon}  alt="Object Logo" class="object-logo" /> Copyrights
+                    <div class="notification" role="status">{copyrightsCount}</div>
+                </button>
+            </span>
+            <span class="slds-col padding" data-filtertype="Disputes" onclick={handleFilters}>
+
+                <button class="tile"><img src={disputesIcon}  alt="Object Logo" class="object-logo" /> Disputes/Oppositions
+                    <div class="notification" role="status">{disputesCount}</div>
+                </button>
+            </span>
+            <span class="slds-col padding" data-filtertype="Agreement" onclick={handleFilters}>
+
+                <button class="tile"><img src={agreementIcon}  alt="Object Logo" class="object-logo" /> Agreement/Contracts
+                    <div class="notification" role="status">{agreementAndContractCount}</div>
+                </button>
+            </span>
+            <span class="slds-col padding" data-filtertype="General Matter" onclick={handleFilters}>
+
+                <button class="tile"><img src={generalMatterIcon}  alt="Object Logo" class="object-logo" /> General Matters
+                    <div class="notification" role="status">{generalMattersCount}</div>
+                </button>
+            </span>
+        </div>
+        <BR>
+    <div>
+        <c-lwc-mv-datatable class="lwcMvDataTable"  custom-settings={currentFeatureSettings} columns={columns} records={records}
+        resizable-rows>
+        </c-lwc-mv-datatable>
+    </div>
+    </template>
+</template>

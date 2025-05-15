@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Additional Information --></label>
+        <name>ADDITIONALINFORMATION</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Application Details --></label>
+        <name>APPLICATIONDETAILS</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Additional Information --></label>
+        <name>Additional_Information</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Application Details --></label>
+        <name>Application_Details</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Application Details --></label>
+        <name>Application_Details_Docketer</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HIGHLIGHTSPANEL --></label>
+        <name>HIGHLIGHTSPANEL</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HIGHLIGHTSPANEL 3 COLUMN --></label>
+        <name>HIGHLIGHTSPANEL_3_COLUMN</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HIGHLIGHTSPANEL_IMAGE --></label>
+        <name>HIGHLIGHTSPANEL_IMAGE</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HIGHLIGHTSPANEL --></label>
+        <name>HIGHLIGHTSPANEL_Read</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Highlights --></label>
+        <name>Highlights_Docketer</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Renewal Section --></label>
+        <name>RENEWALSECTION</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Renewal Section --></label>
+        <name>Renewal_Section</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- System Information --></label>
+        <name>SYSTEMINFORMATION</name>
+    </fieldSets>
+    <sharingReasons>
+        <label><!-- CLIENT-ShareModel --></label>
+        <name>CLIENT_SHARE_MODEL</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- MEM-Primary Client Contact --></label>
+        <name>MEM_Primary_Client_Contact</name>
+    </sharingReasons>
+</CustomObjectTranslation>

@@ -1,0 +1,101 @@
+<!--
+  @description       : On Expand click showing all he search records
+  @author            : Nikhil Agarwal
+-->
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading child data..." size="medium"></lightning-spinner>
+    </template>
+
+    <template if:true={conflictCheckRecords}>
+        <template for:each={conflictCheckRecords} for:item="ccRec">
+            <div key={ccRec.recordId} class="ccWrapperBlock"
+                 style="background:#ddd; padding:10px; margin-bottom:20px; border:1px solid #333;">
+
+                <!-- 1) Clients Table -->
+                <template if:true={ccRec.clientRecords}>
+                    <template if:true={ccRec.clientRecords.length}>
+                        <div style="font-size:16px; font-weight:bold; margin-bottom:10px;">
+                            Clients
+                        </div>
+                        <div class="client-subtable" 
+                             data-record-id={ccRec.recordId} 
+                             lwc:dom="manual"
+                             style="margin-bottom:20px; border:1px solid #333;">
+                        </div>
+                    </template>
+                </template>
+
+                <!-- 2) Contributors Table -->
+                <template if:true={ccRec.contributorRecords}>
+                    <template if:true={ccRec.contributorRecords.length}>
+                        <div style="font-size:16px; font-weight:bold; margin-bottom:10px;">
+                            Innovators
+                        </div>
+                        <div class="contributor-subtable" 
+                             data-record-id={ccRec.recordId}
+                             lwc:dom="manual"
+                             style="margin-bottom:20px; border:1px solid #333;">
+                        </div>
+                    </template>
+                </template>
+
+                <!-- 3) Keyword Table -->
+                <template if:true={ccRec.keywordRecords}>
+                    <template if:true={ccRec.keywordRecords.length}>
+                        <div style="font-size:16px; font-weight:bold; margin-bottom:10px;">
+                            Keyword
+                        </div>
+                        <div class="keyword-subtable"
+                             data-record-id={ccRec.recordId}
+                             lwc:dom="manual"
+                             style="margin-bottom:20px; border:1px solid #333;">
+                        </div>
+                    </template>
+                </template>
+
+                <!-- 4) Entity Table -->
+                <template if:true={ccRec.entityRecords}>
+                    <template if:true={ccRec.entityRecords.length}>
+                        <div style="font-size:16px; font-weight:bold; margin-bottom:10px;">
+                            Entity
+                        </div>
+                        <div class="entity-subtable"
+                             data-record-id={ccRec.recordId}
+                             lwc:dom="manual"
+                             style="margin-bottom:20px; border:1px solid #333;">
+                        </div>
+                    </template>
+                </template>
+
+                <!-- 5) Chain of Title Table -->
+                <template if:true={ccRec.chainOfTitleRecords}>
+                    <template if:true={ccRec.chainOfTitleRecords.length}>
+                        <div style="font-size:16px; font-weight:bold; margin-bottom:10px;">
+                            Chain of Title
+                        </div>
+                        <div class="chain-subtable"
+                             data-record-id={ccRec.recordId}
+                             lwc:dom="manual"
+                             style="margin-bottom:20px; border:1px solid #333;">
+                        </div>
+                    </template>
+                </template>
+
+                <!-- 6) Matter Table -->
+                <template if:true={ccRec.matterRecords}>
+                    <template if:true={ccRec.matterRecords.length}>
+                        <div style="font-size:16px; font-weight:bold; margin-bottom:10px;">
+                            Matter
+                        </div>
+                        <div class="matter-subtable"
+                             data-record-id={ccRec.recordId}
+                             lwc:dom="manual"
+                             style="margin-bottom:20px; border:1px solid #333;">
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </template>
+    </template>
+</template>

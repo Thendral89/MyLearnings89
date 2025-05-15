@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Address Information --></label>
+        <name>ADDRESS</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Billing Information --></label>
+        <name>BILLING</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Billing Information --></label>
+        <name>Billing_Information</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- CCHIGHLIGHTSPANELREADONLY --></label>
+        <name>CCHIGHLIGHTSPANELREADONLY</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Highlights Panel (Yet to Engage) --></label>
+        <name>CC_HIGHLIGHTS_PANEL</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Contact Information --></label>
+        <name>CONTACT</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Contact Information --></label>
+        <name>Contact_Information</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Contact Information --></label>
+        <name>Contact_Information_Read</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HIGHLIGHTSPANEL --></label>
+        <name>HIGHLIGHTSPANEL</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HIGHLIGHTSPANELREADONLY --></label>
+        <name>HIGHLIGHTSPANELREADONLY</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HIGHTLIGHTSPANELDOCKETER --></label>
+        <name>HIGHTLIGHTSPANELDOCKETER</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Information --></label>
+        <name>INFORMATION</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Information --></label>
+        <name>Information_Docketer</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Information --></label>
+        <name>Information_Read</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Initial Attorneys --></label>
+        <name>Initial_Attorneys</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Initial Attorneys --></label>
+        <name>Initial_Attorneys_Read</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- MATTERINTAKEVIEW --></label>
+        <name>MATTERINTAKEVIEW</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- System Information --></label>
+        <name>SYSTEMINFORMATION</name>
+    </fieldSets>
+    <layouts>
+        <layout>Copy of Client Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <sharingReasons>
+        <label><!-- CLIENT-ShareModel --></label>
+        <name>CLIENT_SHARE_MODEL</name>
+    </sharingReasons>
+    <validationRules>
+        <errorMessage><!-- Client Status cannot be changed to Yet to Engage if Client Status is either Active or Inactive --></errorMessage>
+        <name>Client_Status_Restriction</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Client Status cannot be changed to Yet to Engage if Client Status is either Active or Inactive --></errorMessage>
+        <name>User_should_change_status_to_Active</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,7 @@
+<template>
+    <c-reusable-spinner-with-text-cmp if:true={isSpinner} spinner-text={spinnerText}></c-reusable-spinner-with-text-cmp>
+    <lightning-card>
+        <c-lwc-mv-highlights-panel record-id={clientId} read-only=true field-set-name="HIGHLIGHTSPANEL"
+        object-api-name="SymphonyLF__Client__c"></c-lwc-mv-highlights-panel>
+    </lightning-card>
+</template>

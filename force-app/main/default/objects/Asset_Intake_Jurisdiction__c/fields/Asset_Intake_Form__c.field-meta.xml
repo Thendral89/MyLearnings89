@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Asset_Intake_Form__c</fullName>
+    <externalId>false</externalId>
+    <label>Asset Intake Form</label>
+    <referenceTo>Asset_Intake_Form__c</referenceTo>
+    <relationshipLabel>Asset Intake Jurisdictions</relationshipLabel>
+    <relationshipName>Asset_Intake_Jurisdictions</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

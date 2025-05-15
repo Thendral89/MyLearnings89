@@ -1,0 +1,120 @@
+<template>
+    <lightning-button-icon icon-name="utility:filterList" if:false={showBulkFilters} size="small" class="slds-m-left_small"
+							variant="brand" alternative-text="Filters"
+							onclick={handleOnClickFilterList}>
+	</lightning-button-icon>
+
+    <template if:true={isShowFilterModal}>
+		<section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium">
+			<div class="slds-modal__container full-screen-modal" style="top: 10%; height: 80%;">
+				<header class="slds-modal__header">
+					<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+						title="Close" onclick={handleFilterClose}>
+						<lightning-icon icon-name="utility:close" alternative-text="close"
+							size="small"></lightning-icon>
+						<span class="slds-assistive-text">Close</span>
+					</button>
+					<h2 class="slds-text-heading_medium">Filters</h2> 
+				</header>
+				<div class="slds-modal__content slds-p-around_medium" style="max-height: 200vh; overflow-y: auto;">
+					<template for:each={rules} for:item="rule">
+						<div key={rule.id} class="slds-col slds-size_12-of-12 rules-container">
+							<div class="slds-size_2-of-12 main-label-container">
+								<h3>Filter {rule.id}</h3>
+							</div> 
+							<div class="slds-size_5-of-12 main-combobox-container">
+								<lightning-combobox data-id={rule.id} class="main-combobox" label="Field"
+									value={rule.selectedRuleField} options={ruleFieldOptions}
+									disabled={rule.isFieldDisabled} onchange={handleRuleFieldChange}
+									dropdown-alignment="auto">
+								</lightning-combobox>
+							</div>
+							<div class="slds-size_3-of-12 text-input-dropdown dynamic-combobox-container">
+								<lightning-combobox data-id={rule.id} class="dynamic-combobox" label="Operator"
+									value={rule.selectedRuleOperator} options={rule.ruleOperatorOptions}
+									disabled={rule.isOperatorDisabled} onchange={handleOperatorChange}
+									dropdown-alignment="auto">
+								</lightning-combobox>
+							</div>
+							<div class="slds-size_2-of-12 text-input-container">
+								<template if:true={rule.selectedFieldText}>
+									<lightning-input data-id={rule.id} type={rule.selectedFieldCategory}
+										autocomplete="off" variant="standard" formatter={rule.formatter}
+										value={rule.selectedRuleValue} name={rule.selectedFieldCategory} label="Value"
+										disabled={rule.isValueDisabled} placeholder={rule.placeholder}
+										onblur={handleValueChange}>
+									</lightning-input>
+								</template>
+								<template if:true={rule.selectedFieldDate}>
+									<lightning-input data-id={rule.id} type={rule.selectedFieldCategory}
+										autocomplete="off" variant="standard" formatter={rule.formatter}
+										value={rule.selectedRuleValue} name={rule.selectedFieldCategory} label="Value"
+										disabled={rule.isValueDisabled} placeholder={rule.placeholder}
+										onblur={handleValueChange}>
+									</lightning-input>
+								</template>
+								<template if:true={rule.selectedFieldLookup}>
+										<c-dynamic-search-and-select -label="Search"
+											object-name={objectApiNameValue} 
+											placeholder="Search..."
+											search-field-names={collectionFieldNames}
+											query-field-names={collectionfieldsToQuery}
+											dropdown-option-fields="1"
+											selected-record-representation="1" 
+											icon-name="standard:avatar"
+											onselected ={handleValueChange}
+											final-sel-id ={rule.selectedRuleValue}
+											where-clause={clientIdCondition}
+											min-search-txt-len = 0
+											limit= 50
+											data-source="AssignedToPerson"
+											data-id={rule.id}>  
+										</c-dynamic-search-and-select>
+
+								</template>
+								<template if:true={rule.selectedFieldPicklist}>
+									<lightning-combobox name={rule.selectedFieldCategory} label="Value"
+										data-id={rule.id} placeholder="Select..." value={rule.selectedRuleValue}
+										onchange={handleValueChange} options={rule.selectedFieldPicklistOptions}>
+									</lightning-combobox>
+								</template>
+							</div>
+							<div class="remove-rules icon-wrapper">
+								<lightning-icon class={removeIcon} icon-name="utility:close"
+									alternative-text="removeRule" size="x-small" onclick={handleRemoveRule}
+									data-id={rule.id}></lightning-icon>
+							</div>
+							<div style="margin-bottom: -50px;">
+								<template if:true={rule.displayLogicalOperator}>
+									<lightning-combobox data-id={rule.id} class="main-combobox" label="Logic"
+										value={rule.selectedOperatorField} options={operatorOptions}
+										disabled={rule.isFieldDisabled} onchange={handleLogicalOperatorChange}
+										dropdown-alignment="auto">
+									</lightning-combobox>
+								</template>
+							</div>
+							<br>
+						</div>
+
+					</template>
+					<template if:true={isEmpty}>
+						<p style="text-align: center;padding-top: 5px;">Please input all the details (FIELD, OPERATOR,
+							VALUE)</p>
+					</template>
+					<div class="slds-col slds-size_12-of-12 add-rules">
+						<div class="main-label-container"></div>
+						<lightning-button variant="brand-outline" label="+ Add Filter" title="+ Add Filter"
+							onclick={handleAddRules}></lightning-button>
+					</div>
+				</div>
+				<footer class="slds-modal__footer">
+					<div class="slds-text-align_right">
+						<lightning-button variant="brand" label="Apply Filter" title="Apply Filter"
+							onclick={handleApplyRules} class="slds-m-left_x-small"></lightning-button>
+					</div>
+				</footer>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</template>
+</template>

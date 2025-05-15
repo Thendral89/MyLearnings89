@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Object Name --></label>
+    <name>Object_Name__c</name>
+    <picklistValues>
+        <masterLabel>SymphonyIPMExt__Copyright__c</masterLabel>
+        <translation><!-- SymphonyIPMExt__Copyright__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyIPMExt__Dispute_Opposition__c</masterLabel>
+        <translation><!-- SymphonyIPMExt__Dispute_Opposition__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyIPMExt__Mark__c</masterLabel>
+        <translation><!-- SymphonyIPMExt__Mark__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyIPMExt__Proposed_Mark__c</masterLabel>
+        <translation><!-- SymphonyIPMExt__Proposed_Mark__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyIPMExt__TM_Search_Instruction__c</masterLabel>
+        <translation><!-- SymphonyIPMExt__TM_Search_Instruction__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyIPMExt__Trademark_Search__c</masterLabel>
+        <translation><!-- SymphonyIPMExt__Trademark_Search__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyIPM__Collection__c</masterLabel>
+        <translation><!-- SymphonyIPM__Collection__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyIPM__Invention_Disclosure_New__c</masterLabel>
+        <translation><!-- SymphonyIPM__Invention_Disclosure_New__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyIPM__Law_Firm__c</masterLabel>
+        <translation><!-- SymphonyIPM__Law_Firm__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyIPM__Patent__c</masterLabel>
+        <translation><!-- SymphonyIPM__Patent__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyIPM__Trademark_New__c</masterLabel>
+        <translation><!-- SymphonyIPM__Trademark_New__c --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

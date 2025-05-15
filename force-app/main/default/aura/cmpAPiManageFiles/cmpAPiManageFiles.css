@@ -1,0 +1,310 @@
+.THIS .forceContentFileCard {
+    width: 200px;
+    inline-size: 200px;
+    overflow-wrap: break-word;
+}
+
+
+.THIS div.slds-file--card {
+    width: 200px;
+    inline-size: 200px;
+    overflow-wrap: break-word;
+}
+
+.THIS .DivTextcenter {
+ text-align: center;
+}
+
+
+.THIS .iFolders svg {
+    width: 5rem;
+    height: 5rem;
+}
+
+.THIS .slds-card__header{
+        background-color:#F5F5F5; 
+}
+.THIS .slds-card__body{
+        background-color: white;
+}
+.THIS .slds-card__footer{
+        background-color: white;
+}
+
+.THIS .myCss tr:hover {
+   background-color: #ffffff !important;
+}
+.THIS .myCss td:hover {
+   background-color: #ffffff !important;
+}
+
+
+.THIS .inline-container {
+    display: inline-flex;
+}
+ 
+.THIS .padding-right {
+    padding-right: 20px;
+}
+
+.THIS .Approvebuble{
+    background-color: #5cb85c;
+    border-radius: 15px;
+    width:20px;
+    height:10px;
+    margin:4px;
+}
+.THIS .Declinebuble{
+    background-color: #dc3545;
+    border-radius: 15px;
+    width:20px;
+    height:10px;
+    margin:4px;
+}
+
+.THIS .NoOpinionbuble{
+    background-color: #6c757d;
+    border-radius: 15px;
+    width:20px;
+    height:10px;
+    margin:4px;
+}
+
+.THIS .Approve{
+    background-color: #5cb85c;
+    color: white;
+}
+.THIS .LeantoApprove{
+    background-color: #b0d6b0;
+    color: white;
+}
+.THIS .NoOpinion{
+    background-color: #6c757d;
+    color: white;
+}
+.THIS .RFC{
+    background-color: #ffc107;
+    color: white;
+}
+.THIS .LeantoDecline{
+    background-color: #dea4aa;
+    color: white;
+}
+.THIS .Decline{
+    background-color: #dc3545;
+    color: white;
+}
+
+
+.THIS .file-header-container {
+    border-bottom:1px;
+}
+
+.THIS .file-main-container {
+    height: 600px;
+    width:100%;
+    border-left:1px;
+    border-top:1px;
+    border: 1px solid rgb(101, 153, 205);
+}
+
+.THIS .file-tree-container {
+    height: 500px;
+    border-left:1px;
+    border-top:1px;
+    border: 1px solid rgb(101, 153, 205);
+    overflow-y:auto;
+}
+
+
+.THIS .file-tree {
+    float: left;
+    width: calc(100% - 9px);
+}
+
+.THIS .drag-bar {
+    background-color: white;
+    position: relative;
+    float: right;
+    height: 100%;
+    width: 9px;
+    cursor: col-resize;
+}
+
+.THIS .drag-bar lightning-icon {
+    /* position: absolute; */
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+.THIS .file-detail-container {
+    background-color: #F2F1F6;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.THIS .refreshRotate {
+    animation: rotate .4s;
+}
+
+
+.THIS .resultsMenu {
+    margin: auto;
+}
+
+.THIS .results lightning-accordion-section lightning-layout {
+    max-height: 215px;
+    overflow: auto;
+}
+
+.THIS .results lightning-layout-item {
+    width: 125px;
+}
+
+/* #### SCROLLBAR CSS */
+
+.THIS .results lightning-accordion-section lightning-layout::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(216, 216, 216);
+    box-shadow: inset 0 0 6px rgba(216, 216, 216);
+    border-radius: 5px;
+    padding: 0 1px;
+}
+
+.THIS .results lightning-accordion-section lightning-layout::-webkit-scrollbar {
+    background-color: rgb(240, 240, 240);
+    border-radius: 5px;
+    width: 4px;
+    height: 5px;
+}
+
+.THIS .results
+{
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.THIS .itemContainer {
+    background-color: rgb(240, 240, 240);
+    width: 100px;
+    height: 60px;
+}
+
+.THIS .itemContainer:hover .itemIcon,
+.THIS .itemContainer:focus .itemIcon,
+.THIS .itemContainer.itemSelected .itemIcon {
+    background-color: rgba(20,137,238,0.1);
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+}
+
+.THIS .itemContainer:hover .itemLabel,
+.THIS .itemContainer:focus .itemLabel,
+.THIS .itemContainer.itemSelected .itemLabel {
+    background-color: rgb(20,137,238);
+    color: #fff;
+}
+
+.THIS .itemContainer:hover {
+    cursor: pointer;
+}
+
+
+.THIS .details-content {
+    background-image: url('https://qsyd-perma-bucket.s3-ap-southeast-2.amazonaws.com/file-explorer/images/file200x200.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.THIS .verticalAlign {
+	cursor: pointer;
+	margin: 6px 0px 0px 6px!important;
+}
+.THIS .recordListBox {
+	margin-top:0px !important;
+	overflow-y: scroll;
+}
+.THIS .inputBox input {
+	padding-left: 30px;
+}
+.THIS .eachItem {
+    padding: 10px;
+}
+.THIS .eachItem:hover {
+    background-color: #EEE;
+    cursor: pointer;
+}
+
+/* For Scrolling */
+.THIS ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+.THIS ::-webkit-scrollbar-track {
+   display: none !important;
+}
+.THIS ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0,0,0,0.4);
+}
+
+
+
+
+
+.THIS.forceContentFilesHomeDesktop {
+    display : flex;
+    flex-flow: column nowrap;
+    height:100%;
+}
+        
+.THIS.forceContentFilesHomeDesktop .centerRegion {
+    flex-grow: 1;
+    display: flex;
+    background-color: var(--lwc-colorBackgroundAlt2,rgb(243, 242, 242));
+	overflow:hidden;
+}
+        
+.THIS.forceContentFilesHomeDesktop .leftNav {
+    background-color: var(--lwc-colorForegroundPrimary,rgb(255, 255, 255));
+    flex: 0 0 auto;
+    min-width: 200px;
+	width:25%;
+    position: relative;
+	overflow:auto;
+}
+
+                
+                
+.THIS.forceContentFilesHomeDesktop .fileList {
+ 	background-color: var(--lwc-colorForegroundPrimary,rgb(255, 255, 255));                   
+    border-left: 1px solid var(--lwc-colorBorder,rgb(221, 219, 218));
+	width:75%;
+    max-width: calc(100% - 200px);
+    flex: 1;
+    position: relative;
+	display:flex;
+}
+                            
+.THIS.forceContentFilesHomeDesktop .slds-illustration {
+	width:100%;
+	height:100%;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}

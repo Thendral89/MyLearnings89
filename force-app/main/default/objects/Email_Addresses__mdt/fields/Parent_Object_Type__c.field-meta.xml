@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parent_Object_Type__c</fullName>
+    <description>To store the Email template Type sobject that will display the Email template Type</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Parent Object Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>PATENT</fullName>
+                <default>true</default>
+                <label>PATENT</label>
+            </value>
+            <value>
+                <fullName>PATENT OPPOSITION</fullName>
+                <default>false</default>
+                <label>PATENT OPPOSITION</label>
+            </value>
+            <value>
+                <fullName>PATENT SEARCH</fullName>
+                <default>false</default>
+                <label>PATENT SEARCH</label>
+            </value>
+            <value>
+                <fullName>TRADEMARK</fullName>
+                <default>false</default>
+                <label>TRADEMARK</label>
+            </value>
+            <value>
+                <fullName>TRADEMARK OPPOSITION</fullName>
+                <default>false</default>
+                <label>TRADEMARK OPPOSITION</label>
+            </value>
+            <value>
+                <fullName>TRADEMARK PROJECT AND SEARCH</fullName>
+                <default>false</default>
+                <label>TRADEMARK PROJECT AND SEARCH</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

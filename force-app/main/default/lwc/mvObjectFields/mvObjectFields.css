@@ -1,0 +1,39 @@
+:host {
+    --slds-c-dropdown__menu-position-z-index: 9999;
+}
+
+.slds-combobox__dropdown {
+    z-index: 9999 !important;
+    position: absolute !important;
+    overflow: visible !important;
+}
+lightning-record-edit-form {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 1;
+}
+
+.slds-input {
+    max-height: 10px !important;
+    min-height: 10px !important;
+    overflow: visible;
+}
+
+.input .slds-input {
+    max-height: 20px !important;
+    min-height: 20px !important;
+}
+
+.slds-input .input {
+    max-height: 20px !important;
+    min-height: 20px !important;
+}
+
+.slds-form-element {
+    max-height: 22px !important;
+    min-height: 22px !important;
+}
+
+.slds-form-element__icon {
+    display: none !important;
+}

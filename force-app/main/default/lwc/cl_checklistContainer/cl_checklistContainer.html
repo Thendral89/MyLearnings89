@@ -1,0 +1,33 @@
+<template>
+    <lightning-spinner if:true={showSpinner}></lightning-spinner>
+    <div>
+        <lightning-card icon-name="custom:custom33" title={formName} class="card">
+            <div slot="actions">
+                <template if:true={isShowSubmit}>
+                    <lightning-button label="Submit" variant="brand" class="slds-p-left_x-small" onclick={handleSubmit}></lightning-button>
+                </template>
+                
+                <template if:true={isDoubleChecking}>
+                    <lightning-button label="Request for Modification" variant="brand" class="slds-p-left_x-small" onclick={handleRequestForModification}></lightning-button>
+                    <lightning-button label="Approve" variant="brand" class="slds-p-left_x-small" onclick={handleApprove}></lightning-button>
+                </template>
+                <template if:true={isShowMarkAsCompleted}>
+                    <lightning-button label="Mark as Completed" variant="brand" class="slds-p-left_x-small" onclick={handleMarkAsCompleted}></lightning-button>
+                </template>
+            </div>
+            <div if:true={checklistInstance}>
+                <template if:true={isDoubleChecker}>
+                    <lightning-textarea max-length="" label="Double Checker Notes" value={checklistInstance.doubleCheckerNotes} onblur={handleNotesBlur} disabled={doublecheckNotesDisabled}></lightning-textarea>
+                </template>
+                <template if:false={isDoubleChecker}>
+                    <template if:true={checklistInstance.doubleCheckerNotes}>
+                        <lightning-textarea label="Double Checker Notes" disabled={doublecheckNotesDisabled} value={checklistInstance.doubleCheckerNotes}></lightning-textarea>
+                    </template>
+                </template>
+                <c-cl_checklist-tab-container record-id={recordId} checklist-instance-id={checklistInstanceId}
+                is-secretary={isSecretary} is-attorney={isAttorney} is-double-checker={isDoubleChecker}
+                is-secretary-editable={isSecretaryEditable} is-attorney-editable={isAttorneyEditable} is-double-checker-editable={isDoubleCheckerEditable}></c-cl_checklist-tab-container>
+            </div>
+        </lightning-card>
+    </div>
+</template>

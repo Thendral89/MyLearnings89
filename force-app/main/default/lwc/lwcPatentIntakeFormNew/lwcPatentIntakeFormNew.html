@@ -1,0 +1,1140 @@
+<template>
+    <!--
+    Copyright © 2023 MaxVal Group. All Rights Reserved.
+    Unauthorized copying of this file, via any medium is strictly prohibited
+    Proprietary and confidential
+    Developed by: Sneha B (sneha.b@maxval.com), June 2023
+    Last modified by: Mehak R, Sept 2024
+ -->
+    <div class="source">
+        <lightning-card variant="narrow" title="Patent Application Intake Form" icon-name="standard:form">
+
+            <div class="slds-p-around_small">
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-item size="12">
+                        <symphonylf-dynamic-search-and-select -label="Client" object-name="SymphonyLF__Client__c"
+                            search-field-names={clientFieldNames} query-field-names={clientfieldsToQuery}
+                            dropdown-option-fields="1,2" selected-record-representation="1" icon-name="custom:custom91"
+                            onselected={handleSelectedClientRecord} required="true" disabled="true" limit=50 final-sel-id={clientId}
+                            where-clause={clientWhereCond} min-search-txt-len=0 placeholder="Select Client">
+                        </symphonylf-dynamic-search-and-select>
+                        <lightning-accordion class="accordionClass" style="padding-top: 0.7rem;"
+                            allow-multiple-sections-open >
+                            <lightning-accordion-section  name="ccDetails"
+                                label="Conflict Check Details">
+                                <lightning-record-view-form record-id={conflictCheckId}
+                                    object-api-name="Conflict_Check__c">
+                                    <div>
+                                        <div class="slds-grid slds-wrap slds-p-top_xxx-small">
+                                            
+                                            <div class="slds-col slds-size_4-of-12  fieldPadding">
+                                                <lightning-output-field
+                                                    field-name="Client_Relationship_with_related_parties__c"
+                                                    class="PersonName"
+                                                    label="Client Relationship with related parties">
+                                                </lightning-output-field>
+                                            </div>
+                                            <div class="slds-col slds-size_4-of-12 fieldPadding">
+                                                <lightning-output-field
+                                                    field-name="Related_Parties_other_than_client__c"
+                                                    class="PersonName"
+                                                    label="Related Parties other than client">
+                                                </lightning-output-field>
+                                            </div>
+                                            <div class="slds-col slds-size_4-of-12  fieldPadding">
+                                                <lightning-output-field field-name="Contributor__c"
+                                                    class="PersonName" label="Contributors">
+                                                </lightning-output-field>
+                                            </div>
+                                            <div class="slds-col slds-size_4-of-12  fieldPadding">
+                                                <lightning-output-field field-name="Keywords__c"
+                                                    class="PersonName" label="Keywords">
+                                                </lightning-output-field>
+                                            </div>
+                                            <div class="slds-col slds-size_4-of-12 fieldPadding">
+                                                <lightning-output-field
+                                                    field-name="Brief_Description_of_Subject_Matter__c"
+                                                    class="PersonName"
+                                                    label="Brief Description of Subject Matter">
+                                                </lightning-output-field>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </lightning-record-view-form>
+
+                            </lightning-accordion-section>
+                        </lightning-accordion>
+                    </lightning-layout-item>
+                   
+                    <lightning-radio-group name="radioGroup1" class="source slds-m-top_x-small"
+                        label="My Application is based on" options={options} required value={mainRadioValue}
+                        onchange={handleSourceChange} type="radio" disabled={disableOptions}>
+                    </lightning-radio-group>
+                    <lightning-layout-item class="slds-p-vertical_small" size="12">
+                        <lightning-accordion if:true={showForm} class="accordionClass" allow-multiple-sections-open
+                            active-section-name={activeSections}>
+                            <lightning-accordion-section if:true={showFamilyDetails} name="existingPatentFamilies"
+                                label="Existing Patent Families"  style="padding-bottom: 0.5rem;">
+                                <div if:true={patentFamilyError}>
+                                    <p style="color: red;padding-top:5px">{patentFamilyError}</p>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                    <lightning-input type="search" onkeyup={handleSearch}
+                                        placeholder="Search by Short Title, Docket Number"></lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                    <div class="datatable-container" style={patentFamilyTableHeight}>
+                                        <symphonylf-my-types class="myTable" key-field="Id"
+                                            columns={patentFamilyColumns} data={patentFamilyData}
+                                            onrowselection={getSelectedPatentFamily} max-row-selection=1>
+                                        </symphonylf-my-types>
+                                    </div>
+                                </div>
+
+                            </lightning-accordion-section>
+                        </lightning-accordion>
+                        <lightning-accordion if:true={showAll} class="accordionClass" allow-multiple-sections-open
+                            active-section-name={activeSections}>
+
+                            <lightning-accordion-section name="basicDetails" label="Basic Details"  style="padding-bottom: 0.5rem;">
+
+                                <div if:true={readonly} class="slds-grid slds-wrap slds-p-top_xxx-small">
+                                    <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                        <lightning-input type="text" readonly={readonly} label="Short Title"
+                                            value={shortTitle} max-length="255"></lightning-input>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                        <lightning-input type="text" readonly={readonly} label="Invention Title"
+                                            value={inventionTitle}></lightning-input>
+                                    </div>
+                                </div>
+
+                                <div if:false={readonly} class="slds-grid slds-wrap slds-p-top_xxx-small">
+                                    <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                        <p
+                                            class="slds-m-bottom_xx-small slds-p-top_xx-small slds-text-title slds-text-color_weak">
+                                            <abbr title="required" class="slds-required">*</abbr>Short Title
+                                        </p>
+                                        <lightning-input class={shortTitleErrorClass} type="text" label=""
+                                            variant="label-hidden" value={shortTitle} max-length="80"
+                                            onchange={handleShortTitle}></lightning-input>
+                                        <div if:true={shortTitleError}>
+                                            <p style="color: red;padding-top:5px">{shortTitleError}</p>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                        <p
+                                            class="slds-m-bottom_xx-small slds-p-top_xx-small slds-text-title slds-text-color_weak">
+                                            <abbr title="required" class="slds-required">*</abbr>Invention Title
+                                        </p>
+                                        <lightning-input class={inventionTitleErrorClass} type="text" label=""
+                                            variant="label-hidden" value={inventionTitle} max-length="255"
+                                            onchange={handleInventionTitle}></lightning-input>
+                                        <div if:true={inventionTitleError}>
+                                            <p style="color: red;padding-top:5px">{inventionTitleError}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </lightning-accordion-section>
+                            <!-- Engagement Details for Patent Family -->
+                            <lightning-accordion-section if:false={showPatentApplications} name="engagementDetails"
+                                label="Engagement Details"  style="padding-bottom: 0.5rem;">
+                                <div class="slds-grid slds-wrap slds-p-top_xxx-small">
+                                    <template for:each={engagementDetailsPF} for:item="detail" for:index="index">
+                                        <div if:true={detail.isVisible} key={detail}
+                                            class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <div class={detail.errorClass}>
+
+                                                <symphonylf-dynamic-search-and-select -label={detail.label}
+                                                    data-type={detail.type} data-index={index}
+                                                    object-name={detail.objectName} search-field-names="Name"
+                                                    query-field-names={detail.fieldNames}
+                                                    dropdown-option-fields="1,2,3,4" selected-record-representation="1"
+                                                    icon-name="custom:custom15" placeholder={detail.placeholder}
+                                                    onselected={handleEngagementChangePF} min-search-txt-len=0
+                                                    final-sel-id={detail.personId} where-clause={detail.whereCondition}
+                                                    order-by="Name" limit=50 required={detail.required}
+                                                    error={detail.errorMessage}>
+                                                </symphonylf-dynamic-search-and-select>
+                                            </div>
+
+                                        </div>
+                                    </template>
+
+                                </div>
+
+                            </lightning-accordion-section>
+
+                            <lightning-accordion-section if:true={showPatentApplications}
+                                name="existingPatentApplications" label="Existing Patent Applications"  style="padding-bottom: 0.5rem;">
+                                <div class="slds-grid slds-wrap slds-p-top_xxx-small">
+                                    <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                        <div class="datatable-container" style={patentTableHeight}>
+                                            <symphonylf-my-types class="myTable" key-field="Id" columns={patentColumns}
+                                                data={patentData} hide-checkbox-column>
+                                            </symphonylf-my-types>
+                                        </div>
+                                    </div>
+                                </div>
+                            </lightning-accordion-section>
+                            <lightning-accordion-section name="businessCategory" label="Business Category"  style="padding-bottom: 0.5rem;">
+                                <div class="slds-grid slds-wrap slds-p-top_xxx-small">
+                                    <div class="slds-col">
+                                        <symphonylf-add-business-category-in-form
+                                            sel-c-b-i-value-list={selectedBusinessInfos} client-id={clientId}
+                                            oncbiselection={handleSelectedBusinessInfos}>
+                                        </symphonylf-add-business-category-in-form>
+                                    </div>
+                                </div>
+                            </lightning-accordion-section>
+                            <lightning-accordion-section name="inventors" label="Inventors"  style="padding-bottom: 0.5rem;">
+                                <div if:true={inventorError}>
+                                    <p style="color: red;padding-top:5px">{inventorError}</p>
+                                </div>
+                               
+                                <div if:true={isInventorError}>
+                                    <p style="color: red;padding-top:5px">Please select only one Inventor as Primary and donot select duplicate invetor.</p>
+                                </div>
+                                <div if:true={inventorAndApplicantFlag}  class="require slds-col slds-size_1-of-1 fieldPadding">
+                                    <symphonylf-multi-select-pick-list-with-search if:true={inventors} class="inventor" multi-select
+                                        onselectoption={handleInventors} options={inventors}
+                                        selected-values={selectedInventors} label="Select Inventors"
+                                        icon-name="custom:custom18">
+                                    </symphonylf-multi-select-pick-list-with-search>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                    <p>Click "+ New Inventor" button to create new Inventors</p>
+                                </div>
+                                <div class="slds-m-top_medium slds-text-align_center">
+                                    <lightning-button variant="brand" icon-name="utility:add" label="New Inventor"
+                                        onclick={handleNewInventor}>
+                                    </lightning-button>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                    <div if:true={sequenceError}>
+                                        <p style="color: red;padding-top:5px">{sequenceError}</p>
+                                    </div>
+                                    <div class="datatable-container " style={inventorTableHeight}>
+                                        <symphonylf-my-types class="myTable " key-field="key" columns={inventorColumns} oncellchange={handleCellChange} show-row-number-column="false"
+                                        oncheckboxvaluechange={handleValueChange}  draft-values={draftValues} data={selectedInventors} hide-checkbox-column="true" suppress-bottom-bar=true>
+                                        </symphonylf-my-types>
+                                    </div>
+                                </div>
+
+
+                            </lightning-accordion-section>
+                            <lightning-accordion-section name="applicants" label="Applicants"  style="padding-bottom: 0.5rem;">
+                                <div if:true={inventorAndApplicantFlag}  class="slds-col slds-size_1-of-1 fieldPadding">
+                                    <symphonylf-multi-select-pick-list-with-search if:true={applicants} class="applicant" multi-select 
+                                        onselectoption={handleApplicants} options={applicants}
+                                        selected-values={selectedApplicants} label="Select Applicants"
+                                        icon-name="custom:custom18">
+                                    </symphonylf-multi-select-pick-list-with-search>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                    <p>Click "+ New Applicant" button to create new Applicants</p>
+                                </div>
+                                <div class="slds-m-top_medium slds-text-align_center">
+                                    <lightning-button variant="brand" icon-name="utility:add" label="New Applicant"
+                                        onclick={handleNewApplicant}>
+                                    </lightning-button>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                    <div class="datatable-container" style={applicantTableHeight}>
+                                        <symphonylf-my-types class="myTable" key-field="Id" columns={applicantsColumns}
+                                            data={selectedApplicants} hide-checkbox-column
+                                            onrowaction={handleRowApplicant}>
+                                        </symphonylf-my-types>
+                                    </div>
+                                </div>
+                            </lightning-accordion-section>
+                            <lightning-accordion-section name="keywords" label="Keyword Associations"  style="padding-bottom: 0.5rem;">
+                                <div if:true={keywordFlag} class="slds-col slds-size_1-of-1 fieldPadding">
+                                    <symphonylf-multi-select-pick-list-with-search class="keyword" multi-select 
+                                        onselectoption={handleKeywords} options={keywords}
+                                        selected-values={selectedkeywords} label="Select keywords"
+                                        icon-name="custom:custom18">
+                                    </symphonylf-multi-select-pick-list-with-search>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                    <p>Click "+ New Keyword" button to create new Keywords</p>
+                                </div>
+                                <div class="slds-m-top_medium slds-text-align_center">
+                                    <lightning-button variant="brand" icon-name="utility:add" label="New Keyword"
+                                        onclick={handleNewKeyword}>
+                                    </lightning-button>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                    <div class="datatable-container" style={keywordTableHeight} >
+                                        <symphonylf-my-types class="myTable" key-field="key" columns={keywordColumns}
+                                            data={selectedkeywords} hide-checkbox-column >
+                                        </symphonylf-my-types>
+                                    </div>
+                                </div>
+                            </lightning-accordion-section>
+                            <lightning-accordion-section name="jurisdictions" label="Patent Application Details"  style="padding-bottom: 0.5rem;">
+                                <div if:true={jurisdictionError}>
+                                    <p style="color: red;padding-top:5px">{jurisdictionError}</p>
+                                </div>
+                                <div if:true={jurisdictionPopupError}>
+                                    <p style="color: red;padding-top:5px">{jurisdictionPopupError}</p>
+                                </div>
+                                <div class="slds-m-top_medium slds-text-align_center">
+                                    <lightning-button variant="brand" icon-name="utility:add" label="Add Jurisdiction"
+                                        onclick={handleAddJurisdiction}>
+                                    </lightning-button>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                    <div class="datatable-container" style={jurisdictionTableHeight}>
+                                        <symphonylf-my-types hide-checkbox-column class="myTable" key-field="uniqueId"
+                                            columns={jurisdictionColumns} data={jurisdictionList}
+                                            onrowaction={handleRowJurisdiction}>
+                                        </symphonylf-my-types>
+                                    </div>
+                                </div>
+                            </lightning-accordion-section>
+                            <!-- <lightning-accordion-section name="files" label="Files">
+                                    <symphonylf-file-uploader
+                                        accepted-formats={acceptedFormatFiles}
+                                        onuploadfinish={handleFileUpload}
+                                        ondeletefile={handleDeleteFile}
+                                        multiple-files=true>
+                                    </symphonylf-file-uploader>
+                                </lightning-accordion-section> -->
+
+                        </lightning-accordion>
+
+
+                        <div class="slds-modal__footer slds-text-align_center">
+                            <lightning-button variant="neutral" onclick={cancelButton} label="Cancel"
+                                class="slds-m-left_xx-small"></lightning-button>
+                            <lightning-button variant="brand" type="submit" onclick={validateOnSubmit} label="Submit"
+                                class="slds-m-left_xx-small"></lightning-button>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+
+            </div>
+        </lightning-card>
+        <div if:true={showInventorPopup}>
+            <div class="slds-modal slds-fade-in-open slds-backdrop">
+                <div class="slds-modal__container modalContainer">
+                    <div class="slds-modal__header">
+                        <lightning-button-icon icon-name="utility:close" alternative-text="Close this window"
+                            size="large" variant="bare-inverse" onclick={closePopup} class="slds-modal__close">
+                        </lightning-button-icon>
+                        <h2 class="slds-text-heading_medium slds-hyphenate">New Inventor</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <div class="section-layout-container slds--section slds-theme_shade">
+                            <h1 class="label slds-truncate slds-p-around_x-small slds-theme_shade">Information</h1>
+                        </div>
+                        <lightning-record-edit-form object-api-name="SymphonyLF__Person__c">
+                            <div>
+                                <div class="slds-grid slds-wrap ">
+                                    <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                        <lightning-input-field field-name="Name" required="true"
+                                            class="PersonNameInventor" autocomplete="off" label="Person Name"
+                                            onchange={handlePersonName}>
+                                        </lightning-input-field>
+                                        <lightning-input-field field-name="SymphonyLF__User__c" class="User"
+                                            autocomplete="off" label="User" onchange={handleUser}>
+                                        </lightning-input-field>
+                                        <lightning-input-field field-name="SymphonyLF__Nationality__c"
+                                            autocomplete="off" class="Nationality" label="Nationality"
+                                            onchange={handleNationality}>
+                                        </lightning-input-field>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                        <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                            <lightning-input type="text" class="validate" label="Email" data-id=emailAddress
+                                                value={emailAddress} onchange={handleEmailAddress}></lightning-input>
+                                        </div>
+                                        <div if:true={emailAddressError} class="fieldPadding">
+                                            <p style="color: red;padding-top:5px">{emailAddressError}</p>
+                                        </div>
+                                        <!-- <lightning-input-field field-name="SymphonyLF__Email__c" autocomplete="off"
+                                            class="EmailInventor" label="Email" onchange={handleEmailAddress}>
+                                        </lightning-input-field> -->
+                                        <lightning-input-field field-name="Phone_Number__c" class="Phone" label="Phone"
+                                            autocomplete="off" onchange={handlePhone}>
+                                        </lightning-input-field>
+                                        <lightning-input-address field-name="SymphonyLF__Address__c"
+                                            address-label="Address" street-label="Address (Street)"
+                                            city-label="Address (City)" country-label="Address (Country)"
+                                            province-label="Address (State/ Province)"
+                                            postal-code-label="Address (Zip/ Postal Code)"
+                                            province-options={inventorStateOptions}
+                                            country-options={inventorCountryOptions} class="Address"
+                                            onchange={handleInventorAddress}>
+                                        </lightning-input-address>
+                                    </div>
+                                </div>
+                                <div class="section-layout-container slds--section slds-theme_shade">
+                                    <h1 class="label slds-truncate slds-p-around_x-small slds-theme_shade">Contact Type
+                                    </h1>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                    <lightning-input-field field-name="SymphonyLF__Type__c" required="true"
+                                        class="Inventortype" label="Inventortype" value={Inventortype} disabled="true"
+                                        onchange={handleInventortype}>
+                                    </lightning-input-field>
+                                    <lightning-input-field field-name="SymphonyLF__Contact_Type__c" class="contactType"
+                                        label="Contact Type" value={contactType} disabled="true"
+                                        onchange={handleContactType}>
+                                    </lightning-input-field>
+                                </div>
+                                <div class="section-layout-container slds--section slds-theme_shade">
+                                    <h1 class="label slds-truncate slds-p-around_x-small slds-theme_shade">Entity
+                                        Association</h1>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                    <symphonylf-dynamic-search-and-select -label="Client"
+                                        object-name="SymphonyLF__Client__c" search-field-names={clientFieldNames}
+                                        query-field-names={clientfieldsToQuery} dropdown-option-fields="1"
+                                        selected-record-representation="1" icon-name="custom:custom91"
+                                         required="true" limit=50
+                                        final-sel-id={clientId} where-clause={clientWhereCond} min-search-txt-len=0
+                                        placeholder="Select Client" disabled="true">
+                                    </symphonylf-dynamic-search-and-select>
+                                    <div class="slds-p-bottom_small"></div>
+                                </div>
+                            </div>
+                        </lightning-record-edit-form>
+                    </div>
+                    <div class="slds-modal__footer slds-text-align_center">
+                        <lightning-button variant="neutral" label="Cancel" onclick={closePopup}
+                            class="neutral slds-m-right_xx-small"></lightning-button>
+                        <lightning-button variant="brand" label="Save" disabled={isButtonDisabled}
+                            onclick={createInventor} class="slds-m-left_xx-small"></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <div if:true={showApplicantPopup}>
+            <div class="slds-modal slds-fade-in-open slds-backdrop">
+                <div class="slds-modal__container modalContainer">
+                    <div class="slds-modal__header">
+                        <lightning-button-icon icon-name="utility:close" alternative-text="Close this window"
+                            size="large" variant="bare-inverse" onclick={closePopup} class="slds-modal__close">
+                        </lightning-button-icon>
+                        <h2 class="slds-text-heading_medium slds-hyphenate">New Applicant</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <div>
+                            <lightning-record-edit-form object-api-name="SymphonyLF__Client__c">
+                                <div class="slds-grid slds-wrap">
+
+                                    <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                        <p
+                                            class="slds-m-bottom_xx-small slds-p-top_xx-small slds-text-title slds-text-color_weak">
+                                            <abbr title="required" class="slds-required">*</abbr>Applicant Name
+                                        </p>
+                                        <lightning-input-field field-name="Name" required="true" class="clientName"
+                                            onchange={handleApplicantNameChange}
+                                            variant="label-hidden"></lightning-input-field>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                        <lightning-input-field field-name="SymphonyLF__Default_Billing_Currency__c"
+                                            class="billingCurrency" required="true"
+                                            onchange={handleApplicantCurrencyChange}></lightning-input-field>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2 fieldPadding">
+
+                                        <lightning-input-field field-name="SymphonyLF__Client_Classification__c"
+                                            required="true" class="classfication" value={applicantClassification}
+                                            onchange={handleApplicantClassificationChange}></lightning-input-field>
+                                        <div if:true={applicantError}>
+                                            <p style="color: red;padding-top:5px">{applicantError}</p>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                        <lightning-input-field field-name="SymphonyLF__Entity_Size__c"
+                                            class="entitySize" onchange={handleApplicantEntityChange}
+                                            required="true"></lightning-input-field>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                        <lightning-input-address field-name="SymphonyLF__Address__c"
+                                            address-label="Address" street-label="Address (Street)"
+                                            city-label="Address (City)" country-label="Address (Country)"
+                                            province-label="Address (State/ Province)"
+                                            postal-code-label="Address (Zip/ Postal Code)"
+                                            province-options={stateOptions} country-options={countryOptions}
+                                            onchange={handleApplicantAddressChange}></lightning-input-address>
+                                    </div>
+                                </div>
+
+
+                            </lightning-record-edit-form>
+
+                        </div>
+                    </div>
+
+                    <div class="slds-modal__footer slds-text-align_center">
+                        <lightning-button variant="neutral" label="Cancel" onclick={closePopup}
+                            class="neutral slds-m-right_xx-small"></lightning-button>
+                        <lightning-button variant="brand" label="Save" id="applicantSaveButton"
+                            disabled={isButtonDisabled} onclick={createApplicant}
+                            class="slds-m-left_xx-small"></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div if:true={showApplicantEdit} style="width: 50%;">
+            <div class="slds-modal slds-fade-in-open slds-backdrop">
+                <div class="slds-modal__container modalContainer" style="width: 50%;">
+                    <div class="slds-modal__header">
+                        <lightning-button-icon icon-name="utility:close" alternative-text="Close this window"
+                            size="large" variant="bare-inverse" onclick={closePopup} class="slds-modal__close">
+                        </lightning-button-icon>
+                        <h2 class="slds-text-heading_medium slds-hyphenate">Edit Applicant</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <div>
+                            <lightning-record-edit-form object-api-name="SymphonyLF__Chain_of_Title__c"
+                                density="Compact">
+                                <div class="slds-grid slds-wrap">
+                                    <lightning-accordion class="accordionClass" allow-multiple-sections-open
+                                        active-section-name={applicantActiveSection} style="width: 100%;">
+                                        <lightning-accordion-section name="A" label="Application Information">
+                                            <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                                <lightning-input-field field-name="SymphonyLF__Client__c"
+                                                    value={rowApplicantClient} disabled
+                                                    required="true"></lightning-input-field>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                                <lightning-input-field field-name="SymphonyLF__Registered_Applicant__c"
+                                                    value={rowApplicantRegisteredApplicant}
+                                                    onchange={handleRowApplicantChange}
+                                                    required="true"></lightning-input-field>
+                                            </div>
+                                        </lightning-accordion-section>
+                                        <lightning-accordion-section name="B" label="Address">
+                                            <div class="slds-grid slds-wrap">
+                                                <div class="slds-col slds-size_1-of-6 fieldPadding">
+                                                    <h2>Applicant Address</h2>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                                    <lightning-input-address field-name="SymphonyLF__Address__c"
+                                                        address-label="Address" street-label="Street" city-label="City"
+                                                        country-label="Country" province-label="State/ Province"
+                                                        postal-code-label="Zip/ Postal Code"
+                                                        onchange={addressInputChange}
+                                                        street={rowApplicantAddress.street}
+                                                        city={rowApplicantAddress.city}
+                                                        country={rowApplicantAddress.country}
+                                                        province={rowApplicantAddress.state}
+                                                        province-options={stateOptions} country-options={countryOptions}
+                                                        postal-code={rowApplicantAddress.postalCode}>
+                                                    </lightning-input-address>
+                                                </div>
+                                            </div>
+                                        </lightning-accordion-section>
+                                    </lightning-accordion>
+                                </div>
+                            </lightning-record-edit-form>
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer slds-text-align_center">
+                        <lightning-button variant="neutral" label="Cancel" onclick={closePopup}
+                            class="neutral slds-m-right_xx-small"></lightning-button>
+                        <lightning-button variant="brand" label="Save" disabled={isButtonDisabled}
+                            onclick={handleApplicantEdit} class="slds-m-left_xx-small"></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div if:true={showJurisdictionCmp}>
+
+            <div class="slds-modal slds-fade-in-open slds-backdrop">
+                <div class="slds-modal__container modalContainer">
+                    <div class="slds-modal__header">
+                        <lightning-button-icon icon-name="utility:close" alternative-text="Close this window"
+                            size="large" variant="bare-inverse" onclick={closeJurisdictionCmpPopup}
+                            class="slds-modal__close">
+                        </lightning-button-icon>
+                        <h2 class="slds-text-heading_medium slds-hyphenate">Jurisdiction Details</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium" style="height:500px;">
+                        <div if:true={jurisdictionCmpError}>
+                            <p style="color: red;padding-top:5px">{jurisdictionCmpError}</p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 fieldPadding">
+                            <!-- jurisdictionGroup -->
+                            <c-jurisdiction-group client-id={clientId} onselection={handleSelectedJurisdictionGroup}
+                                jurisdiction-data-list={jurisdictionCmpList}></c-jurisdiction-group>
+                            <!-- <symphonylf-jurisdiction-group client-id={clientId}
+                                onselection={handleSelectedJurisdictionGroup}
+                                jurisdiction-data-list={jurisdictionCmpList}></symphonylf-jurisdiction-group> -->
+
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer slds-text-align_center">
+                        <lightning-button variant="neutral" label="Cancel" onclick={closeJurisdictionCmpPopup}
+                            class="neutral slds-m-right_xx-small"></lightning-button>
+                        <lightning-button variant="brand" label="Add" onclick={addJurisdictions}
+                            class="slds-m-left_xx-small"></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div if:true={showJurisdictionPopup}>
+            <div class="slds-modal slds-fade-in-open slds-backdrop">
+                <div class="slds-modal__container modalContainer">
+                    <div class="slds-modal__header">
+                        <lightning-button-icon icon-name="utility:close" alternative-text="Close this window"
+                            size="large" variant="bare-inverse" onclick={closePopup} class="slds-modal__close">
+                        </lightning-button-icon>
+                        <h2 class="slds-text-heading_medium slds-hyphenate">Application Details</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <lightning-record-edit-form object-api-name="SymphonyLF__Patent__c" onsubmit={getCaseType}>
+                            <lightning-accordion class="accordionClass" allow-multiple-sections-open
+                                active-section-name={activeJurisdictionSections}>
+                                <lightning-accordion-section name="basicDetails" label="Basic Details"  style="padding-bottom: 0.5rem;">
+                                    <div class="slds-grid slds-wrap slds-p-top_xxx-small">
+                                        <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <lightning-input readonly label="Jurisdiction" value={jurisdictionName}>
+                                            </lightning-input>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <lightning-input data-field="clientRefNo" label="Client Reference Number" value={clientRefNo} onchange={handleChange}>
+                                            </lightning-input>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <!--<lightning-input-field class="caseType"  field-name="SymphonyLF__Case_Type__c" onchange={handleCaseType} value={caseTypeValue} required>
+                                            </lightning-input-field>-->
+                                            <lightning-combobox class="caseType" label="Case Type" name="caseType"
+                                                onchange={handleCaseType} placeholder="Select CaseType"
+                                                value={caseTypeValue} options={jurisdictionOptions}
+                                                required></lightning-combobox>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <lightning-combobox class="assetType" label="IP Matter" name="assetType"
+                                                onchange={handleAssetType} placeholder="Select AssetType"
+                                                value={assetType} options={assetTypeOptions}
+                                                required></lightning-combobox>
+
+                                            <!-- <lightning-input-field class="assetType" auto-complete="Patent"
+                                                field-name="SymphonyLF__IP_Matter__c" onchange={handleAssetType}
+                                                value={assetType} required>
+                                            </lightning-input-field> -->
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <lightning-combobox label="Pat or ™ prosecution docketing needed?"
+                                                name="Pat_or_prosecution_docketing_needed__c" placeholder="Select Value"
+                                                options={picklistOptions} onchange={handleChange}
+                                                data-field="Pat_or_prosecution_docketing_needed__c"
+                                                value={patOrProsecutionDN}></lightning-combobox>
+
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <lightning-combobox label="IPR docketing required?"
+                                                name="IPR_docketing_required__c" placeholder="Select Value"
+                                                options={picklistOptions} onchange={handleChange}
+                                                data-field="IPR_docketing_required__c"
+                                                value={IPRdocketReq}></lightning-combobox>
+
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <lightning-combobox label="™ opposition docketing required?"
+                                                name="opposition_docketing_required__c" placeholder="Select Value"
+                                                options={picklistOptions} onchange={handleChange}
+                                                data-field="opposition_docketing_required__c"
+                                                value={OppDocketReq}></lightning-combobox>
+
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <lightning-combobox label="Litigation docketing required ?"
+                                                name="Litigation_docketing_required__c" placeholder="Select Value"
+                                                options={picklistOptions} onchange={handleChange}
+                                                data-field="Litigation_docketing_required__c"
+                                                value={litigationDocketReq}></lightning-combobox>
+
+                                        </div>
+                                    </div>
+                                </lightning-accordion-section>
+                                <lightning-accordion-section name="engagementDetails" label="Engagement Details"  style="padding-bottom: 0.5rem;">
+                                    <div class="slds-grid slds-wrap slds-p-top_xxx-small">
+                                        <template for:each={engagementDetailsPatent} for:item="detail"
+                                            for:index="index">
+                                            <div if:true={detail.isVisible} key={detail}
+                                                class="slds-col slds-size_1-of-2 fieldPadding">
+                                                <div class={detail.errorClass}>
+
+                                                    <symphonylf-dynamic-search-and-select -label={detail.label}
+                                                        data-label={detail.label} data-type={detail.type}
+                                                        data-index={index} object-name={detail.objectName}
+                                                        search-field-names="Name" query-field-names={detail.fieldNames}
+                                                        dropdown-option-fields="1,2,3,4"
+                                                        selected-record-representation="1" icon-name="custom:custom15"
+                                                        placeholder={detail.placeholder}
+                                                        onselected={handleEngagementChangePatent} min-search-txt-len=0
+                                                        final-sel-id={detail.personId}
+                                                        where-clause={detail.whereCondition} order-by="Name" limit=50
+                                                        required={detail.required} error={detail.errorMessage}>
+                                                    </symphonylf-dynamic-search-and-select>
+                                                </div>
+
+                                            </div>
+                                        </template>
+
+                                    </div>
+                                </lightning-accordion-section>
+                                <lightning-accordion-section name="Portfolio_Management" label="Portfolio Management"  style="padding-bottom: 0.5rem;">
+                                    <div class="slds-grid slds-wrap slds-p-top_xxx-small">
+                                        <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <p
+                                                class="slds-m-bottom_xx-small slds-p-top_xx-small slds-text-title slds-text-color_weak">
+                                                <abbr class="slds-required"></abbr>Renewals/Annuities Managed by Lawfirm
+                                            </p>
+                                            <!-- LFP-655 Start bug fix by Aman -->
+                                            <lightning-input type="checkbox" checked={renewalsAnnuities}
+                                                onchange={handleRenewalsAnnuities}></lightning-input>
+                                            <!-- LFP-655 End -->
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <lightning-combobox label="Did you advise Client on Annuity Policy?"
+                                                name="Did_you_advise_Client_on_Annuity_Policy__c"
+                                                placeholder="Select Value" options={picklistOptions}
+                                                onchange={handleChange}
+                                                data-field="Did_you_advise_Client_on_Annuity_Policy__c"
+                                                value={clientOnAnnuityPolicy}></lightning-combobox>
+
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <lightning-combobox label="Is MCC responsible for annuities?"
+                                                name="Is_MCC_responsible_for_annuities__c" placeholder="Select Value"
+                                                options={picklistOptions} onchange={handleChange}
+                                                data-field="Is_MCC_responsible_for_annuities__c"
+                                                value={responsibleForAnnuities}></lightning-combobox>
+
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <lightning-combobox label="Will client access their files on docket"
+                                                name="Will_client_access_their_files_on_docket__c"
+                                                placeholder="Select Value" options={picklistOptions}
+                                                onchange={handleChange}
+                                                data-field="Will_client_access_their_files_on_docket__c"
+                                                value={clientAccessToFileDocket}></lightning-combobox>
+
+                                        </div>
+                                    </div>
+
+                                </lightning-accordion-section>
+                                <lightning-accordion-section name="docketActivities" label="Docketing"  style="padding-bottom: 0.5rem;">
+                                    <div if:true={isDocketError} style="color:red"
+                                        class="slds-col slds-size_12-of-12 fieldPadding">
+                                        Please add all details for either Hard Docket or Soft Docket to proceed, and assign the event to either a User or a Team.
+                                    </div>
+                                    <template for:each={docketActivities} for:item="rec" for:index="index">
+                                        <div class="slds-grid slds-wrap slds-p-top_xxx-small" key={rec.key}>
+                                            <div if:true={rec.docketError} style="color:red"
+                                                class="slds-col slds-size_12-of-12 fieldPadding">
+                                                {rec.docketError}
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                                <lightning-input required={rec.nameRequired} name={rec.nameLabel}
+                                                    label={rec.nameLabel} value={rec.eventName} data-index={index}
+                                                    class="eventName" onchange={handleDocketActivityChange}
+                                                    data-field="eventName"></lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                                <lightning-input required={rec.eventDateRequreid} type="date"
+                                                    name={rec.eventDateLabel} label={rec.eventDateLabel}
+                                                    value={rec.eventDate} class="eventDate"
+                                                    onchange={handleDocketActivityChange} data-field="eventDate"
+                                                    data-index={index}></lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                                <lightning-input required={rec.dueDateRequired} type="date"
+                                                    name={rec.dueDateLabel} label={rec.dueDateLabel} value={rec.dueDate}
+                                                    class="dueDate" data-field="dueDate"
+                                                    onchange={handleDocketActivityChange}
+                                                    data-index={index}></lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                                <symphonylf-dynamic-search-and-select -label="Assign To (User)"
+                                                    data-index={index} object-name="User" search-field-names="Name"
+                                                    query-field-names="Name" dropdown-option-fields="1,2,3,4"
+                                                    selected-record-representation="1" icon-name="custom:custom15"
+                                                    placeholder="Select User" onselected={handleDocketActivityChange}
+                                                    min-search-txt-len=0 data-field="assignToUser"
+                                                    final-sel-id={rec.assignToUser} order-by="Name" limit=50>
+                                                </symphonylf-dynamic-search-and-select>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                                <symphonylf-dynamic-search-and-select -label="Assign To (Team)"
+                                                    data-index={index} object-name="SymphonyLF__Team__c"
+                                                    search-field-names="SymphonyLF__Team_Name__c"
+                                                    query-field-names="SymphonyLF__Team_Name__c"
+                                                    dropdown-option-fields="1,2,3,4" selected-record-representation="1"
+                                                    icon-name="custom:custom15" placeholder="Select Team"
+                                                    onselected={handleDocketActivityChange} min-search-txt-len=0
+                                                    final-sel-id={rec.assignToTeam} data-field="assignToTeam"
+                                                    order-by="SymphonyLF__Team_Name__c" limit=50>
+                                                </symphonylf-dynamic-search-and-select>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </lightning-accordion-section>
+                                <lightning-accordion-section name="BusinessCategories" label="Business Categories"  style="padding-bottom: 0.5rem;">
+                                    <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                        <div class="datatable-container" style={busiCategoryActionHeight}>
+                                            <symphonylf-my-types class="myTable" key-field="Id"
+                                                columns={businessCategoriesColumnsWithAction} data={businessCategoriesTable}
+                                                onrowaction={removeBusinessCategory} hide-checkbox-column>
+                                            </symphonylf-my-types>
+                                        </div>
+                                    </div>
+                                </lightning-accordion-section>
+                                <lightning-accordion-section name="applicants" label="Applicants"  style="padding-bottom: 0.5rem;">
+                                    <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                        <div class="datatable-container" style={applicantActionHeight}>
+                                            <symphonylf-my-types class="myTable" key-field="Id"
+                                                columns={applicantsColumnsWithAction} data={applicantsTable}
+                                                onrowaction={removeApplicants} hide-checkbox-column>
+                                            </symphonylf-my-types>
+                                        </div>
+                                    </div>
+                                </lightning-accordion-section>
+                                <lightning-accordion-section name="inventors" label="Inventors"  style="padding-bottom: 0.5rem;">
+                                    <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                        <div class="datatable-container" style={inventorActionHeight}>
+                                            <symphonylf-my-types class="myTable" key-field="Id"
+                                                columns={inventorColumnsWithAction} data={inventorsTable}
+                                                onrowaction={removeInventor} hide-checkbox-column>
+                                            </symphonylf-my-types>
+                                        </div>
+                                    </div>
+                                </lightning-accordion-section>
+                                <lightning-accordion-section name="keywords" label="Keyword Associations"  style="padding-bottom: 0.5rem;">
+                                    <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                        <div class="datatable-container" style={keywordActionHeight}>
+                                            <symphonylf-my-types class="myTable" key-field="Id"
+                                                columns={keywordColumnsWithAction} data={keywordTable}
+                                                onrowaction={removeKeyword} hide-checkbox-column>
+                                            </symphonylf-my-types>
+                                        </div>
+                                    </div>
+                                </lightning-accordion-section>
+                                <lightning-accordion-section name="priorities" label="Priorities"  style="padding-bottom: 0.5rem;">
+                                    <div class="slds-grid slds-wrap slds-p-top_xxx-small">
+                                        <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                            <p>Click "Add Existing Priority" button to search and select the existing
+                                                priorities</p>
+                                        </div>
+                                        <div
+                                            class="slds-col slds-size_1-of-1 fieldPadding slds-m-top_medium slds-text-align_center">
+                                            <lightning-button variant="brand" icon-name="utility:add"
+                                                label="Add Existing Priority" onclick={handleExistingPriority}>
+                                            </lightning-button>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                            <p>Click "New Priority" button to create a new priority</p>
+                                        </div>
+                                        <div
+                                            class="slds-col slds-size_1-of-1 fieldPadding slds-m-top_medium slds-text-align_center">
+                                            <lightning-button variant="brand" icon-name="utility:add"
+                                                label="New Priority" onclick={handleNewPriority}>
+                                            </lightning-button>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                            <p>Selected Priorities</p>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-1 fieldPadding">
+                                            <div class="datatable-container" style={finalPriorityHeight}>
+                                                <symphonylf-my-types class="myTable" key-field="uniqueId"
+                                                    columns={priorityColumnsWithAction} data={finalSelectedPriorities}
+                                                    onrowaction={removePriority} hide-checkbox-column>
+                                                </symphonylf-my-types>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </lightning-accordion-section>
+                            </lightning-accordion>
+                        </lightning-record-edit-form>
+                    </div>
+                    <div class="slds-modal__footer slds-text-align_center">
+                        <lightning-button variant="neutral" label="Cancel" onclick={closePopup}
+                            class="neutral slds-m-right_xx-small"></lightning-button>
+                        <lightning-button variant="brand" label="Update" onclick={addJurisdictionDetails}
+                            class="slds-m-left_xx-small"></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div if:true={openNewPriorityPopup}>
+            <div class="slds-modal slds-fade-in-open slds-backdrop">
+                <div class="slds-modal__container modalContainer">
+                    <div class="slds-modal__header">
+                        <lightning-button-icon icon-name="utility:close" alternative-text="Close this window"
+                            size="large" variant="bare-inverse" onclick={closePriorityPopup} class="slds-modal__close">
+                        </lightning-button-icon>
+                        <h2 class="slds-text-heading_medium slds-hyphenate">New Priority</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium" style="height:350px;">
+                        <lightning-record-edit-form object-api-name="SymphonyLF__Patent__c" onkeypress={enterkeyevent}>
+                            <div class="slds-grid slds-wrap slds-p-top_xxx-small">
+                                <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                    <div class={pantentFamilypriorityNewErrorClass}>
+                                        <symphonylf-dynamic-search-and-select -label="Patent Family"
+                                            object-name="SymphonyLF__Patent_Family__c" search-field-names="Name"
+                                            query-field-names="Name" dropdown-option-fields="1,2"
+                                            selected-record-representation="1" icon-name="custom:custom91"
+                                            onselected={handlePantentFamily} required="true" limit=50
+                                            final-sel-id={prioritypatentFamilyId} min-search-txt-len=0
+                                            placeholder="Select Patent Family">
+                                        </symphonylf-dynamic-search-and-select>
+                                        <div if:true={patentFamilypriorityError}>
+                                            <p style="color: red;padding-top:5px">{patentFamilypriorityError}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                    <lightning-input-field class="priorityAssetType"
+                                        field-name="SymphonyLF__IP_Matter__c" onchange={handlePriorityAssetType}
+                                        auto-complete="Patent" value={priorityAssetType} required>
+                                    </lightning-input-field>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                    <div class={priorityJurisdictionErrorClass}>
+                                        <symphonylf-dynamic-search-and-select -label="Jurisdiction"
+                                            object-name="SymphonyLF__Country__c"
+                                            search-field-names="Name,SymphonyLF__Country_Code__c"
+                                            query-field-names="Name" dropdown-option-fields="1,2"
+                                            selected-record-representation="1" icon-name="custom:custom91"
+                                            onselected={handleSelectedJurisdiction} required="true" limit=350
+                                            order-by="Name" final-sel-id={priorityJurisdictionId} min-search-txt-len=0
+                                            placeholder="Select Jurisdiction">
+                                        </symphonylf-dynamic-search-and-select>
+                                        <div if:true={priorityJurisdictionError}>
+                                            <p style="color: red;padding-top:5px">{priorityJurisdictionError}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                    <!--<lightning-input-field class="priorityCaseTypeClass" field-name="SymphonyLF__Case_Type__c" onchange={handlePriorityCaseType} value={priorityCaseType}>
+                                    </lightning-input-field>-->
+                                    <lightning-combobox class="priorityCaseTypeClass" label="Case Type"
+                                        name="priorityCaseTypeClass" onchange={handlePriorityCaseType}
+                                        placeholder="Select CaseType" value={priorityCaseType}
+                                        options={jurisdictionPriorityOptions} required></lightning-combobox>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                    <p
+                                        class="slds-m-bottom_xx-small slds-p-top_xx-small slds-text-title slds-text-color_weak">
+                                        <abbr title="required" class="slds-required">*</abbr>Short Title
+                                    </p>
+                                    <lightning-input type="text" class={priorityShortTitleErrorClass} label=""
+                                        variant="label-hidden" value={shortTitlePriority} max-length="80"
+                                        onchange={handlePriorityShortTitle}></lightning-input>
+                                    <div if:true={priorityShortTitleError}>
+                                        <p style="color: red;padding-top:5px">{priorityShortTitleError}</p>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                    <p
+                                        class="slds-m-bottom_xx-small slds-p-top_xx-small slds-text-title slds-text-color_weak">
+                                        <abbr title="required" class="slds-required">*</abbr>Invention Title
+                                    </p>
+                                    <lightning-input type="text" label="" class={priorityInventionTitleErrorClass}
+                                        variant="label-hidden" value={inventionTitlePriority} max-length="255"
+                                        onchange={handlePriorityInventionTitle}></lightning-input>
+                                    <div if:true={priorityInventionTitleError}>
+                                        <p style="color: red;padding-top:5px">{priorityInventionTitleError}</p>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                    <p
+                                        class="slds-m-bottom_xx-small slds-p-top_xx-small slds-text-title slds-text-color_weak">
+                                        <abbr title="required" class="slds-required">*</abbr>Application Number
+                                    </p>
+                                    <lightning-input type="text" class={priorityApplicationNumberErrorClass} label=""
+                                        variant="label-hidden" value={applicationNumber} max-length="255"
+                                        onchange={handleApplicationNumber}></lightning-input>
+                                    <div if:true={priorityApplicationNumberError}>
+                                        <p style="color: red;padding-top:5px">{priorityApplicationNumberError}</p>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                    <p
+                                        class="slds-m-bottom_xx-small slds-p-top_xx-small slds-text-title slds-text-color_weak">
+                                        <abbr title="required" class="slds-required">*</abbr>Filing Date
+                                    </p>
+                                    <lightning-input type="date" class={priorityApplicationDateErrorClass} label=""
+                                        variant="label-hidden" value={applicationDate}
+                                        onchange={handleApplicationDate}></lightning-input>
+                                    <div if:true={priorityApplicationDateError}>
+                                        <p style="color: red;padding-top:5px">{priorityApplicationDateError}</p>
+                                    </div>
+                                </div>
+                                <!-- <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                <p class="slds-m-bottom_xx-small slds-p-top_xx-small slds-text-title slds-text-color_weak"><abbr title="required" class="slds-required">*</abbr>Portfolio Management</p>
+                                <lightning-combobox class={priorityPortFolioErrorClass} options={portfolioOptions} value={portfolioManagement} placeholder="Select Portfolio Management" label="" variant="label-hidden" onchange={handlePortfolioManagement}></lightning-combobox>
+                                <div if:true={priorityPortFolioError}>
+                                    <p style="color: red;padding-top:5px">{priorityPortFolioError}</p>
+                                </div>
+                            </div>-->
+                                <!-- <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                <lightning-input type="text"  label="Client Reference" value={clientReferencePriority} max-length="255" onchange={handlePriorityClientReference}></lightning-input>
+                            </div>-->
+                            </div>
+                        </lightning-record-edit-form>
+                    </div>
+                    <div class="slds-modal__footer slds-text-align_center">
+                        <lightning-button variant="neutral" label="Cancel" onclick={closePriorityPopup}
+                            class="neutral slds-m-right_xx-small"></lightning-button>
+                        <lightning-button variant="brand" label="Add" onclick={addNewPriority}
+                            class="slds-m-left_xx-small"></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div if:true={openExistingPriorityPopup}>
+            <div class="slds-modal slds-fade-in-open slds-backdrop">
+                <div class="slds-modal__container modalContainer">
+                    <div class="slds-modal__header">
+                        <lightning-button-icon icon-name="utility:close" alternative-text="Close this window"
+                            size="large" variant="bare-inverse" onclick={closePriorityPopup} class="slds-modal__close">
+                        </lightning-button-icon>
+                        <h2 class="slds-text-heading_medium slds-hyphenate">Existing Priorities</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium" style="height:500px;">
+                        <div class="slds-col slds-size_1-of-1 fieldPadding">
+                            <p>Search by</p>
+                        </div>
+                        <div if:true={existingPriorityCmpError} class="slds-col slds-size_1-of-1 fieldPadding">
+                            <p style="color: red;padding-top:5px">{existingPriorityCmpError}</p>
+                        </div>
+                        <div if:true={existingPriorityAddError} class="slds-col slds-size_1-of-1 fieldPadding">
+                            <p style="color: red;padding-top:5px">{existingPriorityAddError}</p>
+                        </div>
+                        <div class="slds-grid slds-wrap slds-p-top_xxx-small">
+                            <div class="slds-col slds-size_1-of-4 fieldPadding">
+                                <symphonylf-dynamic-search-and-select -label="Jurisdiction"
+                                    object-name="SymphonyLF__Country__c"
+                                    search-field-names="Name,SymphonyLF__Country_Code__c" query-field-names="Name"
+                                    dropdown-option-fields="1,2" selected-record-representation="1"
+                                    icon-name="custom:custom91" onselected={handleJurisdictionSearch} limit=350
+                                    order-by="Name" min-search-txt-len=0 final-sel-id={jurisdictionSearchValue}
+                                    placeholder="Select Jurisdiction">
+                                </symphonylf-dynamic-search-and-select>
+                            </div>
+                            <div class="slds-col slds-size_1-of-4 fieldPadding">
+                                <lightning-input type="text" label="Docket Number" value={heReferenceSearchValue}
+                                    onchange={handleHEReferenceSearch}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-4 fieldPadding">
+                                <lightning-input type="text" label="Application Number" value={filingNumberSearchValue}
+                                    onchange={handleFilingNumberSearch}></lightning-input>
+                            </div>
+                            <!--<div class="slds-col slds-size_1-of-4 fieldPadding">
+                               <lightning-input type="text" label="Client Reference" value={clientReferenceSearchValue} onchange={handleClientReferenceSearch}></lightning-input>
+                            </div>-->
+                            <div class="slds-col slds-size_1-of-1 fieldPadding slds-text-align_center">
+                                <lightning-button variant="brand" label="Search" onclick={handlePrioritySearch}>
+                                </lightning-button>
+                            </div>
+                        </div>
+
+                        <div if:true={showPriorityTable} class="slds-col slds-size_1-of-1 fieldPadding">
+                            <div class="datatable-container" style={existingPriorityHeight}>
+                                <symphonylf-my-types class="myTable" key-field="Id" columns={priorityColumns}
+                                    data={existingPriorityRecords} onrowselection={getSelectedExistingPriorities}
+                                    selected-rows={preselectedIds}>
+                                </symphonylf-my-types>
+                            </div>
+                        </div>
+                        <div if:true={nullPriorityRecordMessage} class="slds-col slds-size_1-of-1 fieldPadding">
+                            <p> {nullPriorityRecordMessage}</p>
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer slds-text-align_center">
+                        <lightning-button variant="neutral" label="Cancel" onclick={closePriorityPopup}
+                            class="neutral slds-m-right_xx-small"></lightning-button>
+                        <lightning-button variant="brand" label="Add" onclick={addExistingPriority}
+                            class="slds-m-left_xx-small"></lightning-button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <template if:true={showRecordCreationSpinner}>
+            <div class="slds-modal slds-fade-in-open slds-backdrop">
+                <div class="slds-modal__container"
+                    style="height: fit-content !important; width: fit-content !important;">
+                    <div class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium slds-hyphenate">Please Wait!</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <div style="text-align:center;">
+                            <div class="slds-text-heading_small">{spinnerMessage}</div>
+                            <div class="spinnerHolder">
+                                <lightning-spinner alternative-text="Loading" variant="brand"
+                                    size="large"></lightning-spinner>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <div if:true={showKeywordPopup}>
+            <div class="slds-modal slds-fade-in-open slds-backdrop">
+                <div class="slds-modal__container modalContainer">
+                    <div class="slds-modal__header">
+                        <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"
+                            variant="bare-inverse" onclick={closeKeywordModal} class="slds-modal__close">
+                        </lightning-button-icon>
+                        <h2 class="slds-text-heading_medium slds-hyphenate">New Keyword</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <div class="section-layout-container slds--section slds-theme_shade">
+                            <h1 class="label slds-truncate slds-p-around_x-small slds-theme_shade">Information</h1>
+                        </div>
+                          <lightning-record-edit-form object-api-name="SymphonyLF__Keyword__c" onsuccess={handleKeywordSuccess} onerror={handleKeywordError}>
+                                <div>
+                                    <div class="slds-grid slds-wrap slds-m-bottom_small">
+                                        <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                           <lightning-input-field field-name="Name" required="true" class="keywordName" label="Keyword Name">
+                                           </lightning-input-field>
+                                          </div>
+        
+                                          <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <lightning-input-field field-name="SymphonyLF__Keyword_Hierarchy__c" class="keywordhierarchy" label="Keyword Hierarchy" >
+                                          </lightning-input-field>
+                                        </div>
+        
+                                          <div class="slds-col slds-size_1-of-2 fieldPadding">
+                                            <lightning-input-field field-name="SymphonyLF__Full_Name__c" class="keywordfullName" label="Full Name">
+                                            </lightning-input-field>
+                                           </div>
+                                        
+                                       
+                                    </div>
+                                </div>
+        
+                                <div class="slds-modal__footer slds-text-align_center">
+                                    <lightning-button variant="neutral" label="Cancel" onclick={closeKeywordModal}
+                                        class="neutral slds-m-right_xx-small"></lightning-button>
+                                    <lightning-button variant="brand" label="Save" type="submit"
+                                        class="slds-m-left_xx-small"></lightning-button>
+                                </div>
+                            </lightning-record-edit-form> 
+                            
+                           
+                            
+                        </div>
+                   
+                </div>
+            </div>
+        </div>
+        <symphonylf-confirmation-dialog title={confirmationTitle} message={confirmationMessage} confirm-label='Yes'
+            cancel-label='No' visible={showConfirmationDialog} original-message={confirmationMessage}
+            name="confirmModal" onclick={handleConfirmationClick}>
+        </symphonylf-confirmation-dialog>
+    </div>
+</template>

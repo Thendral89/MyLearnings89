@@ -1,0 +1,8 @@
+<template>
+    <!-- <input type="file" class="fileInput" /> -->
+
+    <lightning-card title="Upload to iManage">
+        <lightning-button label="Select File" onclick={openFileDialog}></lightning-button>
+        <input type="file" class="fileInput" accept=".pdf,.docx,.txt,.jpg,.png,.jpeg" onchange={handleFileChange} style="display: none;" />
+    </lightning-card>
+</template>

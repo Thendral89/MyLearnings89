@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Application Details --></label>
+        <name>APPLICATION_DETAILS</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Additional Information --></label>
+        <name>Additional_Information</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Additional Information --></label>
+        <name>Additional_Information_Read</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Application Details --></label>
+        <name>Application_Details_Read</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Basic Information --></label>
+        <name>Basic_Information_Docketer</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HIGHLIGHTSPANEL --></label>
+        <name>HIGHLIGHTSPANEL</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Highlights Docketer --></label>
+        <name>Highlights_Docketer</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Highlights --></label>
+        <name>Highlights_Read</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Basic Information --></label>
+        <name>INFORMATION</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Basic Information --></label>
+        <name>Information_Read</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Parent Information --></label>
+        <name>PARENT_INFORMATION</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Parent Information --></label>
+        <name>Patent_Information_Read</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Portfolio Management --></label>
+        <name>Portfolio_Management</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Portfolio Management --></label>
+        <name>Portfolio_Management_Read</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Status Details --></label>
+        <name>STATUS</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- System Information --></label>
+        <name>SYSTEM_INFORMATION</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Status Details --></label>
+        <name>Status_Read</name>
+    </fieldSets>
+    <sharingReasons>
+        <label><!-- CLIENT-ShareModel --></label>
+        <name>CLIENT_SHARE_MODEL</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- MEM-Primary Client Contact --></label>
+        <name>MEM_Primary_Client_Contact</name>
+    </sharingReasons>
+    <webLinks>
+        <label><!-- S_Docs --></label>
+        <name>S_Docs</name>
+    </webLinks>
+</CustomObjectTranslation>

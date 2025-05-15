@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Conflict Check</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Conflict Checks</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Basic Information --></label>
+        <name>Basic_Information</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Conflict Check --></label>
+        <name>Conflict_Check</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HIGHLIGHTSPANEL --></label>
+        <name>HIGHLIGHTSPANEL</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- INTAKEPANEL --></label>
+        <name>INTAKEPANEL</name>
+    </fieldSets>
+    <layouts>
+        <layout>Conflict Check Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Approve --></label>
+        <name>Approve</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Discuss --></label>
+        <name>Discuss</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

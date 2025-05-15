@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Instance Type --></label>
+    <name>InstanceType__c</name>
+    <picklistValues>
+        <masterLabel>Asset_Intake_Applicants__c</masterLabel>
+        <translation><!-- Asset_Intake_Applicants__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Asset_Intake_Class__c</masterLabel>
+        <translation><!-- Asset_Intake_Class__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Asset_Intake_Inventor__c</masterLabel>
+        <translation><!-- Asset_Intake_Inventor__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Asset_Intake_Personnel__c</masterLabel>
+        <translation><!-- Asset_Intake_Personnel__c --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

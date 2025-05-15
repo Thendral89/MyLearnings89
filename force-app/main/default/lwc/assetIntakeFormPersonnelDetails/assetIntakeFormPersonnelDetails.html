@@ -1,0 +1,58 @@
+<template>
+    <div class="slds-grid">
+        <div class="slds-size_4-of-4 div-border">
+
+            <lightning-card>
+                <!-- <h3 slot="title" style="white-space: normal; word-wrap: break-word;">
+                    <lightning-icon icon-name="action:info" size="small"></lightning-icon>
+                    &nbsp;&nbsp;Select from the Available Personnel below. If new Personnel are required, please add them using Personnel tab on the Client Page. The selections are automatically saved as Draft.
+                </h3> -->
+                <h3 slot="title" style="margin: 0; font-size: 0.875rem;"> 
+    <div style="display: flex; align-items: flex-start;">
+        <div style="flex-shrink: 0; margin-right: 0.4rem;">
+            <lightning-icon icon-name="action:info" size="xx-small" alternative-text="Info"></lightning-icon>
+        </div>
+        <div style="white-space: normal; word-wrap: break-word; font-size: 0.875rem;"> 
+            Select from the Available Personnel below. If new Personnel are required, please add them using the Personnel tab on the Client Page. The selections are automatically saved as Draft.
+        </div>
+    </div>
+</h3>
+                <template if:true={draftRecordsExists}>
+
+                <c-lwc-mv-datatable class="lwcMvDataTable" 
+                                    custom-settings={currentFeatureSettings} 
+                                    columns={draftColumns}
+                                    records={availablePersonnel}
+                                    timezone={timezone}
+                                    userlocale={userlocale}>
+                </c-lwc-mv-datatable>
+                </template>
+                <div class="slds-m-vertical_xx-large"></div>
+            </lightning-card>
+        </div>
+    </div>
+
+    <div class="slds-docked-form-footer slds-m-top_medium slds-align_absolute-center">
+        <lightning-button
+            class="slds-m-top_small"
+            label="Cancel"
+            variant="destructive"
+            disabled={isSaving}
+            onclick={handleReset}
+        ></lightning-button>
+        <lightning-button
+        class="slds-m-top_small slds-m-left_medium"
+        label="Back"
+        variant="brand"
+        disabled={isSaving}
+        onclick={handleBack}
+    ></lightning-button>
+        <lightning-button
+            class="slds-m-top_small slds-m-left_medium"
+            onclick={handleSaveDraft}
+            label="Save & Next"
+            variant="brand" 
+            disabled={isSaving}
+        ></lightning-button>
+    </div>
+</template>

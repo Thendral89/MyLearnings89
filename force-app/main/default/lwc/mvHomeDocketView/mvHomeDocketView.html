@@ -1,0 +1,326 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card  title="Dockets">
+        <div class="slds-p-horizontal_xxx-small">
+    <template lwc:if={showAction}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open slds-modal_medium">
+            <div class="slds-modal__container">
+            <span class="slds-modal__close">
+                <lightning-button-icon icon-name="utility:close" onclick={handleCancelAndClose} alternative-text="Cancel and Close" class="" title="Cancel and Close"></lightning-button-icon>
+            </span>
+            <!--div class="slds-modal__header">
+            <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">Modal header</h1>
+            </div-->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <lightning-flow
+                    flow-api-name={flowApiName}
+                    flow-input-variables={flowInputVariables}
+                    onstatuschange={handleFlowStatusChange}
+                >
+                </lightning-flow>
+                    </div>
+                    </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div> 
+            </template>
+
+    <template lwc:if={showTable}>
+
+
+        <div>
+             <template if:true={isLegalAssistant}>
+    <lightning-tabset>
+        <template for:each={attorneyRecords} for:item="tab">
+            <lightning-tab 
+                key={tab.attorneyId} 
+                data-id={tab.attorneyId}
+                label={tab.attorneyName} 
+                value={tab.attorneyId} 
+                onactive={handleAttorneyClick}>
+            </lightning-tab>
+        </template>
+    </lightning-tabset>
+</template>
+
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_11-of-12">
+                    <div>
+                        <a class="slds-m-right_xx-small">
+                            <span class="slds-badge" data-filtertype="ALL" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="All">
+                                        <lightning-icon icon-name="standard:work_plan_template" size="small"
+                                            alternative-text="All">
+                                        </lightning-icon>
+                                    </span>
+                                </span>All
+                            </span>
+                        </a>
+                        <a class="slds-m-right_xx-small">
+                            <span class="slds-badge" data-filtertype="TODAY_AND_TOM" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Today & Tomorrow">
+                                        <lightning-icon icon-name="standard:event" size="small"
+                                            alternative-text="Today & Tomorrow">
+                                        </lightning-icon>
+                                    </span>
+                                </span>Today & Tomorrow
+                            </span>
+                        </a>
+
+                        <a class="slds-m-right_xx-small">
+
+                            <span class="slds-badge" data-filtertype="NEXT7" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Next 7 Days">
+                                        <lightning-icon icon-name="standard:product_request" size="small"
+                                            alternative-text="Next 7 Days" data-filtertype="NEXT7" onclick={handleFilters}>
+                                        </lightning-icon>
+                                    </span>
+                                </span>Next 7 Days
+                            </span>
+                        </a>
+
+                        <!--a>
+
+                            <span class="slds-badge" data-filtertype="OPEN" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Open">
+                                        <lightning-icon icon-name="standard:product_request" size="small"
+                                            alternative-text="Open" data-filtertype="CLOSED" onclick={handleFilters}>
+                                        </lightning-icon>
+                                    </span>
+                                </span>Open
+                            </span>
+                        </a>
+
+                        <a>
+
+                            <span class="slds-badge" data-filtertype="CLOSED" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Closed">
+                                        <lightning-icon icon-name="standard:survey" size="small"
+                                            alternative-text="Closed">
+                                        </lightning-icon>
+                                    </span>
+                                </span>Closed
+                            </span>
+                        </a-->
+
+                        <a class="slds-m-right_xx-small">
+                            <span class="slds-badge" data-filtertype="NEXT30" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Next 30 Days">
+                                        <lightning-icon icon-name="standard:event" size="small"
+                                            alternative-text="Next 30 Days">
+                                        </lightning-icon>
+                                    </span>
+                                </span>Next 30 Days
+                            </span>
+                        </a>
+
+                        <a class="slds-m-right_xx-small">
+                            <span class="slds-badge" data-filtertype="NEXT60" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Next 60 Days">
+                                        <lightning-icon icon-name="standard:event" size="small"
+                                            alternative-text="Next 60 Days">
+                                        </lightning-icon>
+                                    </span>
+                                </span>Next 60 Days
+                            </span>
+                        </a>
+
+                        <a class="slds-m-right_xx-small">
+                            <span class="slds-badge" data-filtertype="PASTDUE" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Past Due">
+                                        <lightning-icon icon-name="standard:operating_hours" size="small"
+                                            alternative-text="Past Due">
+                                        </lightning-icon>
+                                    </span>
+                                </span>Past Due
+                            </span>
+                        </a>
+
+                        <a class="slds-m-right_xx-small">
+                            <span class="slds-badge" data-filtertype="ADHOC" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Adhoc Activities">
+                                        <lightning-icon icon-name="standard:document_reference" size="small"
+                                            alternative-text="Adhoc Activities">
+                                        </lightning-icon>
+                                    </span>
+                                </span>Adhoc Activities
+                            </span>
+                        </a>
+
+                        <a class="slds-m-right_xx-small">
+                            <span class="slds-badge" data-filtertype="EVENTS" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Events">
+                                        <lightning-icon icon-name="standard:events" size="small"
+                                            alternative-text="Events">
+                                        </lightning-icon>
+                                    </span>
+                                </span>Event(s)
+                            </span>
+
+                        </a>
+
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-12">
+                    <div class="slds-button-group slds-float_right">
+                        <lightning-button label="Update" title="Update" class="slds-p-left_xx-small" onclick={handleBulkUpdate} variant="brand">
+                        </lightning-button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <BR>
+
+        <lightning-tabset>
+            <lightning-tab label={selectedTabName} class="counter" data-count={selectedTabCount}
+                icon-name={selectedTabIcon}>
+        <!-- <template if:true={isLegalAssistant}>
+            <div class="button-container">
+                <template for:each={attorneyRecords} for:item="tab">
+                    <lightning-button 
+                        key={tab.attorneyId} 
+                        label={tab.attorneyName} 
+                        data-id={tab.attorneyId}
+                        class="slds-m-right_small" 
+                        variant="brand"
+                        onclick={handleAttorneyClick}>
+                    </lightning-button>
+                </template>
+            </div>
+        </template> -->
+        <c-lwc-mv-datatable class="lwcMvDataTable" onrowselection={handleRowSelection}
+            onrecordsuccess={handleInlineSave} custom-settings={currentFeatureSettings} columns={columns}
+            records={records}>
+        </c-lwc-mv-datatable>
+        </lightning-tab>
+        </lightning-tabset>
+
+       
+
+       <template if:true={showEditModal}>
+    <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open slds-modal_small">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <h2 class="slds-text-heading_medium">Update Selected Records</h2>
+            </header>
+
+            <!-- Show ALL fields if showAllFields is true -->
+            <template if:true={showAllFields}>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="slds-grid slds-gutters slds-wrap slds-m-bottom_small">
+                        <!-- Assigned To -->
+                        <div class="slds-col slds-size_1-of-1 slds-p-right_small">
+                            <c-dynamic-search-and-select -label="Assigned To" object-name="User"
+                                placeholder="Search People" search-field-names="Name" query-field-names="Name"
+                                dropdown-option-fields="1" selected-record-representation="1"
+                                icon-name="custom:custom18" onselected={handleAssignedToChange}
+                                final-sel-id={assignedTo} where-clause={clientIdCondition} min-search-txt-len="0"
+                                limit="50">
+                            </c-dynamic-search-and-select>
+                        </div>
+
+                        <!-- Comments -->
+                        <div class="slds-col slds-size_1-of-1">
+                            <lightning-input type="text" name="allComments" label="Comments" value={allComments}
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+                    </div>
+
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-1">
+                            <lightning-input type="date" name="completionDate" label="Completion Date"
+                                value={completionDate} onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1">
+                            <lightning-input type="date" name="closedDate" label="Closed Date" value={closedDate}
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-align-bottom">
+                            <lightning-input type="checkbox" name="isCompleted" label="Is Completed?"
+                                checked={isCompleted} onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-align-bottom">
+                            <lightning-input type="checkbox" name="isClosed" label="Is Closed?" checked={isClosed}
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Show ONLY Comments field if showAllFields is false -->
+            <template if:false={showAllFields}>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="slds-col slds-size_1-of-1">
+                        <lightning-input type="text" name="allComments" label="Comments" value={allComments}
+                            onchange={handleInputChange}>
+                        </lightning-input>
+                    </div>
+                </div>
+            </template>
+
+            <footer class="slds-modal__footer">
+                <lightning-button variant="neutral" label="Cancel" onclick={handleCancel}></lightning-button>
+                <lightning-button variant="brand" class="slds-p-left_xx-small" label="Save"
+                    onclick={handleSave}></lightning-button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>
+
+
+
+        <template if:true={showExpandModal}>
+            <section role="dialog" class="slds-modal slds-fade-in-open slds-modal_large" aria-labelledby="modal-heading"
+                aria-modal="true">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading" class="slds-text-heading_medium slds-hyphenate">
+                            Full Docket Tabular View
+                        </h2>
+                        <button class="slds-button slds-button_icon slds-modal__close" title="Close"
+                            onclick={handleExpandModalClose}>
+                            <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+                        </button>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <c-lwc-mv-datatable class="lwcMvDataTable" onrowselection={handleRowSelection}
+                            onrecordsuccess={handleInlineSave} custom-settings={currentFeatureSettings}
+                            columns={columns} records={records}>
+                        </c-lwc-mv-datatable>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+    </template>
+    </div>
+
+    <template if:true={showSpinner}>
+        <lightning-spinner variant="brand" size="large"></lightning-spinner>
+    </template>
+    </lightning-card>
+</template>

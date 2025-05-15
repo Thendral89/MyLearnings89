@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>ClientRegistrationDetails</label>
+    <protected>false</protected>
+    <values>
+        <field>SymphonyLF__ClientId__c</field>
+        <value xsi:type="xsd:string">3MVG9o0Rj_GRmEuh53WGamrHGNis3FrmkH_HZoMBctstNhVh5D1b2BB28Df6CI623fVSPn.YlpDFyzEwsE529</value>
+    </values>
+    <values>
+        <field>SymphonyLF__ClientSecret__c</field>
+        <value xsi:type="xsd:string">73F52B5B9433D2040B396A42ADEC8AC8F2A6442B89B715678D1B33A0677D313B</value>
+    </values>
+    <values>
+        <field>SymphonyLF__Email__c</field>
+        <value xsi:type="xsd:string">sara.r@maxval.com</value>
+    </values>
+    <values>
+        <field>SymphonyLF__Environment__c</field>
+        <value xsi:type="xsd:string">SANDBOX</value>
+    </values>
+    <values>
+        <field>SymphonyLF__Error__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SymphonyLF__InstanceId__c</field>
+        <value xsi:type="xsd:string">00DWr000003SOLpMAO</value>
+    </values>
+    <values>
+        <field>SymphonyLF__Is_Document_Posting_Required__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>SymphonyLF__Name__c</field>
+        <value xsi:type="xsd:string">Meunier Carlin &amp; Curfman LLC</value>
+    </values>
+    <values>
+        <field>SymphonyLF__Password__c</field>
+        <value xsi:type="xsd:string">Salesforce@2026</value>
+    </values>
+    <values>
+        <field>SymphonyLF__Register_Status__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>SymphonyLF__URL_Key__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SymphonyLF__URL_Type__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SymphonyLF__URL_Value__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SymphonyLF__Username__c</field>
+        <value xsi:type="xsd:string">sara.r@maxval.com</value>
+    </values>
+</CustomMetadata>

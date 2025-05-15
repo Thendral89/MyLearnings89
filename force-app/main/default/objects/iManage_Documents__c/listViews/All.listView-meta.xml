@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>iManage_Folders__c</columns>
+    <columns>id__c</columns>
+    <columns>name__c</columns>
+    <columns>is_checked_out__c</columns>
+    <columns>extension__c</columns>
+    <columns>ContentVersionId__c</columns>
+    <columns>type__c</columns>
+    <columns>workspace_id__c</columns>
+    <columns>content_type__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>recordId__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

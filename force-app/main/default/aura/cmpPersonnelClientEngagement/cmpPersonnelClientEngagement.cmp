@@ -1,0 +1,9 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName">
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="objectApiName" type="String" />
+<aura:attribute name="isLwcVisible" type="Boolean" default="true"/>          
+<aura:handler event="aura:locationChange" action="{!handleLocationChange}"/>  
+<aura:if isTrue="{!v.isLwcVisible}">         
+   <c:lwcPersonnelClientEngagement recordId="{!v.recordId}" objectApiName="{!v.objectApiName}"/>         
+</aura:if> 
+</aura:component>

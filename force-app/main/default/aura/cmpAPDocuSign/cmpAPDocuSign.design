@@ -1,0 +1,13 @@
+<design:component>
+	<design:attribute name="emailBody" label="emailBody" />
+    <design:attribute name="recordId" label="recordId" />
+    <design:attribute name="InnovatorsIds" label="InnovatorsIds" />
+    <design:attribute name="IsPatent" label="IsPatent" />
+    <design:attribute name="IsTemplates" label="IsTemplates" />
+    <design:attribute name="IsAdmin" label="IsAdmin" />
+    <design:attribute name="Title" label="Title" />
+    <design:attribute name="Application" label="Application" />
+    <design:attribute name="FilingDate" label="FilingDate" />
+    <design:attribute name="DocketNumber" label="DocketNumber" />
+    
+</design:component>

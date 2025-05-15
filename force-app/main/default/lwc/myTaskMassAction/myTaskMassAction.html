@@ -1,0 +1,76 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 04-26-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <div class="slds-grid mass-actions">
+        <div class="slds-col slds-size_1-of-1 ">
+            <div class="slds-grid slds-grid_align-spread">
+                <div class="slds-col " ><b class="action-heading">Mass Actions:</b></div>
+                <div class="slds-col ">
+                    <lightning-button-icon size="large" variant="bare-inverse" tooltip="Change Owner of Selected Records"
+                            icon-name="utility:change_owner" data-action="owner" onclick={handleClick}></lightning-button-icon>
+                </div>
+                <div class="slds-col ">
+                    <lightning-button-icon size="large" variant="bare-inverse" tooltip="Change Status of Selected Records"
+                            icon-name="utility:change_record_type" data-action="status" onclick={handleClick}></lightning-button-icon>
+                </div>
+                <div class="slds-col ">
+                    <lightning-button-icon size="large" variant="bare-inverse" tooltip="Change Due Date of Selected Records"
+                            icon-name="utility:dayview" data-action="duedate" onclick={handleClick}></lightning-button-icon>
+                </div>
+                <div class="slds-col ">
+                    <lightning-button-icon size="large" variant="bare-inverse" tooltip="Delete Selected Records"
+                            icon-name="utility:delete" data-action="delete" onclick={handleClick} if:true={isSystemAdmin}></lightning-button-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <template if:true={showMassActionModal}>
+        <c-my-task-modal>
+            <div slot="header">
+                <h1 class="slds-modal__title slds-hyphenate">
+                    <template if:true={isOwnerAction}>Update Assigned To</template>
+                    <template if:true={isStatusAction}>Update Status</template>
+                    <template if:true={isDueDateAction}>Update Due Date</template>
+                    <template if:true={isDeleteAction}>Delete Tasks</template>
+                </h1>
+            </div>
+            <div slot="content">
+                <div class="slds-grid slds-wrap">
+                    <div if:true={isDueDateAction} class="slds-col slds-size_1-of-1">
+                        <lightning-input
+                            label="Due Date"
+                            type="date"
+                            onchange={handleDueDateChange}>
+                        </lightning-input>
+                    </div>
+                    <div if:true={isOwnerAction} class="slds-col slds-size_1-of-1">
+                        <lightning-record-picker 
+                            label="Assigned To"
+                            placeholder="Search..."
+                            object-api-name="User" onchange={handleOwnerChange}>
+                        </lightning-record-picker>
+                    </div>
+                    <div if:true={isStatusAction} class="slds-col slds-size_1-of-1">
+                        <lightning-combobox options={statusOptions} label="Status" onchange={handleStatusChange}></lightning-combobox>
+                    </div>
+                    <div if:true={isDeleteAction} class="slds-col slds-size_1-of-1">
+                        <p>Are you sure you want to delete these selected Tasks?</p>
+                    </div>
+                </div>
+            </div>
+            <div slot="footer">
+                <button class="slds-button slds-button_neutral" data-action="cancel" onclick={handleClick}>Cancel</button>
+                <button if:true={isOwnerAction} class="slds-button slds-button_brand" data-action="save" onclick={handleClick}>Re-Assign</button>
+                <button if:true={isStatusAction} class="slds-button slds-button_brand" data-action="save" onclick={handleClick}>Update Status</button>
+                <button if:true={isDueDateAction} class="slds-button slds-button_brand" data-action="save" onclick={handleClick}>Change Due Date</button>
+                <button if:true={isDeleteAction} class="slds-button slds-button_brand" data-action="delete-apex" onclick={handleClick}>Delete</button>
+            </div>
+        </c-my-task-modal>
+    </template>
+</template>

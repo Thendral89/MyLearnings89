@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Errors in Figures and Claim Language --></label>
+    <name>Errors_in_Figures_and_Claim_Language__c</name>
+    <picklistValues>
+        <masterLabel>Docket to File Certificate of Correction later.</masterLabel>
+        <translation><!-- Docket to File Certificate of Correction later. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Filing 312 Amendment with Response to Notice of Allowance (will affect PTA).</masterLabel>
+        <translation><!-- Filing 312 Amendment with Response to Notice of Allowance (will affect PTA). --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

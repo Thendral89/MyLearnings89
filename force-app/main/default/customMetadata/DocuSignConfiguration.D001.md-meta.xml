@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>D001</label>
+    <protected>false</protected>
+    <values>
+        <field>EmailTemplate__c</field>
+        <value xsi:type="xsd:string">Dear {! v.Inventors},&lt;br/&gt;
+{!v.Instructional}&lt;br/&gt;
+Please find the finalized patent application and drawings for the above-referenced matter.  We also enclose the Assignment and Declaration document[s] that need to be signed by you.  Prior to executing the documents, we ask that you review the inventors listed.  If the inventor list is incorrect, please let us know as soon as reasonably possible and we will send corrected documents. If the inventors listed are correct, please execute.  When executing the attached documents, please confirm that your legal name is correct.  If your legal name is incorrect, please let us know and we will send corrected documents.  Please execute the documents as your name is presented.&lt;br/&gt;
+Additionally, prior to executing the attached Assignment, you are required to (1) review and understand the contents of the application, including the claims; and (2) be aware of the duty to disclose to the United States Patent and Trademark Office all information known to you to be material to patentability as defined in 37 CFR Section 1.56.  Should you not understand what is required by you, please contact the sender of this correspondence to arrange a telephone conference.&lt;br/&gt;
+If you have any concerns reuse of electronic signatures/Docusign, please reply to psosupport@maxval.com&lt;br/&gt;</value>
+    </values>
+    <values>
+        <field>IsReviewBeforeSend__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Process__c</field>
+        <value xsi:type="xsd:string">Patent</value>
+    </values>
+    <values>
+        <field>access_token__c</field>
+        <value xsi:type="xsd:string">eyJ0eXAiOiJNVCIsImFsZyI6IlJTMjU2Iiwia2lkIjoiNjgxODVmZjEtNGU1MS00Y2U5LWFmMWMtNjg5ODEyMjAzMzE3In0.AQoAAAABAAUABwCAVKXQf3DaSAgAgJTI3sJw2kgCAPofWd3ixpFJssl5snWRS9wVAAEAAAAYAAEAAAAFAAAADQAkAAAAOTdmZThiOTMtNzYwMS00OGQyLWFjZjUtZTYyOTMyZmViZWYyIgAkAAAAOTdmZThiOTMtNzYwMS00OGQyLWFjZjUtZTYyOTMyZmViZWYyMACAhq5MBXDaSDcA49PIgbr7t0iAWGzJs9np_g.yJ7YOgeIxlUItd1yzGO_dqdIq-xn7NCnaWzQPV8R02fbkjQz3u6dm-zQt9-aoKD4D9OkCVMQPxQIuBpPvKm_j4_7SU29L-2TWHdV7Xyf-wXhpX7ZVQfsFiM0kaT3LNFhsUnjeryeBvbNx7NISp5xZEFQ9m4z-8YoUZ9ri-PyHOMs-AJ25IAA3mSEwqvggzHvlgTl4kqwytRRQHwoKztZALbHrPh7zQySHTIzlbzZP7OFmbs6_aa9WIgRIf9AXHzx8aaDjlH7OhM_zDMjVOuGamH1F-VMf5y4kxWXScpb5rRfGp18X0J2Qood0pKA3YdAv05y23Zoty0CR-DVnLnwQQ</value>
+    </values>
+    <values>
+        <field>refresh_token__c</field>
+        <value xsi:type="xsd:string">eyJ0eXAiOiJNVCIsImFsZyI6IlJTMjU2Iiwia2lkIjoiNjgxODVmZjEtNGU1MS00Y2U5LWFmMWMtNjg5ODEyMjAzMzE3In0.AQoAAAABAAgABwCAVKXQf3DaSAgAgNQJyRKI2kgCAPofWd3ixpFJssl5snWRS9wVAAEAAAAYAAEAAAAFAAAADQAkAAAAOTdmZThiOTMtNzYwMS00OGQyLWFjZjUtZTYyOTMyZmViZWYyIgAkAAAAOTdmZThiOTMtNzYwMS00OGQyLWFjZjUtZTYyOTMyZmViZWYyMACAhq5MBXDaSDcA49PIgbr7t0iAWGzJs9np_g.wKhXNu4rnmHRs6zsT2PNA1SZLHbPeqn8pl6Ilj_lqyL_x8NaCHzDLtCKWa6kvtIpgs1Kb6D_fyTUp31PtSg37GktKSdmSQxcN29MCTfdXN7nYO8m8q_XIzw7gNqpdWtZCBfuICTciWsh2Iw9XNLwFAguco1NV-U7pyX9HjGVSfmhu34l6nz4TX_ZPH2LH1EYwxdiiBWCvKsh9ZBz5CKd9_mm_rguySvXJIMQTRn5gbYUvEcsxb4ZpfsWF1Z2-QneUNef1QCE9MIVKXEBcmfsR20VAIAHcOWD6XDXkBS0unpYJRSrXAG8-3fCP53uqmA5zesIXZJf4OIEEIFW625nNQ</value>
+    </values>
+</CustomMetadata>

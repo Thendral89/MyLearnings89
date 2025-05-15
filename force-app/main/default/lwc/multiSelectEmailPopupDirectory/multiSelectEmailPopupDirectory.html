@@ -1,0 +1,168 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 01-28-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <section class="slds-modal slds-fade-in-open slds-modal_large">
+        <!-- Modal Container -->
+        <div class="slds-modal__container" style="width:100%">
+            <!-- Modal Header -->
+            <div class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+						title="Close" onclick={closePopup}>
+						<lightning-icon icon-name="utility:close" alternative-text="close"
+							size="small"></lightning-icon>
+						<span class="slds-assistive-text">Close</span>
+				</button>
+                <h2 class="slds-text-heading_medium">Add Recipients</h2>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="slds-modal__content" style="height: 100%;">
+                <div class="main-content">
+                    
+                    <!-- Left Section: Search & Quick Add -->
+                    <div class="left-section">
+                        <!-- Search Bar -->
+                        <div class="search-container">
+                            <input
+                                type="text"
+                                class="search-bar"
+                                placeholder="Search..."
+                                oninput={handleInputChange}
+                                onclick={showDropdownOnFocus}
+                                value={inputValue}
+                                onkeydown={handleKeyDown}
+                                autocomplete="none"
+                            />
+                            <!-- Dropdown -->
+                            <template if:true={showDropdown}>
+                                <div class="enhanced-dropdown">
+                                    <ul class="slds-listbox slds-listbox_vertical dropdown"
+                                    role="listbox" >
+                                        <template if:true={filteredRecords} for:each={filteredRecords} for:item="record" for:index="index">
+                                            <li
+                                                class={record.computedClass}
+                                                key={record.recordId}
+                                                data-index={index}
+                                                data-id={record.email}
+                                                data-record-id={record.recordId}
+                                                onclick={handleSelect}
+                                                style="margin-bottom: 10px; padding: 10px; border-bottom: 1px solid #ddd;"
+                                            >
+                                                <div class="slds-media slds-listbox__option slds-listbox__option_entity" role="option">
+                                                    <span class="slds-media__figure">
+                                                        <lightning-icon icon-name={record.src} size="small"></lightning-icon>
+                                                    </span>
+                                                    <span class="slds-media__body">
+                                                        <span class="slds-listbox__option-text">
+                                                            <strong>{record.label}</strong>
+                                                        </span>
+                                                        <span class="slds-listbox__option-meta">{record.email}</span>
+                                                        <span class="slds-listbox__option-meta">{record.emailOf}</span>
+                                                    </span>
+                                                    <span if:true={record.selected} class="slds-icon_container slds-icon-utility-check" style="float: right;">
+                                                        <lightning-icon icon-name="utility:check" size="xx-small" alternative-text="Selected"></lightning-icon>
+                                                    </span>
+                
+                                                </div>
+                                            </li>
+                                        </template>
+                                        <template if:true={noResults}>
+                                            <li class="dropdown-item no-results">No Emails Found</li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </template>
+                        </div>
+
+                        <!-- Quick Add Section -->
+                        <div class="quick-add">
+                            <h3 class="section-title">Quick Add</h3>
+                            <ul class="list-items">
+                                <template if:true={quickAddRecords} for:each={quickAddRecords} for:item="contact">
+                                    <li class="list-item" key={contact.email}>
+                                        <span class="avatar">{contact.initials}</span>
+                                        <div class="details" style="display: inline-block; margin-left: 10px; margin-right: 5px;width:13rem">
+                                            <span class="name" style="font-weight: bold;">{contact.name}</span>
+                                            <span class="email" style="display: block; color: gray;">{contact.email}</span>
+                                            <span class="email-of" style="display: block; color: gray;">{contact.emailOf}</span>
+                                        </div>
+                                        <lightning-button 
+                                            label="Add" 
+                                            variant="brand" 
+                                            onclick={handleQuickAdd} 
+                                            disabled={contact.isDisabled} 
+                                            data-id={contact.email}
+                                            style="padding-left:4rem" >
+                                        </lightning-button>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Section: Selected Emails -->
+                    <div class="right-section">
+                        <h3 class="section-title">Selected Emails</h3>
+                        <div class="email-group-container">
+                            <template if:true={selectedEmailsByType} for:each={selectedEmailsByType} for:item="group">
+                                <div key={group.type} class="email-group">
+                                    <h4 class="group-title">{group.type}</h4>
+                                    <ul class="selected-list">
+                                        <template for:each={group.emails} for:item="email">
+                                            <li key={email} class="email-item">
+                                                {email}
+                                                <button 
+                                                    class="remove-button"
+                                                    data-email={email}
+                                                    data-type={group.type}
+                                                    onclick={handleRemove}
+                                                >
+                                                    Remove
+                                                </button>
+                                                <!-- <lightning-button variant="destructive" label="Remove" onclick={handleRemove}  data-email={email} data-type={group.type}></lightning-button> -->
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="custom-footer">
+                <div class="footer-content">
+                    <!-- Left Section: Optional Text or Actions -->
+                    <div class="footer-left">
+                         <lightning-combobox
+                        name="progress"
+                        class="type-combobox"
+                        label-variant="hidden"
+                        value={selectedType}
+                        placeholder="Select Type"
+                        options={typeOptions}
+                        onchange={handleEmailTypeChange} ></lightning-combobox>
+                    </div>
+                    
+                    <!-- Right Section: Buttons -->
+                    <div class="footer-right">
+                        <lightning-button style="padding-top:1rem" 
+                            label="Done" 
+                            variant="brand" 
+                            onclick={handleDone} 
+                            disabled={isDoneDisabled}>
+                        </lightning-button> 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>

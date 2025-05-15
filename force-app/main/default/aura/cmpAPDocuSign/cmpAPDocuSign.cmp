@@ -1,0 +1,1019 @@
+<aura:component controller="cmpAPDocuSignCtrl" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,lightning:availableForFlowScreens" access="global" >
+    <aura:attribute name="envelopeDetails" type="string" default=""/>
+    <aura:attribute name="showNote" type="boolean" default="false"/>
+    <aura:attribute name="count" type="integer" default="0"/>
+    <aura:attribute name="jobID" type="string" default=""/>
+    <aura:attribute name="enveId" type="string" default=""/>
+    
+    
+    <aura:attribute name="jobStatus" type="string" default=""/>
+    <aura:attribute name="pollId" type="integer" default=""/>
+    <aura:attribute name="jobMessage" type="string" default=""/>
+    <aura:attribute name="progress" type="Integer" default="0"/>
+    <aura:attribute name="apexJob" type="AsyncApexJob"/>
+    <aura:attribute name="envelopeId" type="string" default=""/>
+    <aura:attribute name="venvelopeId" type="string" default=""/>
+    <aura:attribute name="envelopeSentOn" type="string" default="12 Aug 2019"/>
+    <aura:attribute name="envelopeStatus" type="string" default="Delivered"/>
+    <aura:attribute name="displayResult" type="string" default=""/>
+    <aura:attribute name="envelopCount" type="Integer" default="0"/>
+    <aura:attribute name="isStatusDisabled" type="boolean" default="false"/>
+    <aura:attribute name="IsReview" type="boolean" default="false"/>
+    <aura:attribute name="IsReviewBeforeSend" type="boolean" default="false"/>
+    <aura:attribute name="IsInfoDisabled" type="boolean" default="false"/>
+
+    <aura:attribute name="isDisabled" type="boolean" default="false"/>
+    <aura:attribute name="isReDisabled" type="boolean" default="false"/>
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="isRefresh" type="boolean" default="false"/>
+    <aura:attribute name="isPreviewModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="InnovatorsIds" access="global" type="string" default=""/>
+    <aura:attribute name="IsPatent" type="boolean" default="true"/>
+    <aura:attribute name="vPatent" access="global" type="string" default=""/>
+    <aura:attribute name="IsEnvelopPreview" access="global" type="string" default="created"/>
+    <aura:attribute name="IsPreview" type="boolean" default="false"/>
+    <aura:attribute name="IsAdmin" type="boolean" default="true"/>
+    <aura:attribute name="IsInnovators" type="boolean" default="false"/>
+    <aura:attribute name="IsTitle" type="boolean" default="false"/>
+    <aura:attribute name="EnvelopPreviewId" type="String" />
+    <aura:attribute name="IsValidating" type="boolean" default="false"/>
+    <aura:attribute name="IsValidatingProgress" type="boolean" default="false"/>
+    <aura:attribute name="batchInstanceId" type="String" default="" />
+    <aura:attribute name="IsbatchInstanceId" type="boolean" default="false"/>
+     <lightning:notificationsLibrary aura:id="notifyId"/>    
+    
+    <aura:attribute name="IsMultipleSignature" type="boolean" default="false"/>
+    <aura:attribute name="tooltipHeaderNote" type="Boolean" default="false" />
+    
+    <aura:attribute name="emailBody" type="String" />
+    
+    <!--*****Setting *****-->
+    <aura:attribute name="IsTemplates" type="boolean" default="true"/>
+    
+    <!--*****Setting *****-->
+    <aura:attribute name="sectionshow" type="boolean" default="false"/>
+    <aura:attribute name="sectionhide" type="boolean" default="true"/>
+    <aura:attribute name="StepOneShow" type="boolean" default="true"/>
+    <aura:attribute name="StepOnehide" type="boolean" default="false"/>
+    <aura:attribute name="StepTwoShow" type="boolean" default="true"/>
+    <aura:attribute name="StepTwohide" type="boolean" default="false"/>
+    <aura:attribute name="StepThreeShow" type="boolean" default="true"/>
+    <aura:attribute name="StepThreehide" type="boolean" default="false"/>
+    <aura:attribute name="Title" type="String" default=""/>
+    <aura:attribute name="Application" type="String" default=""/>
+    <aura:attribute name="FilingDate" type="String" default=""/>
+    <aura:attribute name="DocketNumber" type="String" default=""/>
+    
+    <aura:attribute name="Instructional" type="String" default=""/>
+    
+    <aura:attribute name="IsShow" type="Boolean" default = "true"/>
+    <aura:attribute name="Column" type="List"/>    
+    <aura:attribute name="Data" type="object[]" />
+    <aura:attribute name="sortedBy" type="String" default="Name"/>
+    <aura:attribute name="sortedDirection" type="String" default="asc"/>
+    <aura:attribute name="arrSelectedInventorIds" type="List"/>
+    <aura:attribute name="strSelectedInventorIds" type="string" access="global"/>
+    <aura:attribute name="Inventors" type="string" access="global"/>
+    
+    <aura:attribute name="objEnvelopes" type="EnvelopeInfo__c[]"/>
+    <aura:attribute name="objSupplimentalAttachments" type="cmpAPDocuSignSupplimentalAttachment[]"/>
+    <aura:attribute name="objDocuSignedAttachments" type="cmpAPDocuSignSupplimentalAttachment[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.loadEnvelopesController}"/>
+    <aura:attribute name="isEditing" type="Boolean" default="false"/>
+    <aura:attribute name="IsEmailShow" type="Boolean" default="false"/>
+    <aura:attribute name="IsReminder" type="Boolean" default="true"/>
+    <aura:attribute name="IsReminderShow" type="Boolean" default="false"/>
+    
+    <aura:attribute name="ReminderDelay" type="string" access="global"/>
+    <aura:attribute name="ReminderFrequency" type="string" access="global"/>
+    <aura:attribute name="ExpireAfter" type="string" access="global"/>
+    <aura:attribute name="ExpireWarn" type="string" access="global"/>
+    
+    
+    <aura:if isTrue="{!v.IsAdmin}">
+       
+        		
+       <aura:if isTrue="{!v.IsReminderShow}"> 
+
+				<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                	<div class="slds-modal__container">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModel }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Docusign Reminder</h2>
+                    </header>
+                        
+                    <!--Modal/Popup Box Body Starts here-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                       
+    
+     <lightning:layout multipleRows="true">
+        <lightning:layoutItem size="6" padding="around-small">
+            <lightning:input label="Reminder Delay" required="true"  type="number" value="{!v.ReminderDelay}" placeholder="Enter Reminder Delay" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="6" padding="around-small">
+            <lightning:input label="Reminder Frequency" required="true"  type="number" value="{!v.ReminderFrequency}" placeholder="Enter Reminder Frequency" />
+        </lightning:layoutItem>
+            
+    </lightning:layout>
+        
+    <lightning:layout multipleRows="true">
+       
+        <lightning:layoutItem size="6" padding="around-small">
+            <lightning:input label="ExpireAfter" required="true"  type="number" value="{!v.ExpireAfter}" placeholder="Enter Expire After" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="6" padding="around-small">
+            <lightning:input label="Expire Warning" required="true"  type="number" value="{!v.ExpireWarn}" placeholder="Enter Expire Warning" />
+        </lightning:layoutItem>
+            
+    </lightning:layout>
+                          
+                      
+                                
+				<aura:if isTrue="{!v.IsValidatingProgress}">              
+					<div class="demo-only" style="position:relative">
+  						<div class="slds-spinner_container">
+    						<div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+      							<span class="slds-assistive-text">Loading</span>
+      								<div class="slds-spinner__dot-a"></div>
+      							<div class="slds-spinner__dot-b"></div>
+    						</div>
+  						</div>
+					</div> 
+                    <br/><br/>
+				</aura:if>
+                                
+                                
+                          
+                    </div>
+                        
+                    <!--Modal/Popup Box Footer Starts here-->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral"
+                                      label="Cancel"
+                                      title="Cancel"
+                                      onclick="{!c.closeReminerModel}"/>
+                       
+                        <lightning:button variant="brand"
+                                      label="Send"
+                                      title="Send"
+                                      disabled="{!v.IsReview}"
+                                      onclick="{!c.requestReminderForSignController}"/>
+                        
+                        
+                    </footer>
+                </div>
+            </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            
+        
+    </aura:if>
+        
+        
+        <aura:if isTrue="{!v.isModalOpen}">             
+        <!-- Modal/Popup Box starts here-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header slds-theme_alert-texture slds-theme_warning">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate ">  
+                        Recreate and Cancel Prior Envelope
+                    </h2>
+                </header>
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <p>
+                        <b>
+                            <lightning:icon size="xx-small" iconName="utility:warning" alternativeText="Warning!" title="Warning" />
+                            The envelope records previously created in this Symphony case will be deleted from this record.  Please log in to DocuSign to manually delete the DocuSign envelopes that were sent to the Innovators (or create a Diary Note requesting this action).<br/><br/>
+                            Proceed with deleting the envelope records from the Symphony case?
+                        </b>
+                    </p>
+                </div>
+                <!--Modal/Popup Box Footer Starts here-->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral"
+                                      label="No"
+                                      title="No"
+                                      onclick="{! c.closeModel }"/>
+                    <lightning:button variant="brand"
+                                      label="Yes"
+                                      title="Yes"
+                                      onclick="{!c.submitDetails}"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+    	<!-- added to preview the email body START  -->
+        
+    	<aura:if isTrue="{!v.isPreviewModalOpen}"> 
+
+				<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                	<div class="slds-modal__container">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModel }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Docusign Request</h2>
+                    </header>
+                        
+                    <!--Modal/Popup Box Body Starts here-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                       
+                             
+  	<aura:if isTrue="{!v.IsEmailShow!=true}">
+     <div >
+         <div class="slds-section slds-is-open" >
+  	<h3 class="slds-section__title">
+    <button onclick="{!c.OnEmailSection}" aria-controls="expando-unique-id" 
+            aria-expanded="true" class="slds-button slds-section__title-action">
+          <lightning:icon iconName="utility:chevronright" alternativeText="Envelope Email" title="Envelope Statuses" size="x-small" />
+        <span class="slds-truncate" title="Envelope Email">&nbsp; Envelope Email</span>
+    </button>&nbsp;
+  </h3>
+ 
+			</div>
+       </div>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.IsEmailShow}">
+        
+         <h3 class="slds-section__title">
+    <button onclick="{!c.OnEmailSection}" aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+          <lightning:icon iconName="utility:chevrondown" alternativeText="Envelope Email" title="Envelope Statuses" size="x-small" />
+        <span class="slds-truncate" title="Envelope Email">&nbsp; Envelope Email</span>
+    </button>&nbsp;
+  </h3>
+    
+      <lightning:inputRichText variant="bottom-toolbar" value="{!v.emailBody}" />
+        
+  </aura:if> 
+                                
+                      
+                                
+   <aura:if isTrue="{!v.IsReminder!=true}">
+     <div >
+         <div class="slds-section slds-is-open" >
+  	<h3 class="slds-section__title">
+    <button onclick="{!c.OnEmailReminderSection}" aria-controls="expando-unique-id" 
+            aria-expanded="true" class="slds-button slds-section__title-action">
+          <lightning:icon iconName="utility:chevronright" alternativeText="Envelope Reminder" title="Envelope Statuses" size="x-small" />
+        <span class="slds-truncate" title="Envelope Reminder">&nbsp; Envelope Reminder</span>
+    </button>&nbsp;
+  </h3>
+ 
+			</div>
+       </div>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.IsReminder}">
+        
+  <h3 class="slds-section__title">
+    <button onclick="{!c.OnEmailReminderSection}" aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+          <lightning:icon iconName="utility:chevrondown" alternativeText="Envelope Reminder" title="Envelope Statuses" size="x-small" />
+        <span class="slds-truncate" title="Envelope Reminder">&nbsp; Envelope Reminder</span>
+    </button>&nbsp;
+  </h3>
+        
+       
+        
+    
+     <lightning:layout multipleRows="true">
+        <lightning:layoutItem size="6" padding="around-small">
+            <lightning:input label="Reminder Delay" required="true"  type="number" value="{!v.ReminderDelay}" placeholder="Enter Reminder Delay" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="6" padding="around-small">
+            <lightning:input label="Reminder Frequency" required="true"  type="number" value="{!v.ReminderFrequency}" placeholder="Enter Reminder Frequency" />
+        </lightning:layoutItem>
+            
+    </lightning:layout>
+        
+    <lightning:layout multipleRows="true">
+       
+        <lightning:layoutItem size="6" padding="around-small">
+            <lightning:input label="ExpireAfter" required="true"  type="number" value="{!v.ExpireAfter}" placeholder="Enter Expire After" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="6" padding="around-small">
+            <lightning:input label="Expire Warning" required="true"  type="number" value="{!v.ExpireWarn}" placeholder="Enter Expire Warning" />
+        </lightning:layoutItem>
+            
+    </lightning:layout>
+        
+      
+        
+  </aura:if> 
+                                
+                                
+                                
+                                <!--
+                    <div class="CheckBox">
+    					<p> 
+                        	<b>
+                    <lightning:input type="checkbox" 
+                                     value="{!v.IsPreview}" 
+                                     label="Review in DocuSign before sending the envelope." 
+                                     checked="{!v.IsPreview}"
+                                     onchange="{!c.OnEnvelopePreview}" />
+                                <br/>
+                        	</b>
+                    	</p>
+                    </div>
+                 -->
+                    
+                  
+                                
+				<aura:if isTrue="{!v.IsValidatingProgress}">              
+					<div class="demo-only" style="position:relative">
+  						<div class="slds-spinner_container">
+    						<div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+      							<span class="slds-assistive-text">Loading</span>
+      								<div class="slds-spinner__dot-a"></div>
+      							<div class="slds-spinner__dot-b"></div>
+    						</div>
+  						</div>
+					</div> 
+                    <br/><br/>
+				</aura:if>
+                                
+                                
+                          
+                    </div>
+                        
+                    <!--Modal/Popup Box Footer Starts here-->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral"
+                                      label="Cancel"
+                                      title="Cancel"
+                                      onclick="{! c.closeModel }"/>
+                       
+                        
+                       <aura:if isTrue="{!v.IsReviewBeforeSend}"> 
+                        <lightning:button variant="brand"
+                                      label="Review Before Sending"
+                                      title="Review Before Sending"
+                                      disabled="{!v.IsReview}"
+                                      onclick="{!c.OnReviewDocusign }"/>
+                       </aura:if>
+                        
+                        <!--
+    							<lightning:button variant="brand"
+                                      label="Send"
+                                      title="Send"
+                                      disabled="{!v.IsReview}"
+                                      onclick="{!c.requestForSignController}"/>
+                        -->
+                        
+                        
+                    </footer>
+                </div>
+            </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            
+        
+    </aura:if>
+
+        <!-- added to preview the email body END  -->
+        
+        
+        <aura:if isTrue="{!v.IsbatchInstanceId}"> 
+
+				<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                	<div class="slds-modal__container">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header" style="background: #e22319;">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.OnIsbatchInstanceId }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate" style="color:white;font-size:12pt;" >Docusign Request</h2>
+                    </header>
+                        
+                    <!--Modal/Popup Box Body Starts here-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <p>
+                            <b>
+                                <div style="color:red;font-size:12pt;">
+                                    Cancelling or navigating away from the DocuSign window will prevent all envelopes from being created/sent. The window will automatically close when all envelopes have been processed.
+                                </div>
+                                <br/>
+				     
+                            </b>
+                        </p>
+                    </div>
+                        
+                    <!--Modal/Popup Box Footer Starts here-->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="brand"
+                                      label="Back"
+                                      title="Back"
+                                      onclick="{! c.OnBack }"/>
+                        
+                        <lightning:button variant="brand"
+                                      label="Cancel"
+                                      title="Cancel"
+                                      onclick="{!c.OnIsbatchInstanceId }"/>
+                    </footer>
+                </div>
+            </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            
+        
+    </aura:if>
+        
+    </aura:if>  
+    
+    
+    	
+    
+    	<div class="slds-card slds-card_boundary forceBaseCard flexipageCard" data-aura-class="forceBaseCard flexipageCard">
+    
+     
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-contact" title="contact">
+                        <span class="slds-assistive-text">DocuSign:  Send Formals and Final Drafts to Innovators</span>
+                    </span>
+                </div>
+             
+               <aura:if isTrue="{!v.IsAdmin}">
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title"><b>
+                        <span>DocuSign:  Send Formals and Final Drafts to Innovators</span></b>
+                    </h2>
+                </div>
+             </aura:if>
+             
+                <aura:if isTrue="{!!v.IsAdmin}">
+                    <div class="slds-media__body">
+                    <h2 class="slds-card__header-title"><b>
+                        <span>DocuSign:  Pending for Signature Process</span></b>
+                    </h2>
+                </div>
+               </aura:if>     
+                    
+                <!--
+                	<div class="slds-no-flex">
+                   		<lightning:buttonIcon disabled="{!v.isStatusDisabled}" iconName="utility:sync" variant="border-filled" onclick="{! c.reloadEnvelopesController }" alternativeText="Get Status" />
+                 	</div>
+                -->
+                
+                
+                    <div class="slds-no-flex slds-p-left_x-small">
+                      <lightning:buttonIcon disabled="{!v.isStatusDisabled}" iconName="utility:refresh" variant="border-filled" onclick="{! c.loadEnvelopesController }" alternativeText="Refresh" />
+                	</div>  
+                
+                
+            </header>
+        </div>
+            
+ <div style="margin-left:0px">        
+	<aura:if isTrue="{!v.Data.length>0}">
+        
+    <aura:if isTrue="{!v.sectionhide}">
+     <div >
+         <div class="slds-section slds-is-open" >
+  <h3 class="slds-section__title">
+    <button onclick="{!c.updatescetion}" aria-controls="expando-unique-id" 
+            aria-expanded="true" class="slds-button slds-section__title-action">
+          <lightning:icon iconName="utility:chevronright" alternativeText="Envelope Statuses" title="Envelope Statuses" size="x-small" />
+        <span class="slds-truncate" title="Envelope Statuses">&nbsp; Envelope Statuses</span>
+    </button>&nbsp;
+  </h3>
+ 
+			</div>
+       </div>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.sectionshow}">
+        
+         <h3 class="slds-section__title">
+    <button onclick="{!c.updatescetion}" aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+          <lightning:icon iconName="utility:chevrondown" alternativeText="Envelope Statuses" title="Envelope Statuses" size="x-small" />
+        <span class="slds-truncate" title="Envelope Statuses">&nbsp; Envelope Statuses</span>
+    </button>&nbsp;
+  </h3>
+    
+    <aura:if isTrue="{!v.Data!=null}">
+      <div class="row"> 
+         <div class="slds" style="overflow-x:auto;">  
+     		
+        		<table class="slds-table slds-table_cell-buffer slds-table_bordered" cellspacing="10" cellpadding="10" style="width:60%;" align="left" id="tblPending">
+ 			<thead>
+    			<tr class="slds-line-height_reset">
+                 
+                   <aura:if isTrue="{!v.IsAdmin}">
+     			 	<th class="" scope="col">
+        				<div class="slds-truncate" title="Innovators">Innovators</div>
+      				</th>
+                   </aura:if>
+                    
+                    <aura:if isTrue="{!!v.IsAdmin}">   
+                    <th class="" scope="col">
+        				<div class="slds-truncate" title="Asset Name">Asset Name</div>
+      				</th>
+                  </aura:if>
+                    
+                    <th class="" scope="col">
+        				<div class="slds-truncate" title="Status">Status</div>
+      				</th>
+                    
+      				<th class="" scope="col">
+        				<div class="slds-truncate" title="Documents">Documents</div>
+      				</th>
+                 <aura:if isTrue="{!v.IsAdmin}">
+                    <th class="" scope="col">
+        				<div class="slds-truncate" title="Sync on">Sync on</div>
+      				</th>
+                  </aura:if>  
+                    <th class="" scope="col">
+        				<div class="slds-truncate" title="Send on">Sent on</div>
+      				</th>
+                    
+    			</tr>
+  			</thead>
+            
+             <aura:iteration items="{!v.Data}" var="objAttachment">
+                <tr>
+                    
+                 <aura:if isTrue="{!v.IsAdmin}">
+                    <td>
+                        <a href="{!'/' + objAttachment.Person__c}" target="_blank">{!objAttachment.Person_Name__c}</a>
+                    </td>
+                 </aura:if>
+                    
+                    <aura:if isTrue="{!!v.IsAdmin}">
+                    	<td>
+                       		<a href="{!'/' + objAttachment.Patent__c}" target="_blank">{!objAttachment.Person_Name__c}</a>  
+                    	</td>
+                    </aura:if>  
+                    
+                    <td>
+                        <aura:if isTrue="{!objAttachment.Status__c !='Cancelled'}">
+                        
+                        <aura:if isTrue="{!or(objAttachment.Status__c=='completed',objAttachment.Status__c=='Completed')}">
+                            <lightning:buttonIcon value="{!objAttachment.EnvelopeId__c}" iconName="utility:success" variant="bare" size="medium"  onclick="{!c.ViewDocuments}" />&nbsp;
+                            <lightning:buttonIcon value="{!objAttachment.Id}" iconName="utility:sync" alternativeText="Sync Doc" variant="bare" size="medium"  onclick="{!c.reloadEnvelopesDocumentController}" />&nbsp;
+                            
+                            <!--
+                        	<aura:if isTrue="{!objAttachment.Certificate_Attachment_Id__c ==null}">
+                            	<lightning:buttonIcon value="{!objAttachment.EnvelopeId__c}" alternativeText="Click here to fetch Completion Certificate from DocuSign" iconName="utility:ribbon" variant="bare" size="medium"  onclick="{!c.OnCertificate}" />&nbsp;
+                        	</aura:if>
+							-->
+                            
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!objAttachment.Status__c=='created'}">
+                            <lightning:buttonIcon value="{!objAttachment.EnvelopeId__c}" iconName="utility:sync" alternativeText="Sync Status" variant="bare" size="medium"  onclick="{!c.reloadEnvelopesController}" />&nbsp;
+                            <lightning:buttonIcon value="{!objAttachment.EnvelopeId__c}" iconName="utility:preview" alternativeText="View Request" variant="bare" size="medium"  onclick="{!c.OnCreated}" />&nbsp;
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!objAttachment.Status__c=='not started'}">
+                            <lightning:buttonIcon value="{!objAttachment.Id}" iconName="utility:refresh" alternativeText="Refresh" variant="bare" size="medium"  onclick="{!c.reloadEnvelopesStatusController}" />&nbsp;
+                        </aura:if>
+                        
+                         <aura:if isTrue="{!or(objAttachment.Status__c=='sent', objAttachment.Status__c=='Delivered')}">
+                            <lightning:buttonIcon value="{!objAttachment.EnvelopeId__c}" iconName="utility:sync" alternativeText="Sync Status" variant="bare" size="medium"  onclick="{!c.reloadEnvelopesController}" />&nbsp;
+                            <lightning:buttonIcon value="{!objAttachment.EnvelopeId__c}" iconName="utility:share" alternativeText="Send Again" variant="bare" size="medium"  onclick="{!c.OnReSend}" />&nbsp;
+                             
+                             <aura:set attribute="else">
+                                 <aura:if isTrue="{!or(objAttachment.Status__c=='Sent', objAttachment.Status__c=='Delivered')}">
+                            		<lightning:buttonIcon value="{!objAttachment.EnvelopeId__c}" iconName="utility:reminder" alternativeText="Reminder" variant="bare" size="medium"  onclick="{!c.OnReminder}" />&nbsp;
+                            		<lightning:buttonIcon value="{!objAttachment.EnvelopeId__c}" iconName="utility:share" alternativeText="Send Again" variant="bare" size="medium"  onclick="{!c.OnReSend}" />&nbsp;
+                        		</aura:if>
+                            </aura:set> 
+                        </aura:if>
+                            
+                        
+                            
+                    </aura:if>
+                        
+                        <aura:if isTrue="{!and(objAttachment.Status__c !='completed',objAttachment.Status__c!='Completed')}">
+                            <aura:if isTrue="{!objAttachment.Status__c !='Cancelled'}">
+                                	<aura:if isTrue="{!v.IsAdmin}">
+                        				<lightning:buttonIcon value="{!objAttachment.Id}" iconName="utility:delete" alternativeText="Cancel Pending/Queued Envelope" variant="bare" size="medium"  onclick="{!c.OnDeleted}" />&nbsp;
+                                    </aura:if>
+                        	</aura:if>
+                        </aura:if>
+                        {!objAttachment.Status__c}
+                    </td>
+                    
+                    <td>
+                        
+                        
+                        <aura:if  isTrue="{!or(objAttachment.Status__c =='Cancelled', objAttachment.Status__c =='declined')}">
+                        	Cancelled
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!and(objAttachment.Status__c !='completed',objAttachment.Status__c!='Completed')}">
+                             	 Pending 
+                           <aura:set attribute="else">
+                             
+                    		<aura:if isTrue="{!v.tooltipHeaderNote == false}">
+                        
+                     <div>
+       						<lightning:buttonIcon aura:id="btnExpandAll" iconName="utility:add" title="More Details" onclick="{!c.ExpandtooltipHeaderNote}" value="{!secIndex}" variant="bare" size="small" />
+                         &nbsp;More details
+                         <lightning:icon iconName="utility:info_alt" alternativeText="Click on + button to show all completed documents list" title="Click on + button to show all completed documents list" size="x-small" class="info_alt-icn" />
+                    </div>
+                        
+                    </aura:if>
+                    		<aura:if isTrue="{!v.tooltipHeaderNote == true}">
+                         <div>
+                			<lightning:buttonIcon aura:id="btnCollapseAll" iconName="utility:dash" title="Less Details" onclick="{!c.CollapsetooltipHeaderNote}"  variant="bare" size="small" />
+                             &nbsp;Less details
+                            <lightning:icon iconName="utility:info_alt" alternativeText="Less Details" title="Less Details" size="x-small" class="info_alt-icn" />
+                        </div>
+                        
+                        <c:cmpAPFileUpload IsDocuSign="true" linkedEntityId="{!objAttachment.Id}" isHeaderName="false" canViewAllFiles="true" canViewCurrentAttachedFiles="false"/>
+                        
+                	</aura:if>
+                  
+							</aura:set>
+                        </aura:if>
+                                
+                           </aura:set>
+                            
+                        </aura:if>
+                        
+                        
+                        
+                        
+                    	
+                        
+                    </td>
+                    
+                <aura:if isTrue="{!v.IsAdmin}">
+                    
+                    <td>
+                        <lightning:formattedDateTime
+                                                     value="{!objAttachment.Status_Fetched_on__c}"
+                                                     year="numeric"
+        											 month="numeric"
+                                                     day="numeric"
+        											 hour="2-digit"
+                                                     minute="2-digit"
+                                                     time-zone-name="UTC"           
+                                                     >
+                        </lightning:formattedDateTime>
+                    </td>
+                </aura:if>
+                    
+                    <td>
+                        <lightning:formattedDateTime
+                                                     value="{!objAttachment.Sent_On__c}"
+                                                     year="numeric"
+        month="numeric"
+        day="numeric"
+        hour="2-digit"
+        minute="2-digit"
+        time-zone-name="UTC"           
+                                                     >
+                        </lightning:formattedDateTime>
+                    </td>
+                    
+                    
+                </tr>
+            </aura:iteration>
+             
+    <tbody>
+            
+   </tbody>        
+           
+        </table>
+    
+        </div>
+   </div>
+    </aura:if>      
+  </aura:if> 
+    
+</aura:if>        
+  </div>
+            
+     <aura:if isTrue="{!v.IsAdmin}">   
+        <aura:if isTrue="{!v.apexJob != null}">
+            <div class="slds-card slds-p-around_x-small">
+                <aura:if isTrue="{!v.apexJob.JobItemsProcessed != v.apexJob.TotalJobItems}">
+                    Processing {!v.apexJob.JobItemsProcessed} of {!v.apexJob.TotalJobItems}
+                </aura:if>
+                <aura:if isTrue="{!v.apexJob.Status == 'Completed'}">
+                    Completed with {!v.apexJob.NumberOfErrors} errors.
+                </aura:if>
+                <lightning:progressBar value="{!v.progress}" size="large" variant="circular"/>
+            </div>
+        </aura:if>
+        
+        <div class="slds-card__body slds-card__body--inner">
+            <div class="slds-form slds-form_compound">
+                <fieldset class="slds-form-element">
+                    <div class="slds-form-element__group">
+                        
+                        <aura:if isTrue="{!v.showNote}">
+                            <div class="slds-text-color_error slds-text-title_bold">
+                                Envelopes are not generated. Please contact System Administrator to resolve this issue, then click on the Recreate button to generate Envelopes.
+                            </div>
+                            <br/>
+                        </aura:if>
+                     
+
+  <!-- 
+   <aura:if isTrue="{!v.StepTwohide}">
+     <div >
+         <div class="slds-section slds-is-open" >
+  <h3 class="slds-section__title">
+    <button onclick="{!c.OnupdateStepTwo}" aria-controls="expando-unique-id" 
+            aria-expanded="true" class="slds-button slds-section__title-action">
+          <lightning:icon iconName="utility:chevronright" alternativeText="Confirm Innovation Title" title="Confirm Innovation Title" size="x-small" />
+        <span class="slds-truncate" title="Confirm Innovation Title">&nbsp; Confirm Innovation Title</span>
+    </button>&nbsp;
+  </h3>
+ 
+			</div>
+       </div>
+  </aura:if>
+  -->
+   
+  <!--
+   <aura:if isTrue="{!v.StepTwoShow}">
+        
+         <h3 class="slds-section__title">
+    <button onclick="{!c.OnupdateStepTwo}" aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+          <lightning:icon iconName="utility:chevrondown" alternativeText="Confirm Innovation Title" title="Confirm Innovation Title" size="x-small" />
+        <span class="slds-truncate" title="Confirm Innovation Title">&nbsp; Confirm Innovation Title</span>
+    </button>&nbsp;
+  </h3>
+        
+       <div class="slds-grid">
+  			<div class="slds-col">
+    						<div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size_1-of-1">
+                                    <div style="margin-left:11px">
+                                    <lightning:input type="checkbox"
+                                                   label="" 
+                                                   checked="{!v.IsTitle}"
+                                                   variant="label-hidden"
+                                                   onchange="{!c.OnIsTitle}"/>                              		
+                                    
+                                </div>
+                             </div>
+       					</div>
+  			</div>
+           
+           <div class="slds-col">
+               			<label class="slds-form-element__label">
+                            <abbr class="slds-required" title="required">* </abbr>
+                   			Confirm that the Title listed below is correct. If NOT correct, please update in the Title field below.
+                        </label>
+          		
+           </div>     
+   </div>        
+       						
+       								   <div class="slds-form-element__control">
+                                           <div style="margin-left:11px">
+                                            <label class="slds-form-element__label">
+                                                <abbr class="slds-required" title="required">* </abbr>Title
+                                            </label>
+                                               
+                                            <lightning:input name="SymphonyIPM__Title_of_Invention__c" 
+                                                    aura:id="txtTitle"
+                                                    label="Title"
+                                                    variant="label-hidden"
+                                                    value="{!v.Title}" 
+                                                    placeholder="Input Innovation Title" 
+                                                    onblur="{! c.onChangeTitle }"
+                                                    maxlength="255" autocomplete="off"/>
+                                       
+                                               
+                                            
+                                        </div>
+                                           
+                                           
+       								</div>
+       
+
+       <br/>
+    </aura:if> 
+  -->               
+                        
+   <aura:if isTrue="{!v.StepOnehide}">
+     <div >
+         <div class="slds-section slds-is-open" >
+  <h3 class="slds-section__title">
+    <button onclick="{!c.OnupdateStepOne}" aria-controls="expando-unique-id" 
+            aria-expanded="true" class="slds-button slds-section__title-action">
+          <lightning:icon iconName="utility:chevronright" alternativeText="Select Innovators" title="Select Innovators" size="x-small" />
+        <span class="slds-truncate" title="Select Innovators">&nbsp; Select Innovators</span>
+    </button>&nbsp;
+  </h3>
+ 
+			</div>
+       </div>
+  </aura:if>
+                        
+   <aura:if isTrue="{!v.StepOneShow}">
+        
+         <h3 class="slds-section__title">
+    <button onclick="{!c.OnupdateStepOne}" aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+          <lightning:icon iconName="utility:chevrondown" alternativeText="Select Innovators" title="Select Innovators" size="x-small" />
+        <span class="slds-truncate" title="Select Innovators">&nbsp; Select Innovators</span>
+    </button>&nbsp;
+  </h3>
+        
+      
+       					<!-- Step 1 Start -->
+       
+        <div class="slds-grid">
+  			<div class="slds-col">
+                
+                <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-1">
+                            <label class="slds-form-element__label">
+                                <lightning:input type="checkbox"
+                                                 label="Confirm that Innovators listed below accurately reflect inventorship of this application. If not accurate, please update inventorship in the Innovators tab to the left." 
+                                                 checked="{!v.IsInnovators}"
+                                                 onchange="{!c.OnIsInnovators}"
+                                                 required="true"/>                 
+                                
+                            </label>
+                           
+                    </div>
+                </div>
+                
+                		
+                
+      				</div>
+            
+          
+               			
+          		
+
+ </div>
+       
+       
+                            <div class="slds-form-element__row">
+                              <div class="slds-form-element slds-size_1-of-1">
+                              	<c:cmpAPDocuSignInventors recordId="{!v.recordId}" IsPatent="true" LabelName="Select the Innovator you want to send formal documents to." strSelectedInventorIds="{!v.InnovatorsIds}"/>
+                              </div>
+                            </div>
+                      
+       
+                            <!-- Step -2 End -->
+       <br/>
+        
+    </aura:if> 
+                    
+      
+	
+                        
+                        
+                        
+   <aura:if isTrue="{!v.StepThreehide}">
+     <div >
+         <div class="slds-section slds-is-open" >
+  <h3 class="slds-section__title">
+    <button onclick="{!c.OnupdateStepThree}" aria-controls="expando-unique-id" 
+            aria-expanded="true" class="slds-button slds-section__title-action">
+          <lightning:icon iconName="utility:chevronright" alternativeText="Select Documents For DocuSign Envelope" title="Select Documents For DocuSign Envelope" size="x-small" />
+        <span class="slds-truncate" title="Select Documents For DocuSign Envelope">&nbsp; Select Documents For DocuSign Envelope</span>
+    </button>&nbsp;
+  </h3>
+ 
+			</div>
+       </div>
+  </aura:if>
+                        
+   <aura:if isTrue="{!v.StepThreeShow}">
+        
+         <h3 class="slds-section__title">
+    <button onclick="{!c.OnupdateStepThree}" aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+          <lightning:icon iconName="utility:chevrondown" alternativeText="Select Documents For DocuSign Envelope" title="Select Documents For DocuSign Envelope" size="x-small" />
+        <span class="slds-truncate" title="Select Documents For DocuSign Envelope">&nbsp; Select Documents For DocuSign Envelope</span>
+    </button>&nbsp;
+  </h3>
+        
+       					<div style="margin-left:11px">
+       						<div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size_1-of-1">
+                                    Documents that will be sent to the Innovators for review and execution via DocuSign are listed below.
+                                </div>
+                            </div>
+                           
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size_1-of-1">
+                                    <table cellspacing="10" cellpadding="10" class="maintable" style="width:50%;" align="left" id="tblPending">
+                                   
+                                        <tr>
+                                            <td colspan="2" valign="bottom" height="40">
+                                            <aura:if isTrue="{!v.objSupplimentalAttachments !=null}"> 
+                                            	S-Docs Documents
+                                            </aura:if>
+                                            </td>
+                                        </tr>
+                                        <aura:iteration items="{!v.objSupplimentalAttachments}" var="objSupplimentalAttachment">
+                                            <aura:if isTrue="{!objSupplimentalAttachment.isFinalDoc == 'Y'}"> 
+                                                <tr>
+                                                    <td>
+                                                        <lightning:input type="checkbox" 
+                                                                         value="{!objSupplimentalAttachment.CVId}"
+                                                                         label="" 
+                                                                         variant="label-hidden"
+                                                                         checked="{!objSupplimentalAttachment.isChecked}"
+                                                                         onchange="{!c.OnDocuSelected}"/>
+                                                     </td>
+                                                    
+                                                    <td>
+                                                        <div class="inline-edit">
+        													<aura:if isTrue="{!v.isEditing}">
+            													<lightning:input value="{!objSupplimentalAttachment.docTitle}"/>
+        													</aura:if>
+        													<aura:if isTrue="{!not(v.isEditing)}">
+                                                                <a href="javascript:void()" title="{!objSupplimentalAttachment.docTitle}" Id="{!objSupplimentalAttachment.ContentDocumentId}" onclick="{!c.PreviewFile}"> {!objSupplimentalAttachment.docTitle}</a>&nbsp; 
+                                                                <lightning:buttonIcon iconName="utility:edit" variant="bare" value="{!objSupplimentalAttachment.CVId}" size="medium" onclick="{!c.startEdit}" />
+        													</aura:if>
+    												</div>
+                                                        
+                                                    </td>
+                                                     <td >
+                                                         <aura:if isTrue="{!not(v.isEditing)}">
+                                                         	<lightning:buttonIcon iconName="utility:delete" variant="bare" size="small" value="{!objSupplimentalAttachment.CVId}" onclick="{!c.deleteAttachmentsController}" />
+                                                         </aura:if>
+                    								</td>
+                                                </tr>
+                                                
+                                                			
+                                                
+                                                
+                                            </aura:if>
+                                        </aura:iteration>
+                                       
+                                        <aura:if isTrue="{!v.isEditing}">
+                                            <lightning:buttonIcon iconName="utility:save"  variant="bare" size="medium" onclick="{!c.saveInput}" />
+                                            <lightning:buttonIcon iconName="utility:clear" variant="bare" size="medium" onclick="{!c.cancelEdit}" />
+                                        </aura:if>
+                                        
+                                    </table>
+                                </div>
+                            </div>
+                            <br/>
+                            
+                            				<!--
+                            				Optional Firm Comments
+                                           <lightning:textarea name="DocuSign_Instructional_text_to_innovator__c" 
+                                                    aura:id="textInstructional" 
+                                                    label="Optional Firm Comments"
+                                                    value="{!v.Instructional}" 
+                                                    placeholder="Please insert instructional text to innovators here." 
+                                                    onblur="{! c.OnInstructional }"
+                                                    variant="label-hidden"            
+                                                    maxlength="2000" 
+                                                    autocomplete="off"/>
+                                            <c:cmpAPLength vRichText="{!v.Instructional}" vAttribute="input" vLimit="2000" />
+                            			-->
+       					</div>
+        
+       
+       										
+                                            
+       
+    </aura:if> 
+                        
+      				   
+                        
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+     </aura:if>
+            
+
+  
+            
+        
+   <aura:if isTrue="{!v.IsAdmin}"> 
+      <aura:if isTrue="{!v.IsInnovators}">
+		 <aura:if isTrue="{!v.IsTitle}">
+         </aura:if>
+             <aura:if isTrue="{!or(v.InnovatorsIds.length >0, v.InnovatorsIds !='')}">                         
+        <div class="slds-card__footer">
+            <div class="slds-text-align_right">
+                <lightning:button variant="brand" label="Send Envelope" title="Send Envelope" onclick="{!c.openPreviewModel}"/>
+            </div>
+        </div>
+		  </aura:if>
+	  
+	</aura:if>
+</aura:if>
+            
+    </div>
+    
+
+    
+</aura:component>

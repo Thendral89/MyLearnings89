@@ -1,0 +1,160 @@
+<template>
+        <!-- feed item body -->
+        <div data-id={feed.feedItem.Id} class="mainbody slds-p-horizontal_x-small">
+            <!-- <template if:true={popOverVisible}>
+                <section aria-label="Dialog title" 
+                        aria-describedby="popover-body-id" 
+                        class="slds-popover slds-nubbin_right" 
+                        role="dialog" 
+                        style="position: absolute; top: -10px; right: 105%; z-index: 9999; width: 320px;">
+                    <lightning-button-icon 
+                        icon-name="utility:close" 
+                        variant="bare" 
+                        size="small" 
+                        class="slds-float_right slds-popover__close" 
+                        alternative-text="Close dialog"
+                        title="Close dialog"
+                        onclick={handlePopOver}>
+                    </lightning-button-icon>
+                    <div id="popover-body-id" class="slds-popover__body">
+                        <p>Hey there! Here's the latest demo. let me know if there are any changes.</p>
+                    </div>
+                </section>
+            </template>  --> 
+            <div class="slds-media">
+                <!-- Avatar/Icon section -->
+                    <lightning-avatar 
+                        initials={feed.feedItem.NameInitials} 
+                        fallback-icon-name="standard:avatar"  
+                        class="slds-m-right_small" 
+                        variant="circle">
+                    </lightning-avatar>
+                <div class="slds-media__body slds-p-bottom_x-small">
+                    <!-- Comment header with name, timestamp, and actions -->
+                    <div class="slds-post__header">
+                        <div class="slds-grid slds-grid_align-spread">
+                            <div class="slds-col">
+                                <a onmouseover={handlePopOver}>{feed.feedItem.CreatedByName}</a>
+                                <div class="slds-text-body_small slds-text-color_weak">Today</div>
+                            </div>
+                            <div class="slds-col slds-grid_align-end">
+                                <lightning-button-menu alternative-text="Action menu" menu-alignment="right" variant="container">
+                                    <lightning-menu-item value="Edit" label="Edit" onclick={handleFeedAction}></lightning-menu-item>
+                                    <lightning-menu-item value="Delete" label="Delete" onclick={handleFeedAction}></lightning-menu-item>
+                                    <lightning-menu-item value="Bookmark" label="Bookmark" onclick={handleFeedAction}></lightning-menu-item>
+                                </lightning-button-menu>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-text-longform">
+                <lightning-formatted-rich-text value={feed.feedItem.Body}></lightning-formatted-rich-text>
+                <template if:true={feed.feedItem.FeedAttachments}>
+                    <div class="slds-grid slds-wrap ">
+                        <template for:each={feed.feedItem.FeedAttachments} for:item="attachment">
+                            <div key={attachment.Id} class="slds-col slds-size_1-of-1 slds-small-size_1-of-2 slds-medium-size_1-of-3 slds-large-size_1-of-4">
+                                <div class="slds-p-around_x-small">
+                                    <c-image-preview 
+                                        attachment-data={attachment}
+                                        class="image-preview-container">
+                                    </c-image-preview>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+                
+            <lightning-layout vertical-align="stretch" multiple-rows="true" >
+                <lightning-layout-item flexibility="auto">
+                    <div class="like-container" onclick={handleLikeClick}>
+                        <lightning-icon
+                            icon-name='utility:like'
+                            size="xx-small"
+                            class={iconClass}
+                        ></lightning-icon>
+                        <span class={textClass}>{buttonText}</span>
+                    </div>
+                </lightning-layout-item>
+                    <lightning-layout-item flexibility="auto">
+                        <div>
+                            <lightning-button-stateful
+                                label-when-off="comments"
+                                label-when-on="comments"
+                                icon-name-when-off="utility:comments"
+                                icon-name-when-on="utility:comments"
+                                variant="text"
+                                onclick={handleComment}>
+                            </lightning-button-stateful>
+                        </div>   
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+        <!-- feed Comments -->
+        <div class="slds-feed__item-comments">
+            <div class="slds-p-horizontal_medium slds-p-vertical_small">
+                <template if:true={feed.feedItem.FeedComments}>
+                    <template for:each={feed.feedItem.FeedComments} for:item="comment"> 
+                        <div key={comment.Id} class="CommentBody" data-feeditemid={comment.FeedItemId} data-feed-comment-id={comment.Id}>
+                            <div class="slds-media">
+                                <!-- Avatar/Icon section -->
+                                <div class="slds-media__figure">
+                                    <span class="slds-avatar slds-avatar_small slds-avatar_profile-image-large slds-avatar_circle" onmouseover={handlePopOver}></span>
+                                </div>
+                                
+                                <!-- Comment content section -->
+                                <div class="slds-media__body slds-p-bottom_x-small">
+                                    <!-- Comment header with name, timestamp, and actions -->
+                                    <div class="Comment_header">
+                                        <div class="slds-grid slds-grid_align-spread">
+                                            <div class="slds-col">
+                                                <a onmouseover={handlePopOver}>{comment.CreatedByName}</a>
+                                                <div class="slds-text-body_small slds-text-color_weak">1h ago</div>
+                                            </div>
+                                            <div class="slds-col slds-grid_align-end">
+                                                <lightning-button-menu alternative-text="Action menu" menu-alignment="right" variant="container">
+                                                    <lightning-menu-item value="Edit Comment" label="Edit" onclick={handleFeedCommentAction}></lightning-menu-item>
+                                                    <lightning-menu-item value="Delete Comment" label="Delete" onclick={handleFeedCommentAction}></lightning-menu-item>
+                                                </lightning-button-menu>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Comment body -->
+                                    <div class="comment-content slds-p-top_xx-small" data-feeditemid={comment.FeedItemId}>
+                                        <lightning-formatted-rich-text value={comment.CommentBody}></lightning-formatted-rich-text>
+                                    </div>
+                                    
+                                    <!-- Comment actions -->
+                                    <!-- <div>
+                                        <lightning-button-stateful
+                                            label-when-off="Like"
+                                            label-when-on="Liked"
+                                            icon-name-when-off="utility:like"
+                                            icon-name-when-on="utility:like"
+                                            variant="text"
+                                            selected={isSelected}
+                                            onclick={handleClick}>
+                                        </lightning-button-stateful>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+                <div class="slds-grid slds-container_fluid slds-grid_vertical-align-start">
+                     <span class="slds-avatar slds-avatar_small slds-avatar_profile-image-small slds-avatar_circle slds-m-right_small"></span>
+                     <span class="slds-grow">
+                         <c-post-component type={type} oncreatefeedcomment={handleCreateFeedComment} placeholder="Write a comment..."></c-post-component>
+                     </span>
+                </div>
+            </div>
+        </div>  
+        <template if:true={showmodal}>
+            <c-modal-component onclose={handleshowmodal} ondelete={handleshowmodal} message={messageForModal}></c-modal-component>
+        </template>
+        <iframe src='/sfc/servlet.shepherd/document/download/069NS00000LHMo1YAH'></iframe>
+
+    </template>

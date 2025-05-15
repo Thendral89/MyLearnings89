@@ -1,0 +1,47 @@
+<aura:component controller="cmpAPiManagDocumentCtrl">
+    
+    <aura:attribute type="String" name="selectedFolderId" default="" />
+    <aura:attribute type="String" name="iManageFolderId" default="" />
+    <aura:attribute type="String" name="SubselectedFolderId" default="" />
+    <aura:attribute type="String" name="recordId" />
+    <aura:attribute type="Boolean" name="IsExpanded" default="false" />
+    
+    <aura:attribute type="List" name="items" default="[]" />
+    <aura:attribute type="List" name="list" default="[]" />
+    <aura:attribute type="Boolean" name="loading" default="true" />
+    <aura:attribute type="Integer" name="level" default="1" />
+    <aura:handler name="init" value="{!this}" action="{!c.initialize}" />
+    <aura:if isTrue="{!v.loading}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+    
+    <aura:attribute type="List" name="objAttachments" default="[]" />
+    
+    <aura:if isTrue="{!and(v.objAttachments.length!=0,v.objAttachments!=null)}">
+      <table cellspacing="10" cellpadding="10" class="maintable" style="width:80%;" align="left" id="tblPending">
+          
+          		<tr>
+    			<th>Action</th>
+    			<th>File Name</th>
+  				</tr>
+          
+            <aura:iteration items="{!v.objAttachments}" var="Item">
+                <tr>
+                    <td style="width:10%;" >
+                        <lightning:buttonIcon iconName="utility:download" variant="bare" size="small"  value="{!Item.Id}" onclick="{!c.OnFilesDownloadClick}" />
+                        <lightning:buttonIcon iconName="utility:delete" variant="bare" size="small" value="{!Item.Id}" onclick="{!c.OndeleteAttachmentsController}" />
+                        <lightning:buttonIcon iconName="utility:sync" variant="bare" size="small" value="{!Item.ContentDocumentId}" onclick="{!c.OnAttachmentSync}" />
+                    </td>
+                    <td style="width:80%;" >
+                        {!Item.Title}.{!Item.FileExtension}
+                    </td>
+                    
+                    
+                </tr>
+            </aura:iteration>
+        </table>  
+    </aura:if>
+    
+    
+    
+</aura:component>

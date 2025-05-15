@@ -1,0 +1,162 @@
+<template>
+    <lightning-messages></lightning-messages>
+
+    <c-highlights-panel record-id={clientId} read-only=true field-set-name="CCHIGHLIGHTSPANELREADONLY"
+        object-api-name="SymphonyLF__Client__c" header-field="Name"
+        sub-header-field="SymphonyLF__Client_Number_New__c"></c-highlights-panel>
+    <!-- <div class="slds-grid">
+        <div class="slds-size_4-of-4"> -->
+            <lightning-card>
+                <h3 slot="title">
+                    <lightning-icon icon-name="custom:custom18" size="small"></lightning-icon>
+                    &nbsp;&nbsp;New General Matter
+                </h3>
+                <lightning-record-edit-form object-api-name={generalMatterObject} record-id={generalMatterId}
+                    onsuccess={handleAddIntakeSuccess} onerror={handleIntakeError}>
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-3">
+                            <lightning-input-field field-name="Name" value={generalMatterTitle}
+                                onchange={handleGeneralMatterTitle}
+                                required></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3">
+                            <lightning-input-field field-name="SymphonyLF__Client_Reference__c"
+                                value={generalMatterReferenceNumber} onchange={handleClientReferenceNumber}>
+                            </lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3">
+                            <lightning-input-field field-name="SymphonyLF__Type__c" value={generalMatterType}
+                                required
+                                onchange={handleGeneralMatterType}>
+                            </lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3">
+                            <lightning-input-field field-name="SymphonyLF__Jurisdiction__c"
+                                value={generalMatterJurisdiction} onchange={handleJurisdictionValue}>
+                            </lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3">
+                            <lightning-input-field field-name="Credit_Status__c"
+                                value={generalMatterCreditStatus} onchange={handleCreditStatus}>
+                            </lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2=3">
+                            <lightning-input-field field-name="SymphonyLF__Description__c"
+                                value={generalMatterDescription} onchange={handleDescription}>
+                            </lightning-input-field>
+                        </div>
+                    </div>
+                </lightning-record-edit-form>
+
+                <div class="slds-col slds-size_12-of-12">
+                    <span data-id="selectedRecordId" class="selectedRecord">
+                        <div class="tabulator-container">
+                            <div class="slds-m-around_medium" data-id="clientEngagementTable"></div>
+                        </div>
+                    </span>
+                </div>
+
+                <div class="slds-docked-form-footer slds-m-top_medium slds-align_absolute-center">
+                    <lightning-button class="slds-m-top_small" label="Cancel" variant="destructive"  disabled={loading}
+                        onclick={handleReset}></lightning-button>
+                    <lightning-button class="slds-m-top_small slds-m-left_medium" onclick={handleSubmit} label="Submit" disabled={loading}
+                        variant="brand"></lightning-button>
+                </div>
+
+                <template if:true={loading}>
+                    <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+                </template>
+
+            </lightning-card>
+            
+            <template lwc:if={showGeneratedMatters}>
+                <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+                    class="slds-modal slds-fade-in-open slds-modal_medium">
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__header">
+                            <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">
+                                Generated Matters</h1>
+                        </div>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <div class="slds-col slds-size_12-of-12">
+                                <span data-id="selectedRecordId" class="selectedRecord">
+                                    <div class="tabulator-container">
+                                        <div class="slds-m-around_medium" data-id="generatedMattersTable"></div>
+                                    </div>
+                                </span>
+                            </div>
+
+                            <template lwc:if={showDocket}>
+                                <div class="slds-box slds-theme_default">
+                                    <lightning-card title="Add Docket">
+                                        <div class="slds-p-horizontal_small">
+
+                                            <div class="slds-hide">
+                                                <lightning-input class="docketActivityClass" name="SymphonyLF__General_Matter__c" value={generatedMatterRecordId} ></lightning-input>
+
+                                            </div>
+                                                <lightning-input class="docketActivityClass"  type="text"  label="Event" name="SymphonyLF__Event_Name__c" required></lightning-input>
+
+                                                <div class="slds-grid slds-wrap">
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        <div class="slds-p-right_xx-small">
+                                                            <lightning-combobox
+                                                            name="Docket_Type__c"
+                                                            label="Docket Type"
+                                                            placeholder="Select"
+                                                            options={options}
+                                                            class="docketActivityClass"
+                                                            required></lightning-combobox>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        <div class="slds-p-left_xx-small">
+                                                            <lightning-record-picker
+                                                                name="SymphonyLF__Assigned_To_User__c"
+                                                                label="Assigned To (User)"
+                                                                placeholder="Search People..."
+                                                                object-api-name="User"
+                                                                class="docketActivityClass " 
+                                                                required
+                                                            >
+                                                            
+                                                            </lightning-record-picker>
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        <lightning-input class="docketActivityClass slds-p-right_xx-small" type="date" label="Event Date" name="SymphonyLF__Event_Date__c" required></lightning-input>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        <lightning-input class="docketActivityClass slds-p-left_xx-small" type="date" label="Due Date" name="SymphonyLF__Due_Date__c" required></lightning-input>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="slds-m-bottom_xx-large">
+                                                    <lightning-button
+                                                        class="slds-m-top_small slds-m-bottom_small slds-float_right"
+                                                        variant="brand"
+                                                        onclick={handleSubmitDocketActivity}
+                                                        label="Save">
+                                                    </lightning-button>
+
+                                                </div>
+                                        </div>
+                                        
+                                    </lightning-card>
+                                </div>
+                            </template>
+                            
+                            
+                        </div>
+                        <div class="slds-modal__footer">
+                            <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleClose}>Close</button>
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+            </template>
+        <!-- </div>
+    </div> -->
+</template>

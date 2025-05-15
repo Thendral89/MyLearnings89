@@ -1,0 +1,61 @@
+<template>
+    Patent Intake
+    <template if:true={showProgressBar}>
+        <div class="slds-theme_default progressbar">
+            <div class="slds-p-top_medium">
+                <template if:true={isIntakeFlow}>
+                    <template if:true={isMobileApp}>
+                        <div style="margin: 0 3% 0 4%;  padding: 0 10px 0 10px;">
+                            <lightning-progress-indicator current-step={selectedStep} type="path" variant="base">
+                                <template for:each={steps} for:item="step">
+                                    <lightning-progress-step label={step} value={step} key={step}
+                                        onstepfocus={handleStep}> </lightning-progress-step>
+                                </template>
+                            </lightning-progress-indicator>
+                        </div>
+                    </template>
+                    <template if:false={isMobileApp}>
+                        <div class="slds-grid slds-grid_align-spread slds-m-left_medium">
+                            <template for:each={steps} for:item="step">
+                                <div class=" slds-m-left_xx-small slds-col slds-size_3-of-12  font-style" key={step}
+                                    data-id={step}> {step} </div>
+                            </template>
+                        </div>
+                        <div style="margin: 0 3% 0 4%;  padding: 0 10px 0 10px;">
+                            <lightning-progress-indicator current-step={selectedStep} type="base" variant="base">
+                                <template for:each={steps} for:item="step">
+                                    <lightning-progress-step label={step} value={step} key={step}
+                                        onstepfocus={handleStep}> </lightning-progress-step>
+                                </template>
+                            </lightning-progress-indicator>
+                        </div>
+                    </template>
+                </template>
+                <template if:false={isIntakeFlow}>
+                    <template if:true={isMobileApp}>
+                        <lightning-progress-indicator current-step={selectedStep} type="path" variant="base">
+                            <template for:each={steps} for:item="step">
+                                <lightning-progress-step label={step} value={step} key={step} onstepfocus={handleStep}>
+                                </lightning-progress-step>
+                            </template>
+                        </lightning-progress-indicator>
+                    </template>
+                    <template if:false={isMobileApp}>
+                        <div class="slds-grid slds-m-left_medium">
+                            <template for:each={steps} for:item="step">
+                                <div class="slds-col slds-size_1-of-5 font-style" key={step} data-id={step}> {step}
+                                </div>
+                            </template>
+                        </div>
+                        <lightning-progress-indicator current-step={selectedStep} type="base" variant="base">
+                            <template for:each={steps} for:item="step">
+                                <lightning-progress-step label={step} value={step} key={step} onstepfocus={handleStep}>
+                                </lightning-progress-step>
+                            </template>
+                        </lightning-progress-indicator>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </template>
+</template>

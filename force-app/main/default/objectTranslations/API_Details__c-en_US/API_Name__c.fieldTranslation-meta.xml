@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- API Name --></label>
+    <name>API_Name__c</name>
+    <picklistValues>
+        <masterLabel>API-1</masterLabel>
+        <translation><!-- API-1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API1</masterLabel>
+        <translation><!-- API1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API10</masterLabel>
+        <translation><!-- API10 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API11</masterLabel>
+        <translation><!-- API11 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API12</masterLabel>
+        <translation><!-- API12 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API13</masterLabel>
+        <translation><!-- API13 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API15</masterLabel>
+        <translation><!-- API15 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API16</masterLabel>
+        <translation><!-- API16 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API17</masterLabel>
+        <translation><!-- API17 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API2</masterLabel>
+        <translation><!-- API2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API20</masterLabel>
+        <translation><!-- API20 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API21</masterLabel>
+        <translation><!-- API21 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API23</masterLabel>
+        <translation><!-- API23 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API24</masterLabel>
+        <translation><!-- API24 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API3</masterLabel>
+        <translation><!-- API3 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API4</masterLabel>
+        <translation><!-- API4 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API5</masterLabel>
+        <translation><!-- API5 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API6</masterLabel>
+        <translation><!-- API6 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API7</masterLabel>
+        <translation><!-- API7 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API8</masterLabel>
+        <translation><!-- API8 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>API9</masterLabel>
+        <translation><!-- API9 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ServiceNow</masterLabel>
+        <translation><!-- ServiceNow --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>iMngCreateWorkSpace</masterLabel>
+        <translation><!-- iMngCreateWorkSpace --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>iMngRenamed</masterLabel>
+        <translation><!-- iMngRenamed --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

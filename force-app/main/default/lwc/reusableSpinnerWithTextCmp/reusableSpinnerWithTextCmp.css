@@ -1,0 +1,9 @@
+.loader::after{
+    position:absolute;
+    content: attr(data-text);
+    right: inherit;
+    left: inherit;
+    text-align:center;
+    font-weight:bold;
+    top: calc(50% + 1.5rem);
+}

@@ -1,0 +1,6 @@
+<design:component>
+	<design:attribute name="vRichText" label="vRichText" description="vRichText" />
+    <design:attribute name="vOutRichText" label="vOutRichText" description="vOutRichText" />
+    <design:attribute name="vAttribute" label="vAttribute" description="vAttribute" />
+    <design:attribute name="vLimit" label="vLimit" description="vLimit" />
+</design:component>

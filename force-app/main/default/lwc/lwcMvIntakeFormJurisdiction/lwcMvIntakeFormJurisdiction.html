@@ -1,0 +1,75 @@
+<template>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="standard:asset_state_period" size="small"></lightning-icon>
+            &nbsp;&nbsp;Jurisdiction
+        </h3>
+    <template if:true={isDataLoaded}>
+        <c-lwc-mv-datatable class="lwcMvDataTable" onrowselection={handleRowSelection} onrecordsuccess={handleInlineSave}
+            custom-settings={currentFeatureSettings} columns={columns} records={records} onvaluechanged={handleValueChanged}
+            oncheckboxclickjurisdictionrelation={handlecheckboxclickjurisdictionrelation}> 
+        </c-lwc-mv-datatable>
+    </template>
+
+    <div class="slds-docked-form-footer slds-m-top_medium slds-align_absolute-center">
+        <lightning-button class="slds-m-top_small" label="Cancel" variant="destructive"  disabled={loading}
+            onclick={handleReset}></lightning-button>
+            <lightning-button class="slds-m-top_small slds-m-left_medium" onclick={handleBack}  disabled={loading}
+            label="Back" variant="brand"></lightning-button>
+        <lightning-button class="slds-m-top_small slds-m-left_medium" onclick={handleSubmit} label="Submit" disabled={loading}
+            variant="brand"></lightning-button>
+    </div>
+
+    <template if:true={loading}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+     <template if:true={showGeneratedMatters}>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+        class="slds-modal slds-fade-in-open slds-modal_medium">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">
+                    Generated Matters
+                </h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <div class="slds-m-bottom_medium">
+                    <h2 class="slds-text-heading_medium">{familyLabel}</h2>
+                    <c-lwc-mv-datatable class="lwcMvDataTable"
+                        columns={generatedMatterColumns} 
+                        records={patentFamilyRecords}
+                        custom-settings={currentFeatureSettings}
+                         height="100%" 
+                    ></c-lwc-mv-datatable>
+                </div>
+                <div class="slds-m-top_medium">
+                    <h2 class="slds-text-heading_small"> Keywords</h2>
+                    <c-lwc-mv-keywords 
+                        show-keywords={showKeywords}
+                        record-id={newPatentFamilyId}
+                        object-api-name={objectParentApiName}
+                    ></c-lwc-mv-keywords>
+                </div>
+                <br>
+                <br>
+                <div class="slds-m-top_medium">
+                    <h2 class="slds-text-heading_medium">{assetLabel}</h2>
+                    <c-lwc-mv-datatable class="lwcMvDataTable"
+                        columns={generatedMatterColumns} 
+                        records={patentIdRecords}
+                        custom-settings={currentFeatureSettings}
+                         height="100%" 
+                    ></c-lwc-mv-datatable>
+                </div>
+            </div>
+            <div class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleClose}>
+                    Close
+                </button>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+    </lightning-card>
+</template>

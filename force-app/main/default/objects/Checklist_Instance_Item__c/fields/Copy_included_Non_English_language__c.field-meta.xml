@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_included_Non_English_language__c</fullName>
+    <externalId>false</externalId>
+    <label>Copy included Non-English language</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Translation included</fullName>
+                <default>false</default>
+                <label>Translation included</label>
+            </value>
+            <value>
+                <fullName>Translation to be filed later</fullName>
+                <default>false</default>
+                <label>Translation to be filed later</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

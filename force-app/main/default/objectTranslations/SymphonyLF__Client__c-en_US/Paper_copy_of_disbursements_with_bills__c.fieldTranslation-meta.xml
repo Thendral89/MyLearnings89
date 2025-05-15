@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Paper copy of disbursements with bills? --></label>
+    <name>Paper_copy_of_disbursements_with_bills__c</name>
+</CustomFieldTranslation>

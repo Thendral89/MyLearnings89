@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Excluded Countries --></label>
+    <name>Excluded_Countries__c</name>
+    <picklistValues>
+        <masterLabel>Germany</masterLabel>
+        <translation><!-- Germany --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Russian Federation</masterLabel>
+        <translation><!-- Russian Federation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>South Korea</masterLabel>
+        <translation><!-- South Korea --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

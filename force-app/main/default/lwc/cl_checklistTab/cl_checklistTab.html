@@ -1,0 +1,9 @@
+<template>
+    <div if:true={hasSubSections} class="slds-box slds-m-around_small">
+        <template for:each={subSectionList} for:item="section">
+            <c-cl_checklist-sub-section key={section.id} sub-section-data={section}
+            is-secretary={isSecretary} is-attorney={isAttorney} is-double-checker={isDoubleChecker}
+            is-secretary-editable={isSecretaryEditable} is-attorney-editable={isAttorneyEditable} is-double-checker-editable={isDoubleCheckerEditable} ></c-cl_checklist-sub-section>
+        </template>
+    </div>
+</template>

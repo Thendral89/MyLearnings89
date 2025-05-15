@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attorney_Paralegal__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Attorney/Paralegal</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>SymphonyLF__Person__c.SymphonyLF__Type__c</field>
+            <operation>equals</operation>
+            <value>Attorney, Paralegal</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>SymphonyLF__Person__c</referenceTo>
+    <relationshipLabel>Attorney/Paralegal</relationshipLabel>
+    <relationshipName>Attorney_Paralegal</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

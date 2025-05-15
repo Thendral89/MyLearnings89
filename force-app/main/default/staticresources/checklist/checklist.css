@@ -1,0 +1,9 @@
+lightning-radio-group.custom-radio .slds-radio_faux {
+    margin-right: .5rem !important;
+}
+lightning-tabset.tabset .slds-vertical-tabs {
+    overflow: visible;
+}
+lightning-helptext.tooltip .slds-form-element__icon {
+    padding-top: 2px;
+}

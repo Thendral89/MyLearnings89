@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Includes_copies_of_newly_cited_art_ref__c</fullName>
+    <externalId>false</externalId>
+    <label>Includes copies of newly cited art &amp; ref</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>This IDS is complete with all information we have to date (docketing will close out initial IDS date)</fullName>
+                <default>false</default>
+                <label>This IDS is complete with all information we have to date (docketing will close out initial IDS date)</label>
+            </value>
+            <value>
+                <fullName>Please leave initial IDS due date open in docket</fullName>
+                <default>false</default>
+                <label>Please leave initial IDS due date open in docket</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

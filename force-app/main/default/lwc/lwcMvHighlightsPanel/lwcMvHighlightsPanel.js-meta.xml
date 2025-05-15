@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="dynamicFieldSetViewer">
+    <apiVersion>58.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="fieldSetName" type="String" label="Field Set Name" description="Enter the API name of the field set" required="true" />
+            <property name="readOnly" type="Boolean" label="Read Only" description="Will make all the fields Read only" />
+
+            
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

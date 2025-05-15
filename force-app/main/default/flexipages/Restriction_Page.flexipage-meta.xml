@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>fieldSetName</name>
+                    <value>Compact_Layout</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>headerField</name>
+                    <value>Name</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>numberOfColumns</name>
+                    <value>3</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>readOnly</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>subHeaderField</name>
+                    <value>Status__c</value>
+                </componentInstanceProperties>
+                <componentName>highlightsPanel</componentName>
+                <identifier>c_highlightsPanel</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>fieldSetsName</name>
+                    <value>Information;System_Information</value>
+                </componentInstanceProperties>
+                <componentName>lwcMvDetailsLayout</componentName>
+                <identifier>c_lwcMvDetailsLayout</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>System Administrator</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>MCCIP Docketing Management</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>fieldSetsName</name>
+                    <value>Information_Read;System_Information</value>
+                </componentInstanceProperties>
+                <componentName>lwcMvDetailsLayout</componentName>
+                <identifier>c_lwcMvDetailsLayout2</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>System Administrator</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>MCCIP Docketing Management</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Restriction Page</masterLabel>
+    <sobjectType>Access_Restriction__c</sobjectType>
+    <template>
+        <name>flexipage:recordHomeSingleColNoHeaderTemplateDesktop</name>
+        <properties>
+            <name>enablePageActionConfig</name>
+            <value>false</value>
+        </properties>
+    </template>
+    <type>RecordPage</type>
+</FlexiPage>

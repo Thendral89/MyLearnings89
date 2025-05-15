@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Attorney_Profile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attorney Profile</shortDescription>
+        <value>MCCIP Attorney</value>
+    </labels>
+    <labels>
+        <fullName>BypassProfilesForMEMValidation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BypassProfilesForMEMValidation</shortDescription>
+        <value>System Administrator,Docketing Management</value>
+    </labels>
+    <labels>
+        <fullName>CK_EDITOR_LICENSE_KEY</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CK Editor License Key</shortDescription>
+        <value>eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDY2NjIzOTksImp0aSI6ImI2MzNkODQ0LTMxZjUtNGE4ZC1hNzQyLWZiMjkzNDA4NTg4NSIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjM2NDQxYzc5In0.ilgNn4iApfdiIoZJrdowykg_RSDTrkZ8YD1ICyUt91UCQtQlv96UEcHwOz5AmisxuVtAvbO3Ng4mE66PA1FuXA</value>
+    </labels>
+    <labels>
+        <fullName>ClientEngagementPersonnelEditModalAnnouncement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ClientEngagementPersonnelEditModalAnnouncement</shortDescription>
+        <value>Deactivating the personnel will also deactivate the linked Matter Engagement Model.</value>
+    </labels>
+    <labels>
+        <fullName>ClientEngagementPersonnelEditModalHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ClientEngagementPersonnelEditModalHeader</shortDescription>
+        <value>Note</value>
+    </labels>
+    <labels>
+        <fullName>ClientEngagementPersonneldeleteModalAnnouncement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ClientEngagementPersonneldeleteModalAnnouncement</shortDescription>
+        <value>Please deactivate the associated Matter Engagement Model before deleting the Personnel, as it is currently linked to an active Matter Engagement.</value>
+    </labels>
+    <labels>
+        <fullName>ClientEngagementPersonneldeleteModalHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ClientEngagementPersonneldeleteModalHeader</shortDescription>
+        <value>Note</value>
+    </labels>
+    <labels>
+        <fullName>Client_Intake_Announcement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Client Intake Announcement</shortDescription>
+        <value>The New Client form creates the Client with “Yet to Engage” status. Please do not attempt to modify the status of the Client manually. Once the Conflict check is passed, system will automatically change the Client Status to Active.</value>
+    </labels>
+    <labels>
+        <fullName>Client_Intake_Announcement_Header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Client Intake Announcement Header</shortDescription>
+        <value>New Client Intake Important Information!</value>
+    </labels>
+    <labels>
+        <fullName>Conflict_Check_Form_Announcement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Conflict Check Form Announcement</shortDescription>
+        <value>Please press the Enter button on your keyboard to add Contributors, Related Parties, Adverse Parties, and Keywords. 
+* - Mandatory”</value>
+    </labels>
+    <labels>
+        <fullName>Conflict_Check_Form_Announcement_Header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Conflict Check Form Announcement Header</shortDescription>
+        <value>Conflict Check Form Important Information!</value>
+    </labels>
+    <labels>
+        <fullName>Default_Jurisdiction_on_Client</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Default Jurisdiction on Client</shortDescription>
+        <value>a0WWr000000cpKsMAI</value>
+    </labels>
+    <labels>
+        <fullName>Legal_Assistant_Profile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Legal Assistant Profile</shortDescription>
+        <value>MCCIP Legal Assistant</value>
+    </labels>
+    <labels>
+        <fullName>Paralegal_Profile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Paralegal Profile</shortDescription>
+        <value>MCCIP Paralegal</value>
+    </labels>
+    <labels>
+        <fullName>SharingModel_ExcludedProfile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>List of profile to be excluded when sharing</shortDescription>
+        <value>System Administrator,Chatter Free User,Account and Finance Team,Client,API Only User,Salesforce API Only System Integrations</value>
+    </labels>
+    <labels>
+        <fullName>ccDashboardAnnouncement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ccDashboardAnnouncement</shortDescription>
+        <value>The Conflict Check Form will guide the MCCIP users to fill out the form in an effective way and with the help of the matter creation process, it ensures the correct information is captured and the appropriate records are created.</value>
+    </labels>
+    <labels>
+        <fullName>ccDashboardHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ccDashboardHeader</shortDescription>
+        <value>Conflict Check Dashboard</value>
+    </labels>
+    <labels>
+        <fullName>ers_CancelButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>ers_ClearFilterAction</fullName>
+        <categories>actions</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clear Filter</shortDescription>
+        <value>Clear Filter</value>
+    </labels>
+    <labels>
+        <fullName>ers_ClearFilterButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clear All Filters</shortDescription>
+        <value>Clear All Filters</value>
+    </labels>
+    <labels>
+        <fullName>ers_ClearSelectionButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clear Selection</shortDescription>
+        <value>Clear Selection</value>
+    </labels>
+    <labels>
+        <fullName>ers_ColumnHeader</fullName>
+        <categories>headers</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Column</shortDescription>
+        <value>Column</value>
+    </labels>
+    <labels>
+        <fullName>ers_EmptyTableMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Empty</shortDescription>
+        <value>This table currently has no data to display</value>
+    </labels>
+    <labels>
+        <fullName>ers_ErrorRequiredEntry</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required</shortDescription>
+        <value>This is a required entry.  At least 1 row must be selected.</value>
+    </labels>
+    <labels>
+        <fullName>ers_FilterHeader</fullName>
+        <categories>headers</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter</shortDescription>
+        <value>Filter</value>
+    </labels>
+    <labels>
+        <fullName>ers_FirstButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>First Page</shortDescription>
+        <value>First</value>
+    </labels>
+    <labels>
+        <fullName>ers_LabelHeader</fullName>
+        <categories>headers</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Label</shortDescription>
+        <value>Label</value>
+    </labels>
+    <labels>
+        <fullName>ers_LastButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Last Page</shortDescription>
+        <value>Last</value>
+    </labels>
+    <labels>
+        <fullName>ers_NextButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next Page</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>ers_PreviousButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Previous Page</shortDescription>
+        <value>Prev</value>
+    </labels>
+    <labels>
+        <fullName>ers_RecordsPerPage</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Records per Page input label</shortDescription>
+        <value>Records per Page</value>
+    </labels>
+    <labels>
+        <fullName>ers_SaveButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>ers_SearchPlaceholder</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Term</shortDescription>
+        <value>Enter search term ...</value>
+    </labels>
+    <labels>
+        <fullName>ers_SetFilterAction</fullName>
+        <categories>actions</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Set Filter</shortDescription>
+        <value>Set Filter</value>
+    </labels>
+    <labels>
+        <fullName>ers_ShowingPageMiddle</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Showing Page x of y Pages input label middle</shortDescription>
+        <value>of</value>
+    </labels>
+    <labels>
+        <fullName>ers_ShowingPagePrefix</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Showing Page x of y Pages input label prefix</shortDescription>
+        <value>Showing Page</value>
+    </labels>
+    <labels>
+        <fullName>ers_ShowingPageSuffix</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Showing Page x of y Pages input label suffix</shortDescription>
+        <value>Pages</value>
+    </labels>
+    <labels>
+        <fullName>fsc_AccessLevel</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AccessLevel</shortDescription>
+        <value>Access Level</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Back</fullName>
+        <categories>Buttons,Filters,Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Back</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>fsc_ButtonIsNotSupportedMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ButtonIsNotSupportedMessage</shortDescription>
+        <value>Following buttons are note supported:</value>
+    </labels>
+    <labels>
+        <fullName>fsc_ConditionLogicHelpText</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ConditionLogicHelpText</shortDescription>
+        <value>Use parentheses, AND, OR, and NOT to customize the logic. For example, if you enter “(1 AND 2 AND 3) OR 4”, the flow evaluates whether the first three conditions are true or only the fourth condition is true.</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Delete</fullName>
+        <categories>labels, buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>fsc_FieldIsNotSupportedMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FieldIsNotSupportedMessage</shortDescription>
+        <value>Following fields are not supported:</value>
+    </labels>
+    <labels>
+        <fullName>fsc_FieldTypeNotSuportedMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>fsc_FieldTypeNotSuportedMessage</shortDescription>
+        <value>You provided an unsupported value for the DataTypeFilter input on Object and Field Picker. Currently the only supported value is ’picklist’</value>
+    </labels>
+    <labels>
+        <fullName>fsc_For</fullName>
+        <categories>Buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>For</shortDescription>
+        <value>For</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Key_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Key Label</shortDescription>
+        <value>Key</value>
+    </labels>
+    <labels>
+        <fullName>fsc_LackingPermissions</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LackingPermissions</shortDescription>
+        <value>You don\&apos;t have the proper permissions for ths action</value>
+    </labels>
+    <labels>
+        <fullName>fsc_ManagerEmptyMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ManagerEmptyMessage</shortDescription>
+        <value>&quot;Manager APEX Class&quot; can not be empty</value>
+    </labels>
+    <labels>
+        <fullName>fsc_MultipleGroupsForRole</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MultipleGroupsForRole</shortDescription>
+        <value>There are multiple groups for that role</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Name</fullName>
+        <categories>quicklinks, Labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>fsc_NonePicklistValueLabel</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NonePicklistValueLabel</shortDescription>
+        <value>-- None --</value>
+    </labels>
+    <labels>
+        <fullName>fsc_OWDReadWrite</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OWDReadWrite</shortDescription>
+        <value>Sharing Settings must be private or public read/write to enable manual sharing</value>
+    </labels>
+    <labels>
+        <fullName>fsc_OwnerAdminModify</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OwnerAdminModify</shortDescription>
+        <value>Only the record owner or administrators can modify permissions</value>
+    </labels>
+    <labels>
+        <fullName>fsc_PublicGroups</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PublicGroups</shortDescription>
+        <value>Public Groups</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Queues</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Queues</shortDescription>
+        <value>Queues</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Read</fullName>
+        <categories>labels, buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Read</shortDescription>
+        <value>Read</value>
+    </labels>
+    <labels>
+        <fullName>fsc_ReadWrite</fullName>
+        <categories>labels, buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ReadWrite</shortDescription>
+        <value>Read / Write</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Reason</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reason</shortDescription>
+        <value>Reason</value>
+    </labels>
+    <labels>
+        <fullName>fsc_RelatedUsers</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelatedUsers</shortDescription>
+        <value>Related Users</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Roles</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Roles</shortDescription>
+        <value>Roles</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Search</fullName>
+        <categories>Actions,Buttons,quicklinks</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search in</shortDescription>
+        <value>Search in</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SearchFor</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SearchFor</shortDescription>
+        <value>For</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SetAccessLevel</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SetAccessLevel</shortDescription>
+        <value>Set Access Level</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SupportedAddCapabilitiesEmptyMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SupportedAddCapabilitiesEmptyMessage</shortDescription>
+        <value>&quot;Add Capabilities&quot; can not be empty</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SupportedButtonsEmptyMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SupportedButtonsEmptyMessage</shortDescription>
+        <value>&quot;Supported Buttons&quot; can not be empty</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SupportedEditCapabilitiesEmptyMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SupportedEditCapabilitiesEmptyMessage</shortDescription>
+        <value>&quot;Edit Capabilities&quot; can not be empty</value>
+    </labels>
+    <labels>
+        <fullName>fsc_TooManyResultsMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TooManyResultsMessage</shortDescription>
+        <value>Your search found more than 200 results.  Keep typing to make it more specific</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Type</fullName>
+        <categories>Buttons,Filters,Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>fsc_UserOrGroup</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UserOrGroup</shortDescription>
+        <value>User Or Group</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Users</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Users</shortDescription>
+        <value>Users</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Value_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Value Label</shortDescription>
+        <value>Value</value>
+    </labels>
+    <labels>
+        <fullName>intakeErrorMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Intake Error Message</shortDescription>
+        <value>An Exception occured in &lt;PageName&gt;</value>
+    </labels>
+</CustomLabels>

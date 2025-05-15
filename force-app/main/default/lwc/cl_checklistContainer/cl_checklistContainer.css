@@ -1,0 +1,6 @@
+.card {
+    --slds-c-card-header-spacing-inline-end: 1.25rem;
+    --slds-c-card-header-spacing-inline-start: 1.25rem;
+    --slds-c-card-body-spacing-inline-end: 1.25rem;
+    --slds-c-card-body-spacing-inline-start: 1.25rem;
+}

@@ -1,0 +1,42 @@
+/* Copyright © 2023 MaxVal Group. All Rights Reserved.
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Developed by: Sneha B (sneha.b@maxval.com), June 2023
+ */
+
+
+ .fieldPadding{
+    padding: 0.5rem 0.75rem 0 0.75rem;
+}
+.accordionClass{
+    --slds-c-accordion-summary-color-background : #f3f3f3;
+}
+.modalContainer{
+    width: 90% !important;
+    max-width: 90% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow-y: visible;
+}
+.spinnerHolder{
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin-top: 10px;
+}
+.require:before { content:"*"; color: red; }
+:host {
+    --sds-c-textarea-sizing-min-height: 100px;
+ }
+ .datatable-container {
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  .readonly-input {
+    border: 1px solid #c4c4c4;
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem;
+    background-color: #f5f5f5;
+    color: #333;
+    cursor: not-allowed;
+  }

@@ -1,0 +1,52 @@
+<template>
+
+	<!--Use template if:true to display/hide popup based on isModalOpen value-->
+	<template if:true={isModalOpen}>
+		<!-- Modal/Popup Box LWC starts here -->
+		<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+			aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_medium">
+			<div class="slds-modal__container">
+				<!-- Modal/Popup Box LWC header here -->
+				<header class="slds-modal__header">
+					<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+            <lightning-icon icon-name="utility:close"
+                alternative-text="close"
+                variant="inverse"
+                size="small" ></lightning-icon>
+            <span class="slds-assistive-text">Close</span>
+        </button>
+					<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Email Preview</h2>
+				</header>
+				<!-- Modal/Popup Box LWC body starts here -->
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+
+					<c-lwc-Multi-Select-Lookup label="To" onselected={onToChange} slected-to-ids={selectedRecordsOutput}
+						selected-records={selectedRecordsTo} required="true"></c-lwc-Multi-Select-Lookup>
+
+					<c-lwc-Multi-Select-Lookup label="CC" onselected={onCCChange} selected-records={selectedRecordsCC}>
+					</c-lwc-Multi-Select-Lookup>
+					<lightning-input value={subValue} required="true" type="text" label="Subject" onchange={subChange}>
+					</lightning-input>
+					<lightning-input-rich-text value={myVal} label="Body" label-visible="true" required="true"
+						onchange={handleChange}>
+					</lightning-input-rich-text>
+					<lightning-card>
+						<c-lwc-File-Upload-For-Email-Preview onfile={onFileChange} content-version-ids={contentIds}></c-lwc-File-Upload-For-Email-Preview>
+					</lightning-card>
+
+
+				</div>
+				<!-- Modal/Popup Box LWC footer starts here -->
+				<footer class="slds-modal__footer ">
+					<center>
+						<lightning-button label="Discard" title="Discard" onclick={closeModal}></lightning-button>
+						<lightning-button variant="brand" label="Send Email" icon-name="utility:email"
+							class="slds-m-left_x-small" onclick={submitDetails}></lightning-button>
+					</center>
+				</footer>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</template>
+
+</template>

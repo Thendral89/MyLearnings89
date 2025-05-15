@@ -1,0 +1,19 @@
+<template>
+    <!-- <lightning-tabset>
+        <lightning-tab label="Selected Inventors" value="selectedInventors">
+            <c-lwc-mv-datatable class="lwcMvDataTable" columns={inventorColumns} data-id="inventorTable"
+                records={selectedInventors}>
+            </c-lwc-mv-datatable>
+        </lightning-tab>
+    </lightning-tabset> -->
+    <div class="slds-card slds-p-around_medium slds-m-around_small">
+    <c-lwc-mv-datatable class="lwcMvDataTable" columns={inventorColumns} data-id="inventorTable"
+             records={selectedInventors}>
+    </c-lwc-mv-datatable>
+    </div>
+    <div class="slds-card slds-p-around_medium slds-m-around_small">
+    <c-lwc-mv-datatable class="lwcMvDataTable" columns={applicantColumns} data-id="applicantTable"
+            records={selectedApplicants}>
+    </c-lwc-mv-datatable> 
+    </div>
+</template>

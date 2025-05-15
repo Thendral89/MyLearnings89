@@ -1,0 +1,204 @@
+<template>
+    <template lwc:if={showTable}>
+
+        <template lwc:if={showAddEdit}>
+            <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+                class="slds-modal slds-fade-in-open slds-modal_medium">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">
+                            {addOrEditMessage}</h1>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning-record-edit-form record-id={clientEngagementModelId}
+                            record-type-id={selectedRecordTypeId}
+                            object-api-name={childObjectApiName} onsuccess={handleAddEditSuccess}
+                            onerror={handleAddEditError}>
+                            <lightning-messages> </lightning-messages>
+                            
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-hide">
+                                    <lightning-input-field field-name={lookupField} value={recordId}>
+                                    </lightning-input-field>
+                                </div>
+                                <template for:each={actionFieldsOnAddEditing} for:item="field">
+                                    <div key={field.fieldApiName} class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                        <template lwc:if={field.availableModeBoolean}>
+                                            <div class={field.sldsHideModeClass}>
+                                        <template lwc:if={isNewRecord}>
+
+                                            <template lwc:if={field.isAddress}>
+                                                <lightning-input-address class="addressField" 
+                                                    data-fieldapiname={field.fieldApiName} 
+                                                    required={field.required} 
+                                                    street-label="Street" city-label="City" country-label="Country" province-label="State" postal-code-label="PostalCode" 
+                                                    address-label={field.label}
+                                                    street={field.addressDefaultValue.street}
+                                                    city={field.addressDefaultValue.city} 
+                                                    postal-code={field.addressDefaultValue.postal} 
+                                                    province={field.addressDefaultValue.state} 
+                                                    country={field.addressDefaultValue.country} 
+                                                    show-address-lookup 
+                                                    onchange={addressInputChange}
+                                                    country-options={getCountryOptions}
+                                                    province-options={getProvinceOptions}
+                    					          >
+                                                </lightning-input-address>
+
+                                                <!--lightning-input-field field-name={field.addressObject.street} required={field.required}></lightning-input-field>
+
+                                                <div class="slds-grid">
+                                                    <div class="slds-col slds-size_6-of-12 slds-p-around_xx-small">
+                                                        <lightning-input-field field-name={field.addressObject.city} required={field.required}></lightning-input-field>
+                                                    </div>
+                                                    <div class="slds-col slds-size_6-of-12 slds-p-around_xx-small">
+                                                        <lightning-input-field field-name={field.addressObject.stateCode} required={field.required}></lightning-input-field>
+                                                    </div>
+                                                </div>
+
+                                                <div class="slds-grid">
+                                                    <div class="slds-col slds-size_6-of-12 slds-p-around_xx-small">
+                                                        <lightning-input-field field-name={field.addressObject.postalCode} required={field.required}></lightning-input-field>
+                                                    </div>
+                                                    <div class="slds-col slds-size_6-of-12 slds-p-around_xx-small">
+                                                        <lightning-input-field field-name={field.addressObject.countryCode} required={field.required}></lightning-input-field>
+                                                    </div>
+                                                </div-->
+                                                        
+                                            </template>
+                                            <template lwc:else>
+                                                <lightning-input-field field-name={field.fieldApiName} value={field.defaultValue} required={field.required} disabled={field.disabled}></lightning-input-field>
+                                            </template>
+                                        </template>
+                                        <template lwc:else>
+                                            <template lwc:if={field.isAddress}>
+                                                <lightning-input-address class="addressField" 
+                                                    data-fieldapiname={field.fieldApiName} 
+                                                    required={field.required} 
+                                                    street-label="Street" city-label="City" country-label="Country" province-label="State" postal-code-label="PostalCode" 
+                                                    address-label={field.label}
+                                                    street={field.addressObject.street}
+                                                    city={field.addressObject.city} 
+                                                    postal-code={field.addressObject.postal} 
+                                                    province={field.addressObject.state} 
+                                                    country={field.addressObject.country} 
+                                                    country-options={getCountryOptions}
+                                                    province-options={getProvinceOptions}
+                                                    show-address-lookup 
+                                                    onchange={addressInputChange}>
+                                                </lightning-input-address>
+
+                                                <!--lightning-input-field field-name={field.addressObject.street} required={field.required}></lightning-input-field>
+
+                                                <div class="slds-grid">
+                                                    <div class="slds-col slds-size_6-of-12 slds-p-around_xx-small">
+                                                        <lightning-input-field field-name={field.addressObject.city} required={field.required}></lightning-input-field>
+                                                    </div>
+                                                    <div class="slds-col slds-size_6-of-12 slds-p-around_xx-small">
+                                                        <lightning-input-field field-name={field.addressObject.stateCode} required={field.required}></lightning-input-field>
+                                                    </div>
+                                                </div>
+
+                                                <div class="slds-grid">
+                                                    <div class="slds-col slds-size_6-of-12 slds-p-around_xx-small">
+                                                        <lightning-input-field field-name={field.addressObject.postalCode} required={field.required}></lightning-input-field>
+                                                    </div>
+                                                    <div class="slds-col slds-size_6-of-12 slds-p-around_xx-small">
+                                                        <lightning-input-field field-name={field.addressObject.countryCode} required={field.required}></lightning-input-field>
+                                                    </div>
+                                                </div-->
+                                                        
+                                            </template>
+                                            <template lwc:else>
+                                                <lightning-input-field field-name={field.fieldApiName} required={field.required} disabled={field.disabled}></lightning-input-field>
+                                            </template>
+                                            
+                                        </template>    
+                                    </div>
+                                    </template>
+                                    <template lwc:else></template>
+                                        
+                                    </div>
+                                </template>
+                            </div>
+
+                            <template if:true={isLoading}>
+                                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                            </template>
+                        </lightning-record-edit-form>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleCancel}>Cancel</button>
+                        <button class="slds-button slds-button_brand" type="submit" onclick={handleSave}>Save</button>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </template>
+
+        <template lwc:if={showDeleteConfirmation}>
+            <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+                class="slds-modal slds-fade-in-open slds-modal_small">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <h1 id="modal-heading-02" class="slds-modal__title slds-hyphenate" tabindex="-1">
+                            Delete {childObjectLabel}</h1>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                        <div class="slds-align_absolute-center">
+                            Are you sure you want to delete this {childObjectLabel}?
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleDeleteCancel}>Cancel</button>
+                        <button class="slds-button slds-button_brand" onclick={handleDeleteConfirmation}>Delete</button>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </template>
+
+        <template if:true={showImanageAdd}>
+            <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-03"
+            class="slds-modal slds-fade-in-open slds-modal_medium">
+            <div class="slds-modal__container">
+                <span class="slds-modal__close">
+                    <lightning-button-icon icon-name="utility:close" onclick={handleCancelImanage} alternative-text="Cancel and Close" class="" title="Cancel and Close"></lightning-button-icon>
+                </span>
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-05" class="slds-modal__title slds-hyphenate" tabindex="-1">
+                        Upload Files to iManage</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-4">
+                    <lightning-flow
+                    flow-api-name={flowApiName}
+                    flow-input-variables={flowInputVariables}
+                    onstatuschange={handleSaveImanage}
+                >
+                </lightning-flow>
+                </div>
+                <!--div class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleCancelImanage}>Cancel</button>
+                    <button class="slds-button slds-button_brand" type="submit" onclick={handleSaveImanage}>Save</button>
+                </div-->
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </template>
+
+
+
+        <div class="slds-text-heading_large">{label}</div>
+        <c-lwc-mv-datatable class="lwcMvDataTable" custom-settings={currentFeatureSettings} columns={columns}
+            records={records} row-height="35" 
+            resizable-rows
+            timezone={timezone}
+            userlocale={userlocale}
+            service-repository-name={serviceRepositoryName}>
+        </c-lwc-mv-datatable>
+    </template>
+
+    <template if:true={isLoadingFirstTime}>
+        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+</template>

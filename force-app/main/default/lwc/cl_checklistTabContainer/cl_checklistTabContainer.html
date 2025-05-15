@@ -1,0 +1,13 @@
+<template>
+    <div class="slds-p-around_medium">
+        <lightning-tabset variant="vertical" class="slds-m-around_medium tabset">
+            <template if:true={sectionList} for:each={sectionList} for:item="section">
+                <lightning-tab key={section.id} label={section.label} style="min-height:70vh;"> 
+                    <c-cl_checklist-tab record-id={recordId} checklist-instance-id={checklistInstanceId} parent-section-id={section.id} 
+                    is-secretary={isSecretary} is-attorney={isAttorney} is-double-checker={isDoubleChecker}
+                    is-secretary-editable={isSecretaryEditable} is-attorney-editable={isAttorneyEditable} is-double-checker-editable={isDoubleCheckerEditable} ></c-cl_checklist-tab>
+                </lightning-tab>
+            </template>
+        </lightning-tabset>
+    </div>
+</template>

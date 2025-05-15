@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- HIGHLIGHTSPANEL --></label>
+        <name>HIGHLIGHTSPANEL</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HIGHLIGHTSPANEL --></label>
+        <name>HIGHLIGHTSPANEL_READ</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Information --></label>
+        <name>INFORMATION_readonly</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Information --></label>
+        <name>Information</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- System Information --></label>
+        <name>SYSTEM_INFORMATION</name>
+    </fieldSets>
+    <layouts>
+        <layout>Matter Engagement Model Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

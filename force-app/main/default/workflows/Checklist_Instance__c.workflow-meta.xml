@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Attorney_Checklist_Submission</fullName>
+        <ccEmails>priyanka.k@maxval.com</ccEmails>
+        <ccEmails>swati.s@maxval.com</ccEmails>
+        <description>Attorney Checklist Submission</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Secretary__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Checklist/Attorney_Checklist_Submission_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Attorney_Initial_Assignment</fullName>
+        <ccEmails>priyanka.k@maxval.com</ccEmails>
+        <ccEmails>swati.s@maxval.com</ccEmails>
+        <ccEmails>thendral.m@maxval.com</ccEmails>
+        <description>Attorney Initial Assignment</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Attorney__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Checklist/Attorney_Assignment_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Double_Checker_Approves</fullName>
+        <ccEmails>priyanka.k@maxval.com</ccEmails>
+        <ccEmails>swati.s@maxval.com</ccEmails>
+        <description>Double Checker Approves</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Secretary__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Checklist/Double_Checker_Approves_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Double_Checker_Assignment</fullName>
+        <ccEmails>priyanka.k@maxval.com</ccEmails>
+        <ccEmails>swati.s@maxval.com</ccEmails>
+        <description>Double Checker Assignment</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Attorney__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Double_Checker__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Checklist/Double_Checker_Assignment_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Double_Checker_Requires_Modification</fullName>
+        <ccEmails>priyanka.k@maxval.com</ccEmails>
+        <ccEmails>swati.s@maxval.com</ccEmails>
+        <description>Double Checker Requires Modification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Attorney__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Secretary__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Checklist/Double_Checker_Need_Modification_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Secretary_Initial_Assignment</fullName>
+        <ccEmails>priyanka.k@maxval.com</ccEmails>
+        <ccEmails>thendral.m@maxval.com</ccEmails>
+        <ccEmails>swati.s@maxval.com</ccEmails>
+        <description>Secretary Initial Assignment</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Secretary__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Checklist/Secretary_Assignment_Template</template>
+    </alerts>
+</Workflow>

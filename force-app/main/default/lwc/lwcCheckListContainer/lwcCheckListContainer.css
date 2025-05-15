@@ -1,0 +1,85 @@
+.custom-table-container {
+    max-width: 100%;       
+    max-height: 400px;     
+    overflow-x: auto;       
+    overflow-y: auto;      
+    display: block;       
+    border: 1px solid #ddd; 
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.custom-table th, .custom-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    word-wrap: break-word;  
+    white-space: normal;   
+}
+
+.custom-table th {
+    background-color: #2E78B7;
+    color: white;
+}
+
+.custom-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.custom-table tr:hover {
+    background-color: #ddd;
+}
+
+.custom-table td {
+    font-size: 14px;
+}
+
+.custom-lookup-dropdown {
+    position: relative; 
+}
+
+.custom-lookup-dropdown ::part(dropdown) {
+    position: absolute; 
+    z-index: 9999;      
+    top: 100%;          
+    left: 0;
+    width: 100%;        
+    max-height: 300px;  
+    overflow-y: auto;   
+    margin-top: 10px;   
+}
+
+.slds-modal__content {
+    overflow: visible; 
+    position: relative; 
+}
+
+.slds-modal__footer {
+    z-index: 1; 
+}
+
+.slds-backdrop {
+    z-index: 1;
+}
+
+.slds-backdrop {
+    position: fixed;      
+    top: 0;                
+    left: 0;              
+    width: 100%;        
+    height: 100%;         
+    background-color: rgba(0, 0, 0, 0.3); 
+    z-index: 1000;         
+}
+
+.slds-modal.slds-fade-in-open {
+    z-index: 1001;         
+}
+
+.slds-modal__container {
+    z-index: 1002;         
+}

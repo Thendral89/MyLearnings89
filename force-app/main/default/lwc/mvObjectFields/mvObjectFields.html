@@ -1,0 +1,13 @@
+<template>
+    <!-- <div lwc:dom="manual"></div> -->
+    <lightning-record-edit-form record-id={recordId} object-api-name={objectName}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_12-of-12">
+                    <lightning-input-field name={updateableFieldName} field-name={updateableFieldName} data-field={updateableFieldName}
+                        variant="label-hidden" value={value} onchange={handleChange}></lightning-input-field>
+                </div>
+            </div>
+        </section>
+    </lightning-record-edit-form>
+</template>

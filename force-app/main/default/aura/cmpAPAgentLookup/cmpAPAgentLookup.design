@@ -1,0 +1,16 @@
+<design:component>
+	
+    <design:attribute name="objectName" label="objectName" description="objectName" />
+    <design:attribute name="fieldName" label="fieldName" description="fieldName" />
+    <design:attribute name="label" label="label" description="label" />
+    <design:attribute name="iconName" label="iconName" description="iconName" />
+    <design:attribute name="placeholder" label="placeholder" description="placeholder" />
+    <design:attribute name="selectedId" label="selectedId" description="selectedId" />
+    <design:attribute name="selectedName" label="selectedName" description="selectedName" />
+    <design:attribute name="IsMultiple" label="IsMultiple" description="IsMultiple" />
+    <design:attribute name="FilterFieldName" label="FilterFieldName" description="FilterFieldName" />
+    <design:attribute name="FilterFieldValue" label="FilterFieldValue" description="FilterFieldValue" />
+    <design:attribute name="IsRequired" label="IsRequired" description="IsRequired" />
+    
+    
+</design:component>

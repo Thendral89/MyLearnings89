@@ -1,0 +1,43 @@
+<template>
+    <div class={containerstyleclass}>
+
+       <lightning-layout>
+         <lightning-layout-item padding="around-small" size="12">
+            <b>
+               <lightning-icon icon-name={iconName} style="vertical-align:20%" alternative-text="announcement"
+                  size="x-small"></lightning-icon>
+               <span class="textPosition slds-text-heading_small announcementheaderstyle" data-id="header">{header}</span>
+            </b>
+         </lightning-layout-item>
+       </lightning-layout>
+
+       <lightning-layout class="slds-grid slds-wrap customLayoutPosition">
+          <lightning-layout-item padding="around-small" class="slds-size_12-of-12">
+             <template if:false={showasdottedlist}>
+                <!-- <template for:each={body} for:item="announcement"> -->
+                   <div class="slds-m-bottom_xx-small announcementcontentstyle" key={announcement}><span>{body}</span></div>
+                <!-- </template> -->
+             </template>
+             <template if:true={showasdottedlist}>
+                <ul class="slds-list_dotted" style="list-style-type: disc">
+                   <template for:each={body} for:item="announcement">
+                      <li  key={announcement}>
+                        <div class="slds-m-bottom_xx-small announcementcontentstyle" key={announcement}><span>{announcement}</span></div>
+                      </li>
+                   </template>
+                </ul>
+             </template>
+             <template for:each={link} for:item="mapKey">
+                <tr key={mapKey.id}>
+                   <td>
+                      <template if:false={langSelected}>
+                         <a href={mapKey.address} data-id="english" class="underline-text">{mapKey.name} ></a>
+                      </template>
+
+                   </td>
+                </tr>
+             </template>
+          </lightning-layout-item>
+       </lightning-layout>
+    </div>
+ </template>

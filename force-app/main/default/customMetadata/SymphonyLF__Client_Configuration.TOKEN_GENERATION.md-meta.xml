@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>TOKEN GENERATION</label>
+    <protected>false</protected>
+    <values>
+        <field>SymphonyLF__ClientId__c</field>
+        <value xsi:type="xsd:string">3MVG9o0Rj_GRmEuhbNVfbNCrF9OkXDv0drFrm0wNBx5E8ivmJf3BwaCk1LI6aZLrVP.9.oDrU_zXZaRjzdG3p</value>
+    </values>
+    <values>
+        <field>SymphonyLF__ClientSecret__c</field>
+        <value xsi:type="xsd:string">10EEFC7E7F515BA80BD5D17B50608284E39780212DAAF89D7EB572885F467A1D</value>
+    </values>
+    <values>
+        <field>SymphonyLF__Email__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SymphonyLF__Environment__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SymphonyLF__Error__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SymphonyLF__InstanceId__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SymphonyLF__Is_Document_Posting_Required__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>SymphonyLF__Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SymphonyLF__Password__c</field>
+        <value xsi:type="xsd:string">Salesforce@2026</value>
+    </values>
+    <values>
+        <field>SymphonyLF__Register_Status__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>SymphonyLF__URL_Key__c</field>
+        <value xsi:type="xsd:string">ClientUrl</value>
+    </values>
+    <values>
+        <field>SymphonyLF__URL_Type__c</field>
+        <value xsi:type="xsd:string">GET</value>
+    </values>
+    <values>
+        <field>SymphonyLF__URL_Value__c</field>
+        <value xsi:type="xsd:string">https://test.salesforce.com/services/oauth2/token</value>
+    </values>
+    <values>
+        <field>SymphonyLF__Username__c</field>
+        <value xsi:type="xsd:string">sara.r@maxval.com</value>
+    </values>
+</CustomMetadata>

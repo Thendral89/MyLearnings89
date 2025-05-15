@@ -1,0 +1,237 @@
+/* Modal Header */
+.slds-modal__header {
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+}
+
+.slds-text-heading_medium {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Main Content Layout */
+.main-content {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    height: 100%;
+}
+
+/* Left Section */
+.left-section {
+    flex: 2;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+}
+
+/* Right Section */
+.right-section {
+    flex: 2;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+/* Search Container */
+.search-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Dropdown */
+.dropdown {
+    position: absolute;
+    top: 50px; /* Move below the input */
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-height: 33rem;
+    overflow-y: auto;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+}
+
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+    /* display: flex; */
+    justify-content: space-between;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background: #f2f2f2;
+}
+
+.no-results {
+    color: #888;
+    justify-content: center;
+}
+
+/* Quick Add */
+.section-title {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.list-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+/* Avatar */
+.avatar {
+    width: 35px;
+    height: 35px;
+    background: #007bff;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Add Button */
+.add-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.add-button:hover {
+    background: #0056b3;
+}
+
+/* Selected Emails Section */
+.email-group-container {
+    margin-top: 10px;
+    max-height: 300px;
+}
+
+.email-group {
+    margin-bottom: 20px;
+}
+
+.group-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.selected-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.email-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.remove-button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 2px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+/* Footer */
+.footer-section {
+    border-top: 1px solid #ddd;
+    padding: 15px 20px;
+    /* display: flex; */
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.type-combobox {
+    width: 200px;
+}
+
+.done-button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+.done-button:hover {
+    background-color: #0056b3;
+}
+
+.active {
+    background-color: #f4f6f9; /* Highlight color */
+    border-left: 4px solid #0070d2; /* Visual indicator for active item */
+    padding-left: 8px;
+}
+
+/* Custom Footer */
+.custom-footer {
+    background-color: #f4f6f9; /* Light gray background */
+    padding: 10px 20px;
+    border-top: 1px solid #d1d3e2; /* Light border at the top */
+}
+
+/* Footer Content Container */
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Space between left and right sections */
+    align-items: center;
+}
+
+/* Left Section - Combobox */
+.footer-left {
+    flex: 1; /* Takes up remaining space */
+    display: flex;
+    justify-content: flex-start; /* Align left */
+}
+
+/* Right Section - Button */
+.footer-right {
+    display: flex;
+    justify-content: flex-end; /* Align right */
+}

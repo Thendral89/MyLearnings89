@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Checklist Parent Section --></label>
+    <name>Checklist_Parent_Section__c</name>
+    <relationshipLabel><!-- Checklist Instance Items (Checklist Parent Section) --></relationshipLabel>
+</CustomFieldTranslation>

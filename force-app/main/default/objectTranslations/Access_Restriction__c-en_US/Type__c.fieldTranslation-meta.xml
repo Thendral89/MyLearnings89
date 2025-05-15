@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Type --></label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>Agreement and Contract</masterLabel>
+        <translation><!-- Agreement and Contract --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Client</masterLabel>
+        <translation><!-- Client --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Copyright</masterLabel>
+        <translation><!-- Copyright --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Design</masterLabel>
+        <translation><!-- Design --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Design Family</masterLabel>
+        <translation><!-- Design Family --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dispute/Opposition</masterLabel>
+        <translation><!-- Dispute/Opposition --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mark</masterLabel>
+        <translation><!-- Mark --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Patent</masterLabel>
+        <translation><!-- Patent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Patent Family</masterLabel>
+        <translation><!-- Patent Family --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Trademark</masterLabel>
+        <translation><!-- Trademark --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>shashank.s@maxval.com</contactEmail>
+    <label>PSO Portal</label>
+    <oauthConfig>
+        <callbackUrl>https://mcc-ip-law--mccuat.sandbox.my.salesforce.com/oauth2/callback</callbackUrl>
+        <certificate>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</certificate>
+        <consumerKey>3MVG9o0Rj_GRmEuhbNVfbNCrF9OkXDv0drFrm.gPPe8N90Id3L0lv5j_7fpX5n_zTWDHEEKn0Q7WkS78XAgqN</consumerKey>
+        <isAdminApproved>true</isAdminApproved>
+        <isClientCredentialEnabled>false</isClientCredentialEnabled>
+        <isCodeCredentialEnabled>false</isCodeCredentialEnabled>
+        <isCodeCredentialPostOnly>false</isCodeCredentialPostOnly>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <isNamedUserJwtEnabled>false</isNamedUserJwtEnabled>
+        <isPkceRequired>true</isPkceRequired>
+        <isRefreshTokenRotationEnabled>false</isRefreshTokenRotationEnabled>
+        <isSecretRequiredForRefreshToken>true</isSecretRequiredForRefreshToken>
+        <isSecretRequiredForTokenExchange>false</isSecretRequiredForTokenExchange>
+        <isTokenExchangeEnabled>false</isTokenExchangeEnabled>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>Full</scopes>
+        <scopes>RefreshToken</scopes>
+        <scopes>OpenID</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>ENFORCE</ipRelaxation>
+        <isTokenExchangeFlowEnabled>false</isTokenExchangeFlowEnabled>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+    <profileName>System Administrator</profileName>
+    <profileName>Analytics Cloud Integration User</profileName>
+    <profileName>Deprecated Paralegal</profileName>
+    <profileName>Docketing Management</profileName>
+    <profileName>Deprecated Attorney</profileName>
+    <profileName>Deprecated Legal Assistant</profileName>
+    <profileName>API Only User</profileName>
+</ConnectedApp>

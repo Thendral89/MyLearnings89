@@ -1,0 +1,19 @@
+<template>
+    <c-mv-flow-progress-bar flow-name="PATENT_INTAKE_FORM"></c-mv-flow-progress-bar>
+
+    <template if:true={displayDebugContent}>
+        <div class="debug-content">
+            {debugContent}
+        </div>
+    </template>
+
+    <div class="containerclass">
+        <template if:true={isPatent}>
+            <lightning-card>
+                <lightning-messages></lightning-messages>
+
+            </lightning-card>
+
+        </template>
+    </div>
+</template>

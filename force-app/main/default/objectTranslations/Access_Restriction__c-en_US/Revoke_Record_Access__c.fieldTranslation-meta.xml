@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Revoke Record Access --></label>
+    <name>Revoke_Record_Access__c</name>
+</CustomFieldTranslation>

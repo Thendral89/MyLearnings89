@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Type --></label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>Annuity Payment Provider</masterLabel>
+        <translation><!-- Annuity Payment Provider --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Annuity Payment Provider Rep</masterLabel>
+        <translation><!-- Annuity Payment Provider Rep --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Annuity Specialist</masterLabel>
+        <translation><!-- Annuity Specialist --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Backup Attorney</masterLabel>
+        <translation><!-- Backup Attorney --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CC Law Firm Personnel</masterLabel>
+        <translation><!-- CC Law Firm Personnel --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Client Representative</masterLabel>
+        <translation><!-- Client Representative --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Copy Contact</masterLabel>
+        <translation><!-- Copy Contact --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Correspondence Contact</masterLabel>
+        <translation><!-- Correspondence Contact --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Docketer</masterLabel>
+        <translation><!-- Docketer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Docketing Management</masterLabel>
+        <translation><!-- Docketing Management --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Foreign Associate</masterLabel>
+        <translation><!-- Foreign Associate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IDS Specialist</masterLabel>
+        <translation><!-- IDS Specialist --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Legal Assistant</masterLabel>
+        <translation><!-- Legal Assistant --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Managing (Supervising) Attorney</masterLabel>
+        <translation><!-- Managing (Supervising) Attorney --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Originating Attorney</masterLabel>
+        <translation><!-- Originating Attorney --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Outside Lawfirm</masterLabel>
+        <translation><!-- Outside Lawfirm --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Outside Legal</masterLabel>
+        <translation><!-- Outside Legal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Outside Legal Personnel</masterLabel>
+        <translation><!-- Outside Legal Personnel --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Paralegal</masterLabel>
+        <translation><!-- Paralegal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quicklinks</masterLabel>
+        <translation><!-- Quicklinks --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Responsible (Billing) Attorney</masterLabel>
+        <translation><!-- Responsible (Billing) Attorney --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Responsible Partner</masterLabel>
+        <translation><!-- Responsible Partner --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Working Attorney</masterLabel>
+        <translation><!-- Working Attorney --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

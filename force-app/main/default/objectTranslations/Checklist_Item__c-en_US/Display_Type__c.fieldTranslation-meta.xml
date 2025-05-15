@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- (Legacy)Display Type --></label>
+    <name>Display_Type__c</name>
+    <picklistValues>
+        <masterLabel>Checkbox Group</masterLabel>
+        <translation><!-- Checkbox Group --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Date</masterLabel>
+        <translation><!-- Date --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Multi Checkbox Picklist</masterLabel>
+        <translation><!-- Multi Checkbox Picklist --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Number</masterLabel>
+        <translation><!-- Number --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Radio Button</masterLabel>
+        <translation><!-- Radio Button --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Table</masterLabel>
+        <translation><!-- Table --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Text</masterLabel>
+        <translation><!-- Text --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Text Area</masterLabel>
+        <translation><!-- Text Area --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

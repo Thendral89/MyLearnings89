@@ -1,0 +1,366 @@
+<aura:component controller="cmpAPiManagDocumentCtrl" access="global" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,lightning:availableForFlowScreens" >
+    
+    <aura:attribute type="String" name="iManageFolderId" default="" />
+    <aura:attribute type="String" name="selectedFolderId" default="" />
+    <aura:attribute type="String" name="recordId" />
+    <aura:attribute type="List" name="ParentList" default="[]" />
+
+    
+    <aura:attribute type="List" name="items" default="[]" />
+    <aura:attribute type="List" name="list" default="[]" />
+    <aura:attribute type="List" name="listOne" default="[]" />
+    <aura:attribute type="List" name="listTwo" default="[]" />
+    <aura:attribute type="List" name="listThree" default="[]" />
+    <aura:attribute type="List" name="listFour" default="[]" />
+    <aura:attribute type="List" name="listFive" default="[]" />
+    <aura:attribute type="List" name="listSix" default="[]" />
+    <aura:attribute type="List" name="listSeven" default="[]" />
+    <aura:attribute type="List" name="listEighth" default="[]" />
+    <aura:attribute type="List" name="listNine" default="[]" />
+    <aura:attribute type="List" name="listTen" default="[]" />
+    
+    
+    <aura:attribute type="Boolean" name="loading" default="true" />
+    <aura:attribute type="Integer" name="level" default="1" />
+    
+    <aura:attribute type="String" name="SubselectedFolderId" default="" />
+    <aura:attribute type="Boolean" name="IsExpandedParent" default="false" />
+    <aura:attribute type="Boolean" name="IsExpanded" default="false" />
+    <aura:attribute type="Boolean" name="IsExpandedOne" default="false" />
+    <aura:attribute type="Boolean" name="IsExpandedTwo" default="false" />
+    <aura:attribute type="Boolean" name="IsExpandedThree" default="false" />
+    <aura:attribute type="Boolean" name="IsExpandedFour" default="false" />
+    <aura:attribute type="Boolean" name="IsExpandedFive" default="false" />
+    <aura:attribute type="Boolean" name="IsExpandedSix" default="false" />
+    <aura:attribute type="Boolean" name="IsExpandedSeven" default="false" />
+    <aura:attribute type="Boolean" name="IsExpandedEighth" default="false" />
+    <aura:attribute type="Boolean" name="IsExpandedNine" default="false" />
+    <aura:attribute type="Boolean" name="IsExpandedTen" default="false" />
+    <aura:attribute type="Boolean" name="IsConfigured" default="false" />
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.initialize}" />
+    <aura:registerEvent name="cmpAPiManageTreeEvent" type="c:cmpAPiManageTreeEvent"/>
+    
+    
+    <aura:if isTrue="{!v.loading}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+    
+    <ul class="{!v.level==1 ? 'slds-tree' : ''}" role="{!v.level == 1 ? 'tree' : 'group'}">
+        <aura:iteration items="{!v.ParentList}" var="itemParent" indexVar="i">
+            <li aria-expanded="{!itemParent.expanded}" aria-selected="{!itemParent.name == selectedFolderId ? 'true' : 'false'}" aria-label="{!itemParent.label}" aria-level="1" role="treeitem" data-id="{!itemParent.name}">
+                <div class="slds-tree__item">
+                    
+                    <aura:if isTrue="{!itemParent.subfolder>0}">
+                        
+                        <aura:if isTrue="{!v.IsExpandedParent!=true}">
+                    		<lightning:buttonIcon iconName="utility:chevronright"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandParent}" value="{!itemParent.name}"/>
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsExpandedParent==true}">
+                    		<lightning:buttonIcon iconName="utility:chevrondown"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandParent}" value="{!itemParent.name}"/>
+                        </aura:if>
+                        
+                    </aura:if>
+                    
+                    <span class="slds-grid" onclick="{!c.handleSelectNode}">
+                        <lightning:icon size="x-small" iconName="utility:open_folder" class="slds-m-right_x-small"/>
+                        <span class="slds-has-flexi-truncate">
+                            <span class="slds-tree__item-label slds-truncate" title="{!itemParent.label}">{!itemParent.label}</span>
+                        </span>
+                    </span>
+
+                </div>
+                
+                <aura:if isTrue="{!v.IsExpandedParent==true}">
+                    <aura:if isTrue="{!itemParent.subfolder>0}">
+                    
+    
+    <ul class="{!v.level==1 ? 'slds-tree' : ''}" role="{!v.level == 1 ? 'tree' : 'group'}">
+        <aura:iteration items="{!v.items}" var="item" indexVar="i">
+            <li aria-expanded="{!item.expanded}" aria-selected="{!item.name == selectedFolderId ? 'true' : 'false'}" aria-label="{!item.label}" aria-level="2" role="treeitem" data-id="{!item.name}">
+                <div class="slds-tree__item">
+                    
+                    <aura:if isTrue="{!item.subfolder>0}">
+                        
+                        <aura:if isTrue="{!v.IsExpanded!=true}">
+                    		<lightning:buttonIcon iconName="utility:chevronright"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpand}" value="{!item.name}"/>
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsExpanded==true}">
+                    		<lightning:buttonIcon iconName="utility:chevrondown"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpand}" value="{!item.name}"/>
+                        </aura:if>
+                        
+                    </aura:if>
+                    
+                    <span class="slds-grid" onclick="{!c.handleSelectNode}">
+                        <lightning:icon size="x-small" iconName="utility:open_folder" class="slds-m-right_x-small"/>
+                        <span class="slds-has-flexi-truncate">
+                            <span class="slds-tree__item-label slds-truncate" title="{!item.label}">{!item.label}</span>
+                        </span>
+                    </span>
+                </div>
+                
+                <aura:if isTrue="{!v.IsExpanded==true}">
+                    <aura:if isTrue="{!item.subfolder>0}">
+ 	 <ul class="{!v.level==1 ? 'slds-tree' : ''}" role="{!v.level == 1 ? 'tree' : 'group'}">
+        <aura:iteration items="{!v.listOne}" var="item" indexVar="i">
+            <li aria-expanded="{!item.expanded}" aria-selected="{!item.name == selectedFolderId ? 'true' : 'false'}" aria-label="{!item.label}" aria-level="3" role="treeitem" data-id="{!item.name}">
+                <div class="slds-tree__item">
+                    
+                    <aura:if isTrue="{!item.subfolder>0}">
+                        
+                        <aura:if isTrue="{!v.IsExpandedOne!=true}">
+                    		<lightning:buttonIcon iconName="utility:chevronright"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandOne}" value="{!item.name}"/>
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsExpandedOne==true}">
+                    		<lightning:buttonIcon iconName="utility:chevrondown"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandOne}" value="{!item.name}"/>
+                        </aura:if>
+                        
+                    </aura:if>
+                    
+                    <span class="slds-grid" onclick="{!c.handleSelectNode}">
+                        <lightning:icon size="x-small" iconName="utility:open_folder" class="slds-m-right_x-small"/>
+                        <span class="slds-has-flexi-truncate">
+                            <span class="slds-tree__item-label slds-truncate" title="{!item.label}">{!item.label}</span>
+                        </span>
+                    </span>
+                </div>
+                
+                <aura:if isTrue="{!v.IsExpandedOne==true}">
+                    <aura:if isTrue="{!item.subfolder>0}">
+                    	
+      <ul class="{!v.level==1 ? 'slds-tree' : ''}" role="{!v.level == 1 ? 'tree' : 'group'}">
+        <aura:iteration items="{!v.listTwo}" var="itemTwo" indexVar="i">
+            <li aria-expanded="{!item.expanded}" aria-selected="{!itemTwo.name == selectedFolderId ? 'true' : 'false'}" aria-label="{!itemTwo.label}" aria-level="4" role="treeitem" data-id="{!itemTwo.name}">
+                <div class="slds-tree__item">
+                    
+                    <aura:if isTrue="{!itemTwo.subfolder>0}">
+                        
+                        <aura:if isTrue="{!v.IsExpandedTwo!=true}">
+                    		<lightning:buttonIcon iconName="utility:chevronright"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandTwo}" value="{!itemTwo.name}"/>
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsExpandedTwo==true}">
+                    		<lightning:buttonIcon iconName="utility:chevrondown"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandTwo}" value="{!itemTwo.name}"/>
+                        </aura:if>
+                        
+                    </aura:if>
+                    
+                    <span class="slds-grid" onclick="{!c.handleSelectNode}">
+                        <lightning:icon size="x-small" iconName="utility:open_folder" class="slds-m-right_x-small"/>
+                        <span class="slds-has-flexi-truncate">
+                            <span class="slds-tree__item-label slds-truncate" title="{!itemTwo.label}">{!itemTwo.label}</span>
+                        </span>
+                    </span>
+                </div>
+                
+                <aura:if isTrue="{!v.IsExpandedTwo==true}">
+                    <aura:if isTrue="{!itemTwo.subfolder>0}">
+                    	
+      <ul class="{!v.level==1 ? 'slds-tree' : ''}" role="{!v.level == 1 ? 'tree' : 'group'}">
+        <aura:iteration items="{!v.listThree}" var="itemThree" indexVar="i">
+            <li aria-expanded="{!itemThree.expanded}" aria-selected="{!itemThree.name == selectedFolderId ? 'true' : 'false'}" aria-label="{!itemThree.label}" aria-level="5" role="treeitem" data-id="{!itemThree.name}">
+                <div class="slds-tree__item">
+                    
+                    <aura:if isTrue="{!itemThree.subfolder>0}">
+                        
+                        <aura:if isTrue="{!v.IsExpandedThree!=true}">
+                    		<lightning:buttonIcon iconName="utility:chevronright"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandThree}" value="{!itemThree.name}"/>
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsExpandedThree==true}">
+                    		<lightning:buttonIcon iconName="utility:chevrondown"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandThree}" value="{!itemThree.name}"/>
+                        </aura:if>
+                        
+                    </aura:if>
+                    
+                    <span class="slds-grid" onclick="{!c.handleSelectNode}">
+                        <lightning:icon size="x-small" iconName="utility:open_folder" class="slds-m-right_x-small"/>
+                        <span class="slds-has-flexi-truncate">
+                            <span class="slds-tree__item-label slds-truncate" title="{!itemThree.label}">{!itemThree.label}</span>
+                        </span>
+                    </span>
+                </div>
+                
+                <aura:if isTrue="{!v.IsExpandedThree==true}">
+                    <aura:if isTrue="{!itemThree.subfolder>0}">
+                    	
+	<ul class="{!v.level==1 ? 'slds-tree' : ''}" role="{!v.level == 1 ? 'tree' : 'group'}">
+        <aura:iteration items="{!v.listFour}" var="itemFour" indexVar="i">
+            <li aria-expanded="{!itemFour.expanded}" aria-selected="{!itemFour.name == selectedFolderId ? 'true' : 'false'}" aria-label="{!itemFour.label}" aria-level="6" role="treeitem" data-id="{!itemFour.name}">
+                <div class="slds-tree__item">
+                    
+                    <aura:if isTrue="{!itemFour.subfolder>0}">
+                        
+                        <aura:if isTrue="{!v.IsExpandedFour!=true}">
+                    		<lightning:buttonIcon iconName="utility:chevronright"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandFour}" value="{!itemFour.name}"/>
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsExpandedFour==true}">
+                    		<lightning:buttonIcon iconName="utility:chevrondown"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandFour}" value="{!itemFour.name}"/>
+                        </aura:if>
+                        
+                    </aura:if>
+                    
+                    <span class="slds-grid" onclick="{!c.handleSelectNode}">
+                        <lightning:icon size="x-small" iconName="utility:open_folder" class="slds-m-right_x-small"/>
+                        <span class="slds-has-flexi-truncate">
+                            <span class="slds-tree__item-label slds-truncate" title="{!itemFour.label}">{!itemFour.label}</span>
+                        </span>
+                    </span>
+                </div>
+                
+                <aura:if isTrue="{!v.IsExpandedFour==true}">
+                    <aura:if isTrue="{!itemFour.subfolder>0}">
+                    	
+      <ul class="{!v.level==1 ? 'slds-tree' : ''}" role="{!v.level == 1 ? 'tree' : 'group'}">
+        <aura:iteration items="{!v.listFive}" var="itemFive" indexVar="i">
+            <li aria-expanded="{!itemFive.expanded}" aria-selected="{!itemFive.name == selectedFolderId ? 'true' : 'false'}" aria-label="{!itemFive.label}" aria-level="7" role="treeitem" data-id="{!itemFive.name}">
+                <div class="slds-tree__item">
+                    
+                    <aura:if isTrue="{!itemFive.subfolder>0}">
+                        
+                        <aura:if isTrue="{!v.IsExpandedFive!=true}">
+                    		<lightning:buttonIcon iconName="utility:chevronright"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandFive}" value="{!itemFive.name}"/>
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsExpandedFive==true}">
+                    		<lightning:buttonIcon iconName="utility:chevrondown"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandFive}" value="{!itemFive.name}"/>
+                        </aura:if>
+                        
+                    </aura:if>
+                    
+                    <span class="slds-grid" onclick="{!c.handleSelectNode}">
+                        <lightning:icon size="x-small" iconName="utility:open_folder" class="slds-m-right_x-small"/>
+                        <span class="slds-has-flexi-truncate">
+                            <span class="slds-tree__item-label slds-truncate" title="{!itemFive.label}">{!itemFive.label}</span>
+                        </span>
+                    </span>
+                </div>
+                
+                <aura:if isTrue="{!v.IsExpandedFive==true}">
+                    <aura:if isTrue="{!itemFive.subfolder>0}">
+                    	
+     <ul class="{!v.level==1 ? 'slds-tree' : ''}" role="{!v.level == 1 ? 'tree' : 'group'}">
+        <aura:iteration items="{!v.listSix}" var="itemSix" indexVar="i">
+            <li aria-expanded="{!itemSix.expanded}" aria-selected="{!itemSix.name == selectedFolderId ? 'true' : 'false'}" aria-label="{!itemSix.label}" aria-level="8" role="treeitem" data-id="{!itemSix.name}">
+                <div class="slds-tree__item">
+                    
+                    <aura:if isTrue="{!itemSix.subfolder>0}">
+                        
+                        <aura:if isTrue="{!v.IsExpandedSix!=true}">
+                    		<lightning:buttonIcon iconName="utility:chevronright"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandSeven}" value="{!itemSix.name}"/>
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsExpandedSix==true}">
+                    		<lightning:buttonIcon iconName="utility:chevrondown"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandSeven}" value="{!itemSix.name}"/>
+                        </aura:if>
+                        
+                    </aura:if>
+                    
+                    <span class="slds-grid" onclick="{!c.handleSelectNode}">
+                        <lightning:icon size="x-small" iconName="utility:open_folder" class="slds-m-right_x-small"/>
+                        <span class="slds-has-flexi-truncate">
+                            <span class="slds-tree__item-label slds-truncate" title="{!itemSix.label}">{!itemSix.label}</span>
+                        </span>
+                    </span>
+                </div>
+                
+                <aura:if isTrue="{!v.IsExpandedSix==true}">
+                    <aura:if isTrue="{!itemSix.subfolder>0}">
+                    	
+     <ul class="{!v.level==1 ? 'slds-tree' : ''}" role="{!v.level == 1 ? 'tree' : 'group'}">
+        <aura:iteration items="{!v.listSeven}" var="itemSeven" indexVar="i">
+            <li aria-expanded="{!itemSeven.expanded}" aria-selected="{!itemSeven.name == selectedFolderId ? 'true' : 'false'}" aria-label="{!itemSeven.label}" aria-level="10" role="treeitem" data-id="{!itemSeven.name}">
+                <div class="slds-tree__item">
+                    
+                    <aura:if isTrue="{!itemSeven.subfolder>0}">
+                        
+                        <aura:if isTrue="{!v.IsExpandedSeven!=true}">
+                    		<lightning:buttonIcon iconName="utility:chevronright"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandEigth}" value="{!itemSeven.name}"/>
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsExpandedSeven==true}">
+                    		<lightning:buttonIcon iconName="utility:chevrondown"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSelectedFolderExpandEigth}" value="{!itemSeven.name}"/>
+                        </aura:if>
+                        
+                    </aura:if>
+                    
+                    <span class="slds-grid" onclick="{!c.handleSelectNode}">
+                        <lightning:icon size="x-small" iconName="utility:open_folder" class="slds-m-right_x-small"/>
+                        <span class="slds-has-flexi-truncate">
+                            <span class="slds-tree__item-label slds-truncate" title="{!itemSeven.label}">{!itemSeven.label}</span>
+                        </span>
+                    </span>
+                </div>
+                
+                <aura:if isTrue="{!v.IsExpandedSeven==true}">
+                    <aura:if isTrue="{!itemSeven.subfolder>0}">
+                    	
+                        
+                	</aura:if>
+                </aura:if>
+                
+                
+            </li>
+        </aura:iteration>
+    </ul>	
+                        
+                        
+                	</aura:if>
+                </aura:if>
+            </li>
+        </aura:iteration>
+    </ul>	
+                        
+                        
+                	</aura:if>
+                </aura:if>
+            </li>
+        </aura:iteration>
+    </ul>	
+                        
+                        
+                	</aura:if>
+                </aura:if>
+            </li>
+        </aura:iteration>
+    </ul>	
+                        
+                	</aura:if>
+                </aura:if>
+            </li>
+        </aura:iteration>
+    </ul>	
+                        
+                        
+                	</aura:if>
+                </aura:if>
+            </li>
+        </aura:iteration>
+    </ul>	
+                        
+                        
+                	</aura:if>
+                </aura:if>
+            </li>
+        </aura:iteration>
+    </ul>	
+					                        
+                	</aura:if>
+                </aura:if>
+            </li>
+        </aura:iteration>
+    </ul>
+    
+    				</aura:if>
+                </aura:if>
+            </li>
+        </aura:iteration>
+    </ul>
+    
+    
+</aura:component>

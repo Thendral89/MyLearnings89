@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Docketing_Activity__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Docketing Activity</label>
+    <referenceTo>SymphonyLF__Docketing_Activity__c</referenceTo>
+    <relationshipLabel>Docket Report External</relationshipLabel>
+    <relationshipName>Docket_Report_External</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

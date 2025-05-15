@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Client Reporting --></label>
+    <name>Reported__c</name>
+    <picklistValues>
+        <masterLabel>No Reporting Needed</masterLabel>
+        <translation><!-- No Reporting Needed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reported to Client</masterLabel>
+        <translation><!-- Reported to Client --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>To be Reported</masterLabel>
+        <translation><!-- To be Reported --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,85 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 04-26-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <div class="slds-form-element enhanced-input-container">
+    
+        <div class="slds-combobox_container">
+            <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click enhanced-combobox">
+                <div class="selected-pills-container" role="combobox">
+                    <!-- Pills -->
+                    <div class="selected-pills">
+                        <template for:each={selectedEmails} for:item="email">
+                            <lightning-pill
+                                key={email}
+                                label={email}
+                                variant="circle"
+                                class="email-pill"
+                                onremove={handleRemove}
+                            ></lightning-pill>
+                        </template>
+                    </div>
+                    <!-- Input Field -->
+                    <input
+                        id="email-input"
+                        class="email-input"
+                        type="text"
+                        placeholder={placeholder}
+                        onfocus={searchField}
+                        oninput={handleInputChange}
+                        onkeypress={handleKeyPress}
+                        onkeydown={handleKeyDown}
+                        value={inputValue}
+                        autocomplete="off"
+                    />
+                </div>
+            </div>
+            <!-- Dropdown -->
+            <template if:true={showDropdown}>
+                <div class="enhanced-dropdown">
+                    <ul
+                        class="slds-listbox slds-listbox_vertical enhanced-listbox"
+                        role="listbox"
+                    >
+                        <template for:each={filteredRecords} for:item="record" for:index="index">
+                            <li
+                                key={record.id}
+                                role="presentation"
+                                class={record.computedClass}
+                                data-id={record.id}
+                                onclick={handleSelect}
+                                data-index={index}
+                            >
+                                <div
+                                    class="slds-media slds-listbox__option slds-listbox__option_entity enhanced-listbox__option"
+                                    role="option"
+                                >
+                                    <span class="slds-media__figure">
+                                        <lightning-icon icon-name={record.src} size="small"></lightning-icon>
+                                    </span>
+                                    <span class="slds-media__body">
+                                        <span class="slds-listbox__option-text">
+                                            <strong>{record.label}</strong>
+                                            {record.email}
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+                        </template>
+                        <template if:true={noResults}>
+                            <li
+                                class="slds-listbox__item slds-text-title enhanced-listbox__no-result"
+                            >
+                                No Emails found.
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

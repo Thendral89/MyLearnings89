@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>workspace_name_formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+ISBLANK(workspace_name__c),
+iManage_Folders__r.iManage_Workspace__r.name__c,
+workspace_name__c
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>workspace_name_formula</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

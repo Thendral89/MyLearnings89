@@ -1,0 +1,261 @@
+<!--
+  @description       : 
+  @author            : Nikhil Agarwal
+-->
+<template>
+    <template if:true={loading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+    <template if:false={loading}>
+    <section class="slds-modal slds-fade-in-open slds-modal_small">
+        <div class="slds-modal__container custom-modal-container">
+             <button
+                class="slds-button slds-button_icon slds-modal__close"
+                title="Close"
+                onclick={handleCancel}
+            >
+                <lightning-icon
+                    icon-name="utility:close"
+                    alternative-text="Close"
+                    size="small"
+                ></lightning-icon>
+                <span class="slds-assistive-text">Close</span>
+                </button>
+            <div class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">{headerText}</h2>
+            </div>     
+            <div class="slds-modal__content slds-p-around_medium" style="min-height: 200px;">
+                        <p class="required-text slds-grid slds-grid_align-end">* = Required Information</p>
+                        <template if:true={selectedRelatedId}>
+                            <div class="slds-card__header-title">Task Related To</div>
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                                    <a data-record-id={task.WhatId} onclick={handleNavigateToWhatId} class="slds-text-body_regular">
+                                        {relatedToName}
+                                    </a>                                   
+                                </div>
+                            </div>
+                        </template>
+
+                        <div class="slds-card__header-title">Task Information</div>
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                                <lightning-combobox 
+                                    label="Subject" 
+                                    value={task.Subject}
+                                    options={subjectOptions} 
+                                    data-field="Subject"
+                                    onchange={handleInputChange}
+                                    required>
+                                </lightning-combobox>                                    
+                            </div>
+                            <!-- <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                                <lightning-input 
+                                    label="Title" 
+                                    value={task.SymphonyIPM__Title__c} 
+                                    onchange={handleInputChange}
+                                    data-field="SymphonyIPM__Title__c">
+                                </lightning-input>
+                            </div> -->
+
+                            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                                <lightning-combobox 
+                                    label="Direction" 
+                                    value={task.Direction__c}
+                                    options={directionOptions} 
+                                    data-field="Direction__c" 
+                                    onchange={handleInputChange}>
+                                </lightning-combobox>
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                                <c-dynamic-search-and-select -label="Assigned To"
+                                    object-name={assignedToObjectApi} 
+                                    placeholder="Search"
+                                    search-field-names={collectionFieldNames}
+                                    query-field-names={collectionfieldsToQuery}
+                                    dropdown-option-fields="1"
+                                    selected-record-representation="1" 
+                                    icon-name="standard:avatar"
+                                    onselected ={handleAssignedToSelection}
+                                    final-sel-id ={selectedAssignedId}
+                                    min-search-txt-len = 0
+                                    limit= 50
+                                    required = true>  
+                                </c-dynamic-search-and-select>
+                            </div>            
+
+                            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                                <lightning-combobox 
+                                    label="Priority" 
+                                    value={task.Priority}
+                                    options={priorityOptions} 
+                                    data-field="Priority" 
+                                    required 
+                                    onchange={handleInputChange}>
+                                </lightning-combobox>
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                                <lightning-combobox 
+                                    label="Task Type" 
+                                    placeholder="--None--" 
+                                    options={taskTypeOptions} 
+                                    data-field="Task_Type__c" 
+                                    onchange={handleInputChange}
+                                    value={task.Task_Type__c}>
+                                </lightning-combobox>
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                                <lightning-combobox 
+                                    label="Status" 
+                                    value={task.Status}
+                                    options={statusOptions} 
+                                    data-field="Status" 
+                                    required 
+                                    onchange={handleInputChange}>
+                                </lightning-combobox>
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                                <lightning-combobox
+                                    name="objectSelection"
+                                    label="Select Object"
+                                    placeholder="Choose an object"
+                                    options={relatedToObjects}
+                                    value={selectedRelatedToObject}
+                                    onchange={handleObjectChange}>
+                                </lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                                <template if:true={selectedRelatedToObject}>
+                                    <c-dynamic-search-and-select -label="Related To"
+                                        object-name={selectedRelatedToObject} 
+                                        placeholder="Search Related.."
+                                        search-field-names={collectionFieldNames}
+                                        query-field-names={collectionfieldsToQuery}
+                                        dropdown-option-fields="1"
+                                        selected-record-representation="1" 
+                                        icon-name="standard:record"
+                                        onselected ={handleRelatedToSelection}
+                                        final-sel-id ={selectedRelatedId}
+                                        where-clause={clientRelatedtoCondition}
+                                        min-search-txt-len = 0
+                                        limit= 50>  
+                                    </c-dynamic-search-and-select>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="slds-card__header-title">Comments</div>
+                        <div class="slds-p-around_medium">
+                            <lightning-textarea
+                                label="Comments"
+                                value={task.Description}
+                                data-field="Description"
+                                onchange={handleInputChange}
+                                maxlength="32000">
+                            </lightning-textarea>
+                            <!-- <lightning-textarea
+                                label="Paralegal Comment"
+                                value={task.Paralegal_Comment__c}
+                                data-field="Paralegal_Comment__c"
+                                onchange={handleInputChange}
+                                disabled={isNotParalegal}
+                                maxlength="255">
+                            </lightning-textarea>
+                            <lightning-textarea
+                                label="Attorney Comment"
+                                value={task.Attorney_Comment__c}
+                                data-field="Attorney_Comment__c"
+                                onchange={handleInputChange}
+                                disabled={isNotAttorney}
+                                maxlength="255">
+                            </lightning-textarea>
+                            <lightning-textarea
+                                label="Agent Comment"
+                                value={task.Agent_Comment__c}
+                                data-field="Agent_Comment__c"
+                                onchange={handleInputChange}
+                                disabled={isNotAgent}
+                                maxlength="255">
+                            </lightning-textarea> -->
+                        </div>
+                        <div class="slds-card__header-title">Description Information</div>
+                        <div class="slds-p-around_medium">
+                            <lightning-input 
+                                type="checkbox"
+                                label="Reminder Set"
+                                checked={task.IsReminderSet}
+                                data-field="IsReminderSet"
+                                onchange={handleInputChange}
+                                >
+                            </lightning-input>
+                            <template if:true={task.IsReminderSet}>
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col">
+                                        <lightning-input 
+                                            type="datetime" 
+                                            name="input1" 
+                                            value={task.ReminderDateTime}
+                                            data-field="ReminderDateTime"
+                                            onchange={handleInputChange}>
+                                        </lightning-input>
+                                    </div>
+                                </div>
+                            </template>
+
+                            <lightning-input
+                                type="date"
+                                label="Due Date"
+                                value={task.ActivityDate}
+                                data-field="ActivityDate"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-card__header-title">Files</div>
+                        <div class="slds-col slds-size_1-of-1 slds-p-around_small">
+                            <lightning-file-upload
+                                label="Upload Files"
+                                name="fileUploader"
+                                record-id={taskId}
+                                multiple
+                                onuploadfinished={handleUploadFinished}
+                                >
+                            </lightning-file-upload>
+                            <template if:true={files.length}>
+                                <div class="slds-m-top_small">
+                                    <div class="slds-m-top_small" style="display: flex; align-items: center; margin-bottom: 10px;">
+                                        <!-- <template if:false={getBooleanValue}>
+                                            <lightning-helptext 
+                                                content="Selected Files are moved to Final Documents."
+                                                class="slds-m-left_x-small"
+                                            ></lightning-helptext>
+                                        </template> -->
+                                        <h3 style="font-weight: bold; margin-left: 10px; display: inline;">Uploaded Files:</h3>
+                                    </div>
+                                    <lightning-datatable 
+                                        key-field="Id"
+                                        data={files}
+                                        columns={columns}
+                                        onrowselection={handleRowSelection}
+                                        selected-rows={preSelectedRows}
+                                        hide-checkbox-column = {getBooleanValue}
+                                        >
+                                    </lightning-datatable>
+                                </div>
+                            </template>
+                        </div>             
+            </div>
+            <div class="slds-modal__footer">
+                    <div class="slds-grid slds-grid_align-center slds-p-around_medium">
+                        <lightning-button label="Cancel" variant="neutral" onclick={handleCancel} class="slds-m-right_small"></lightning-button>
+                        <lightning-button label="Save" variant="brand" onclick={handleSave}></lightning-button>
+                    </div>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+
+    </template>
+</template>

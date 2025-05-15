@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Tracker__c</fullName>
+    <externalId>false</externalId>
+    <label>Email Tracker</label>
+    <referenceTo>SymphonyLF__Email_Tracker__c</referenceTo>
+    <relationshipLabel>Related Email Tracker</relationshipLabel>
+    <relationshipName>Related_Email_Tracker</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

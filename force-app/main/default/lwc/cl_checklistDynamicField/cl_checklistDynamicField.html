@@ -1,0 +1,66 @@
+<template>
+    <div class="slds-p-horizontal_x-small">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1">
+                <template if:true={isText}>
+                    <lightning-input type="text" maxlength={fieldData.maxLength} field-level-help={fieldData.helpText} label={fieldData.label} disabled={isDisabled} value={fieldData.value} onblur={handleBlur}></lightning-input>
+                </template>
+                <template if:true={isDate}>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="text-input-id-47">{fieldData.label}</label>
+                        <div class="slds-form-element__control">
+                          <input type="date" id="text-input-id-47" value={fieldData.value}  disabled={isDisabled} class="slds-input" onblur={handleBlur}/>
+                        </div>
+                    </div>
+                </template>
+                <template if:true={isNumber}>
+                    <template if:true={isAmountField}>
+                        <div class="currency-wrapper">
+                            <span class="currency-symbol">$</span>
+                            <lightning-input
+                                type="number"
+                                field-level-help={fieldData.helpText}
+                                label={fieldData.label}
+                                disabled={isDisabled}
+                                value={fieldData.value}
+                                onblur={handleBlur}
+                                class="currency-input">
+                            </lightning-input>
+                        </div>
+                    </template>
+                    <template if:false={isAmountField}>
+                        <lightning-input
+                            type="number"
+                            field-level-help={fieldData.helpText}
+                            label={fieldData.label}
+                            disabled={isDisabled}
+                            value={fieldData.value}
+                            onblur={handleBlur}>
+                        </lightning-input>
+                    </template>
+                    <!-- <lightning-input type="number" field-level-help={fieldData.helpText} label={fieldData.label} disabled={isDisabled} value={fieldData.value} onblur={handleBlur}></lightning-input> -->
+                </template>
+                <template if:true={isPicklist}>
+                    <lightning-radio-group class="custom-radio"
+                          label={fieldData.label}
+                          options={fieldData.options}
+                          disabled={isDisabled} 
+                          value={fieldData.value}
+                          onchange={handleBlur}
+                          type="radio"></lightning-radio-group>
+                </template>
+                <template if:true={isCheckbox}>
+                    <lightning-input type="checkbox" field-level-help={fieldData.helpText} label={fieldData.label} disabled={isDisabled} checked={fieldData.value} onchange={handleCbxChange}></lightning-input>
+                </template>
+                <template if:true={isMultiPicklist}>
+                    <lightning-checkbox-group
+                        label={fieldData.label}
+                        disabled={isDisabled}
+                        options={fieldData.options}
+                        value={fieldData.value}
+                        onchange={handleCbxGroupBlur}></lightning-checkbox-group>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

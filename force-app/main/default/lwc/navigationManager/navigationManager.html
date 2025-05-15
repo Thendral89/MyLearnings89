@@ -1,0 +1,7 @@
+<template>
+    <div class="breadcrumb">
+        <template for:each={navigationElements} for:item="navigationElement">
+            <a key={navigationElement.id} class={navigationElement.className} style={navigationWidth}>{navigationElement.labelName} </a> 
+        </template>
+    </div>
+</template>

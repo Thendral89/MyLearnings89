@@ -1,0 +1,23 @@
+.inputPadding {
+    /* font-weight: bold; */
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.slds-modal__container {
+    max-width: 80rem !important;
+    width: 80% !important;
+}
+
+.mem-grid thead tr th:nth-child(8) {
+    display: none !important;
+}
+
+.mem-grid tbody tr th:nth-child(8) {
+    display: none !important;
+}
+
+.mem-grid .iconContainer svg {
+    fill: orange;
+}

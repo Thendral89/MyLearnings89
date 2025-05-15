@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Docket Activity - Assigned To</label>
+    <protected>false</protected>
+    <values>
+        <field>advs__AllowEmptyFalse__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>advs__ExtensionClassName__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>advs__ExtensionComponentName__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>advs__FieldApiName__c</field>
+        <value xsi:type="xsd:string">SymphonyLF__Assigned_To_User__c</value>
+    </values>
+    <values>
+        <field>advs__IsActive__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>advs__ObjectApiName__c</field>
+        <value xsi:type="xsd:string">SymphonyLF__Docketing_Activity__c</value>
+    </values>
+</CustomMetadata>

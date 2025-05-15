@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Current Page --></label>
+    <name>Current_Page__c</name>
+    <picklistValues>
+        <masterLabel>Applicants</masterLabel>
+        <translation><!-- Applicants --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Classes and Goods</masterLabel>
+        <translation><!-- Classes and Goods --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Innovators</masterLabel>
+        <translation><!-- Innovators --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jurisdiction</masterLabel>
+        <translation><!-- Jurisdiction --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Personnel</masterLabel>
+        <translation><!-- Personnel --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

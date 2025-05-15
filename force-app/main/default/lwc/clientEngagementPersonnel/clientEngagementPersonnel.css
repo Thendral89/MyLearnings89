@@ -1,0 +1,24 @@
+/* Import the Common cssLibrary */
+@import 'c/cssLibrary';
+
+/* Define any styles pertaining to this component below */
+.sticky {
+    overflow: visible !important;
+    position: relative;
+}
+
+/* .highlightsPanelInputField .slds-dropdown_fluid,
+.highlightsPanelInputField .slds-dropdown {
+    z-index: 9999 !important;
+    overflow: visible !important;
+} */
+
+
+.reviewAnnouncement{
+    border: 1px solid #333333;
+    font-weight: normal;
+    size: 1rem;
+    background-color: #fdc68360;
+    margin-bottom:1px;
+    color: #181818;
+}

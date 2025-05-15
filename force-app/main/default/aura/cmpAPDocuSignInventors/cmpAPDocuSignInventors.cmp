@@ -1,0 +1,89 @@
+<aura:component controller="cmpAPInventorCtrl" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,lightning:availableForFlowScreens" access="global" >
+    <aura:attribute name="types" type="String[]" />
+    <aura:attribute name="SelectedIds" type="List"/>
+     <aura:attribute name="strSelectedInventorIds" type="string" access="global" default=""/>
+    <aura:attribute name="columns1" type="List"/> 
+    <aura:attribute name="IsPatent" type="Boolean" default = "false"/>
+    <aura:attribute name="IsShow" type="Boolean" default = "false"/>
+    <aura:attribute name="Column" type="List"/>    
+    <aura:attribute name="Data" type="object[]" />
+    <aura:attribute name="LabelName" type="string" />
+    <aura:attribute name="sortedBy" type="String" default="Name"/>
+    <aura:attribute name="sortedDirection" type="String" default="asc"/>
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="IsAdminAward" type="Boolean" default = "false"/>
+    
+  
+     <lightning:card title="">
+         
+ <div class="slds-clearfix">
+     
+     <!--
+     <lightning:icon iconName="utility:info_alt" alternativeText="More Details" title="More Details" size="x-small" class="info_alt-icn" />
+     If wants to add or remove Innovators. Please use Innovators related list flow on the Patent Details page right side.
+     <br/>
+    -->
+     
+  <div class="slds-float_left">
+    {!v.LabelName}
+  </div>
+  <div class="slds-float_right">
+    <lightning:buttonIcon iconName="utility:refresh" variant="bare" size="medium"  onclick="{!c.doInit}" />&nbsp;
+    <lightning:buttonIcon iconName="utility:adduser" variant="bare" size="medium"  onclick="{!c.NewRecord}" />&nbsp; 
+  </div>
+   
+</div>
+     
+         
+       <aura:if  isTrue="{!v.Data.length>0}" >
+        
+        <lightning:datatable data="{! v.Data}"
+                             aura:id="Table"
+                             columns="{!v.Column}"
+                             keyField="Id"
+                             onrowselection="{!c.OnSelectedRows}"
+                             maxColumnWidth ="500"
+                             minColumnWidth ="30"
+                             showRowNumberColumn="false"
+                             hideCheckboxColumn="false"
+                             onrowaction="{! c.handleRowAction }"
+                         	 onsort="{!c.handleSort}"
+                             /> 
+        
+    	</aura:if>
+       
+         
+         
+        </lightning:card>
+    
+     	
+
+    <aura:if isTrue="{!v.IsShow}">
+        <div Style="height:500px;" >
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick='{!c.closeModal}'>
+                            <lightning:icon iconName="utility:close" alternativeText="Close" variant="inverse" size="small"/>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                    </header>
+                    
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate inlineTitle slds-p-top--large slds-p-horizontal--medium slds-p-bottom--medium slds-text-heading--medium"></h2>
+                        <div class='modal__content'>
+                           <lightning:flow aura:id="flowData" onstatuschange="{!c.statusChange}"/>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+    
+
+    
+</aura:component>

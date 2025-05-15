@@ -1,0 +1,148 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-03-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-spinner if:true={showSpinner}></lightning-spinner>
+    <template if:true={hasTask} for:each={_taskList} for:item="task" for:index="index">
+        <div key={task.Id} class="slds-grid slds-grid_align-spread hoverable">
+            <div class="slds-col slds-large-size_8-of-12 slds-small-size_6-of-12">
+                <div class="slds-col slds-grid">
+                    <!-- <div class="slds-col"> -->
+                        <div class="slds-col">
+                            <input type="checkbox" checked={task.checked} data-index={index} onchange={handleCbxChange}
+                            class="checkbox slds-m-right_x-small slds-m-left_xxx-small uiInput uiInputCheckbox uiInput--default uiInput--checkbox">
+                        </div>
+                        <div class="slds-col">
+                            <lightning-icon variant="inverse" icon-name="utility:new_window" class="custom-icon-color"
+                                            size="x-small"
+                                            onclick={handleNavigateToTaskDetail}
+                                            data-record-id={task.Id}>
+                            </lightning-icon>
+                            <a data-id={task.Id} onclick={handleRecordClick} class="slds-text-body_regular" style="margin-left: 8px;">
+                                <!-- <b if:true={task.SymphonyIPM__Title__c}>{task.SymphonyIPM__Title__c}</b>
+                                <b if:false={task.SymphonyIPM__Title__c}>{task.Subject}</b> -->
+                                <b>{task.Subject}</b>
+                            </a>
+                        </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+            <div class="slds-col slds-large-size_4-of-12 slds-small-size_6-of-12">
+                <div class="slds-col slds-grid slds-size_1-of-1 slds-grid_align-end">
+                    <lightning-formatted-date-time if:false={task.IsClosed} class={task.dueDateClass} value={task.ActivityDate}>
+                    </lightning-formatted-date-time>
+                </div>
+            </div>
+        </div>
+
+        <div key={task.Id} class="slds-grid itemRows-subvalue row-bottom slds-p-bottom_xx-small">
+            <div class="slds-col slds-size_1-of-1 slds-p-right_x-small  slds-p-left_x-large">
+                <div class="">
+                    <div class="slds-grid"> 
+                        <div class="slds-col slds-large-size_8-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                            <template if:false={hideRelated}>
+                                <c-my-task-popover-container if:true={task.WhatId} onclick={handleNavigateToWhatId} record-id={task.WhatId} record-name={task.What.Name} data-record-id={task.WhatId}>
+                                </c-my-task-popover-container>
+                            </template>
+                            
+                        </div>
+                        <div class="slds-col slds-large-size_4-of-12 slds-small-size_6-of-12">
+                            <div class="slds-col slds-grid slds-size_1-of-1 slds-grid_align-end">
+                                <lightning-formatted-text if:false={task.IsClosed} class={task.dueDateClass} value={task.Due_In_Days__c}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-m-top_x-small">
+                    <div class="slds-grid ">
+                        <div class="slds-col slds-size_6-of-12 slds-p-right_medium">
+                            <template if:false={hidePriority}>
+                                <span if:false={task.isEditPriority} class="slds-badge" style={task.priorityStyle}>
+                                    <span class="slds-badge__icon slds-badge__icon_left">
+                                        <lightning-icon variant="inverse" icon-name="utility:priority"
+                                            size="x-small"></lightning-icon>
+                                    </span>
+                                    {task.Priority}
+                                    <span class="slds-badge__icon slds-badge__icon_right">
+                                        <lightning-icon variant="inverse" icon-name="utility:edit" size="x-small"
+                                            data-index={index} data-field="isEditPriority"
+                                            onclick={handleTaskEdit}></lightning-icon>
+                                    </span>
+                                </span>
+                                <lightning-combobox variant="label-hidden" label="Priority" data-id={task.Id}
+                                    data-field="Priority" if:true={task.isEditPriority} data-index={index}
+                                    options={priorityOptions} value={task.Priority} 
+                                    onchange={handleTaskFieldChange}></lightning-combobox>
+                            </template>
+                        </div>
+                        <div class="slds-col slds-size_6-of-12 slds-p-left_medium">
+                            <template if:false={hideStatus}>
+                                <span if:false={task.isEditStatus} class="slds-badge" style={task.statusStyle}>
+                                    <span class="slds-badge__icon slds-badge__icon_left">
+                                        <lightning-icon variant="inverse" icon-name="utility:clock"
+                                            size="x-small"></lightning-icon>
+                                    </span>
+                                    {task.Status}
+                                    <span class="slds-badge__icon slds-badge__icon_right">
+                                        <lightning-icon variant="inverse" icon-name="utility:edit" size="x-small"
+                                            data-index={index} data-field="isEditStatus"
+                                            onclick={handleTaskEdit}></lightning-icon>
+                                    </span>
+                                </span>
+                                <lightning-combobox variant="label-hidden" label="Status" if:true={task.isEditStatus}
+                                    data-id={task.Id} data-field="Status" data-index={index} options={statusOptions}
+                                    value={task.Status} onchange={handleTaskFieldChange}></lightning-combobox>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+                <div if:true={additionalFieldOneLabel} class="slds-text-body_small slds-m-top_x-small">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_3-of-12 truncate"><strong>{additionalFieldOneLabel}</strong></div>
+                        <div class="slds-col slds-size_9-of-12"><strong>:</strong>
+                            <lightning-formatted-text class="slds-p-left_small"
+                                value={task.additionalFieldOneVal}></lightning-formatted-text>
+                        </div>
+                    </div>
+                </div>
+                <div if:true={additionalFieldTwoLabel} class="slds-text-body_small slds-m-top_x-small">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_3-of-12 truncate"><strong>{additionalFieldTwoLabel}</strong></div>
+                        <div class="slds-col slds-size_9-of-12"><strong>:</strong>
+                            <lightning-formatted-text class="slds-p-left_small"
+                                value={task.additionalFieldTwoVal}></lightning-formatted-text>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-text-body_small slds-m-top_x-small">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_3-of-12 truncate"><strong>{createOrAssignedLabel}</strong></div>
+                        <div class="slds-col slds-size_9-of-12"><strong>:</strong>
+                            <a data-record-id={task.userOrAssignedID} onclick={handleNavigateToUserorAssignedDetail} class="slds-p-left_small">
+                                {task.createOrAssignedFieldVal}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-text-body_small slds-m-top_x-small">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_3-of-12 truncate"><strong>Created Date</strong></div>
+                        <div class="slds-col slds-size_9-of-12"><strong>:</strong>
+                            <lightning-formatted-date-time class="slds-p-left_small" value={task.CreatedDate}>
+                            </lightning-formatted-date-time>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:false={hasTask}>
+        <div class=" slds-m-top_medium slds-text-align_center">You don’t have any tasks in this list. Look in a
+            different list, or create a task.</div>
+    </template>
+</template>

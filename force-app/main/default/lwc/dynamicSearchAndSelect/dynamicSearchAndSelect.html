@@ -1,0 +1,98 @@
+<!--
+    Copyright © 2022 MaxVal Group. All Rights Reserved.
+    Unauthorized copying of this file, via any medium is strictly prohibited
+    Proprietary and confidential
+    Developed by: Aman Deep (aman.d@maxval.com)
+ -->
+<!-- sldsValidatorIgnore -->
+<template>
+    <!-- <lightning-card> -->
+        
+        <!-- <div slot="footer"> 
+                
+        </div> -->
+       <span onkeypress={enterkeyevent}>
+        <div>
+            <div class="slds-form-element">
+                
+                <div class="slds-form-element__control">
+                    <div class="slds-combobox_container">
+                        
+                        <div class={txtclassname} data-id="resultBox" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                            <template if:true={Label}>
+                                <p class="slds-m-bottom_xx-small slds-p-top_xx-small slds-text-title slds-text-color_weak"><template if:true={required}><abbr title="required" class="slds-required">*</abbr></template>{Label}</p>
+                            </template>
+                            <template if:false={hasRecId}>
+                                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon slds-input-has-icon_left-right" role="none">
+                                    <lightning-input disabled={disabled} data-id="userinput" autocomplete={autocomplete} value={enteredText} type="search" variant={labelVariant} label={Label} name="searchText" onfocus={searchField} onchange={searchField} onkeydown={handleKeyDown} onblur={handleBlur} class="searchBox leftspace" placeholder={placeholder}></lightning-input>
+                                </div>
+                                <template if:true={noSelectionError}>
+                                <div class="slds-text-title slds-text-color_error slds-m-top_xxx-small">{noSelectionError}</div>
+                                </template>
+                            </template>
+                            <template if:true={hasRecId}>
+                                <template for:each={selectedRecords} for:item="serecord">
+                                    <div key={serecord.recId} class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right" role="none">
+                                        <span class={iconClass}>
+                                            <lightning-icon icon-name={iconName} ></lightning-icon>
+                                        </span>                                        
+                                        <lightning-input type="text" style="width: 100%;" variant={labelVariant} label={Label} value={serecord.recLabel}  disabled></lightning-input>
+                                        <button if:false={disabled} name={serecord.recId} type="button" class={btnClass} onclick={removeRecord}>
+                                            <lightning-icon icon-name="utility:close" size="x-small"></lightning-icon>
+                                        </button>
+                                    </div>
+                                </template>
+                            </template>
+                            <template if:true={error}>
+                                <div class="slds-text-title slds-text-color_error slds-m-top_xxx-small">{error}</div>
+                            </template>
+                            <template if:false={hasRecId}>
+                                <template if:true={showPills}>
+                                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon slds-input-has-icon_left-right" role="none">
+                                    <template for:each={selectedRecords} for:item="serecord">
+                                        <span key={serecord.recId}>
+                                        <lightning-pill label={serecord.recLabel} name={serecord.recId} onremove={removeRecord}>
+                                            <lightning-icon icon-name={iconName} variant="circle" alternative-text="icon"></lightning-icon>
+                                        </lightning-pill>
+                                        </span>
+                                    </template>
+                                </div>
+                                </template>
+                            </template> 
+                        <template if:false={disableAutoDropdown}>
+                            <!-- Second part display result -->
+                                <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox" onmouseover={handleDropdownHoverIn} onmouseenter={handleDropdownHoverIn} onmouseleave ={handleDropdownHoverOut}>
+                                    <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                        <template if:false={LoadingText} for:each={searchRecords} for:item="serecord">
+                                            <li role="presentation" class="slds-listbox__item" key={serecord.Id}>                                                
+                                                <div data-id={serecord.Id} onclick={setSelectedRecord} style="align-items: center;" class="slds-media slds-listbox__option slds-listbox__option_entity" role="option">
+                                                    <span class="slds-media__figure">
+                                                        <span class="slds-icon_container">
+                                                            <lightning-icon icon-name={iconName} size="small"></lightning-icon>
+                                                        </span>
+                                                    </span>
+                                                    <span class="slds-media__body">
+                                                        <span class="slds-listbox__option-text slds-listbox__option-text_entity">{serecord.optHeading}</span>
+                                                        <template if:true={serecord.optMetaText}><span class="slds-listbox__option-meta slds-listbox__option-meta_entity">{serecord.optMetaText}</span></template>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            {textLengthRestrictionMsg}
+                            <div if:true={messageFlag}>
+                                {noResultMsg}
+                            </div>
+                            <div if:true={LoadingText}>
+                                Loading...
+                            </div>
+                        </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </span>
+    <!-- </lightning-card> -->
+</template>

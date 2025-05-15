@@ -1,0 +1,16 @@
+<template>
+  <lightning-card>
+    <div if:true={showComments}>
+      <div class="slds-form-element slds-p-around_medium">
+        <label class="slds-form-element__label" for="textarea-id-01">Enter Comments</label>
+        <div class="slds-form-element__control">
+          <textarea id="textarea-id-01" value={comments} onchange={onCommentsChange} placeholder=""
+            class="slds-textarea"></textarea>
+        </div>
+        <div class="slds-form-element__control">
+          <lightning-button label="Submit Comments" onclick={onclickSubmit}></lightning-button>
+        </div>
+      </div>
+    </div>
+  </lightning-card>
+</template>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- ObjectName --></label>
+    <name>ObjectName__c</name>
+    <picklistValues>
+        <masterLabel>SymphonyLF__Agreement_Contract__c</masterLabel>
+        <translation><!-- SymphonyLF__Agreement_Contract__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyLF__Copyright__c</masterLabel>
+        <translation><!-- SymphonyLF__Copyright__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyLF__Design_Family__c</masterLabel>
+        <translation><!-- SymphonyLF__Design_Family__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyLF__Design__c</masterLabel>
+        <translation><!-- SymphonyLF__Design__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyLF__Dispute_Opposition__c</masterLabel>
+        <translation><!-- SymphonyLF__Dispute_Opposition__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyLF__General_Matter__c</masterLabel>
+        <translation><!-- SymphonyLF__General_Matter__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyLF__Mark__c</masterLabel>
+        <translation><!-- SymphonyLF__Mark__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyLF__Patent_Family__c</masterLabel>
+        <translation><!-- SymphonyLF__Patent_Family__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyLF__Patent__c</masterLabel>
+        <translation><!-- SymphonyLF__Patent__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyLF__Trademark__c</masterLabel>
+        <translation><!-- SymphonyLF__Trademark__c --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

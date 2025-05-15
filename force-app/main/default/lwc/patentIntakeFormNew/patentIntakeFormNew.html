@@ -1,0 +1,597 @@
+<template>
+    <template if:true={loading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+    <template if:false={loading}>
+        <c-navigation-manager navigation-elements={breadcrumb} navigation-width={breadcrumbWidth}>
+        </c-navigation-manager>
+        <template if:true={isTableLoaded}>
+            <template if:true={showBasicDetails}>
+                
+                <lightning-card>
+                    <lightning-messages></lightning-messages>
+                    <div class="slds-card__body slds-card__body_inner slds-p-around_small">
+                                <lightning-input 
+                                    type="text" 
+                                    label="Invention Title" 
+                                    value={inventionTitle} 
+                                    onchange={handleInventionTitle} 
+                                    required 
+                                    max-length="255"
+                                    class="slds-form-element_stacked"
+                                    disabled={isExistingPatentFamily}>
+                                </lightning-input>
+                    </div>
+                    <article if:false={isExistingPatentFamily} class="slds-card">
+                        <div class="slds-card__header slds-grid slds-page-header">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <span class="slds-icon_container slds-icon-custom-custom18"
+                                        title="SearchDetails">
+                                        <lightning-icon icon-name="custom:custom18"></lightning-icon>
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <h2 class="slds-card__header-title">
+                                        <span>Engagement Details</span>
+                                    </h2>
+                                </div>
+                            </header>
+                        </div>
+                        <div class="slds-card slds-p-around_medium slds-m-around_small">
+                            <c-lwc-mv-datatable class="lwcMvDataTable" columns={engagementColumns} data-id="engagementTable"
+                                records={engagementDetails}>
+                            </c-lwc-mv-datatable>
+                        </div>
+                    </article>
+
+                    <article if:true={isExistingPatentFamily} class="slds-card">
+                        <div class="slds-card__header slds-grid slds-page-header">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <span class="slds-icon_container slds-icon-custom-custom18" title="Engagement Details">
+                                        <lightning-icon icon-name="custom:custom18"></lightning-icon>
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <h2 class="slds-card__header-title">
+                                        <span>Matter Engagement Details</span>
+                                    </h2>
+                                </div>
+                            </header>
+                        </div>
+                        <div class="slds-card slds-p-around_medium slds-m-around_small">
+                            <c-lwc-mv-datatable 
+                                class="lwcMvDataTable" 
+                                columns={existingMEMColumns} 
+                                records={existingMEMDetails} 
+                                data-id="existingMEMTable">
+                            </c-lwc-mv-datatable>
+                        </div>
+                    </article>
+
+                    <div class="slds-docked-form-footer">
+                        <div class="slds-clearfix">
+                            <div class="slds-float_right">
+                                <lightning-button variant="destructive-text" label="Cancel" title="Cancel"
+                                    onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+                                <lightning-button variant="brand" label="Save and Next" title="Save and Next" onclick={createOrUpdatePatent}
+                                    class="slds-m-left_x-small"></lightning-button>
+                            </div>
+                        </div>
+                    </div>
+                </lightning-card>
+            </template>
+        
+            <template if:true={showApplicantDetails}>
+                <lightning-card>
+                    <lightning-messages></lightning-messages>
+                    <div class="slds-grid slds-wrap fixed-layout">
+                        <div class="slds-col slds-size_1-of-3 search-section">
+                            <lightning-card>
+                                                <article class="slds-card">
+                                                    <div class="slds-card__header slds-grid slds-page-header">
+                                                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                                            <div class="slds-media__figure">
+                                                                <span class="slds-icon_container slds-icon-custom-custom18"
+                                                                    title="SearchDetails">
+                                                                    <lightning-icon icon-name="custom:custom18"></lightning-icon>
+                                                                </span>
+                                                            </div>
+                                                            <div class="slds-media__body">
+                                                                <h2 class="slds-card__header-title">
+                                                                    <a href="#" class="slds-card__header-link slds-truncate"
+                                                                        title="Search Details">
+                                                                        <span>Search Applicant(s)</span>
+                                                                    </a>
+                                                                </h2>
+                                                            </div>
+                                                        </header>
+                                                    </div>
+                                                    <div class="slds-card__body slds-card__body_inner">
+                                                        <input
+                                                            type="text"
+                                                            class="search-bar"
+                                                            placeholder="Select Applicant(s)..."
+                                                            oninput={handleSearchApplicant}
+                                                            value={inputValueApplicant}
+                                                            autocomplete="none"
+                                                        />
+                                                        <!-- Dropdown -->
+                                                        <template if:true={showDropdownApplicants}>
+                                                            <div class="enhanced-dropdown">
+                                                                <ul class="slds-listbox slds-listbox_vertical dropdown"
+                                                                role="listbox" >
+                                                                    <template if:true={applicantOptions} for:each={applicantOptions} for:item="applicant" for:index="index">
+                                                                        <li
+                                                                            class={applicant.computedClass}
+                                                                            key={applicant.recordId}
+                                                                            data-index={index}
+                                                                            data-record-id={applicant.recordId}
+                                                                            onclick={handleSelectApplicant}
+                                                                            style="margin-bottom: 10px; padding: 10px; border-bottom: 1px solid #ddd;"
+                                                                        >
+                                                                            <div class="slds-media slds-listbox__option slds-listbox__option_entity" role="option">
+                                                                                <span class="slds-media__figure">
+                                                                                    <lightning-icon icon-name={applicant.src} size="small"></lightning-icon>
+                                                                                </span>
+                                                                                <span class="slds-media__body">
+                                                                                    <span class="slds-listbox__option-text">
+                                                                                        <strong>{applicant.label}</strong>
+                                                                                    </span>
+                                                                                </span>
+                                                                                <span if:true={applicant.selected} class="slds-icon_container slds-icon-utility-check" style="float: right;">
+                                                                                    <lightning-icon icon-name="utility:check" size="xx-small" alternative-text="Selected"></lightning-icon>
+                                                                                </span>
+                                            
+                                                                            </div>
+                                                                        </li>
+                                                                    </template>
+                                                                    <template if:true={noResultsApplicant}>
+                                                                        <li class="dropdown-item no-results">No Applicants Found</li>
+                                                                    </template>
+                                                                </ul>
+                                                            </div>
+                                                        </template>
+                                                    </div>
+                                                </article>
+                            </lightning-card>
+
+                        </div>
+
+                        <div class="slds-col slds-size_2-of-4">
+                            <div class="inputPadding">
+                                <lightning-card>
+                                    <article class="slds-card">
+                                        <div class="slds-card__header slds-grid slds-page-header">
+                                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                                <div class="slds-media__figure">
+                                                    <span class="slds-icon_container slds-icon-custom-custom18" title="Create Applicants">
+                                                        <lightning-icon icon-name="custom:custom18"></lightning-icon>
+                                                    </span>
+                                                </div>
+                                                <div class="slds-media__body">
+                                                    <h2 class="slds-card__header-title">
+                                                        <span>Create Applicants</span>
+                                                    </h2>
+                                                </div>
+                                                <div class="slds-media__actions">
+                                                    <lightning-button label="Add" variant="brand" onclick={addApplicant}></lightning-button>
+                                                </div>
+                                            </header>
+                                        </div>
+                                        <div class="slds-card__body slds-p-around_small">
+                                            <div class="slds-grid">
+                                                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_x-small slds-m-bottom_x-small">
+                                                    <label class="slds-form-element__label" style="font-size:14px; font-weight:700;">
+                                                        <abbr class="slds-required" title="required">*</abbr> Applicant Name
+                                                    </label>
+                                                    <lightning-input
+                                                        label="Applicant Name"
+                                                        required
+                                                        name="applicantName"
+                                                        value={applicantName}
+                                                        onchange={handleInputChangeApplicant}
+                                                        variant="label-hidden"
+                                                    ></lightning-input>
+                                                </div>
+                                        
+                                                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_x-small slds-m-bottom_x-small">
+                                                    <label class="slds-form-element__label" style="font-size:14px; font-weight:700;">
+                                                        <abbr class="slds-required" title="required">*</abbr> Client Classification
+                                                    </label>
+                                                    <div class="custom-dropdown" data-field="classification">
+                                                        <div class="dropdown-trigger" onclick={toggleDropdown}>
+                                                            {selectedLabels}
+                                                            <lightning-icon icon-name="utility:down" size="x-small" class="slds-icon_right"></lightning-icon>
+                                                        </div>
+                                                        <div class="dropdown-menu slds-hide">
+                                                            <template for:each={computedClassificationOptions} for:item="option">
+                                                                <lightning-input
+                                                                    key={option.value}
+                                                                    type="checkbox"
+                                                                    name="classification"
+                                                                    value={option.value}
+                                                                    label={option.label}
+                                                                    checked={option.isChecked}
+                                                                    onchange={handleInputChangeApplicant}>
+                                                                </lightning-input>
+                                                            </template>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="slds-grid">
+                                                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_x-small slds-m-bottom_x-small">
+                                                    <label class="slds-form-element__label" style="font-size:14px; font-weight:700;">
+                                                        <abbr class="slds-required" title="required">*</abbr> Currency
+                                                    </label>
+                                                    <lightning-record-picker
+                                                        label="Currency"
+                                                        name="currency"
+                                                        placeholder="Search Currency..."
+                                                        object-api-name="SymphonyLF__Currency__c"
+                                                        variant="label-hidden"
+                                                        value={currency}
+                                                        onchange={handleInputChangeApplicant}
+                                                    ></lightning-record-picker>
+                                                </div>
+                                        
+                                                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_x-small slds-m-bottom_x-small">
+                                                    <label class="slds-form-element__label" style="font-size:14px; font-weight:700;">
+                                                        <abbr class="slds-required" title="required">*</abbr> US/CA Entity Size
+                                                    </label>
+                                                    <lightning-combobox
+                                                        name="entitySize"
+                                                        value={entitySize}
+                                                        options={entitySizeOptions}
+                                                        data-field="entitySize"
+                                                        variant="label-hidden"
+                                                        onchange={handleInputChangeApplicant}
+                                                    ></lightning-combobox>
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="slds-grid">
+                                                <div class="slds-col slds-size_1-of-1 slds-p-horizontal_x-small slds-m-bottom_x-small">
+                                                    <label class="slds-form-element__label" style="font-size:14px; font-weight:700;">
+                                                        Address
+                                                    </label>
+                                                    <lightning-input-address
+                                                        address-label="Address"
+                                                        variant="label-hidden"
+                                                        street-label="Street"
+                                                        city-label="City"
+                                                        country-label="Country"
+                                                        province-label="State"
+                                                        postal-code-label="PostalCode"
+                                                        street={address.street}
+                                                        city={address.city}
+                                                        province={address.state}
+                                                        country={address.country}
+                                                        postal-code={address.postalCode}
+                                                        show-address-lookup
+                                                        onchange={handleInputChangeApplicant}
+                                                    ></lightning-input-address>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </article>
+                                </lightning-card>
+                            </div>
+                        </div>
+                            
+                        
+                    </div>
+
+                    <lightning-tabset>
+                        <lightning-tab label="Selected Applicants" value="selectedApplicants"> 
+                            <c-lwc-mv-datatable class="lwcMvDataTable" columns={applicantColumns} data-id="applicantTable"
+                                records={applicantData}>
+                            </c-lwc-mv-datatable>
+                        </lightning-tab>
+                    </lightning-tabset>          
+
+                    <div class="slds-docked-form-footer">
+                        <div class="slds-clearfix">
+                            <div class="slds-float_right">
+                                <lightning-button variant="destructive-text" label="Cancel" title="Cancel"
+                                    onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+                                <lightning-button variant="brand" label="Back" title="Back" onclick={navigateToBasicDetails}
+                                    class="slds-m-left_x-small"></lightning-button>
+                                <lightning-button variant="brand" label="Save and Next" title="Save and Next" onclick={handleSaveApplicant}
+                                    class="slds-m-left_x-small"></lightning-button>
+                            </div>
+                        </div>
+                    </div>
+                </lightning-card>
+
+            </template>
+        
+            <template if:true={showInventorDetails}>
+
+                <lightning-card>
+                    <lightning-messages></lightning-messages>
+                    <div class="slds-grid slds-wrap fixed-layout">
+                        <div class="slds-col slds-size_1-of-3 search-section">
+                            
+                            <lightning-card>
+                                <article class="slds-card">
+                                                <div class="slds-card__header slds-grid slds-page-header">
+                                                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                                        <div class="slds-media__figure">
+                                                            <span class="slds-icon_container slds-icon-custom-custom18"
+                                                                title="SearchDetails">
+                                                                <lightning-icon icon-name="custom:custom18"></lightning-icon>
+                                                            </span>
+                                                        </div>
+                                                        <div class="slds-media__body">
+                                                            <h2 class="slds-card__header-title">
+                                                                <a href="#" class="slds-card__header-link slds-truncate"
+                                                                    title="Search Details">
+                                                                    <span>Search Inventor(s)</span>
+                                                                </a>
+                                                            </h2>
+                                                        </div>
+                                                    </header>
+                                                </div>
+                                                <div class="slds-card__body slds-card__body_inner">
+                                                    <input
+                                                        type="text"
+                                                        class="search-bar"
+                                                        placeholder="Select Inventor(s)..."
+                                                        oninput={handleInventorSearch}
+                                                        value={inventorInputValue}
+                                                        autocomplete="none"
+                                                    />
+                                                    <!-- Dropdown -->
+                                                    <template if:true={showDropdownInventors}>
+                                                        <div class="enhanced-dropdown">
+                                                            <ul class="slds-listbox slds-listbox_vertical dropdown"
+                                                            role="listbox" >
+                                                                <template if:true={inventorOptions} for:each={inventorOptions} for:item="inventor" for:index="index">
+                                                                    <li
+                                                                        class={inventor.computedClass}
+                                                                        key={inventor.recordId}
+                                                                        data-index={index}
+                                                                        data-record-id={inventor.recordId}
+                                                                        onclick={handleSelectInventor}
+                                                                        style="margin-bottom: 10px; padding: 10px; border-bottom: 1px solid #ddd;"
+                                                                    >
+                                                                        <div class="slds-media slds-listbox__option slds-listbox__option_entity" role="option">
+                                                                            <span class="slds-media__figure">
+                                                                                <lightning-icon icon-name={inventor.src} size="small"></lightning-icon>
+                                                                            </span>
+                                                                            <span class="slds-media__body">
+                                                                                <span class="slds-listbox__option-text">
+                                                                                    <strong>{inventor.label}</strong>
+                                                                                </span>
+                                                                            </span>
+                                                                            <span if:true={inventor.selected} class="slds-icon_container slds-icon-utility-check" style="float: right;">
+                                                                                <lightning-icon icon-name="utility:check" size="xx-small" alternative-text="Selected"></lightning-icon>
+                                                                            </span>
+                                        
+                                                                        </div>
+                                                                    </li>
+                                                                </template>
+                                                                <template if:true={noResults}>
+                                                                    <li class="dropdown-item no-results">No Inventors Found</li>
+                                                                </template>
+                                                            </ul>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </article>
+                            </lightning-card>
+                        </div>
+                    
+                        <div class="slds-col slds-size_2-of-4">
+                            <div class="inputPadding">
+                                <lightning-card>
+                                    <article class="slds-card">
+                                        <div class="slds-card__header slds-grid slds-page-header">
+                                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                                <div class="slds-media__figure">
+                                                    <span class="slds-icon_container slds-icon-custom-custom18" title="Create Inventors">
+                                                        <lightning-icon icon-name="custom:custom18"></lightning-icon>
+                                                    </span>
+                                                </div>
+                                                <div class="slds-media__body">
+                                                    <h2 class="slds-card__header-title">
+                                                        <span>Create Inventors</span>
+                                                    </h2>
+                                                </div>
+                                                <div class="slds-media__actions">
+                                                    <lightning-button label="Add" variant="brand" onclick={addInventor}></lightning-button>
+                                                </div>
+                                            </header>
+                                        </div>
+                                        <div class="slds-card__body slds-p-around_small">
+                                            <div class="slds-grid">
+                                                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_x-small slds-m-bottom_x-small">
+                                                    <label class="slds-form-element__label" style="font-size:14px; font-weight:700;">
+                                                        <abbr class="slds-required" title="required">*</abbr> Person Name
+                                                    </label>
+                                                    <lightning-input
+                                                        label="Person Name"
+                                                        variant="label-hidden"
+                                                        type="text"
+                                                        name="personName"
+                                                        value={personName}
+                                                        onchange={handleFieldChangeInventor}
+                                                    ></lightning-input>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_x-small slds-m-bottom_x-small">
+                                                    <label class="slds-form-element__label" style="font-size:14px; font-weight:700;">
+                                                        User
+                                                    </label>
+                                                    <lightning-record-picker
+                                                        label="User"
+                                                        variant="label-hidden"
+                                                        name="user"
+                                                        placeholder="Search user..."
+                                                        object-api-name="User"
+                                                        value={user}
+                                                        onchange={handleFieldChangeInventor}
+                                                    ></lightning-record-picker>
+                                                </div>
+                                            </div>
+                                            <div class="slds-grid">
+                                                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_x-small slds-m-bottom_x-small">
+                                                    <label class="slds-form-element__label" style="font-size:14px; font-weight:700;">
+                                                        Email
+                                                    </label>
+                                                    <lightning-input
+                                                        label="Email"
+                                                        variant="label-hidden"
+                                                        type="email"
+                                                        name="emailAddress"
+                                                        value={emailAddress}
+                                                        onchange={handleFieldChangeInventor}
+                                                    ></lightning-input>
+                                                    <template if:true={emailAddressError}>
+                                                        <div class="slds-text-color_error slds-m-left_small">{emailAddressError}</div>
+                                                    </template>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_x-small slds-m-bottom_x-small">
+                                                    <label class="slds-form-element__label" style="font-size:14px; font-weight:700;">
+                                                        Phone
+                                                    </label>
+                                                    <lightning-input
+                                                        label="Phone"
+                                                        variant="label-hidden"
+                                                        type="tel"
+                                                        name="phone"
+                                                        value={phone}
+                                                        onchange={handleFieldChangeInventor}
+                                                    ></lightning-input>
+                                                </div>
+                                            </div>
+                                            <div class="slds-grid">
+                                                <div class="slds-col slds-size_1-of-1 slds-p-horizontal_x-small slds-m-bottom_x-small">
+                                                    <label class="slds-form-element__label" style="font-size:14px; font-weight:700;">
+                                                        Nationality
+                                                    </label>
+                                                    <lightning-combobox
+                                                        label="Nationality"
+                                                        variant="label-hidden"
+                                                        name="nationality"
+                                                        options={nationalityOptions}
+                                                        value={nationality}
+                                                        onchange={handleFieldChangeInventor}
+                                                    ></lightning-combobox>
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="slds-grid">
+                                                <div class="slds-col slds-size_1-of-1 slds-p-horizontal_x-small slds-m-bottom_x-small">
+                                                    <label class="slds-form-element__label" style="font-size:14px; font-weight:700;">
+                                                        Address
+                                                    </label>
+                                                    <lightning-input-address
+                                                        address-label="Address"
+                                                        variant="label-hidden"
+                                                        street-label="Street"
+                                                        city-label="City"
+                                                        country-label="Country"
+                                                        province-label="State"
+                                                        postal-code-label="PostalCode"
+                                                        street={inventorAddress.street}
+                                                        city={inventorAddress.city}
+                                                        province={inventorAddress.state}
+                                                        country={inventorAddress.country}
+                                                        postal-code={inventorAddress.postalCode}
+                                                        show-address-lookup
+                                                        onchange={handleFieldChangeInventor}
+                                                    ></lightning-input-address>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </article>
+                                </lightning-card>
+                            </div>
+                        </div>                
+                        
+                        
+                    </div>
+
+                    <lightning-tabset>
+                        <lightning-tab label="Selected Inventors" value="selectedInventors">
+                            <c-lwc-mv-datatable class="lwcMvDataTable" columns={inventorColumns} data-id="inventorTable" 
+                                records={inventorData}>
+                            </c-lwc-mv-datatable> 
+                        </lightning-tab>
+                    </lightning-tabset>
+                    <div class="slds-docked-form-footer">
+                        <div class="slds-clearfix">
+                            <div class="slds-float_right">
+                                <lightning-button variant="destructive-text" label="Cancel" title="Cancel"
+                                    onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+                                <lightning-button variant="brand" label="Back" title="Back" onclick={navigateToApplicantDetails}
+                                    class="slds-m-left_x-small"></lightning-button>
+                                <lightning-button variant="brand" label="Save and Next" title="Save and Next" onclick={saveOrupdateInventorDetails}
+                                    class="slds-m-left_x-small"></lightning-button>
+                            </div>
+                        </div>
+                    </div>
+                </lightning-card>
+
+            </template>
+
+            <template if:true={showJurisdictionDetails}>
+                <div class="slds-col slds-size_1-of-1">
+                    <div class="inputPadding">
+                        <lightning-card>
+                            <article class="slds-card">
+                                <div class="slds-card__header slds-grid slds-page-header">
+                                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                        <div class="slds-media__figure">
+                                            <span class="slds-icon_container slds-icon-custom-custom37" title="Create Applicants">
+                                                <lightning-icon icon-name="custom:custom37"></lightning-icon>
+                                            </span>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <h2 class="slds-card__header-title">
+                                                <span>Jurisdiction Details</span>
+                                            </h2>
+                                        </div>
+                                    </header>
+                                </div>
+                                <!-- <div class="slds slds-p-left_small slds-p-right_small">
+                                    <div class="slds-card slds-p-around_medium slds-m-around_small">
+                                    <c-lwc-mv-datatable
+                                        columns={jurisdictionColumns}
+                                        records={jurisdictionRecords}
+                                        movable-rows="true">
+                                    </c-lwc-mv-datatable>
+                                    </div>mv
+                                </div> -->
+                                <c-mv-intake-jurisdiction client-id={clientId} patent-family-id={patentFamilyId}> </c-mv-intake-jurisdiction>
+                            </article>
+                        </lightning-card>
+                    </div>
+                </div>
+
+                <div class="slds-docked-form-footer">
+                    <div class="slds-clearfix">
+                        <div class="slds-float_right">
+                            <lightning-button variant="destructive-text" label="Cancel" title="Cancel"
+                                onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+                            <lightning-button variant="brand" label="Back" title="Back" onclick={navigateToInventorDetails}
+                                class="slds-m-left_x-small"></lightning-button>
+                            <lightning-button variant="brand" label="Save" title="Save" onclick={handleSaveJurisdiction}
+                                class="slds-m-left_x-small"></lightning-button>
+                            <lightning-button variant="brand" label="Submit" title="Submit"
+                                onclick={SubmitForm} class="slds-m-left_x-small"></lightning-button>
+                        </div>
+                    </div>
+                </div>                
+            </template>
+
+        </template>
+    
+    </template>
+</template>

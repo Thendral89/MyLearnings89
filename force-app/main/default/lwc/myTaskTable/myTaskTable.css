@@ -1,0 +1,46 @@
+.hoverable {
+    border-radius: 4px;
+    padding: 4px 4px 2px 4px;
+    transition: background-color .25s ease;
+    margin: 0 1px 0 1px;
+}
+
+.checkbox {
+    display: inline-block !important;
+    vertical-align: middle;
+}
+
+.red {
+    color: rgb(194, 57, 52);
+    font-weight: 700;
+}
+
+.green {
+    color: green;
+    font-weight: 700;
+}
+
+.recordCell {
+    font-size: .75rem;
+    text-align: right;
+}
+
+.itemRows-subvalue {
+    font-size: .75rem;
+}
+
+.row-bottom {
+    border-bottom: 2px solid rgb(201, 199, 197);
+}
+
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: color .1s linear;
+}
+
+.custom-icon-color {
+    background-color: rgba(11, 92, 171, 1);
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Status --></label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Enforced</masterLabel>
+        <translation><!-- Enforced --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>To Be Enforced</masterLabel>
+        <translation><!-- To Be Enforced --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>To Be Granted</masterLabel>
+        <translation><!-- To Be Granted --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,22 @@
+/* Import the Common cssLibrary */
+@import 'c/cssLibrary';
+
+/* Define any styles pertaining to this component below */
+
+/* highlightsPanel.css */
+.sticky {
+    overflow: visible !important;
+    position: relative;
+}
+.highlightsPanelInputField .slds-dropdown_fluid,
+.highlightsPanelInputField .slds-dropdown {
+    z-index: 9999 !important;
+    overflow: visible !important;
+}
+.rightAlign{
+    /*position: absolute;
+    top: 0;
+    right: 0;*/
+    margin-top: -14px;
+    background-color: white;
+}

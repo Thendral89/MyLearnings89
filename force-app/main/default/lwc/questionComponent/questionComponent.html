@@ -1,0 +1,54 @@
+<template>
+    <div>
+        <lightning-textarea 
+                name="Question"
+                label="Question"
+                placeholder="What would you like to ask?"
+                class="slds-form-element_small"
+                onchange={handleQuestionChange}
+                required
+                value={question}
+        ></lightning-textarea>
+    </div>
+    <div>
+        <p>Details:</p>
+    <lightning-input-rich-text  onchange={handleChange} value={richTextValue}>
+            <lightning-rich-text-toolbar-button-group
+                slot="toolbar"
+                aria-label="First group"
+            >
+                <lightning-rich-text-toolbar-button
+                    icon-name="utility:adduser"
+                    icon-alternative-text="Add User"
+                    onclick={handleAddUser}
+                >
+                </lightning-rich-text-toolbar-button>
+                <lightning-rich-text-toolbar-button
+                    icon-name="utility:emoji"
+                    icon-alternative-text="Add emoji"
+                    onclick={handleAddEmoji}
+                >
+            </lightning-rich-text-toolbar-button>
+            </lightning-rich-text-toolbar-button-group>
+        </lightning-input-rich-text>
+    </div>
+    <div class="slds-grid slds-grid_align-spread slds-m-vertical_small">
+        <div class="slds-col">
+                <lightning-icon 
+                    icon-name="utility:attach" 
+                    alternative-text="attach!" 
+                    title="attach"
+                    size="small"
+                ></lightning-icon>
+        </div>
+        <div class="slds-col">
+            <lightning-button 
+                variant="brand" 
+                label="Ask" 
+                title="Primary action" 
+                onclick={handleAsk} 
+                disabled={isAskDisable}>
+            </lightning-button>  
+        </div>
+    </div>
+</template>

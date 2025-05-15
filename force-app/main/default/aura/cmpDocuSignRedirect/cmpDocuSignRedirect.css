@@ -1,0 +1,17 @@
+.THIS .CheckBox{
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.THIS .custom-color > * {
+   color: red;
+} 
+
+.THIS.ValidatingProgress{
+    position: relative;
+    display: inline-block;
+    margin-left: 15px;
+    width: 55px;
+    vertical-align: middle;
+    white-space: nowrap;
+}

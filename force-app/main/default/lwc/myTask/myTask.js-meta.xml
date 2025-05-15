@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>My Task</masterLabel>
+    <targets>
+        <target>lightning__HomePage</target>
+        <target>lightning__UtilityBar</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__HomePage">
+            <property name="headerLabel" label="Header Label for my Task" type="String" />
+            <property name="headerLabelDeligated" label="Header Label for Delegated" type="String" />
+            <property name="hideRelated" label="Hide Related" type="Boolean" />
+            <property name="hideLabel" label="Hide Label" type="Boolean" />
+            <property name="hideStatus" label="Hide Status" type="Boolean" />
+            <property name="hidePriority" label="Hide Priority" type="Boolean" />
+            <property name="sortBy" label="Sort By" type="String" datasource="apex://MyTaskSortByPicklist" default="apex://MyTaskSortByPicklist"/>
+            <property name="sortType" label="Sort Type" type="String" datasource="ASC,DESC" />
+            <property name="taskPerPage" label="Task per page" type="String" datasource="5,10,20,50" />
+            <property name="additionalFieldOne" label="Additional Field 1" type="String" datasource="apex://MyTaskAdditionalFieldsPicklist" default="apex://MyTaskAdditionalFieldsPicklist"/>
+            <property name="additionalFieldTwo" label="Additional Field 2" type="String" datasource="apex://MyTaskAdditionalFieldsPicklist" default="apex://MyTaskAdditionalFieldsPicklist"/>
+            <property name="defaultView" label="Default View" type="String" datasource="apex://MyTaskHighlightedPanel" default="apex://MyTaskHighlightedPanel"/>
+            <property name="panelOne" label="Panel One" type="String" datasource="apex://MyTaskHighlightedPanel" default="apex://MyTaskHighlightedPanel"/>
+            <property name="panelTwo" label="Panel Two" type="String" datasource="apex://MyTaskHighlightedPanel" default="apex://MyTaskHighlightedPanel"/>
+            <property name="panelThree" label="Panel Three" type="String" datasource="apex://MyTaskHighlightedPanel" default="apex://MyTaskHighlightedPanel"/>
+            <property name="panelFour" label="Panel Four" type="String" datasource="apex://MyTaskHighlightedPanel" default="apex://MyTaskHighlightedPanel"/>
+        </targetConfig>
+        <targetConfig targets="lightning__UtilityBar">
+            <property name="headerLabel" label="Header Label for my Task" type="String" />
+            <property name="headerLabelDeligated" label="Header Label for Delegated" type="String" />
+            <property name="hideRelated" label="Hide Related" type="Boolean" />
+            <property name="hideLabel" label="Hide Label" type="Boolean" />
+            <property name="hideStatus" label="Hide Status" type="Boolean" />
+            <property name="hidePriority" label="Hide Priority" type="Boolean" />
+            <property name="sortBy" label="Sort By" type="String" datasource="apex://MyTaskSortByPicklist" default="apex://MyTaskSortByPicklist"/>
+            <property name="sortType" label="Sort Type" type="String" datasource="ASC,DESC" />
+            <property name="taskPerPage" label="Task per page" type="String" datasource="5,10,20,50" />
+            <property name="additionalFieldOne" label="Additional Field 1" type="String" datasource="apex://MyTaskAdditionalFieldsPicklist" default="apex://MyTaskAdditionalFieldsPicklist"/>
+            <property name="additionalFieldTwo" label="Additional Field 2" type="String" datasource="apex://MyTaskAdditionalFieldsPicklist" default="apex://MyTaskAdditionalFieldsPicklist"/>
+            <property name="defaultView" label="Default View" type="String" datasource="apex://MyTaskHighlightedPanel" default="apex://MyTaskHighlightedPanel"/>
+            <property name="panelOne" label="Panel One" type="String" datasource="apex://MyTaskHighlightedPanel" default="apex://MyTaskHighlightedPanel"/>
+            <property name="panelTwo" label="Panel Two" type="String" datasource="apex://MyTaskHighlightedPanel" default="apex://MyTaskHighlightedPanel"/>
+            <property name="panelThree" label="Panel Three" type="String" datasource="apex://MyTaskHighlightedPanel" default="apex://MyTaskHighlightedPanel"/>
+            <property name="panelFour" label="Panel Four" type="String" datasource="apex://MyTaskHighlightedPanel" default="apex://MyTaskHighlightedPanel"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

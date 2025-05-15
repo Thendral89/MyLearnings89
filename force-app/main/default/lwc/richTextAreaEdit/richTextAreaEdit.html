@@ -1,0 +1,24 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+    <div if:true={edit} class="slds-is-relative">
+        <button class="slds-show_inline-block slds-button slds-button_icon myBtnCloseClass" >
+            <lightning-icon class="my-lIconCloseClass" icon-name="utility:close" size="x-small" alternative-text="cancel"></lightning-icon>
+        </button>
+        <button class="slds-show_inline-block slds-button slds-button_icon myBtnCheckClass" >
+            <lightning-icon class="my-lIconCheckClass" icon-name="utility:check" size="x-small" alternative-text="save"></lightning-icon>
+        </button>
+        <lightning-input-rich-text
+            value={val}
+            onchange={handleChange}>
+        </lightning-input-rich-text>
+        <!-- <lightning-button variant="Base" label="Cancel" onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button variant="brand" label="Save" onclick={handleSave} class="slds-m-left_x-small"></lightning-button> -->
+    </div>
+    <div class="slds-grid slds-grid_vertical-align-center" if:false={edit}>
+        <lightning-formatted-rich-text value={val} class="slds-col"></lightning-formatted-rich-text>
+        <template if:true={editable}>
+            <lightning-button-icon icon-name="utility:edit" onclick={handleEdit} variant="bare" icon-class="slds-button__icon_edit slds-button__icon_hint" alternative-text="edit" class="slds-col slds-m-left_x-small"></lightning-button-icon>
+        </template>
+    </div>
+</template>

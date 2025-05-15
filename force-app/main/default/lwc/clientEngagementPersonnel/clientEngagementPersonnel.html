@@ -1,0 +1,149 @@
+<template>
+    <!-- Show the Add button only if user has View Permission -->
+    <template if:true={hasViewAccess}>
+        <c-reusable-spinner-with-text-cmp if:true={isSpinner}
+            spinner-text={spinnerText}></c-reusable-spinner-with-text-cmp>
+        <div class="slds-col slds-size_12-of-12">
+            <template if:true={hasAddAccess}>
+                <div>
+                    <!-- Show the Add button only if user has Add Permission -->
+                    <lightning-button variant="brand" label="Add Personnel" title="Add" onclick={handleAdd}
+                        class="slds-m-left_x-small slds-float_right"></lightning-button>
+                </div>
+                <BR>
+                <BR>
+            </template>
+            <div class="tabulator-container">
+                <div class="slds-m-around_medium" data-id="clientPersonnelTable"></div>
+            </div>
+        </div>
+
+
+        <template if:true={showModalUI}>
+            <div class="slds-modal slds-fade-in-open slds-backdrop">
+                <div class="slds-modal__container" style="max-width: 60vw; width: 50vw;">
+                    <lightning-record-edit-form class="ClientEngagementModel" record-id={clientPersonnelId}
+                    object-api-name="SymphonyLF__Client_Engagement_Model__c" onsuccess={handleSuccess}
+                    onerror={handleError} onsubmit={handleSubmit}>
+                    <!-- <lightning-messages></lightning-messages> -->
+                        <div class="slds-modal__header">
+                            <h2 class="slds-text-heading_medium slds-hyphenate">{actionText}</h2>
+                        </div>
+                        <div style="overflow:visible;" class="slds-modal__content slds-p-around_medium">
+                            <p style="color:red;">{errorMessage}</p>
+                            <div class="slds-grid slds-wrap">
+                                    <div class="slds-grid slds-wrap">
+                                        <div class="slds-hide">
+                                            <lightning-input-field field-name="SymphonyLF__Client__c" value={recordId}>
+                                            </lightning-input-field>
+                                            <lightning-input-field field-name="SymphonyLF__Person__c"></lightning-input-field>
+                                        </div>
+                                            <div class="slds-text-body_small slds-text-align_left" style="white-space: nowrap;">
+                                                <lightning-icon icon-name="utility:info" size="x-small"></lightning-icon>
+                                                &nbsp;&nbsp; If searching for personnel doesn't show results, please check if they are restricted for the client in the restrictions tab.
+                                            </div>
+                                        <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
+                                            <c-dynamic-search-and-select -label="Person" required object-name="SymphonyLF__Person__c"
+                                                placeholder="Search Personnel" search-field-names="Name" query-field-names="Name"
+                                                dropdown-option-fields="1" selected-record-representation="1"
+                                                icon-name="standard:people" onselected={handleAssignedToChange}
+                                                final-sel-id={assignedTo} where-clause={clientIdCondition} min-search-txt-len="3"
+                                                limit="50">
+                                            </c-dynamic-search-and-select>
+                                            <div if:true={showPersonError} class="slds-text-color_error slds-text-body_small slds-m-top_xxx-small">
+                                                Please Select a Person.
+                                            </div>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                            <lightning-input-field field-name="SymphonyLF__Type__c" required></lightning-input-field>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                            <lightning-input-field field-name="SymphonyLF__Applicable_to_all_jurisdiction__c"></lightning-input-field>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                            <lightning-input-field field-name="SymphonyLF__Jurisdiction__c"></lightning-input-field>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                            <lightning-input-field field-name="SymphonyLF__IP_Matters__c" required></lightning-input-field>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                            <lightning-input-field field-name="SymphonyLF__Practice_Area__c"></lightning-input-field>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                            <lightning-input-field field-name="Is_Default__c"></lightning-input-field>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                                            <lightning-input-field field-name="Is_Active__c"></lightning-input-field>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="slds-modal__footer slds-text-align_right slds-p-around_medium">          
+                            <lightning-button variant="destructive" label="Cancel" onclick={hideModal} class="slds-m-right_small"></lightning-button>
+                            <lightning-button type="submit" variant="brand" label="Save" disabled={submitDisabled} onclick={validateFields}></lightning-button>   
+                        </div>
+                    </lightning-record-edit-form>
+                </div>
+            </div>
+        </template> 
+
+    </template>
+
+
+    <template if:true={showDeleteModal}>
+        <section role="dialog" tabindex="-1" aria-modal="true"
+                 class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                <h2 class="slds-text-heading_medium">Delete Personnel</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <c-reusable-announcement show-languages="true"
+                                containerstyleclass="slds-card reviewAnnouncement"
+                                announcementheader={deleteModalHeader} announcements={deleteModalAnnouncement}>
+                    </c-reusable-announcement>
+                    <p class="slds-text-heading_medium"><strong>Are you sure you want to delete?</strong></p>
+                    <div class="slds-m-top_medium" data-id="deleteDetailTable"></div>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="neutral" label="Cancel"
+                                        onclick={hideDeleteModal} class="slds-m-right_small">
+                    </lightning-button>
+                    <lightning-button variant="brand" label="Delete"
+                                        onclick={handleConfirmDelete}>
+                    </lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <template if:true={showEditModal}>
+        <section role="dialog" tabindex="-1" aria-modal="true"
+                 class="slds-modal slds-fade-in-open">
+          <div class="slds-modal__container" style="max-width: 30vw;">
+            <header class="slds-modal__header">
+              <h2 class="slds-text-heading_medium">Edit Personnel</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
+                <c-reusable-announcement show-languages="true"
+                                containerstyleclass="slds-card reviewAnnouncement"
+                                announcementheader={editModalHeader} announcements={editModalAnnouncement}>
+                </c-reusable-announcement>
+              <div class="slds-m-top_medium" data-id="editDetailTable"></div>
+            </div>
+            <footer class="slds-modal__footer">
+              <lightning-button variant="neutral" label="Cancel"
+                                onclick={handleCancelEdit}
+                                class="slds-m-right_small">
+              </lightning-button>
+              <lightning-button variant="brand" label="Save"
+                                onclick={handleSaveEdit}>
+              </lightning-button>
+            </footer>
+          </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+      
+</template>

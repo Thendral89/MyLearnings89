@@ -1,0 +1,22 @@
+.like-container {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.like-icon {
+    --sds-c-icon-color-foreground-default: #747474;
+}
+
+.filled {
+    --sds-c-icon-color-foreground-default: rgb(1, 118, 211);
+}
+
+.liked-text {
+    color: rgb(1, 118, 211);
+}
+.image-preview-container {
+    height: 100%;
+    width: 100%;
+    display: block;
+}

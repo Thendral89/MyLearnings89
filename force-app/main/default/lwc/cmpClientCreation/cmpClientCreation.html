@@ -1,0 +1,488 @@
+<template>
+	<lightning-card data-id="lcConflictCheck">
+
+		<c-navigation-manager navigation-elements={steps} navigation-width="width:33%" data-id="navPath">
+		</c-navigation-manager>
+
+		<div class="topDiv">
+			<div class="mainDiv">
+				<div class="mainheader">
+					<div style="display:flex;justify-content:center;">
+						<div style="width:100%;" class="footerBox">
+							<c-reusable-announcement show-languages="true"
+								containerstyleclass="slds-card reviewAnnouncement"
+								announcementheader={announcementHeader} announcements={announcements}>
+							</c-reusable-announcement>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <lightning-record-edit-form record-id={recordId} object-api-name='SymphonyLF_Client__c' onsuccess={handleSuccess} onerror={handleError} onsubmit={handleSubmit}> -->
+		<div if:true={step1Open}>
+			<lightning-card>
+				<div class="slds-m-around_medium">
+					<div class="slds-grid slds-wrap">
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">
+									<abbr class="slds-required" title="required">* </abbr>Client Name</label>
+								<lightning-input onchange={onclientNameChange} value={clientsName} data-id="clientName"
+									variant="label-hidden" required>
+								</lightning-input>
+
+							</div>
+
+						</div>
+
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">
+									<abbr class="slds-required" title="required">* </abbr>Email</label>
+								<lightning-input onchange={onEmailChange} value={clientEmail} data-id="clientEMail"
+									variant="label-hidden" pattern={emailRegex}
+									message-when-pattern-mismatch="Enter a valid email address." required>
+								</lightning-input>
+
+							</div>
+						</div>
+
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">
+									<abbr class="slds-required" title="required">* </abbr>Phone</label>
+								<lightning-input onchange={onPhoneChange} value={clientPhone} data-id="clientPhone"
+									variant="label-hidden" required>
+								</lightning-input>
+
+							</div>
+						</div>
+
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">Fax</label>
+								<lightning-input onchange={onFaxChange} value={clientFax} data-id="clientFax"
+									variant="label-hidden">
+								</lightning-input>
+							</div>
+						</div>
+
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+
+								<label class="slds-form-element__label" style="font-size: 14px;">How did the client hear
+									about us?</label>
+								<c-lwc-picklist object-api-name="SymphonyLF__Client__c"
+									field-api-name="How_did_the_client_hear_about_us__c" variant="label-hidden"
+									onvalueselected={onHowDidClientHearAboutUsSelected}
+									selected-value={v_HowDidClientHearAboutUs}>
+								</c-lwc-picklist>
+							</div>
+						</div>
+						<div if:false={oopen} class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+
+							</div>
+						</div>
+						<div if:true={oopen} class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+
+								<label class="slds-form-element__label" style="font-size: 14px;">Other Source?</label>
+								<lightning-input onchange={onOtherSourceChange} value={clientOtherSource}
+									data-id="clientFax" variant="label-hidden">
+								</lightning-input>
+							</div>
+						</div>
+
+
+						<BR>
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+								<!-- <lightning-record-edit-form  object-api-name="SymphonyLF__Client__c" > -->
+								<label class="slds-form-element__label" style="font-size: 14px;">
+
+									<abbr class="slds-required" title="required">* </abbr>Address</label>
+								<lightning-input-address
+    								street-label="Street"
+    								city-label="City"
+    								country-label="Country"
+    								province-label="State"
+    								postal-code-label="Postal Code"
+    								street={clientStreet}
+    								city={clientCity}
+    								province={clientState}
+    								country={clientCountry}
+    								postal-code={clientPostal}
+    								show-address-lookup
+    								country-options={getCountryOptions}
+    								province-options={getProvinceOptions}
+    								onchange={onClientAddressChange}>
+								</lightning-input-address>
+								<!-- </lightning-record-edit-form> -->
+
+							</div>
+						</div>
+
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+
+							</div>
+						</div>
+
+
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+								<span class='toggle'>Is the Billing Information same as mentioned?</span>
+								<label class='toggle-label'>
+									<input type='checkbox' onchange={onIsBillingAddressSame} checked={v_billingInfoSame}
+										data-id="copyToBilling" />
+									<span class='back'>
+										<span class='toggle'></span>
+										<span class='label off'>Yes</span>
+										<span class='label on'>No</span>
+									</span>
+								</label>
+							</div>
+						</div>
+
+
+
+					</div>
+				</div>
+			</lightning-card>
+		</div>
+
+		<div if:true={step2Open}>
+			<lightning-card>
+				<div class="slds-m-around_medium">
+					<div class="slds-grid slds-wrap">
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">Attention</label>
+								<lightning-input onchange={onAttentionChange} value={attentionName}
+									data-id="attentionName" variant="label-hidden">
+								</lightning-input>
+							</div>
+						</div>
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">
+									<abbr class="slds-required" title="required">* </abbr>Phone</label>
+								<lightning-input onchange={onbillingPhoneChange} value={billingPhone}
+									data-id="billingPhone" variant="label-hidden">
+								</lightning-input>
+
+							</div>
+						</div>
+
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">
+									<abbr class="slds-required" title="required">* </abbr>Email</label>
+								<lightning-input onchange={onbillingEmailChange} value={billingEmail}
+									data-id="billingEmail" variant="label-hidden" pattern={emailRegex}
+									message-when-pattern-mismatch="Enter a valid email address.">
+								</lightning-input>
+
+
+							</div>
+						</div>
+
+
+
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">Fax</label>
+								<lightning-input onchange={onbillingFaxChange} value={billingFax} data-id="billingFax"
+									variant="label-hidden">
+								</lightning-input>
+							</div>
+						</div>
+
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">
+									<abbr class="slds-required" title="required">* </abbr>Address</label>
+								<lightning-input-address street-label="Street" city-label="City" country-label="Country"
+									province-label="State" postal-code-label="PostalCode" street={billingStreet}
+									city={billingCity} province={billingState} country={billingCountry}
+									postal-code={billingPostal} onchange={onBillingAddressChange} show-address-lookup
+									country-options={getCountryOptions}
+    								province-options={getProvinceOptions}>
+								</lightning-input-address>
+
+							</div>
+						</div>
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+
+							</div>
+						</div>
+
+						<div class="slds-col slds-size_6-of-12">
+							<div class="inputPadding">
+
+							</div>
+						</div>
+
+
+
+					</div>
+				</div>
+			</lightning-card>
+		</div>
+
+		<div if:true={step3Open}>
+
+			<lightning-card>
+				<div class="slds-m-around_medium">
+					<div class="slds-grid slds-wrap">
+						<div class="slds-col slds-size_4-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">
+									<abbr class="slds-required" title="required">* </abbr>Rate Code</label>
+								<lightning-input onchange={onChangeRateCode} value={rateCode} data-id="rateCode"
+									variant="label-hidden">
+								</lightning-input>
+								<span if:true={showRateCodeMandatory}><label><abbr class="slds-required"
+											title="required">Complete this field.</abbr></label></span>
+							</div>
+						</div>
+						<div class="slds-col slds-size_4-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">Discount (how much
+									%)</label>
+								<lightning-input onchange={onChangeDiscount} value={discount} data-id="discount"
+									variant="label-hidden">
+								</lightning-input>
+
+							</div>
+						</div>
+
+						<div class="slds-col slds-size_4-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">
+									<abbr class="slds-required" title="required">* </abbr>Originating Attorney</label>
+								<symphonylf-dynamic-search-and-select 
+									object-name="SymphonyLF__Person__c" search-field-names="Name"
+									query-field-names="Id, Name, SymphonyLF__Type__c" dropdown-option-fields="1,2,3,4"
+									selected-record-representation="1" icon-name="standard:account"
+									placeholder="Search Person..." onselected={lookupOriginatingAttorney}
+									min-search-txt-len=0 final-sel-id={clientRecord.Originating_Attorney__c}
+									where-clause=" SymphonyLF__Type__c='Attorney'" order-by="Name" limit=50>
+								</symphonylf-dynamic-search-and-select>
+								<!-- <c-lwc-lookup icon-name="standard:account" s-object-api-name="SymphonyLF__Person__c"
+									label="Originating Attorney" onlookupupdate={lookupOriginatingAttorney}
+									placeholder="Search Person..."
+									default-record-id={clientRecord.Originating_Attorney__c}>
+								</c-lwc-lookup> -->
+								<span if:true={showOriginatingAttorneyMandatory}><label><abbr class="slds-required"
+											title="required">Complete this field.</abbr></label></span>
+							</div>
+						</div>
+
+						<div class="slds-col slds-size_4-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">
+									Managing(Supervising) Attorney</label>
+								<symphonylf-dynamic-search-and-select 
+									object-name="SymphonyLF__Person__c" search-field-names="Name"
+									query-field-names="Id, Name, SymphonyLF__Type__c" dropdown-option-fields="1,2,3,4"
+									selected-record-representation="1" icon-name="standard:account"
+									placeholder="Search Person..." onselected={lookupManagingAttorney}
+									min-search-txt-len=0 final-sel-id={clientRecord.Managing_Supervising_Attorney__c}
+									where-clause=" SymphonyLF__Type__c='Attorney'" order-by="Name" limit=50>
+								</symphonylf-dynamic-search-and-select>
+								<!-- <c-lwc-lookup icon-name="standard:account" s-object-api-name="SymphonyLF__Person__c"
+									label="Managing(Supervising) Attorney" onlookupupdate={lookupManagingAttorney}
+									placeholder="Search Person..."
+									default-record-id={clientRecord.Managing_Supervising_Attorney__c}>
+								</c-lwc-lookup> -->
+
+							</div>
+
+						</div>
+
+						<div class="slds-col slds-size_4-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">Working(Assigned)
+									Attorney</label>
+								<symphonylf-dynamic-search-and-select
+									object-name="SymphonyLF__Person__c" search-field-names="Name"
+									query-field-names="Id, Name, SymphonyLF__Type__c" dropdown-option-fields="1,2,3,4"
+									selected-record-representation="1" icon-name="standard:account"
+									placeholder="Search Person..." onselected={lookupWorkingAttorney}
+									min-search-txt-len=0 final-sel-id={clientRecord.Working_Assigned_Attorney__c}
+									where-clause=" SymphonyLF__Type__c='Attorney'" order-by="Name" limit=50>
+								</symphonylf-dynamic-search-and-select>
+								<!-- <c-lwc-lookup icon-name="standard:account" s-object-api-name="SymphonyLF__Person__c"
+									label="Working(Assigned) Attorney" onlookupupdate={lookupWorkingAttorney}
+									placeholder="Search Person..."
+									default-record-id={clientRecord.Working_Assigned_Attorney__c}>
+								</c-lwc-lookup> -->
+							</div>
+						</div>
+
+						<div class="slds-col slds-size_4-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">Responsible(Billing)
+									Attorney</label>
+								<symphonylf-dynamic-search-and-select 
+									object-name="SymphonyLF__Person__c" search-field-names="Name"
+									query-field-names="Id, Name, SymphonyLF__Type__c" dropdown-option-fields="1,2,3,4"
+									selected-record-representation="1" icon-name="standard:account"
+									placeholder="Search Person..." onselected={lookupReponsibleAttorney}
+									min-search-txt-len=0 final-sel-id={clientRecord.Responsible_Billing_Attorney__c}
+									where-clause=" SymphonyLF__Type__c='Attorney'" order-by="Name" limit=50>
+								</symphonylf-dynamic-search-and-select>
+								<!-- <c-lwc-lookup icon-name="standard:account" s-object-api-name="SymphonyLF__Person__c"
+									label="Responsible(Billing) Attorney" onlookupupdate={lookupReponsibleAttorney}
+									placeholder="Search Person..."
+									default-record-id={clientRecord.Responsible_Billing_Attorney__c}>
+								</c-lwc-lookup> -->
+							</div>
+						</div>
+
+						<div class="slds-col slds-size_4-of-12">
+							<div class="inputPadding">
+								<span class='toggle'>Paper copy of disbursements with bills?</span>
+								<label class='toggle-label'>
+									<input type='checkbox' onchange={onPaperCopyOfDibusement}
+										checked={b_PaperCopyOfDibusement} data-id="copyToBilling" />
+									<span class='back'>
+										<span class='toggle'></span>
+										<span class='label off'>Yes</span>
+										<span class='label on'>No</span>
+									</span>
+								</label>
+							</div>
+						</div>
+						<div class="slds-col slds-size_4-of-12">
+							<div class="inputPadding">
+								<span class='toggle'>Is this pro- bono?</span>
+								<label class='toggle-label'>
+									<input type='checkbox' onchange={onIsThisProBono} checked={b_IsThisProBono}
+										data-id="copyToBilling" />
+									<span class='back'>
+										<span class='toggle'></span>
+										<span class='label off'>Yes</span>
+										<span class='label on'>No</span>
+									</span>
+								</label>
+							</div>
+						</div>
+						<div class="slds-col slds-size_4-of-12">
+							<div class="inputPadding">
+								<span class='toggle'>Task-based billing ?</span>
+								<label class='toggle-label'>
+									<input type='checkbox' onchange={onTaskBasedBilling} checked={b_TaskBasedBilling}
+										data-id="copyToBilling" />
+									<span class='back'>
+										<span class='toggle'></span>
+										<span class='label off'>Yes</span>
+										<span class='label on'>No</span>
+									</span>
+								</label>
+							</div>
+						</div>
+						<div class="slds-col slds-size_4-of-12">
+							<div class="inputPadding">
+								<span class='toggle'>Engagement letter received?</span>
+								<label class='toggle-label'>
+									<input type='checkbox' onchange={onEngagementLetterRecieve}
+										checked={b_EngagementLetterRecieve} data-id="copyToBilling" />
+									<span class='back'>
+										<span class='toggle'></span>
+										<span class='label off'>Yes</span>
+										<span class='label on'>No</span>
+									</span>
+								</label>
+							</div>
+						</div>
+						<div class="slds-col slds-size_4-of-12">
+							<div class="inputPadding">
+								<span class='toggle'>Paper Bills or Email</span>
+								<label class='toggle-label'>
+									<input type='checkbox' onchange={onPaperBillsOrEmail} checked={b_PaperBillsOrEmail}
+										data-id="copyToBilling" />
+									<span class='back'>
+										<span class='toggle'></span>
+										<span class='label off'>Yes</span>
+										<span class='label on'>No</span>
+									</span>
+								</label>
+							</div>
+						</div>
+						<div class="slds-col slds-size_4-of-12">
+							<div class="inputPadding">
+								<span class='toggle'>Retainer received ?</span>
+								<label class='toggle-label'>
+									<input type='checkbox' onchange={onRetainerRecieved} checked={b_RetainerRecieved}
+										data-id="copyToBilling" />
+									<span class='back'>
+										<span class='toggle'></span>
+										<span class='label off'>Yes</span>
+										<span class='label on'>No</span>
+									</span>
+								</label>
+							</div>
+						</div>
+						<div class="slds-col slds-size_4-of-12">
+							<div class="inputPadding">
+								<span class='toggle'>LEDES files required?</span>
+								<label class='toggle-label'>
+									<input type='checkbox' onchange={onLEDESFilesRequired}
+										checked={b_LEDESFilesRequired} data-id="copyToBilling" />
+									<span class='back'>
+										<span class='toggle'></span>
+										<span class='label off'>Yes</span>
+										<span class='label on'>No</span>
+									</span>
+								</label>
+							</div>
+						</div>
+
+						<div class="slds-col slds-size_8-of-12">
+							<div class="inputPadding">
+								<label class="slds-form-element__label" style="font-size: 14px;">Any other special
+									billing instructions?</label>
+								<lightning-textarea onchange={onSpecialBillingChange} value={v_specialBilling}
+									data-id="rateCode" variant="label-hidden">
+								</lightning-textarea>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</lightning-card>
+
+		</div>
+
+		<div class="slds-m-around_medium">
+			<lightning-modal-footer>
+				<div class="slds-m-top_small">
+					<div class="slds-align_absolute-center">
+						<lightning-button if:true={step1Open} variant="brand" label="Next" onclick={step1Next}
+							class="slds-m-left_x-small"></lightning-button>
+
+
+						<lightning-button if:true={step2Open} variant="brand" label="Previous" onclick={step2Previous}
+							class="slds-m-left_x-small"></lightning-button>
+						<lightning-button if:true={step2Open} variant="brand" label="Next" onclick={step2Next}
+							class="slds-m-left_x-small"></lightning-button>
+
+						<lightning-button if:true={step3Open} variant="brand" label="Previous" onclick={step3Previous}
+							class="slds-m-left_x-small"></lightning-button>
+						<lightning-button if:true={step3Open} variant="brand" type="submit" label="Create Client"
+							onclick={createClient} class="slds-m-left_x-small"></lightning-button>
+						<!-- onclick={createClient1}-->
+
+					</div>
+				</div>
+			</lightning-modal-footer>
+			<c-reusable-spinner-cmp show-modal-spinner={showSpinner}></c-reusable-spinner-cmp>
+		</div>
+		<!-- </lightning-record-edit-form> -->
+
+	</lightning-card>
+</template>

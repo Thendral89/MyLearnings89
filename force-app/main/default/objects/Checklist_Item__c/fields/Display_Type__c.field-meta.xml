@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Display_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>(Legacy)Display Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Radio Button</fullName>
+                <default>false</default>
+                <label>Radio Button</label>
+            </value>
+            <value>
+                <fullName>Date</fullName>
+                <default>false</default>
+                <label>Date</label>
+            </value>
+            <value>
+                <fullName>Checkbox Group</fullName>
+                <default>false</default>
+                <label>Checkbox Group</label>
+            </value>
+            <value>
+                <fullName>Multi Checkbox Picklist</fullName>
+                <default>false</default>
+                <label>Multi Checkbox Picklist</label>
+            </value>
+            <value>
+                <fullName>Table</fullName>
+                <default>false</default>
+                <label>Table</label>
+            </value>
+            <value>
+                <fullName>Text</fullName>
+                <default>false</default>
+                <label>Text</label>
+            </value>
+            <value>
+                <fullName>Text Area</fullName>
+                <default>false</default>
+                <label>Text Area</label>
+            </value>
+            <value>
+                <fullName>Number</fullName>
+                <default>false</default>
+                <label>Number</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

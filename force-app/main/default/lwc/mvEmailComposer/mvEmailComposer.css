@@ -1,0 +1,258 @@
+.email-composer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 2% 5%;
+    max-height: 80vh;
+    overflow-y: auto;
+    background-color: white;
+    /* overflow: visible; */
+}
+.attachment-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+.email-composer {
+    border: 1px solid #d8dde6;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+.form-row-body {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 98.7%;
+}
+
+.form-label {
+    flex: 0 0 100px;
+    font-weight: bold;
+}
+
+/* .form-input {
+    flex: 1;
+    max-width: 100%;
+    margin-top: -2%;
+} */
+.form-input {
+    flex: 1 1 0;      
+    min-width: 0;    
+  }
+.template-folder {
+    flex: 0 0 40%; /* 40% width */
+}
+
+.email-template {
+    flex: 0 0 60%; /* 60% width */
+}
+
+.multi-input-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.toggle-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.toggle-button {
+    background: none;
+    border: none;
+    color: #0070d2;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0 4px;
+}
+
+.body-field {
+    max-width: 100%;
+    width: 100%;
+}
+
+.footer-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    padding: 16px;
+    background-color: #f4f6f9;
+    border-top: 1px solid #d8dde6;
+}
+
+.to-field-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.to-field-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 8px; /* Adjust spacing between the input field and buttons */
+    position: relative;
+}
+
+.to-field {
+    flex: 1;
+}
+/* .toggle-button, .directory-icon {
+    padding: 4px;  
+    margin: 0 4px; 
+}
+ */
+.directory-icon,
+.toggle-button {
+    padding: 4px 6px;
+    font-size: 0.85rem;
+}
+.to-field-buttons {
+    z-index: 1000;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end; /* Align buttons to the right */
+    position: absolute;
+    right: 0;
+    flex-shrink: 0;
+}
+
+.customHeight .slds-rich-text-editor__textarea,
+.customHeight .slds-rich-text-editor__output {
+    min-height: 600px !important;
+    height: 600px !important;
+    max-height: 600px !important;
+}
+
+.focusedHeight .slds-rich-text-editor__textarea,
+.focusedHeight .slds-rich-text-editor__output {
+    min-height: 800px !important;
+    height: 800px !important;
+    max-height: 800px !important;
+}
+
+
+.directory-icon {
+    cursor: pointer;
+    padding-right: 10px;
+}
+
+.header {
+    display: inline-block;
+    margin-left: auto;
+}
+.icon-button {
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.field-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+:host .slds-modal__footer {
+    padding: 0.5rem;
+    height: auto; 
+}
+
+:host .slds-grid.slds-grid_align-end.slds-p-around_small {
+    padding: 0; 
+    margin: 0;
+}
+:host .customHeight .slds-rich-text-editor__textarea,
+:host .customHeight .slds-rich-text-editor__output{
+    --slds-c-textarea-sizing-min-height: 100%;       
+    --slds-c-textarea-sizing-max-height: 100%;    
+}
+
+
+.custom-pill {
+    display: flex;
+    align-items: center;
+    background-color: #f4f6f9;
+    border: 1px solid #d8dde6;
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    height: 32px;
+    max-width: 100%;
+    overflow: hidden;
+    animation: fadeIn 0.3s ease-in;
+    transition: background 0.3s ease;
+}
+
+.custom-pill:hover {
+    background-color: #e3e6ea;
+}
+
+.pill-label {
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 160px;
+    display: inline-block;
+}
+
+.pill-remove {
+    cursor: pointer;
+    margin-left: 10px;
+    color: darkslategrey;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1;
+    transition: transform 0.2s;
+}
+
+.pill-remove:hover {
+    transform: scale(1.2);
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.email-composer-fixed-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 999;
+    background-color: white;
+    padding: 0.75rem;
+    border-top: 1px solid #d8dde6;
+}

@@ -1,0 +1,144 @@
+.inputPadding {
+    /* font-weight: bold; */
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.slds-modal__container {
+    max-width: 80rem !important;
+    width: 80% !important;
+}
+
+.mem-grid thead tr th:nth-child(8) {
+    display: none !important;
+}
+
+.mem-grid tbody tr th:nth-child(8) {
+    display: none !important;
+}
+
+.mem-grid .iconContainer svg {
+    fill: orange;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.fixed-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem; /* Adds spacing between sections */
+}
+
+.search-section {
+    flex: 0 0 40%; /* Fixed width for the left section */
+    position: relative; /* Keeps dropdowns within bounds */
+}
+
+.accordion-section {
+    flex: 1; /* Flexible width for the right section */
+    overflow-y: auto; /* Allows scrolling if content overflows */
+}
+
+/* .dropdown {
+    position: absolute;
+    top: 50px; 
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-height: 33rem;
+    overflow-y: auto;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+} */
+
+.enhanced-dropdown {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 100%; /* Matches the width of the input */
+}
+
+
+.action-icon{
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.action-icons {
+    display: flex;
+    justify-content: center;
+   /*  gap: 15px; Space between icons */
+    align-items: center;
+    width: 100%;
+}
+
+.action-icons i {
+    cursor: pointer;
+    font-size: 18px;
+    color: #333; /* Dark gray */
+}
+
+.action-icons i:hover {
+    color: #007bff; /* Highlight on hover */
+}
+
+.tabulator-col[tabulator-field="actions"] .tabulator-col-title {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100% !important; /* Make sure it fills the header */
+}
+
+.slds-form-element__label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.dropdown-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f4f6f9;
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    z-index: 10;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.slds-hide {
+    display: none;
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Utility --></label>
+    <name>Utility__c</name>
+    <picklistValues>
+        <masterLabel>All claims have been paid for</masterLabel>
+        <translation><!-- All claims have been paid for --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Will be paid later</masterLabel>
+        <translation><!-- Will be paid later --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Row Cause --></label>
+    <name>RowCause__c</name>
+    <picklistValues>
+        <masterLabel>MEM_Annuity_Specialist__c</masterLabel>
+        <translation><!-- MEM_Annuity_Specialist__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MEM_Case_Manager__c</masterLabel>
+        <translation><!-- MEM_Case_Manager__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MEM_Docketing_Specialist__c</masterLabel>
+        <translation><!-- MEM_Docketing_Specialist__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MEM_IDS_Specialist__c</masterLabel>
+        <translation><!-- MEM_IDS_Specialist__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MEM_Lead_Attorney__c</masterLabel>
+        <translation><!-- MEM_Lead_Attorney__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MEM_Legal_Assistant__c</masterLabel>
+        <translation><!-- MEM_Legal_Assistant__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MEM_Paralegal__c</masterLabel>
+        <translation><!-- MEM_Paralegal__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MEM_Working_Attorney__c</masterLabel>
+        <translation><!-- MEM_Working_Attorney__c --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Manual</masterLabel>
+        <translation><!-- Manual --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

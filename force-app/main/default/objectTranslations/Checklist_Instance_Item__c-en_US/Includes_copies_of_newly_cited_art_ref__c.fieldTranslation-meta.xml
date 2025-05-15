@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Includes copies of newly cited art &amp; ref --></label>
+    <name>Includes_copies_of_newly_cited_art_ref__c</name>
+    <picklistValues>
+        <masterLabel>Please leave initial IDS due date open in docket</masterLabel>
+        <translation><!-- Please leave initial IDS due date open in docket --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>This IDS is complete with all information we have to date (docketing will close out initial IDS date)</masterLabel>
+        <translation><!-- This IDS is complete with all information we have to date (docketing will close out initial IDS date) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

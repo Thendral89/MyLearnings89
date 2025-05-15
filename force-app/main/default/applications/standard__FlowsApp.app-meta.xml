@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>FlowsApp</label>
+    <navType>Standard</navType>
+    <tabs>standard-home</tabs>
+    <tabs>standard-FlowRecord</tabs>
+    <tabs>standard-Monitor</tabs>
+    <tabs>SymphonyLF__Docketing_Activity__c</tabs>
+    <tabs>Conflict_Check__c</tabs>
+    <tabs>DocuSign_Document__c</tabs>
+    <tabs>SymphonyLF__Matter_Engagement_Model__c</tabs>
+    <tabs>SymphonyLF__Inventor_Designer_Author__c</tabs>
+    <tabs>API_Details__c</tabs>
+    <tabs>SymphonyLF__Legal_Event__c</tabs>
+    <tabs>iManage_Documents__c</tabs>
+    <tabs>SymphonyLF__Additional_Address__c</tabs>
+    <tabs>SymphonyLF__Chain_of_Title__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>FlowsApp_UtilityBar</utilityBar>
+</CustomApplication>

@@ -1,0 +1,110 @@
+<aura:component controller="cmpAPDocuSignCtrl" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,lightning:availableForFlowScreens" access="global" >
+    <aura:attribute name="envelopeDetails" type="string" default=""/>
+    <aura:attribute name="showNote" type="boolean" default="false"/>
+    <aura:attribute name="count" type="integer" default="0"/>
+    <aura:attribute name="jobID" type="string" default=""/>
+    <aura:attribute name="enveId" type="string" default=""/>
+    
+    <aura:attribute name="jobStatus" type="string" default=""/>
+    <aura:attribute name="pollId" type="integer" default=""/>
+    <aura:attribute name="jobMessage" type="string" default=""/>
+    <aura:attribute name="progress" type="Integer" default="0"/>
+    <aura:attribute name="apexJob" type="AsyncApexJob"/>
+    <aura:attribute name="envelopeId" type="string" default=""/>
+    <aura:attribute name="venvelopeId" type="string" default=""/>
+    <aura:attribute name="envelopeSentOn" type="string" default="12 Aug 2019"/>
+    <aura:attribute name="envelopeStatus" type="string" default="Delivered"/>
+    <aura:attribute name="displayResult" type="string" default=""/>
+    <aura:attribute name="envelopCount" type="Integer" default="0"/>
+    <aura:attribute name="isStatusDisabled" type="boolean" default="false"/>
+    <aura:attribute name="IsReview" type="boolean" default="false"/>
+    <aura:attribute name="IsReviewBeforeSend" type="boolean" default="false"/>
+    <aura:attribute name="IsInfoDisabled" type="boolean" default="false"/>
+
+    <aura:attribute name="isDisabled" type="boolean" default="false"/>
+    <aura:attribute name="isReDisabled" type="boolean" default="false"/>
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="isRefresh" type="boolean" default="false"/>
+    <aura:attribute name="isPreviewModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="InnovatorsIds" access="global" type="string" default=""/>
+    <aura:attribute name="IsPatent" type="boolean" default="false"/>
+    <aura:attribute name="vPatent" access="global" type="string" default=""/>
+    <aura:attribute name="IsEnvelopPreview" access="global" type="string" default="created"/>
+    <aura:attribute name="IsPreview" type="boolean" default="false"/>
+    <aura:attribute name="IsAdmin" type="boolean" default="true"/>
+    <aura:attribute name="IsInnovators" type="boolean" default="false"/>
+    <aura:attribute name="IsTitle" type="boolean" default="false"/>
+    <aura:attribute name="EnvelopPreviewId" type="String" />
+    <aura:attribute name="IsValidating" type="boolean" default="false"/>
+    <aura:attribute name="IsValidatingProgress" type="boolean" default="false"/>
+    <aura:attribute name="batchInstanceId" type="String" default="" />
+    <aura:attribute name="IsbatchInstanceId" type="boolean" default="false"/>
+     <lightning:notificationsLibrary aura:id="notifyId"/>    
+    
+    <aura:attribute name="IsMultipleSignature" type="boolean" default="false"/>
+    <aura:attribute name="tooltipHeaderNote" type="Boolean" default="false" />
+    
+    <aura:attribute name="emailBody" type="String" />
+    
+    <!--*****Setting *****-->
+    <aura:attribute name="IsTemplates" type="boolean" default="true"/>
+    
+    <!--*****Setting *****-->
+    <aura:attribute name="sectionshow" type="boolean" default="false"/>
+    <aura:attribute name="sectionhide" type="boolean" default="true"/>
+    <aura:attribute name="StepOneShow" type="boolean" default="true"/>
+    <aura:attribute name="StepOnehide" type="boolean" default="false"/>
+    <aura:attribute name="StepTwoShow" type="boolean" default="true"/>
+    <aura:attribute name="StepTwohide" type="boolean" default="false"/>
+    <aura:attribute name="StepThreeShow" type="boolean" default="true"/>
+    <aura:attribute name="StepThreehide" type="boolean" default="false"/>
+    <aura:attribute name="Title" type="String" default=""/>
+    <aura:attribute name="Application" type="String" default=""/>
+    <aura:attribute name="FilingDate" type="String" default=""/>
+    
+    <aura:attribute name="Instructional" type="String" default=""/>
+    
+    <aura:attribute name="IsShow" type="Boolean" default = "true"/>
+    <aura:attribute name="Column" type="List"/>    
+    <aura:attribute name="Data" type="object[]" />
+    <aura:attribute name="sortedBy" type="String" default="Name"/>
+    <aura:attribute name="sortedDirection" type="String" default="asc"/>
+    <aura:attribute name="arrSelectedInventorIds" type="List"/>
+    <aura:attribute name="strSelectedInventorIds" type="string" access="global"/>
+    <aura:attribute name="Inventors" type="string" access="global"/>
+    
+    <aura:attribute name="objEnvelopes" type="EnvelopeInfo__c[]"/>
+    <aura:attribute name="objSupplimentalAttachments" type="cmpAPDocuSignSupplimentalAttachment[]"/>
+    <aura:attribute name="objDocuSignedAttachments" type="cmpAPDocuSignSupplimentalAttachment[]"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.loadEnvelopesController}"/>
+    
+    
+   <div class="slds-card slds-card_boundary forceBaseCard flexipageCard" data-aura-class="forceBaseCard flexipageCard">
+    
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-contact" title="contact">
+                        <span class="slds-assistive-text">DocuSign:  Send Formals and Final Drafts to Innovators</span>
+                        <br/><br/>
+                     <div class="demo-only" style="position:relative">
+  						<div class="slds-spinner_container">
+    						<div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+      							<span class="slds-assistive-text">Loading</span>
+      								<div class="slds-spinner__dot-a"></div>
+      							<div class="slds-spinner__dot-b"></div>
+    						</div>
+  						</div>
+					</div>
+                        
+                    </span>
+                </div>
+            </header>
+        </div>
+       
+    </div>
+    
+
+    
+</aura:component>

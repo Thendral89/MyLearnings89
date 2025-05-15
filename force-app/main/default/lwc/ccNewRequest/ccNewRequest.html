@@ -1,0 +1,368 @@
+<template>
+
+
+	<template if:true={showModal}>
+		<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-cc" aria-modal="true"
+			aria-describedby="modal-content-id-cc" class="slds-modal slds-fade-in-open slds-modal_medium">
+			<div class="slds-modal__container">
+				<!-- modal header start -->
+				<header class="slds-modal__header">
+					<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+						title="Close" onclick={handleCancelClick}>
+						<lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+							size="small"></lightning-icon>
+						<span class="slds-assistive-text">Close</span>
+					</button>
+					<h2 id="modal-heading-cc" class="slds-text-heading_medium slds-hyphenate"> Conflict Check Form
+					</h2>
+				</header>
+
+				<!-- modal body start -->
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-cc">
+
+
+					<lightning-card>
+						<div>
+							<div class="topDiv">
+								<div class="mainDiv">
+									<div class="mainheader">
+										<div style="display:flex;justify-content:center;">
+											<div style="width:100%;" class="footerBox">
+												<c-reusable-announcement show-languages="true"
+													containerstyleclass="slds-card reviewAnnouncement"
+													announcementheader={announcementHeader}
+													announcements={announcements}>
+												</c-reusable-announcement>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<c-reusable-spinner-cmp show-modal-spinner={showSpinner}></c-reusable-spinner-cmp>
+
+
+
+							<div> <!-- class="slds-box"-->
+								<!-- <div class="slds-m-horizontal_small"> -->
+								<div class="slds-clearfix">
+									<div class="slds-float_left">
+
+									</div>
+									<div class="slds-float_right slds-p-top_medium">
+										<div if:true={currentStepIsCreateNewRequest}>
+											<div if:false={existingClientName}>
+												<div>
+													<lightning-button variant="success" type="submit" label="New Client"
+														onclick={openClientPopup}></lightning-button>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!-- </div> -->
+								<div class="slds-m-horizontal_small" if:true={currentStepIsCreateNewRequest}>
+
+									<lightning-card>
+										<div class="slds-m-around_medium">
+											<div class="slds-grid slds-wrap">
+												<div class="slds-col slds-size_6-of-12">
+													<template if:true={showClientError}>
+														<div class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;margin-left: 10px;color:#c40000">
+															Please fill Client Name.
+														</div>
+													</template>
+													<div class="inputPadding">
+														<label class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;">
+															<abbr class="slds-required" title="required">* </abbr>Client
+															Name</label>
+														<c-lwc-lookup if:false={isClientCreated}
+															icon-name="standard:account"
+															s-object-api-name="SymphonyLF__Client__c" label=""
+															onlookupupdate={lookupClientRecord}
+															default-record-id={existingClientName}
+															placeholder="Search Client...">
+														</c-lwc-lookup>
+														<c-lwc-lookup if:true={isClientCreated}
+															icon-name="standard:account"
+															s-object-api-name="SymphonyLF__Client__c" label=""
+															onlookupupdate={lookupClientRecord}
+															default-record-id={existingClientName}
+															placeholder="Search Client...">
+														</c-lwc-lookup>
+														<!-- <span if:false={existingClientName}><label><abbr
+																	class="slds-required" title="required">Complete this
+																	field.</abbr></label></span> -->
+
+													</div>
+												</div>
+												<div class="slds-col slds-size_6-of-12">
+													<div class="inputPadding">
+														<label class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;">
+															Matter name</label>
+														<lightning-input type="text" label="" value={matterName}
+															onchange={onMatterNameChange} name="matterNames"
+															variant="label-hidden">
+														</lightning-input>
+
+													</div>
+												</div>
+												<div class="slds-col slds-size_6-of-12">
+													<div class="inputPadding">
+														<label class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;">
+															Client’s reference no. for this matter</label>
+														<lightning-input type="text" label="" name="clientReferenceNo"
+															maxlength="255" value={referenceNumber}
+															onchange={onReferenceNumberChange} variant="label-hidden">
+														</lightning-input>
+
+													</div>
+												</div>
+												<div class="slds-col slds-size_6-of-12">
+													<div class="inputPadding">
+														<label class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;">
+															Matter transferred in from another firm?</label>
+														<c-lwc-picklist object-api-name="Conflict_Check__c"
+															field-api-name="Matter_transferred_in_from_another_firm__c"
+															variant="label-hidden"
+															onvalueselected={onMatterTransferFromFirmSelected}>
+														</c-lwc-picklist>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+
+										<div class="slds-m-around_medium">
+											<div class="slds-grid slds-wrap">
+												<div class="slds-col slds-size_6-of-12">
+													<div class="inputPadding">
+														<label class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;">
+															<!-- <abbr class="slds-required" title="required">*
+															</abbr> -->
+															Adverse Parties
+														</label>
+														<lightning-input type="text" variant="label-hidden"
+															value={v_AdverseParties} onchange={onAdversePartiesChange}
+															label="" name="adversePartise" data-id="adverseParties">
+														</lightning-input>
+														<lightning-pill-container items={adversePartiesPills}
+															onitemremove={handleAdeversePartiesRemove}></lightning-pill-container>
+														<!-- <span if:false={allAdverseParties}><label><abbr
+																	class="slds-required" title="required">Complete this
+																	field.</abbr></label></span> -->
+													</div>
+												</div>
+
+												<div class="slds-col slds-size_6-of-12">
+													<div class="inputPadding">
+														<label class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;">
+															Related Parties other than Client</label>
+														<lightning-input type="text"
+															label="Related Parties other than Client"
+															variant="label-hidden" name="relatedPartise"
+															value={v_RalatedParties} onchange={onRelatedPartiesChange}
+															data-id="relatedParties">
+														</lightning-input>
+														<lightning-pill-container items={relatedPartiesPills}
+															onitemremove={handleRelatedPartiesRemove}></lightning-pill-container>
+
+
+													</div>
+												</div>
+
+												<div class="slds-col slds-size_6-of-12">
+													<div class="inputPadding">
+														<label class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;">
+															Client Relationship with related parties</label>
+														<div class="slds-p-raound_xx-small">
+															<lightning-combobox name="relatedParties"
+																variant="label-hidden" label="" value={value}
+																options={optionsMaster}
+																onchange={handleChange}></lightning-combobox>
+														</div>
+														<div class="slds-p-raound_xx-small">
+															<template for:each={allValues} for:item="val">
+																<lightning-pill key={val} name={val} label={val}
+																	onremove={handleRemove}></lightning-pill>
+															</template>
+														</div>
+													</div>
+												</div>
+
+												<div class="slds-col slds-size_6-of-12">
+													<div class="inputPadding">
+														<label class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;">
+															Contributors</label>
+														<lightning-input type="text" value={contributors}
+															onchange={onContributorsChange} variant="label-hidden"
+															label="Contributors" name="contribtors"
+															data-id="contribtors">
+															<!--placeholder="Search Inventor/ Designer/ Author..." -->
+														</lightning-input>
+														<lightning-pill-container items={contribtorsPills}
+															onitemremove={handleContributorsRemove}></lightning-pill-container>
+														<!-- <span if:false={allContributors}><label><abbr class="slds-required"
+															title="required">Complete this
+															field.</abbr></label></span> -->
+													</div>
+												</div>
+
+
+												<div class="slds-col slds-size_6-of-12">
+													<template if:true={showKeywordError}>
+														<div class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;margin-left: 10px;color:#c40000">
+															Please fill Keywords.
+														</div>
+													</template>
+													<div class="inputPadding">
+														<label class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;">
+															<abbr class="slds-required" title="required">* </abbr>
+															Keywords</label>
+														<lightning-input type="text" label="" name="keywords"
+															variant="label-hidden" value={keywords}
+															onchange={onKeywordsChange} data-id="keywords">
+															<!--placeholder="Search Keywords..."-->
+														</lightning-input>
+
+														<lightning-pill-container items={keywordsPills}
+															onitemremove={handleKeywordRemove}></lightning-pill-container>
+													</div>
+												</div>
+												<div class="slds-col slds-size_6-of-12">
+													<template if:true={showLawError}>
+														<div class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;margin-left: 10px;color:#c40000">
+															Please fill Area Of Law.
+														</div>
+													</template>
+													<div class="inputPadding">
+														<abbr class="slds-required" title="required">* </abbr>
+														<label class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;">
+															Area Of Law</label>
+														<c-lwc-picklist object-api-name="Conflict_Check__c"
+															field-api-name="Area_of_Law_AOL__c" variant="label-hidden"
+															onvalueselected={onAreaOfLawSelected}>
+														</c-lwc-picklist>
+													</div>
+												</div>
+
+												<div class="slds-col slds-size_6-of-12">
+													<div class="inputPadding">
+														<label class="slds-form-element__label"
+															style="font-size: 14px;font-weight: 700;">
+															Brief Description of Subject Matter</label>
+														<lightning-textarea label="Brief Description of Subject Matter"
+															name="briefDescription" variant="label-hidden"
+															value={v_BreifDescription}
+															onchange={onDescriptionChange}></lightning-textarea>
+
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</lightning-card>
+
+								</div>
+
+							</div>
+						</div>
+
+
+
+						<template if:true={isShowDoNotEngagementModal}>
+							<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+								aria-describedby="modal-content-id-3"
+								class="slds-modal slds-fade-in-open slds-modal_medium">
+								<div class="slds-modal__container">
+									<!-- modal header start -->
+									<header class="slds-modal__header">
+										<button
+											class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+											title="Close" onclick={hideDonotEngagementModal}>
+											<lightning-icon icon-name="utility:close" alternative-text="close"
+												variant="inverse" size="small"></lightning-icon>
+											<span class="slds-assistive-text">Close</span>
+										</button>
+										<h2 id="modal-heading-05" class="slds-text-heading_medium slds-hyphenate"> **
+											Warning **
+										</h2>
+									</header>
+
+									<!-- modal body start -->
+									<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-04">
+										<c-lwc-donot-engage
+											onshowdonotengagementmodal={closeDonotEngagementModal}></c-lwc-donot-engage>
+									</div>
+								</div>
+							</section>
+							<div class="slds-backdrop slds-backdrop_open"></div>
+						</template>
+
+					</lightning-card>
+
+
+				</div>
+				<lightning-modal-footer>
+					<div class="slds-m-top_small">
+						<div class="slds-align_absolute-center">
+							<lightning-button variant="brand" label="Skip and Engage" title="Skip and Engage"
+								onclick={handleClickOnSkipAndEngage} class="slds-m-left_x-small"></lightning-button>
+							<!--lightning-button variant="brand" label="Skip Conflict Check" title="Primary action"
+								onclick={handleClick2} class="slds-m-left_x-small"></lightning-button-->
+							<lightning-button variant="brand" label="Initiate Conflict Check" title="Primary action"
+								onclick={onClickInitiateConflictCheck} class="slds-m-left_x-small"></lightning-button>
+							<lightning-button variant="Neutral" label="Cancel" title="Primary action"
+								onclick={handleCancelClick} class="slds-m-left_x-small"></lightning-button>
+						</div>
+					</div>
+				</lightning-modal-footer>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</template>
+	<div if:true={isShowNewClientModal}>
+		<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+			aria-describedby="modal-content-id-11" class="slds-modal slds-fade-in-open slds-modal_medium">
+			<div class="slds-modal__container">
+				<!-- modal header start -->
+				<header class="slds-modal__header">
+					<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+						title="Close" onclick={hideModalBox}>
+						<lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+							size="small"></lightning-icon>
+						<span class="slds-assistive-text">Close</span>
+					</button>
+					<h2 id="modal-heading-011" class="slds-text-heading_medium slds-hyphenate">New Client
+					</h2>
+				</header>
+
+				<!-- modal body start -->
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-11">
+					<c-cmp-client-creation onclosepopup={closePopup} onclientcreation={onclientCreation}
+						created-client-name={existingClientName} showmodal={isShowNewClientModal}>
+					</c-cmp-client-creation>
+				</div>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</div>
+
+	
+
+</template>

@@ -1,0 +1,215 @@
+.dummy{
+	color : black;
+}
+.accordianSection
+{
+    --slds-c-accordion-summary-color-background : #f3f3f3;
+    --slds-c-accordion-summary-radius-border : 0.25rem;
+    --slds-c-accordion-summary-height : 0.25rem;
+
+}
+
+
+.reviewAnnouncement{
+              border: 1px solid #333333;
+              font-weight: normal;
+              size: 1rem;
+              background-color: #fdc68360;
+              margin-bottom:10px;
+              color: #181818;
+          }
+
+.footerBox{
+              font-size: 0.813rem;
+              margin-top:10px;  
+          }
+
+.mainheader{
+              border: 1px lightgray;
+              border-radius: 0.3rem;
+              margin: 1rem;
+          }
+   
+.mainDiv {
+    		  background-color: lightgray;
+              box-sizing: border-box;
+              border-bottom: 1px solid #E2E2E2;
+              border-left: 1px solid #E2E2E2;
+              border-right: 1px solid #E2E2E2;
+              border-radius: 4pt;
+              /* margin-left: 21px; */
+              font-family: 'Segoe UI',sans-serif;
+              width:100%!important;
+          }
+
+.topDiv{
+              display: flex; 
+              justify-content: center;
+              width:100%!important;
+          } 
+
+.inputPadding {
+              /* font-weight: bold; */
+              padding-left: 10px;
+              padding-right: 10px;
+              padding-bottom: 10px;
+          }
+
+
+/* Toggle Buttons CSS */
+
+.toggle-label {
+	position: relative;
+	display: block;
+	width: 300px;
+	height: 30px;
+	margin-top: 8px;
+}
+
+.toggle-label input[type=checkbox] {
+	opacity: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.toggle-label input[type=checkbox]+.back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(#666, #333);
+    transition: background 150ms linear;
+    border-radius: 6px;
+}
+
+.toggle-label input[type=checkbox]:checked+.back {
+    background: linear-gradient(#666, #333);
+    border-radius: 6px;
+}
+
+.toggle-label input[type=checkbox]+.back .toggle {
+	display: block;
+	position: absolute;
+	content: ' ';
+    background: rgb(1, 118, 211);
+    color: white;
+	width: 50%;
+	height: 100%;
+	transition: margin 150ms linear;
+	border-radius: 6px;
+}
+
+.toggle-label input[type=checkbox]:checked+.back .toggle {
+	margin-left: 150px;
+}
+
+.toggle-label .label {
+	display: block;
+	position: absolute;
+	width: 50%;
+	color: #ddd;
+	line-height: 25px;
+	text-align: center;
+	font-size: 2em;
+}
+
+.toggle-label .label.on {
+	left: 0px;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.toggle-label .label.off {
+	right: 0px;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;    
+}
+
+.toggle-label input[type=checkbox]:checked+.back .label.on {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.toggle-label input[type=checkbox]+.back .label.off {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.toggle-label input[type=checkbox]:checked+.back .label.off {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.toggle {
+	font-size: 14px;
+    font-weight: bold;
+    padding-left: 2px;
+}
+
+/* Button CSS */
+
+.ccButton {
+	box-shadow: 0px 1px 0px 0px #333333;
+	background: linear-gradient(to bottom right, #666666, #333333);
+	background-color: #333333;
+	border-radius: 6px;
+	border: 1px solid #333333;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff!important;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 18px;
+	padding: bottom 2px;
+	padding-top: 2px;
+	padding-left: 10px;
+	padding-right: 10px;
+	width: 80%;
+	text-decoration: none;
+	text-align: center;
+	/*text-shadow: 0px 1px 0px #333333;*/
+	float: right;
+}
+
+.ccButtonFullWidth {
+	box-shadow: 0px 1px 0px 0px #333333;
+	background: linear-gradient(to bottom right, #666666, #333333);
+	background-color: #333333;
+	border-radius: 6px;
+	border: 1px solid #333333;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff!important;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 18px;
+	padding: bottom 2px;
+	padding-top: 2px;
+	padding-left: 10px;
+	padding-right: 10px;
+	width: 20%;
+	text-decoration: none;
+	text-align: center;
+              text-color: white;
+	/*text-shadow: 0px 1px 0px #f7b200;*/
+	float: right;
+}
+
+.ccButton:hover {
+	background: linear-gradient(to bottom right,#666666,#333333);
+	background-color: #333333;
+}
+
+.ccButton:active {
+	position: relative;
+	top: 1px;
+}

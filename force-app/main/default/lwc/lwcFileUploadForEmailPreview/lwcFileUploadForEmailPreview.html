@@ -1,0 +1,43 @@
+<template>
+    <template if:false={hideFileUpload}>
+    <lightning-file-upload 
+        label={fileUploadLabel} 
+        name="fileUploader" 
+        accept={acceptedFormats}
+        record-id={userId} 
+        onuploadfinished={handleUploadFinished} 
+        multiple={_multipleUploadsAllowed}
+        disabled={isDisabled}
+        file-field-name="PlaceOfUpload_fileupload__c"
+        file-field-value={emailPreviewComponent}
+    >
+    </lightning-file-upload>
+
+    <template if:true={showTable}>
+    <lightning-formatted-rich-text value={uploadedFilesTableLabel}></lightning-formatted-rich-text>
+    <c-vlm-datatable 
+        key-field="keyField" 
+        data={data} 
+        columns={columns} 
+        hide-checkbox-column 
+        hide-table-header
+        column-widths-mode="auto"
+        ondeleteicon={handleDeleteIcon}>
+    </c-vlm-datatable>
+    <c-type-Attribute-Clickable-Delete-Icon></c-type-Attribute-Clickable-Delete-Icon>
+    </template>
+
+    <template if:false={showTable}>
+        <label class="slds-form-element slds-form-element_horizontal">
+            0 files attached.
+        </label>
+    </template>
+
+    <template if:true={isLoading}>
+        <div class="exampleHolder">
+            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+        </div>
+    </template>
+    </template>
+    <br/>
+</template>

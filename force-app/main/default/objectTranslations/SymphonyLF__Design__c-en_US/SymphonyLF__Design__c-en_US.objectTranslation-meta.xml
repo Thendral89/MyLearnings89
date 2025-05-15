@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Additional Information --></label>
+        <name>AdditionalInformation</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Additional Information --></label>
+        <name>Additional_Information</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Application Details --></label>
+        <name>ApplicationDetails</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Application Details --></label>
+        <name>Application_Details</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HIGHLIGHTSPANEL --></label>
+        <name>HIGHLIGHTSPANEL</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Portfolio Management --></label>
+        <name>PortfolioManagement</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Portfolio Management --></label>
+        <name>Portfolio_Management</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- System Information --></label>
+        <name>System_Information</name>
+    </fieldSets>
+    <sharingReasons>
+        <label><!-- CLIENT-ShareModel --></label>
+        <name>CLIENT_SHARE_MODEL</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- MEM-Primary Client Contact --></label>
+        <name>MEM_Primary_Client_Contact</name>
+    </sharingReasons>
+    <webLinks>
+        <label><!-- S_Docs --></label>
+        <name>S_Docs</name>
+    </webLinks>
+</CustomObjectTranslation>

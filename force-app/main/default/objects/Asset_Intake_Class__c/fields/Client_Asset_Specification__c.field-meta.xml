@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Client_Asset_Specification__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Client Asset Specification</label>
+    <referenceTo>SymphonyLF__Client_Classes_and_Goods_Specification__c</referenceTo>
+    <relationshipLabel>Asset Intake Classes</relationshipLabel>
+    <relationshipName>Asset_Intake_Classes</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

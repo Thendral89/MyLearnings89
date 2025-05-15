@@ -1,0 +1,116 @@
+.bg-open {
+    background-color: #28a745;
+}
+
+.bg-complete {
+    background-color: #565858;
+}
+
+.bg-pastdue {
+    background-color: #dc3545;
+}
+
+.circle-count {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-right: 1.5rem; */
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: black;
+}
+
+.tile-label {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-left: 0.5rem;
+}
+
+.footerBox {
+    font-size: 0.8rem;
+    margin-bottom: 3rem;
+}
+
+.greentag {
+    background-color: green;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.orangetag {
+    background-color: orange;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.browntag {
+    background-color: brown;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.purpletag {
+    background-color: purple;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.redtag {
+    background-color: red;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.greytag {
+    background-color: grey;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.counter::after {
+    position: absolute;
+    top: -55px;
+    left: 25px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: green;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    content: attr(data-count);
+}
+
+.counter {
+    position: relative;
+}
+
+.highlighted {
+    border: 2px solid #585858;
+    border-radius: 4px;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}

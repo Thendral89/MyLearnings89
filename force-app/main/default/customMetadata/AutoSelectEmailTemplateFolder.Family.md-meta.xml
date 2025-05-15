@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Family</label>
+    <protected>false</protected>
+    <values>
+        <field>Default_Folder__c</field>
+        <value xsi:type="xsd:string">Patent_Classic</value>
+    </values>
+    <values>
+        <field>Object_Name__c</field>
+        <value xsi:type="xsd:string">SymphonyIPM__Invention_Disclosure_New__c</value>
+    </values>
+    <values>
+        <field>Template_folders__c</field>
+        <value xsi:type="xsd:string">Invention_Disclosure_Forms, Patent_Document_Email_Alert, Patent_Classic, Search_Request_Template</value>
+    </values>
+</CustomMetadata>

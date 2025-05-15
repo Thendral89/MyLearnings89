@@ -1,0 +1,231 @@
+.inputPadding {
+    /* font-weight: bold; */
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+/* .slds-modal__container {
+    max-width: 80rem !important;
+    width: 80% !important;
+} */
+
+.mem-grid thead tr th:nth-child(8) {
+    display: none !important;
+}
+
+.mem-grid tbody tr th:nth-child(8) {
+    display: none !important;
+}
+
+.mem-grid .iconContainer svg {
+    fill: orange;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.fixed-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem; /* Adds spacing between sections */
+}
+
+.search-section {
+    flex: 0 0 40%; /* Fixed width for the left section */
+    position: relative; /* Keeps dropdowns within bounds */
+}
+
+.accordion-section {
+    flex: 1; /* Flexible width for the right section */
+    overflow-y: auto; /* Allows scrolling if content overflows */
+}
+
+/* .dropdown {
+    position: absolute;
+    top: 50px; 
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-height: 33rem;
+    overflow-y: auto;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+} */
+
+.enhanced-dropdown {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 100%; /* Matches the width of the input */
+}
+
+
+.action-icon{
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.action-icons {
+    display: flex;
+    justify-content: center;
+   /*  gap: 15px; Space between icons */
+    align-items: center;
+    width: 100%;
+}
+
+.action-icons i {
+    cursor: pointer;
+    font-size: 18px;
+    color: #333; /* Dark gray */
+}
+
+.action-icons i:hover {
+    color: #007bff; /* Highlight on hover */
+}
+
+.tabulator-col[tabulator-field="actions"] .tabulator-col-title {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100% !important; /* Make sure it fills the header */
+}
+
+.slds-form-element__label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.dropdown-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f4f6f9;
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    z-index: 10;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.dropdown-container {
+    position: absolute;
+    width: 48%; /* Matches slds-size_1-of-3 */
+}
+
+.person-icon {
+    margin-right: 12px; /* Increases spacing between icon and name */
+    flex-shrink: 0; /* Prevents icon from resizing */
+}
+
+.slds-hide {
+    display: none;
+}
+
+.delete-row-icon {
+    cursor: pointer;
+    color: #666; /* Normal text color */
+    background: none;
+    border: none;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.lookup-container {
+    position: relative;
+    width: 100%;
+}
+
+.lookup-input {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+}
+
+.clear-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.clear-icon {
+    position: absolute;
+    right: 10px;
+    top: 65%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.small-modal {
+    max-width: 50%; /* Adjust width to match slds-size_1-of-2 */
+    width: 50%;
+    min-width: 400px; /* Ensures it does not become too small */
+}
+
+.slds-modal__container {
+    margin: 0 auto;
+}
+
+.search-container {
+    position: relative;
+    display: inline-block;
+    width: 100%; /* Ensures it takes only search input width */
+}
+
+.dropdown {
+    position: absolute;
+    width: 100%; /* Ensures dropdown takes the full width of the parent container */
+    background: white;
+    border-radius: 4px;
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dropdown-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background: #f3f3f3;
+}
+
+.slds-modal__footer{
+    text-align : unset;
+}

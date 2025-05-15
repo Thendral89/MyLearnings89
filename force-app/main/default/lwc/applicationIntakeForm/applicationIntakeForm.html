@@ -1,0 +1,159 @@
+<template>
+        <template if:false={showIntakeForm}>
+            <c-lwc-mv-highlights-panel record-id={clientId} read-only=true field-set-name="HIGHLIGHTSPANEL"
+                object-api-name="SymphonyLF__Client__c"></c-lwc-mv-highlights-panel>
+            <template if:true={columnsLoaded}>
+        
+            <lightning-card>
+                <lightning-messages></lightning-messages>
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
+                        <lightning-card>
+                            <article class="slds-card">
+                                <div class="slds-card__header slds-grid slds-page-header">
+                                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                        <div class="slds-media__figure">
+                                            <span class="slds-icon_container slds-icon-custom-custom18"
+                                                title="SearchDetails">
+                                                <lightning-icon icon-name="custom:custom56"></lightning-icon>
+                                            </span>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <h2 class="slds-card__header-title">
+                                                <a href="#" class="slds-card__header-link slds-truncate"
+                                                    title="Search Details">
+                                                    <span>Search Existing Patent Family</span>
+                                                </a>
+                                            </h2>
+                                        </div>
+                                    </header>
+                                </div>
+                                <div class="slds-card__body slds-card__body_inner slds-p-around_small">
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col slds-size_1-of-1">
+                                            <label class="slds-form-element__label">
+                                                Existing Patent Family
+                                            </label>
+                                            <input type="text" class="search-bar"
+                                                oninput={handleSearchExistingPatentFamily}
+                                                value={inputValuePatentFamily} autocomplete="off" />
+                                        </div>
+                                    </div>
+                                    <!-- Dropdown -->
+                                    <template if:true={showDropdownPatentFamily}>
+                                        <div class="enhanced-dropdown slds-m-top_small">
+                                            <ul class="slds-listbox slds-listbox_vertical dropdown" role="listbox">
+                                                <template if:true={patentFamilyRecords} for:each={patentFamilyRecords}
+                                                    for:item="pf" for:index="index">
+                                                    <li class={pf.computedClass} key={pf.recordId} data-index={index}
+                                                        data-record-id={pf.recordId} onclick={handleSelectPatentFamily}
+                                                        style="margin-bottom: 10px; padding: 10px; border-bottom: 1px solid #ddd;">
+                                                        <div class="slds-media slds-listbox__option slds-listbox__option_entity"
+                                                            role="option">
+                                                            <span class="slds-media__figure">
+                                                                <lightning-icon icon-name="custom:custom56"
+                                                                    size="small"></lightning-icon>
+                                                            </span>
+                                                            <span class="slds-media__body">
+                                                                <span class="slds-listbox__option-text">
+                                                                    <strong>{pf.Name}</strong>
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                </template>
+                                                <template if:true={noResultsApplicant}>
+                                                    <li class="dropdown-item no-results">
+                                                        No Patent Family Records Found
+                                                    </li>
+                                                </template>
+                                            </ul>
+                                        </div>
+                                    </template>
+                                </div>
+                            </article>
+                        </lightning-card>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
+                        <lightning-card>
+                            <article class="slds-card">
+                                <div class="slds-card__header slds-grid slds-page-header">
+                                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                        <div class="slds-media__figure">
+                                            <span class="slds-icon_container slds-icon-custom-custom18"
+                                                title="Create Applicants">
+                                                <lightning-icon icon-name="custom:custom56"></lightning-icon>
+                                            </span>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <h2 class="slds-card__header-title">
+                                                <span>Create New Patent Family</span>
+                                            </h2>
+                                        </div>
+                                    </header>
+                                </div>
+                                <div class="slds-card__body slds-card__body_inner slds-p-around_small">
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col slds-size_1-of-1">
+                                            <lightning-input type="text" label="Title" value={inventionTitle}
+                                                onchange={handleInventionTitle} required max-length="255"
+                                                class="slds-form-element_stacked">
+                                            </lightning-input>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </lightning-card>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-size_1-of-1">
+                    <div class="inputPadding">
+                        <lightning-card>
+                            <article class="slds-card">
+                                <div class="slds-card__header slds-grid slds-page-header">
+                                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                        <div class="slds-media__figure">
+                                            <span class="slds-icon_container slds-icon-custom-custom18"
+                                                title="Create Applicants">
+                                                <lightning-icon icon-name="custom:custom56"></lightning-icon>
+                                            </span>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <h2 class="slds-card__header-title">
+                                                <span>Draft Patent Family(s)</span>
+                                            </h2>
+                                        </div>
+                                    </header>
+                                </div>
+                                <div class="slds slds-p-left_small slds-p-right_small">
+                                    <div class="slds-card slds-p-around_medium slds-m-around_small">
+                                        <c-lwc-mv-datatable class="lwcMvDataTable" columns={DraftedpatentFamilyColumns}
+                                            records={DraftedpatentFamilyData}>
+                                        </c-lwc-mv-datatable>
+                                    </div>
+                                </div>
+                            </article>
+                        </lightning-card>
+                    </div>
+                </div>
+
+                <!-- Footer Buttons -->
+                <div class="slds-docked-form-footer">
+                    <div class="slds-clearfix">
+                        <div class="slds-float_right">
+                            <lightning-button variant="brand" label="Continue" title="Continue"
+                                onclick={handleContinueIntakeForm} class="slds-m-left_x-small">
+                            </lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </lightning-card>
+        </template>
+        <template if:true={showIntakeForm}>
+            <c-patent-intake-form-new short-title={shortTitle} client-id={clientId} invention-title={inventionTitle}>
+            </c-patent-intake-form-new>
+        </template>
+    </template>
+</template>

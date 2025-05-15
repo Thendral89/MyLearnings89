@@ -1,0 +1,44 @@
+<aura:component controller="cmpAPiManagDocumentCtrl">
+    
+    <aura:attribute type="String" name="selectedFolderId" default="" />
+    <aura:attribute type="String" name="iManageFolderId" default="" />
+    <aura:attribute type="String" name="SubselectedFolderId" default="" />
+    <aura:attribute type="String" name="recordId" />
+    <aura:attribute type="Boolean" name="IsExpanded" default="false" />
+    
+    <aura:attribute type="List" name="items" default="[]" />
+    <aura:attribute type="List" name="list" default="[]" />
+    <aura:attribute type="Boolean" name="loading" default="true" />
+    <aura:attribute type="Integer" name="level" default="1" />
+    <aura:handler name="init" value="{!this}" action="{!c.initialize}" />
+    <aura:if isTrue="{!v.loading}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+    <aura:registerEvent name="cmpAPiManageTreeEvent" type="c:cmpAPiManageTreeEvent"/>
+    
+    <!--
+    <lightning:tree items="{!v.items}" onselect="{!c.handleSelect}"/>
+    -->
+    
+    <ul class="{!v.level==1 ? 'slds-tree' : ''}" role="{!v.level == 1 ? 'tree' : 'group'}">
+        <aura:iteration items="{!v.items}" var="item" indexVar="i">
+            <li aria-expanded="{!item.expanded}" aria-selected="{!item.name == selectedFolderId ? 'true' : 'false'}" aria-label="{!item.label}" aria-level="{!v.level}" role="treeitem" data-id="{!item.name}">
+                <div class="slds-tree__item">
+                    <lightning:buttonIcon class="{!' slds-m-right_x-small' + (not(empty(item.items)) ? '' : ' slds-is-disabled')}" iconName="utility:chevronright"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.handleExpandNode}" value="{!item.name}"/>
+                    
+                    <span class="slds-grid" onclick="{!c.handleSelectNode}">
+                        <lightning:icon size="x-small" iconName="utility:open_folder" class="slds-m-right_x-small"/>
+                        <span class="slds-has-flexi-truncate">
+                            <span class="slds-tree__item-label slds-truncate" title="{!item.label}">{!item.label}</span>
+                        </span>
+                    </span>
+                </div>
+                <aura:if isTrue="{! not(empty(item.items)) }">
+                    <c:cmpAPiManagedFolders level="{! v.level + 1}" items="{! item.items }" list="{! v.list }" selectedFolderId="{! v.selectedFolderId }"/>
+                </aura:if>
+            </li>
+        </aura:iteration>
+    </ul>
+    
+    
+</aura:component>

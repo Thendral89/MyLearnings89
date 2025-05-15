@@ -1,0 +1,41 @@
+:host lightning-input-field[data-field="SymphonyIPM__Comments__c"] .slds-form-element__control.slds-grow .textarea-container textarea.slds-textarea {
+    min-height: 20px !important;
+    max-height: 20px !important;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.slds-input {
+    max-height: 10px !important;
+    min-height: 10px !important;
+    overflow: visible;
+}
+
+.input .slds-input {
+    max-height: 20px !important;
+    min-height: 20px !important;
+}
+
+.slds-input .input {
+    max-height: 20px !important;
+    min-height: 20px !important;
+}
+
+.slds-form-element {
+    max-height: 22px !important;
+    min-height: 22px !important;
+}
+
+.slds-form-element__icon {
+    display: none !important;
+}
+
+.greentag {
+    background-color: #17a589;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+  }

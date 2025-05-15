@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Does Applicant qualify as a Micro Entity --></label>
+    <name>Does_Applicant_qualify_as_a_Micro_Entity__c</name>
+    <picklistValues>
+        <masterLabel>Yes.  Applicant is employed or has assigned to Institution of Higher Learning (Form  PTO/SB/15B included)</masterLabel>
+        <translation><!-- Yes.  Applicant is employed or has assigned to Institution of Higher Learning (Form  PTO/SB/15B included) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Yes.  Neither Applicant nor inventors has filed more than four (4) applications and meets gross income limit (Form PTO/SB/15A included)</masterLabel>
+        <translation><!-- Yes.  Neither Applicant nor inventors has filed more than four (4) applications and meets gross income limit (Form PTO/SB/15A included) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

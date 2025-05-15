@@ -1,0 +1,26 @@
+<design:component>
+	<design:attribute name="canDeleteFiles" label="Can delete files" />
+    <design:attribute name="linkedEntityId" label="Linked Entity Id" />
+    <design:attribute name="canUploadMultipleFiles" label="Upload Files - Multiple" />
+    <design:attribute name="canUploadSingleFiles" label="Upload Files - Single" />
+    <design:attribute name="contentDocumentIds" label="Uploaded content document ids" />
+    <design:attribute name="canViewAllFiles" label="View Files - All" />
+    <design:attribute name="canViewCurrentAttachedFiles" label="View Files - Current" />
+    <design:attribute name="isFileUploaded" label="isFileUploaded" />
+    <design:attribute name="DisclosureStatus" label="DisclosureStatus" />
+    <design:attribute name="IsButtonShow" label="IsButtonShow" />
+    <design:attribute name="canBack" label="canBack" />
+    <design:attribute name="isHeaderName" label="isHeaderName" />
+    <design:attribute name="IsInnovation" label="IsInnovation" />
+    <design:attribute name="IsRequired" label="IsRequired" />
+    <design:attribute name="IsSupportingDocument" label="IsSupportingDocument" />
+    <design:attribute name="ContentVersionId" label="ContentVersionId" />
+    <design:attribute name="HeaderName" label="HeaderName" />
+    <design:attribute name="IsPatentbots" label="IsPatentbots" />
+    <design:attribute name="PatentbotsDocCode" label="PatentbotsDocCode" />
+    <design:attribute name="IsDocuSign" label="IsDocuSign" />
+    <design:attribute name="IsAnalyticsStudy" label="IsAnalyticsStudy" />
+    
+    
+    
+</design:component>

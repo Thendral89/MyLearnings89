@@ -1,0 +1,106 @@
+<template>
+    <!-- Image card -->
+    <div >
+        <div class="slds-file slds-file_card slds-has-title" >
+            <div class="slds-file__crop slds-file__crop_16-by-9" onclick={showPreview}>
+                <img src={imageUrl}/>
+               
+            </div>
+            <!-- footer with buttons -->
+                <div class="slds-grid slds-grid_align-end slds-m-right_xx-small slds-m-bottom_xx-small ">
+                    <div class="slds-grid">
+                        <lightning-button-icon
+                            icon-name="utility:download"
+                            variant="Bare"
+                            size="medium"
+                            alternative-text="Download"
+                            title="Download"
+                            onclick={handleDownload}>
+                        </lightning-button-icon>
+                        <lightning-button-icon
+                            icon-name="utility:down"
+                            variant="Bare"
+                            size="medium"
+                            alternative-text="More Actions"
+                            title="More Actions">
+                        </lightning-button-icon>
+                    </div>
+                </div>
+        </div>
+    </div> 
+
+    <template if:true={openPreview}>
+        <!-- Image preview  -->
+        <div role="dialog" class="slds-modal slds-fade-in-open " tabindex="-1" aria-labelledby="modal-heading-01"  aria-modal="true" aria-describedby="modal-content-id-1">
+            <!-- preview header with actions -->
+            <div class="header">
+            <div class="slds-box slds-box_large preview-box-header">
+                <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                    <lightning-icon 
+                        icon-name='doctype:pdf' 
+                        alternative-text='pdf' 
+                        size='small' 
+                        title='pdf'
+                        class="slds-m-right_xx-small">
+                    </lightning-icon>
+                    <span class="slds-file__text slds-truncate slds-text-color_inverse" title="Proposal.pdf">Proposal.pdf</span>
+                    <div class="file-preview-buttons slds-align--absolute-center">
+                        <!-- button group -->
+                        <lightning-button-group>
+                            <lightning-button 
+                                label="Download" 
+                                title="Download action with base variant" 
+                                icon-name="utility:download" >
+                            </lightning-button>
+                            <lightning-button 
+                                label="Share"
+                                title="Share" 
+                                icon-name="utility:share" 
+                              >
+                            </lightning-button>
+                            <lightning-button 
+                                label="Public Link" 
+                                title="Public Link"
+                                icon-name="utility:link" 
+                            >
+                            </lightning-button>
+                            <lightning-button-menu alternative-text="Show menu" variant="border-filled">
+                                <lightning-menu-item value="View Details" label="View Details"></lightning-menu-item>
+                                <lightning-menu-item value="Edit Details" label="Edit Details"></lightning-menu-item>
+                                <lightning-menu-item value="Upload New Version" label="Upload New Version"></lightning-menu-item>
+                                <lightning-menu-item value="Delete" label="Delete"></lightning-menu-item>
+                            </lightning-button-menu>
+                        </lightning-button-group>
+                    </div>
+                    <div class="file-preview-close slds-align-right">
+                        <lightning-button-icon 
+                            icon-name="utility:close"  
+                            alternative-text="close"
+                            variant="bare-inverse" 
+                            title="close"
+                            size="large"
+                            onclick={closePreview}>
+                        </lightning-button-icon>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            <div class="slds-modal__container ">
+                <template if:true={isImage}>
+                    <img src={imageUrl} >
+                </template>
+                <template if:false={isImage}>
+                    <iframe 
+                        src={fileUrl}
+                        width="100%" 
+                        height="100%" 
+                       >
+                    </iframe>
+                </template>
+            </div>
+        </div>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    
+</template>

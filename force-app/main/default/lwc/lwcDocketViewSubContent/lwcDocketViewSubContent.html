@@ -1,0 +1,15 @@
+<template>
+    <div style="max-height: 500px; overflow: scroll;">
+        <c-lwc-mv-details-layout no-docket-footer record-id={recordId} field-sets-name="INFORMATION_READ;" object-api-name="SymphonyLF__Docketing_Activity__c">
+
+        </c-lwc-mv-details-layout>
+
+        <template if:true={showFiles}>
+            <c-mass-files-download
+            record-id={recordId}
+            object-api-name="iManage_Documents__c">
+
+            </c-mass-files-download>
+        </template>
+    </div>
+</template>

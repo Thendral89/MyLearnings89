@@ -1,0 +1,56 @@
+.defaultcontainerstyleclass {
+    border:1px solid #747474;
+    background: rgba(0, 0, 0, 0.07);
+    border-radius: 4px;
+    /*padding:10px;*/
+}
+
+.containerstyleclass { 
+    border:1px solid #747474;
+    background: rgba(0, 0, 0, 0.07);
+    border-radius: 4px;
+    width:100%!important;
+}
+
+.announcementheaderstyle{
+    font-size: 16px;
+}
+.announcementcontentstyle{
+    color: #706E6B;
+    font-size: 13px;
+}
+@media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (-webkit-min-device-pixel-ratio: 1){
+        .announcementcontentstyle{
+            letter-spacing: -0.2px;
+        }
+}
+
+h1{
+    font-weight:Book;
+}
+
+.textPosition{
+    margin-left: 9px;
+}
+.customIcon{
+    width: 22px;
+    height: 26px;
+    margin: 5px;
+}
+.customLayoutPosition{
+    /*margin-left: 27px;*/
+    margin-top: -16px;
+}
+
+.underline-text {
+    text-decoration: underline;
+    color: black;
+}
+
+@font-face {
+    font-family: 'Salesforce Sans';
+    src: url('/resource/SalesforceSans/SalesforceSans-Regular.ttf') format('TrueType');
+}

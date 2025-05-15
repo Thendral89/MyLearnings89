@@ -1,0 +1,123 @@
+:host {
+    display: block;
+    max-width: 100%;
+}
+.slds-grid {
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.slds-col {
+    max-width: 100%;
+    word-wrap: break-word; /* Prevent content overflow */
+}
+.header_label {
+    font-size: .95rem;
+}
+
+.header_sub_heading {
+    font-size: .85rem;
+    font-weight: bold;
+}
+
+.slds-card__body {
+    margin-bottom: .45rem;
+}
+
+.custom-header-buttons {
+    margin: 5px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #f5f6f7;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.metro {
+    vertical-align: top;
+    border-right: .09rem solid rgb(250, 250, 249);
+    border-left: .09rem solid rgb(250, 250, 249);
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #1b5297;
+    cursor: pointer;
+}
+
+.metro:nth-child(1) {
+    background: #007bff;
+    font-weight: bold;
+}
+
+.metro:nth-child(2) {
+    background: #28a745;
+    font-weight: bold;
+}
+.metro:nth-child(3) {
+    background: #17a2b8;
+    font-weight: bold;
+}
+
+.metro:nth-child(4) {
+    background: #dc3545;
+    font-weight: bold;
+}
+.pagination {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.total-value {
+    font-size: .75rem;
+    color: #fff;
+}
+
+.slds-media .slds-truncate {
+    overflow: visible;
+    margin: 0;
+    margin-block-end: .1em;
+    padding: 0;
+    margin-block-start: .1em;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.pag-footer {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+
+.tab-container {
+    display: flex;
+    width: 100%;
+}
+
+.tab {
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-bottom: none;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    font-weight: 500;
+    text-align: center;
+    background-color: #ffffff; 
+    color: #333;
+    flex: 1;
+}
+
+.tab:hover {
+    background-color: #d2d4d7;
+}
+
+.tab.active {
+    background-color: #d2d4d7;
+}
+
+.custom-icon-color {
+    background-color: rgba(11, 92, 171, 1);
+}

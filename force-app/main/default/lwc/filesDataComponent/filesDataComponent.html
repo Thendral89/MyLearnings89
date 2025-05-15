@@ -1,0 +1,58 @@
+<template>
+    <div class="fileList">
+        <ul class="slds-has-dividers_bottom">
+            <template if:true={processedFiles}>
+                <template for:each={processedFiles} for:item="file">
+                    <li key={file.Id} class="slds-item slds-p-around_x-small">
+                        <div class="slds-grid slds-grid_vertical-align-center">
+                            <div class="slds-col slds-size_1-of-12">
+                                <lightning-button-icon 
+                                    icon-name={file.buttonIconName}
+                                    alternative-text="Select File"
+                                    title="Select File"
+                                    size="small"
+                                    variant={file.buttonIconVariant}
+                                    data-id={file.Id}
+                                    onclick={handleCheckboxChange}>
+                                </lightning-button-icon>
+                            </div>
+                            <div class="slds-col slds-size_1-of-12">
+                                <lightning-icon icon-name={file.fileIconName} 
+                                            size="small">
+                                </lightning-icon>
+                            </div>
+                            <div class="slds-col slds-size_10-of-12">
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_2-of-2">
+                                        <div class="slds-truncate" 
+                                             onmouseover={handleMouseOver}
+                                             onmouseleave={handleMouseLeave}>
+                                            <a href="javascript:void(0);" 
+                                               data-id={file.Id}
+                                               class="slds-text-color_blue">
+                                                {file.Name}
+                                            </a>
+                                            <template if:true={showTooltip}>
+                                                <div class="slds-popover slds-popover_tooltip">
+                                                    <div class="slds-popover__body">{file.Name}</div>
+                                                </div>
+                                            </template>
+                                        </div>
+                                        <div class="slds-text-body_small slds-text-color_weak slds-truncate">
+                                            <lightning-formatted-date-time value={file.Date}></lightning-formatted-date-time> • {file.Size} • {file.FileType}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </template>
+            </template>
+            <template if:false={processedFiles}>
+                <div class="slds-m-top_large slds-align_absolute-center slds-text-color_weak">
+                    You don't have any images here. Try a different filter, or upload an image.
+                </div>
+            </template>
+        </ul>
+    </div>
+</template>

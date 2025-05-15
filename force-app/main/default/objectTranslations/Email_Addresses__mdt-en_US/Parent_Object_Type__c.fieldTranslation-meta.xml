@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Parent Object Type --></label>
+    <name>Parent_Object_Type__c</name>
+    <picklistValues>
+        <masterLabel>PATENT</masterLabel>
+        <translation><!-- PATENT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PATENT OPPOSITION</masterLabel>
+        <translation><!-- PATENT OPPOSITION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PATENT SEARCH</masterLabel>
+        <translation><!-- PATENT SEARCH --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TRADEMARK</masterLabel>
+        <translation><!-- TRADEMARK --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TRADEMARK OPPOSITION</masterLabel>
+        <translation><!-- TRADEMARK OPPOSITION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TRADEMARK PROJECT AND SEARCH</masterLabel>
+        <translation><!-- TRADEMARK PROJECT AND SEARCH --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,35 @@
+.my-lIconCheckClass{
+    --sds-c-icon-color-foreground-default: #45c65a;
+    /* --sds-c-icon-color-background: transparent;
+    --sds-c-button-radius-border: 20px;
+    --sds-c-button-color-border: #45c65a;
+    border: var(--lwc-borderWidthThick, 2px) solid #45c65a; */
+}
+.myBtnCheckClass{
+    --sds-c-button-color-background: white;
+    --sds-c-button-radius-border: 20px;
+    --sds-c-button-color-border: #45c65a;
+    --sds-c-button-shadow-focus: 0 0 3px #2ff14f;
+    --slds-c-button-color-border-hover: #2ff14f;
+    --sds-c-button-sizing-border: 2px;
+    padding: 3px;
+}
+.myBtnCheckClass:active{
+    border-color: #2ff14f;
+}
+.my-lIconCloseClass{
+    --sds-c-icon-color-foreground-default: #ea001e;  /* #ff0022; */
+}
+.myBtnCloseClass{
+    --sds-c-button-color-background: white;
+    --sds-c-button-radius-border: 20px;
+    --sds-c-button-color-border: #ea001e;
+    --sds-c-button-shadow-focus: 0 0 3px #fe8f7d;
+    --slds-c-button-color-border-hover: #fe8f7d;
+    --sds-c-button-sizing-border: 2px;
+    padding: 3px;
+    margin-bottom: -10px;
+}
+.myBtnCloseClass:active{
+    border-color: #fe8f7d;
+}

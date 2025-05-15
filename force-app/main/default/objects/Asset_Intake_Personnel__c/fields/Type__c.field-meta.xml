@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Originating Attorney</fullName>
+                <default>false</default>
+                <label>Originating Attorney</label>
+            </value>
+            <value>
+                <fullName>Annuity Specialist</fullName>
+                <default>false</default>
+                <label>Annuity Specialist</label>
+            </value>
+            <value>
+                <fullName>Backup Attorney</fullName>
+                <default>false</default>
+                <label>Backup Attorney</label>
+            </value>
+            <value>
+                <fullName>CC Law Firm Personnel</fullName>
+                <default>false</default>
+                <label>CC Law Firm Personnel</label>
+            </value>
+            <value>
+                <fullName>Client Representative</fullName>
+                <default>false</default>
+                <label>Client Representative</label>
+            </value>
+            <value>
+                <fullName>Copy Contact</fullName>
+                <default>false</default>
+                <label>Copy Contact</label>
+            </value>
+            <value>
+                <fullName>Correspondence Contact</fullName>
+                <default>false</default>
+                <label>Correspondence Contact</label>
+            </value>
+            <value>
+                <fullName>Docketer</fullName>
+                <default>false</default>
+                <label>Docketer</label>
+            </value>
+            <value>
+                <fullName>Docketing Management</fullName>
+                <default>false</default>
+                <label>Docketing Management</label>
+            </value>
+            <value>
+                <fullName>IDS Specialist</fullName>
+                <default>false</default>
+                <label>IDS Specialist</label>
+            </value>
+            <value>
+                <fullName>Legal Assistant</fullName>
+                <default>false</default>
+                <label>Legal Assistant</label>
+            </value>
+            <value>
+                <fullName>Managing (Supervising) Attorney</fullName>
+                <default>false</default>
+                <label>Managing (Supervising) Attorney</label>
+            </value>
+            <value>
+                <fullName>Outside Legal Personnel</fullName>
+                <default>false</default>
+                <label>Outside Legal Personnel</label>
+            </value>
+            <value>
+                <fullName>Paralegal</fullName>
+                <default>false</default>
+                <label>Paralegal</label>
+            </value>
+            <value>
+                <fullName>Responsible (Billing) Attorney</fullName>
+                <default>false</default>
+                <label>Responsible (Billing) Attorney</label>
+            </value>
+            <value>
+                <fullName>Working Attorney</fullName>
+                <default>false</default>
+                <label>Working Attorney</label>
+            </value>
+            <value>
+                <fullName>Foreign Associate</fullName>
+                <default>false</default>
+                <label>Foreign Associate</label>
+            </value>
+            <value>
+                <fullName>Annuity Payment Provider</fullName>
+                <default>false</default>
+                <label>Annuity Payment Provider</label>
+            </value>
+            <value>
+                <fullName>Responsible Partner</fullName>
+                <default>false</default>
+                <label>Responsible Partner</label>
+            </value>
+            <value>
+                <fullName>Annuity Payment Provider Rep</fullName>
+                <default>false</default>
+                <label>Annuity Payment Provider Rep</label>
+            </value>
+            <value>
+                <fullName>Outside Legal</fullName>
+                <default>false</default>
+                <label>Outside Legal</label>
+            </value>
+            <value>
+                <fullName>Outside Lawfirm</fullName>
+                <default>false</default>
+                <label>Outside Lawfirm</label>
+            </value>
+            <value>
+                <fullName>Quicklinks</fullName>
+                <default>false</default>
+                <label>Quicklinks</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

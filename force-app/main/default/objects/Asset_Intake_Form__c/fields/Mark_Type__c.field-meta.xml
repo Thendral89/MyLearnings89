@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mark_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Mark Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Certification</fullName>
+                <default>false</default>
+                <label>Certification</label>
+            </value>
+            <value>
+                <fullName>Collective</fullName>
+                <default>false</default>
+                <label>Collective</label>
+            </value>
+            <value>
+                <fullName>Color</fullName>
+                <default>false</default>
+                <label>Color</label>
+            </value>
+            <value>
+                <fullName>Device</fullName>
+                <default>false</default>
+                <label>Device</label>
+            </value>
+            <value>
+                <fullName>Packaging</fullName>
+                <default>false</default>
+                <label>Packaging</label>
+            </value>
+            <value>
+                <fullName>Pattern</fullName>
+                <default>false</default>
+                <label>Pattern</label>
+            </value>
+            <value>
+                <fullName>Product</fullName>
+                <default>false</default>
+                <label>Product</label>
+            </value>
+            <value>
+                <fullName>Service</fullName>
+                <default>false</default>
+                <label>Service</label>
+            </value>
+            <value>
+                <fullName>Shape</fullName>
+                <default>false</default>
+                <label>Shape</label>
+            </value>
+            <value>
+                <fullName>Shapes of Goods</fullName>
+                <default>false</default>
+                <label>Shapes of Goods</label>
+            </value>
+            <value>
+                <fullName>Slogan</fullName>
+                <default>false</default>
+                <label>Slogan</label>
+            </value>
+            <value>
+                <fullName>Smell</fullName>
+                <default>false</default>
+                <label>Smell</label>
+            </value>
+            <value>
+                <fullName>Sound</fullName>
+                <default>false</default>
+                <label>Sound</label>
+            </value>
+            <value>
+                <fullName>Three Dimension</fullName>
+                <default>false</default>
+                <label>Three Dimension</label>
+            </value>
+            <value>
+                <fullName>Two Dimensional</fullName>
+                <default>false</default>
+                <label>Two Dimensional</label>
+            </value>
+            <value>
+                <fullName>Word</fullName>
+                <default>false</default>
+                <label>Word</label>
+            </value>
+            <value>
+                <fullName>Trademark/Servicemark</fullName>
+                <default>false</default>
+                <label>Trademark/Servicemark</label>
+            </value>
+            <value>
+                <fullName>Trademark</fullName>
+                <default>false</default>
+                <label>Trademark</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

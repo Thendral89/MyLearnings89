@@ -1,0 +1,23 @@
+.object-logo {
+    height: 6.6rem;
+    width: 6.6rem;
+    border-radius: 50%; /* Circular logo */
+    background-color: black;
+   
+}
+
+.object-logo-box {
+    box-sizing:content-box;
+    padding-left: 0.4rem;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+  .file-input {
+    display: none;
+}

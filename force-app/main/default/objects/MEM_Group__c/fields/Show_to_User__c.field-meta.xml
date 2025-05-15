@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_to_User__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(MEM_1__r.User_Id__c = $User.Id, true,
+IF(MEM_2__r.User_Id__c= $User.Id, true,
+IF(MEM_3__r.User_Id__c= $User.Id, true,
+IF(MEM_4__r.User_Id__c= $User.Id, true,
+IF(MEM_5__r.User_Id__c= $User.Id, true,
+IF(MEM_6__r.User_Id__c= $User.Id, true,
+IF(MEM_7__r.User_Id__c= $User.Id, true,
+IF(MEM_8__r.User_Id__c= $User.Id, true,
+IF(MEM_9__r.User_Id__c= $User.Id, true,
+IF(MEM_10__r.User_Id__c= $User.Id, true,
+IF(MEM_11__r.User_Id__c= $User.Id, true,
+IF(MEM_12__r.User_Id__c= $User.Id, true,
+IF(MEM_13__r.User_Id__c= $User.Id, true,
+IF(MEM_14__r.User_Id__c= $User.Id, true,
+IF(MEM_15__r.User_Id__c= $User.Id, true,
+IF(MEM_16__r.User_Id__c= $User.Id, true,
+IF(MEM_17__r.User_Id__c= $User.Id, true,
+IF(MEM_18__r.User_Id__c= $User.Id, true,
+false
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Show to User</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

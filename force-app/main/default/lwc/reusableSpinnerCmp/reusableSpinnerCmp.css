@@ -1,0 +1,11 @@
+.spinnerStyle{
+    background: rgba(0, 0, 0, 0);
+    position: absolute;
+}
+.withoutBackground{
+    background: rgba(0, 0, 0, 0);
+}
+
+.blackBackground{
+    background: rgba(0, 0, 0, 0.4);
+}

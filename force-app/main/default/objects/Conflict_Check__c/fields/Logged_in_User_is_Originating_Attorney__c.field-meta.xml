@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Logged_in_User_is_Originating_Attorney__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( $User.Id ==  Client_Name__r.Originating_Attorney__r.SymphonyLF__User__r.Id , true, false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Logged in User is Originating Attorney?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

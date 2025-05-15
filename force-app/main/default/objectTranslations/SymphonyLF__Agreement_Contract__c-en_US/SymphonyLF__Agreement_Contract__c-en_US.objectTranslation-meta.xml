@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Additional Details --></label>
+        <name>Additional_Details</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Additional Details --></label>
+        <name>Additional_Details_ReadOnly</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HIGHLIGHTSPANEL --></label>
+        <name>HIGHLIGHTSPANEL</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Information --></label>
+        <name>Information</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Information --></label>
+        <name>Information_ReadOnly</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- System Information --></label>
+        <name>System_Information</name>
+    </fieldSets>
+    <sharingReasons>
+        <label><!-- CLIENT-ShareModel --></label>
+        <name>CLIENT_SHARE_MODEL</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- MEM-Assistant --></label>
+        <name>MEM_Assistant</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- MEM-Docketer --></label>
+        <name>MEM_Docketer</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- MEM-Managing Office --></label>
+        <name>MEM_Managing_Office</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- MEM-Managing Partner --></label>
+        <name>MEM_Managing_Partner</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- MEM-Paralegal --></label>
+        <name>MEM_Paralegal</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- MEM-Primary Client Contact --></label>
+        <name>MEM_Primary_Client_Contact</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- MEM-Responsible Attorney --></label>
+        <name>MEM_Responsible_Attorney</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- MEM-Responsible Partner --></label>
+        <name>MEM_Responsible_Partner</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- MEM-Secondary Client Contact --></label>
+        <name>MEM_Secondary_Client_Contact</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- MEM-Working Attorney --></label>
+        <name>MEM_Working_Attorney</name>
+    </sharingReasons>
+</CustomObjectTranslation>

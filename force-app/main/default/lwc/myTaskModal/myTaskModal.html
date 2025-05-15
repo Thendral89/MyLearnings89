@@ -1,0 +1,16 @@
+<template>
+    <section class="slds-modal slds-fade-in-open slds-modal_small">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+                <slot name="header"></slot>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" style="min-height: 200px;">
+                <slot name="content"></slot>
+            </div>
+            <div class="slds-modal__footer">
+                <slot name="footer"></slot>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>

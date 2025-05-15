@@ -1,0 +1,40 @@
+<template>
+    <c-reusable-spinner-with-text-cmp if:true={isSpinner} spinner-text={spinnerText}></c-reusable-spinner-with-text-cmp>
+    <c-highlights-panel record-id={clientId} header-field="Name" sub-header-field="SymphonyLF__Client_Number_New__c" field-set-name="CCHIGHLIGHTSPANELREADONLY"
+        object-api-name="SymphonyLF__Client__c"></c-highlights-panel>
+
+    <lightning-card>
+        <template if:true={isPatent}>
+            <h3 slot="title">
+                <lightning-icon icon-name="custom:custom18" size="small"></lightning-icon>
+                &nbsp;&nbsp;New Patent Family
+            </h3>
+            <lightning-record-edit-form object-api-name={assetIntakeObject} record-id={assetIntakeId} onsuccess={handleAddIntakeSuccess}
+            onerror={handleIntakeError}>
+                <lightning-input-field field-name="New_Patent_Family__c" value={matterTitle} onchange={handleMatterTitle}>
+                </lightning-input-field>
+                <lightning-input-field field-name="Department__c" value={departmentValue} onchange={handleDepartmentChange}>
+                </lightning-input-field>
+            </lightning-record-edit-form>
+        </template>
+
+        <div class="tabulator-container">
+            <div class="slds-m-around_medium" data-id="draftRecords"></div>
+        </div>
+    </lightning-card>
+
+    <div class="slds-docked-form-footer slds-m-top_medium slds-align_absolute-center">
+        <lightning-button
+            class="slds-m-top_small"
+            label="Cancel"
+            variant="destructive"
+            onclick={handleReset}
+        ></lightning-button>
+        <lightning-button
+            class="slds-m-top_small slds-m-left_medium"
+            onclick={handleSaveDraft}
+            label="Save & Next"
+            variant="brand"
+        ></lightning-button>
+    </div>
+</template>

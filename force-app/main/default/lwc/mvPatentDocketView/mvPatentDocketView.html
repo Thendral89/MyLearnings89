@@ -1,0 +1,405 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <template lwc:if={showAction}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+            class="slds-modal slds-fade-in-open slds-modal_medium">
+            <div class="slds-modal__container">
+                <span class="slds-modal__close">
+                    <lightning-button-icon icon-name="utility:close" onclick={handleCancelAndClose}
+                        alternative-text="Cancel and Close" class="" title="Cancel and Close"></lightning-button-icon>
+                </span>
+                <!--div class="slds-modal__header">
+            <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">Modal header</h1>
+            </div-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning-flow flow-api-name={flowApiName} flow-input-variables={flowInputVariables}
+                        onstatuschange={handleFlowStatusChange}>
+                    </lightning-flow>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+
+    <template lwc:if={showTable}>
+
+        <div>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_7-of-12">
+                    <div>
+                        <a class="slds-m-right_x-small">
+                            <span class="slds-badge" data-filtertype="ALL" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="All">
+                                        <lightning-icon icon-name="standard:work_plan_template" size="small"
+                                            alternative-text="All">
+                                        </lightning-icon>
+                                    </span>
+                                </span>All
+                            </span>
+                        </a>
+
+                        <a class="slds-m-right_x-small">
+
+                            <span class="slds-badge" data-filtertype="OPEN" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Open">
+                                        <lightning-icon icon-name="standard:product_request" size="small"
+                                            alternative-text="Open" data-filtertype="OPEN" onclick={handleFilters}>
+                                        </lightning-icon>
+                                    </span>
+                                </span>Open
+                            </span>
+                        </a>
+
+                        <a class="slds-m-right_x-small">
+
+                            <span class="slds-badge" data-filtertype="CLOSED" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Closed">
+                                        <lightning-icon icon-name="standard:survey" size="small"
+                                            alternative-text="Closed">
+                                        </lightning-icon>
+                                    </span>
+                                </span>Closed
+                            </span>
+                        </a>
+
+                        <a class="slds-m-right_x-small">
+                            <span class="slds-badge" data-filtertype="NEXT30" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Next 30 Days">
+                                        <lightning-icon icon-name="standard:event" size="small"
+                                            alternative-text="Next 30 Days">
+                                        </lightning-icon>
+                                    </span>
+                                </span>Next 30 Days
+                            </span>
+                        </a>
+
+                        <a class="slds-m-right_x-small">
+                            <span class="slds-badge" data-filtertype="NEXT60" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Next 60 Days">
+                                        <lightning-icon icon-name="standard:event" size="small"
+                                            alternative-text="Next 60 Days">
+                                        </lightning-icon>
+                                    </span>
+                                </span>Next 60 Days
+                            </span>
+                        </a>
+
+                        <a class="slds-m-right_x-small">
+                            <span class="slds-badge" data-filtertype="PASTDUE" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Past Due">
+                                        <lightning-icon icon-name="standard:operating_hours" size="small"
+                                            alternative-text="Past Due">
+                                        </lightning-icon>
+                                    </span>
+                                </span>Past Due
+                            </span>
+                        </a>
+
+                        <a class="slds-m-right_x-small">
+                            <span class="slds-badge" data-filtertype="ADHOC" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Adhoc Activities">
+                                        <lightning-icon icon-name="standard:document_reference" size="small"
+                                            alternative-text="Adhoc Activities">
+                                        </lightning-icon>
+                                    </span>
+                                </span>Adhoc Activities
+                            </span>
+                        </a>
+
+                        <a class="slds-m-right_x-small">
+                            <span class="slds-badge" data-filtertype="EVENTS" onclick={handleFilters}>
+                                <span class="slds-badge__icon slds-badge__icon_left">
+                                    <span class="slds-icon_container" title="Events">
+                                        <lightning-icon icon-name="standard:events" size="small"
+                                            alternative-text="Events">
+                                        </lightning-icon>
+                                    </span>
+                                </span>Event(s)
+                            </span>
+
+                        </a>
+
+                    </div>
+                </div>
+                <div class="slds-col slds-size_5-of-12">
+                    <div class="slds-button-group slds-float_right">
+
+                        <template if:true={reportExternalAccess}>
+                            <lightning-button label="Report External" title="Report External" class="slds-p-left_xx-small"
+                                name="reportExternal" onclick={handleReportExternal} variant="brand">
+
+                            </lightning-button>
+                        </template>
+                        <template if:true={reportInternalAccess}>
+                            <lightning-button label="Report Internal" title="Report Internal" class="slds-p-left_xx-small"
+                                name="reportInternal" onclick={handleReportOut} variant="brand">
+
+                            </lightning-button>
+                        </template>
+                        <template if:true={hasAddEventAccess}>
+                            <lightning-button label="Add Event" title="Add Event" class="slds-p-left_xx-small"
+                                name="addEvent" onclick={handleAddEvent} variant="brand">
+
+                            </lightning-button>
+                        </template>
+                        <template if:true={hasAddAdhocActivityAccess}>
+                            <lightning-button label="Add Adhoc" title="Add Adhoc" class="slds-p-left_xx-small"
+                                name="addAdhoc" onclick={handleAdHoc} variant="brand">
+
+                            </lightning-button>
+                        </template>
+                        <template if:true={hasDocketUpdateAccess}>
+                            <lightning-button label="Update" title="Update" class="slds-p-left_xx-small"
+                                onclick={handleBulkUpdate} variant="brand">
+                            </lightning-button>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <BR>
+
+        <lightning-tabset>
+            <lightning-tab label={selectedTabName} class="counter" data-count={selectedTabCount}
+                icon-name={selectedTabIcon}>
+                <c-lwc-mv-datatable class="lwcMvDataTable" onrowselection={handleRowSelection}
+                    onrecordsuccess={handleInlineSave} custom-settings={currentFeatureSettings} columns={columns}
+                    records={finalData}
+                    resizable-rows>
+                </c-lwc-mv-datatable>
+            </lightning-tab>
+            <lightning-tab label="Applicable Rules" icon-name="standard:filter">
+                <template lwc:if={showApplicableRules}>
+                <c-lwc-mv-related-list service-repository-name={serviceRepositoryForApplicableRulesName}
+                    record-id={recordId} object-api-name={objectApiName} hide-add hide-edit hide-delete>
+
+                </c-lwc-mv-related-list>
+                </template>
+            </lightning-tab>
+        </lightning-tabset>
+
+
+        <template if:true={showEditModal}>
+    <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open slds-modal_large"> <!-- Expanded width -->
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <h2 class="slds-text-heading_medium">{modalTitle}</h2>
+            </header>
+
+            <div class="slds-modal__content slds-p-around_medium">
+                <!-- Conditional rendering based on showAllFields -->
+                <template if:true={showAllFields}>
+                    <!-- All fields are shown when showAllFields is true -->
+                    <div class="slds-grid slds-gutters slds-wrap slds-m-bottom_small">
+                        <!-- Assigned To -->
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-combobox
+                                name="docketStatus"
+                                label="Status"
+                                value={docketStatus}
+                                placeholder="Select Status"
+                                options={statusOptions}
+                                onchange={handleInputChange}>
+                            </lightning-combobox>
+                            <c-dynamic-search-and-select -label="Assigned To" object-name="User"
+                                placeholder="Search People" search-field-names="Name" query-field-names="Name"
+                                dropdown-option-fields="1" selected-record-representation="1"
+                                icon-name="custom:custom18" onselected={handleAssignedToChange}
+                                final-sel-id={assignedTo} where-clause={clientIdCondition} min-search-txt-len="0"
+                                limit="50">
+                            </c-dynamic-search-and-select>
+                        </div>
+
+                        <!-- Due Date -->
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input type="date" name="dueDate" label="Due Date" value={dueDate}
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                            <lightning-combobox
+                                name="docketReporting"
+                                label="Reported?"
+                                value={docketReporting}
+                                placeholder="Select"
+                                options={reportedOptions}
+                                onchange={handleInputChange}>
+                            </lightning-combobox>
+                        </div>
+                    </div>
+
+                    <!-- Comments & Checkboxes Row -->
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-textarea name="allComments" label="Comments"
+                                    value={allComments} onchange={handleInputChange}>
+                            </lightning-textarea>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-2 slds-align-bottom">
+                            <lightning-input type="checkbox" name="isCompleted" label="Is Completed?"
+                                checked={isCompleted} onchange={handleCheckboxChange}>
+                            </lightning-input>
+                            <lightning-input type="checkbox" name="isClosed" label="Is Closed?"
+                                checked={isClosed} onchange={handleCheckboxChange}>
+                            </lightning-input>
+                        </div>
+                    </div>
+
+                    <!-- Show Completion Date & Reason to Complete if isCompleted is checked -->
+                    <template if:true={isCompleted}>
+                        <div class="slds-grid slds-gutters slds-wrap">
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-input type="date" name="completionDate" label="Completion Date"
+                                    value={completionDate} onchange={handleInputChange}>
+                                </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-textarea name="reasonToComplete" label="Reason to Complete"
+                                    value={reasonToComplete} onchange={handleInputChange}>
+                                </lightning-textarea>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Show Closed Date & Reason to Close if isClosed is checked -->
+                    <template if:true={isClosed}>
+                        <div class="slds-grid slds-gutters slds-wrap">
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-input type="date" name="closedDate" label="Closed Date"
+                                    value={closedDate} onchange={handleInputChange}>
+                                </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-textarea name="reasonToClose" label="Reason to Close"
+                                    value={reasonToClose} onchange={handleInputChange}>
+                                </lightning-textarea>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+
+                <!-- When showAllFields is false, only Comments & Reported fields are shown -->
+                <template if:false={showAllFields}>
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-textarea name="allComments" label="Comments"
+                                value={allComments} onchange={handleInputChange}>
+                            </lightning-textarea>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-combobox
+                                name="docketReporting"
+                                label="Reported?"
+                                value={docketReporting}
+                                placeholder="Select"
+                                options={reportedOptions}
+                                onchange={handleInputChange}>
+                            </lightning-combobox>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Footer Buttons -->
+            <footer class="slds-modal__footer">
+                <lightning-button variant="neutral" label="Cancel" disabled={isMassUpdating}
+                    onclick={handleCancel}></lightning-button>
+                <lightning-button variant="brand" class="slds-p-left_xx-small" label="Save"
+                    disabled={isMassUpdating} onclick={handleSave}></lightning-button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>
+        
+
+
+        <template if:true={showExpandModal}>
+            <section role="dialog" class="slds-modal slds-fade-in-open slds-modal_large" aria-labelledby="modal-heading"
+                aria-modal="true">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading" class="slds-text-heading_medium slds-hyphenate">
+                            Full Docket Tabular View
+                        </h2>
+                        <button class="slds-button slds-button_icon slds-modal__close" title="Close"
+                            onclick={handleExpandModalClose}>
+                            <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+                        </button>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <c-lwc-mv-datatable class="lwcMvDataTable" onrowselection={handleRowSelection}
+                            onrecordsuccess={handleInlineSave} custom-settings={currentFeatureSettings}
+                            columns={columns} records={records}
+                            resizable-rows>
+                        </c-lwc-mv-datatable>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <template if:true={showImanageAdd}>
+            <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-03"
+                class="slds-modal slds-fade-in-open slds-modal_medium">
+                <div class="slds-modal__container">
+                    <span class="slds-modal__close">
+                        <lightning-button-icon icon-name="utility:close" onclick={handleCancelImanage}
+                            alternative-text="Cancel and Close" class=""
+                            title="Cancel and Close"></lightning-button-icon>
+                    </span>
+                    <div class="slds-modal__header">
+                        <h1 id="modal-heading-05" class="slds-modal__title slds-hyphenate" tabindex="-1">
+                            Upload Files to iManage</h1>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-4">
+                        <lightning-flow flow-api-name={flowApiName} flow-input-variables={flowInputVariables}
+                            onstatuschange={handleSaveImanage}>
+                        </lightning-flow>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </template>
+
+    </template>
+
+    <template if:true={reportToClient}>
+        <section class="slds-modal slds-fade-in-open" aria-hidden="false">
+            <div class="slds-modal__container custom-width">
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">New Email</h2>
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleNewEmailClose}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="bare"></lightning-icon>
+                    </button>
+                </header>
+                <div class="slds-modal__content">
+                    <c-mv-email-composer
+                        record-id={recordId}
+                        docket-id={docketId}
+                        object-type={objectApiName}
+                        email-message-id={emailMessageId}
+                        action-type={emailAction}
+                        onclose={handleNewEmailClose}
+                        onemailsent={handleEmailSent}
+                        is-initiated-from-report-external=true>
+                    </c-mv-email-composer>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+</template>

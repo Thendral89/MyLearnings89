@@ -1,0 +1,97 @@
+<template>
+    <lightning-spinner if:true={showSpinner}></lightning-spinner>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="standard:task" size="small"></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-text-heading_small slds-truncate">
+                            <div class="header_sub_heading">{selectedViewLabel} ({taskCount})&nbsp;
+                                <lightning-button-menu icon-size="x-small" menu-alignment="center" onselect={handleDefaultFilterSelect}>
+                                    <template for:each={defaultFilterOptions} for:item="filter">
+                                        <lightning-menu-item key={filter.value} value={filter.value} label={filter.label}></lightning-menu-item>
+                                    </template>
+                                </lightning-button-menu>
+                            </div>
+                        </span>
+                        <span class="tab-container">
+                            <div class={myTasktabClass} onclick={handleHeaderLabelClick}>{headerLabel}</div>
+                            <div class={delegatedTabClass} onclick={handleHeaderLabelDelegatedClick}>{headerLabelDeligated}</div>
+                        </span>
+                        <!-- <span if:false={hideLabel} class=" slds-align_absolute-center header_label">{headerLabel}</span>
+                        <span class=" slds-align_absolute-center header_label">{headerLabelDeligated}</span> -->
+                    </h2>
+                    
+                </div>
+                <div class="slds-no-flex">
+                    <div class="slds-grid">
+                        <div class="slds-col">
+                            <lightning-button-icon size="small" tooltip="Refresh Tasks" class="slds-m-left_small" variant="brand"
+                                    icon-name="utility:refresh" data-action="refresh" onclick={handleClick}></lightning-button-icon>
+                        </div>
+                        <div class="slds-col">
+                            <lightning-button-icon size="small" tooltip="Add New Task" class="slds-m-left_small" variant="brand"
+                                    icon-name="utility:add" data-action="new-task" onclick={handleClick}></lightning-button-icon>
+                        </div>
+                        <div class="slds-col">
+                            <c-my-task-filter onapplyfilter={handleApplyFilter}>
+                            </c-my-task-filter>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body">
+            <div class="slds-grid slds-m-bottom_xxx-small">
+                <div class="slds-col slds-grid slds-size_1-of-12">
+                    <lightning-input class="slds-p-left_x-small" type="checkbox" checked={massActionChecked} onchange={handleMassActionChange}></lightning-input>
+                </div>
+                <div class="slds-col slds-grid slds-size_11-of-12 metro-container">
+                    <div class="slds-col metro slds-size_3-of-12" data-panel={panelOne} onclick={handlePanelSelect}>
+                        <c-my-task-highlighted-panel filter-val={filterVal} panel={panelOne}></c-my-task-highlighted-panel>
+                    </div>
+                    <div class="slds-col metro slds-size_3-of-12" data-panel={panelTwo} onclick={handlePanelSelect}>
+                        <c-my-task-highlighted-panel filter-val={filterVal} panel={panelTwo}></c-my-task-highlighted-panel>
+                    </div>
+                    <div class="slds-col metro slds-size_3-of-12" data-panel={panelThree} onclick={handlePanelSelect}>
+                        <c-my-task-highlighted-panel filter-val={filterVal} panel={panelThree}></c-my-task-highlighted-panel>
+                    </div>
+                    <div class="slds-col metro slds-size_3-of-12" data-panel={panelFour} onclick={handlePanelSelect}>
+                        <c-my-task-highlighted-panel filter-val={filterVal} panel={panelFour}></c-my-task-highlighted-panel>
+                    </div>
+                </div>
+            </div>
+            <div if:true={massActionsVisible} class="slds-m-bottom_xxx-small">
+                <c-my-task-mass-action onrefresh={handleRefresh} selected-records={selectedTasks}></c-my-task-mass-action>
+            </div>
+            <c-my-task-table onselect={handleTaskSelected} onrefresh={handleRefresh} task-list={taskListToDisplay} hide-related={hideRelated} hide-status={hideStatus} hide-priority={hidePriority} onedit={handleEditEvent}
+            additional-field-one={additionalFieldOne} additional-field-one-label={additionalFieldOneLabel} additional-field-two={additionalFieldTwo} additional-field-two-label={additionalFieldTwoLabel}
+            create-or-assigned-field={createOrAssignedField} create-or-assigned-label={createOrAssignedLabel}
+            ></c-my-task-table>
+        </div>
+        <div class="slds-card__footer">
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-1">
+                    <div role="group" class="pagination slds-button-group slds-align_absolute-center">
+                        <lightning-button-icon size="large" class="rotate-180 slds-m-right_medium" variant="bare" disabled={firstPageDisabled}
+                            tooltip="First Page" icon-name="utility:breadcrumbs" data-action="first" onclick={handleNavigation}></lightning-button-icon>
+                        <lightning-button-icon size="large" variant="bare" tooltip="Previous Page" disabled={previousDisabled}
+                            icon-name="utility:left" data-action="previous" onclick={handleNavigation}></lightning-button-icon>
+                        <p class="pag-footer"> Page {currentPage} of {totalPage}</p>
+                        <lightning-button-icon size="large" class="slds-m-right_medium" variant="bare" disabled={nextDisabled}
+                            tooltip="Next Page" icon-name="utility:right" data-action="next" onclick={handleNavigation}></lightning-button-icon>
+                        <lightning-button-icon size="large" variant="bare" tooltip="Last Page" disabled={lastPageDisabled}
+                            icon-name="utility:breadcrumbs" data-action="last" onclick={handleNavigation}></lightning-button-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <template if:true={showNewModal}>
+        <c-task-form-l-w-c record-id={selectedTaskId} onrefresh={handleNewTaskClose}></c-task-form-l-w-c>
+    </template>
+</template>

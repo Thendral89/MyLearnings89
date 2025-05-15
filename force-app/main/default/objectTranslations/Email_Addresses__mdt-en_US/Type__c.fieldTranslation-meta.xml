@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Type --></label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>ABANDONMENT</masterLabel>
+        <translation><!-- ABANDONMENT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ABANDONMENT FORMALITIES</masterLabel>
+        <translation><!-- ABANDONMENT FORMALITIES --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AGREEMENTS / TM LICENSES</masterLabel>
+        <translation><!-- AGREEMENTS / TM LICENSES --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AMENDED CLAIMS</masterLabel>
+        <translation><!-- AMENDED CLAIMS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ANNUITY</masterLabel>
+        <translation><!-- ANNUITY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>APPEAL</masterLabel>
+        <translation><!-- APPEAL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>APPLICATION</masterLabel>
+        <translation><!-- APPLICATION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>APPLICATION AS FILED</masterLabel>
+        <translation><!-- APPLICATION AS FILED --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ASSIGNMENT</masterLabel>
+        <translation><!-- ASSIGNMENT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOLOGICAL DEPOSIT</masterLabel>
+        <translation><!-- BIOLOGICAL DEPOSIT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CORRESPONDENCE</masterLabel>
+        <translation><!-- CORRESPONDENCE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CUSTOM REGISTRATION</masterLabel>
+        <translation><!-- CUSTOM REGISTRATION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EXAMINATION</masterLabel>
+        <translation><!-- EXAMINATION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EXTENSION</masterLabel>
+        <translation><!-- EXTENSION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EXTENSION OF TIME</masterLabel>
+        <translation><!-- EXTENSION OF TIME --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FILE HISTORY</masterLabel>
+        <translation><!-- FILE HISTORY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FILING CORRESPONDENCE</masterLabel>
+        <translation><!-- FILING CORRESPONDENCE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FILING FORMALITIES</masterLabel>
+        <translation><!-- FILING FORMALITIES --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FILING RECEIPT</masterLabel>
+        <translation><!-- FILING RECEIPT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FORMALITIES</masterLabel>
+        <translation><!-- FORMALITIES --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GRANT DETAILS</masterLabel>
+        <translation><!-- GRANT DETAILS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HISTORY (SEARCH STRATEGY)</masterLabel>
+        <translation><!-- HISTORY (SEARCH STRATEGY) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>INFORMATION DISCLOSURE</masterLabel>
+        <translation><!-- INFORMATION DISCLOSURE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>INVOICE</masterLabel>
+        <translation><!-- INVOICE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ISSUE-GRANT NOTICE</masterLabel>
+        <translation><!-- ISSUE-GRANT NOTICE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LEGAL DOCUMENTS</masterLabel>
+        <translation><!-- LEGAL DOCUMENTS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MAINTENANCE FORMALITIES (EG AFU DAU DIU E=TC)</masterLabel>
+        <translation><!-- MAINTENANCE FORMALITIES (EG AFU DAU DIU E=TC) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OFFICE ACTION</masterLabel>
+        <translation><!-- OFFICE ACTION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OUTSOURCING</masterLabel>
+        <translation><!-- OUTSOURCING --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>POWER OF ATTORNEY</masterLabel>
+        <translation><!-- POWER OF ATTORNEY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PROSECUTION</masterLabel>
+        <translation><!-- PROSECUTION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PUBLICATION</masterLabel>
+        <translation><!-- PUBLICATION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>REGISTRATION CERTIFICATE</masterLabel>
+        <translation><!-- REGISTRATION CERTIFICATE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>REMINDER</masterLabel>
+        <translation><!-- REMINDER --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RENEWAL CERTIFICATE</masterLabel>
+        <translation><!-- RENEWAL CERTIFICATE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RENEWAL FORMALITIES</masterLabel>
+        <translation><!-- RENEWAL FORMALITIES --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>REPORT</masterLabel>
+        <translation><!-- REPORT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>REQUEST</masterLabel>
+        <translation><!-- REQUEST --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SEARCH INSTRUCTIONS</masterLabel>
+        <translation><!-- SEARCH INSTRUCTIONS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SEARCH REPORT SUPPLEMENTARY INFORMATION</masterLabel>
+        <translation><!-- SEARCH REPORT SUPPLEMENTARY INFORMATION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SEARCH REPORT/WRITTEN OPINION</masterLabel>
+        <translation><!-- SEARCH REPORT/WRITTEN OPINION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SEARCH REQUEST SUPPLEMENTARY INFORMATION&lt;=</masterLabel>
+        <translation><!-- SEARCH REQUEST SUPPLEMENTARY INFORMATION&lt;= --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SEQUENCE LISTING</masterLabel>
+        <translation><!-- SEQUENCE LISTING --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SPECIFICATION</masterLabel>
+        <translation><!-- SPECIFICATION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>STATUS INFORMATION</masterLabel>
+        <translation><!-- STATUS INFORMATION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>STATUS REQUEST</masterLabel>
+        <translation><!-- STATUS REQUEST --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TRANSLATION</masterLabel>
+        <translation><!-- TRANSLATION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>USE EVIDENCE</masterLabel>
+        <translation><!-- USE EVIDENCE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>USE EVIDENCE / INFORMATION</masterLabel>
+        <translation><!-- USE EVIDENCE / INFORMATION --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

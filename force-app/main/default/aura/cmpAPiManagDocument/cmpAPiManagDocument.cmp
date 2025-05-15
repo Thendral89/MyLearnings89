@@ -1,0 +1,1518 @@
+<aura:component controller="cmpAPiManagDocumentCtrl" access="global" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,lightning:availableForFlowScreens" >
+    <aura:attribute name="allData" type="List" />
+    <aura:attribute name="objAttachments" type="List[]"/>
+    <aura:attribute name="ObjFiles" type="List[]"/>
+    <aura:attribute name="objFolders" type="List[]"/>
+    <aura:attribute name="ObjDocumentDetail" type="List[]"/>
+    <aura:attribute name="doctypevalues" type="object[]" />
+    <aura:attribute name="filteredData" type="List" />
+    <aura:attribute name="tableData" type="List" />
+    <aura:attribute name="columns" type="Object[]" />
+    <aura:attribute name="pageSize" type="Integer" default="500" />
+    <aura:attribute name="pageSizeOptions" type="Integer[]" default="10,15,20,25,50,100" />
+    <aura:attribute name="currentPageNumber" type="Integer" default="1" />
+    <aura:attribute name="totalPages" type="Integer" default="1" />
+    <aura:attribute name="searchPhrase" type="String" />
+    <aura:attribute name="isLoading" type="Boolean" default="false" />
+ 	<aura:attribute name="QueueName" type="String" />
+    <aura:attribute name="ProfileName" type="String" default="PPM" />
+    <aura:attribute name="HeaderName" type="String"  default="iManage Documents"/>
+    <aura:attribute name="Status" type="String" />
+    <aura:attribute name="IsShow" type="Boolean" default = "false"/>
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+    <aura:attribute name="IsPruneMatter" type="Boolean" default = "true"/>
+	<aura:attribute name="IsNew" type="Boolean" default = "false"/>
+    <aura:attribute name="IsNewOCRecommendations" type="Boolean" default = "false"/>
+    <aura:attribute name="Recommendations" type="String"  default=""/>
+    <aura:attribute name="Tablecolumns" type="String"  default=""/>
+    <aura:attribute name="sortedBy" type="String" default="Name"/>
+    <aura:attribute name="sortedDirection" type="String" default="asc"/>
+    <aura:attribute name="IsReassignCaseType" type="Boolean" default = "false"/>
+    <aura:attribute name="lstDocumentId" type="List[]"/>
+    <aura:attribute name="ContentVersionId" type="String" default=""/>
+    <aura:attribute name="filescount" type="Integer" default="0"/>
+    <aura:attribute name="count" type="Integer" default="0"/>
+    <aura:attribute name="contentDocumentIds" type="string" access="global"/>
+    <aura:attribute name="idAvailable" type="string" access="global"/>
+    <aura:attribute name="isFileUploaded" type="boolean" default="false" access="global"/>
+    <aura:attribute name="createdFolderId" type="string" access="global" default=""/>
+    <aura:attribute name="iManageFoldersId" type="string" access="global" default=""/>
+    <aura:attribute name="iManageFolderName" type="string" access="global" default=""/>
+    <aura:attribute name="iManageNewFolderName" type="string" access="global" default=""/>
+    <aura:attribute name="IsDeleted" type="boolean" default="false" access="global"/>
+    <aura:attribute name="iManageDocumentId" type="string" access="global" default=""/>
+    <aura:attribute name="IsiManageDocumentId" type="boolean" access="global" default="global"/>
+    <aura:attribute name="IsFileShow" type="boolean" default="false" access="global"/>
+    <aura:attribute name="ContentDocumentId" type="string" access="global" default=""/>
+    <aura:attribute name="ContentDocumenttitle" type="string" access="global" default=""/>
+    <aura:attribute name="ErrorMessage" type="string" access="global" default=""/>
+    <aura:attribute name="MAX_FILE_SIZE" type="Integer" default="4500000" />
+    <aura:attribute name="FolderSyncLastModifiedDate" type="date" access="global" default=""/>
+    <aura:attribute name="IsMoved" type="boolean" default="false" access="global"/>
+    
+    <aura:attribute name="IsShowFolderTables" type="boolean" default="false" access="global"/>
+    <aura:handler name="cmpAPiManageTreeEvent" event="c:cmpAPiManageTreeEvent" action="{!c.OnSelectedFolderName}"/>
+    <aura:handler name="cmpAPiManagedEmailsEvent" event="c:cmpAPiManagedEmailsEvent" action="{!c.OnSelectedEmails}"/>
+    <aura:attribute name="IsDocuSignDocumentId" type="boolean" access="global" default="false"/>
+    <aura:attribute name="DocuSignDocumentId" type="string" access="global" default=""/>
+    
+    
+    
+    <aura:attribute name="iframeUrl" type="String" default="https://michaelbest-mobility.imanage.work/login/imanagework.html?redirect_uri=https://michaelbest-mobility.imanage.work/work/web/r/recent-documents"/>
+    <aura:attribute name="width" type="String" default="100%"/>
+    <aura:attribute name="height" type="String" default="1000px"/>
+    <aura:attribute name="scrolling" type="String" default="true"/>
+    <aura:attribute name="frameBorder" type="String" />
+    <aura:attribute name="style" type="String" />
+    <aura:attribute name="sandbox" type="String" />
+    <aura:attribute name="items" type="Object"/>
+    <aura:attribute type="List" name="Path" default="[]" />
+    
+    <aura:attribute name="fileId" type="String"/>
+    <aura:attribute name="fileUrl" type="String"/>
+    <aura:attribute name="selectedItems" type="List" default="[]"/>
+    <aura:attribute name="selectedfielsItems" type="String" default=""/>
+    
+    <!-- Attributes that can be set while component calling-->
+    
+    <aura:attribute name="placeholder" 				type="string" default="Search..." description="placeholder for input Box" />
+    <aura:attribute name="iconName" 				type="string" default="standard:drafts" description="complete icon name eg. standard:account" />
+    <aura:attribute name="searchString" 			type="string" default="" description="search String" />
+    <aura:attribute name="recordsList" type="List[]"/>
+    <aura:attribute name="message" type="string" access="global" default=""/>
+    <aura:attribute name="iManageSelectedFolderId" type="string" access="global" default=""/>
+    <aura:attribute name="IsiManageSelectedFolderId" type="boolean" default="false" access="global"/>
+    <aura:attribute name="IsiManageFolders" type="boolean" default="false" access="global"/>
+    
+    <aura:attribute name="IsiManageConfigured" type="boolean" default="true" access="global"/>
+    <aura:attribute name="iManagedUSPTO" type="string" access="global" default="USPTO Documents"/>
+    <aura:attribute name="WorkspaceName" type="string" access="global" default=""/>
+    <aura:attribute name="WorkspaceId" type="string" access="global" default=""/>
+    <aura:attribute name="IsCheckOut" type="boolean" default="false" access="global"/>
+    <aura:attribute name="DocumentCheckOutComment" type="string" default="" access="global"/>
+    <aura:attribute name="DocumentCheckOutDueDate" type="date" default="" access="global"/>
+    <aura:attribute name="IsiManagedDocumentAccess" type="string" default="full_access" access="global"/>
+    
+    
+    <aura:attribute name="IsiManageEmails" type="boolean" default="false" access="global"/>
+    <aura:attribute name="iManagedEmail" type="string" access="global" default="Email Tracker"/>
+    <aura:attribute name="iManaged" type="string" access="global" default="Folders"/>
+    <aura:attribute name="iManagedEmailId" type="string" access="global" default=""/>
+    <aura:attribute name="IsEmailAttachedMoved" type="boolean" default="false" access="global"/>
+    <aura:attribute name="EmailContentVersionId" type="String" default=""/>
+    <aura:attribute name="iManageSelectedEmailAttachmentId" type="String" default=""/>
+    <aura:attribute name="IsiManageSelectedEmailId" type="boolean" default="false" access="global"/>
+    <aura:attribute name="IsEmails" type="boolean" default="false" access="global"/>
+    
+    <aura:attribute name="IsDocuSign" type="boolean" default="false" access="global"/>
+    <aura:attribute name="IsDocuSignConfigured" type="boolean" default="false" access="global"/>
+    <aura:attribute name="iManagedIsDocuSign" type="string" access="global" default="DocuSign"/>
+    
+    <aura:attribute name="IsSDocs" type="boolean" default="false" access="global"/>
+    <aura:attribute name="IsSDocsConfigured" type="boolean" default="false" access="global"/>
+    <aura:attribute name="iManagedSDocs" type="string" access="global" default="SDocs"/>
+    <aura:attribute name="SDocsDocumentId" type="string" access="global" default=""/>
+    
+    <aura:attribute name="IsiMngEditing" type="boolean" default="false" access="global"/>
+    <aura:attribute name="iManagedDocumentsName" type="string" access="global" default=""/>
+    
+    
+    <aura:attribute name="IsSDocsEditing" type="boolean" default="false" access="global"/>
+    <aura:attribute name="SDocsDocumentsName" type="boolean" default="false" access="global"/>
+    
+    <aura:attribute name="IsEmailsEditing" type="boolean" default="false" access="global"/>
+    <aura:attribute name="EmailDocumentsName" type="boolean" default="false" access="global"/>
+    
+    <aura:attribute name="IsEmailsSubject" type="boolean" default="false" access="global"/>
+    <aura:attribute name="EmailsSubject" type="string" default="" access="global"/>
+    
+    <aura:attribute name="IsMultiEmailDocument" type="boolean" default="false" access="global"/>
+    <aura:attribute name="IsMatterDocuments" type="boolean" default="false" access="global"/>
+    <aura:attribute name="iManageEmailObjectId" type="string" default="" access="global"/>
+    <aura:attribute name="IsDocketing" type="boolean" default="false" access="global"/>
+    <aura:attribute name="IsCollaborationDocument" type="boolean" default="false" access="global"/>
+    <aura:attribute name="IsCollaboration" type="boolean" default="false" access="global"/>
+    
+    <lightning:card class="slds-card_boundary" title="{!v.HeaderName + '(' + v.tableData.length + ')'    }" iconName="standard:entity">
+       	<aura:set attribute="actions">
+              <div class="slds-p-bottom_x-small">
+                  
+             <aura:if isTrue="{!v.WorkspaceId !=''}">
+                 
+                 <aura:if isTrue="{!v.IsCollaborationDocument!=true}">
+                     <aura:if isTrue="{!and(v.iManaged!='Emails',v.iManageFoldersId!='')}">
+                         <lightning:buttonIcon iconName="utility:upload" variant="brand" alternativeText="Upload" title="Upload" onclick="{!c.OnUpload}" />
+                     </aura:if>
+                 </aura:if>
+                 
+                 
+                 <aura:if isTrue="{!v.IsCollaborationDocument==true}">
+                     <aura:if isTrue="{!v.IsCollaboration==true}">
+                     <aura:if isTrue="{!and(v.iManaged!='Emails',v.iManageFoldersId!='')}">
+                         <lightning:button aura:id="NEXT"  variant="brand"
+                                      label="Submit"
+                                      title="Submit"
+                                      onclick="{!c.OnSubmitted }"/>
+                     </aura:if>
+                 </aura:if>
+                     </aura:if>
+                 
+                 
+              <!--
+             	 <aura:if isTrue="{!v.IsShowFolderTables==true}">
+               		<lightning:buttonIcon iconName="utility:home" variant="brand" alternativeText="home" title="home" onclick="{!c.Onhome}" />	
+                 </aura:if> 
+                 
+             
+              <aura:if isTrue="{!and(v.iManaged!='Emails',v.iManageFoldersId!='')}">   
+                <lightning:buttonIcon iconName="utility:opened_folder" variant="brand" alternativeText="Create New Folder" title="Create New Folder" onclick="{!c.OnNewFolder}" />	
+             </aura:if>
+
+
+  			<aura:if isTrue="{!v.WorkspaceId !=''}">
+               <lightning:buttonIcon iconName="utility:sync" variant="brand" alternativeText="Sync" title="Sync" onclick="{!c.OnSyncFolderDocuments}" />    
+             </aura:if>      
+
+            -->
+                 
+              <aura:if isTrue="{!v.IsMatterDocuments!=true}">   
+               	<lightning:buttonIcon iconName="utility:refresh" variant="brand" alternativeText="Refresh" title="Refresh" onclick="{!c.OnRefresh}" />    
+              </aura:if>
+                 
+             </aura:if> 
+           
+                  
+          <aura:if isTrue="{!v.IsMatterDocuments!=true}"> 
+             <aura:if isTrue="{!v.WorkspaceId ==''}">
+                     <lightning:buttonIcon iconName="utility:refresh" variant="brand" alternativeText="Refresh" title="Refresh" onclick="{!c.refreshPage}" />    
+             </aura:if>
+         </aura:if>         
+           
+            <!--
+             <aura:if isTrue="{!v.WorkspaceId ==''}">
+                 <aura:if isTrue="{!and(v.ObjFiles.length!=0,v.ObjFiles!=null)}">
+                 	<lightning:buttonIcon iconName="utility:sync" variant="brand" alternativeText="Sync" title="Sync" onclick="{!c.OnSyncFolderFilesToiManage}" />    
+                 </aura:if>
+             </aura:if>
+          	-->
+                 
+                
+                  
+      <aura:if isTrue="{!v.isLoading }">
+        <div class="slds-text-body_small slds-text-color_error">Uploading... 
+         <img src="/auraFW/resources/aura/images/spinner.gif" class="spinner-img" alt="Loading"/>'
+      </div>
+    </aura:if>
+                  
+            </div>
+        </aura:set>
+        
+        
+ <div class="slds-p-bottom_medium">
+                    
+    <div class="row" style="background-color:white;overflow-y:auto;overflow-x:auto;height:500px;width:100%;"> 
+        
+        <aura:if isTrue="{!or(v.objFolders.length==0,v.objFolders==null)}">
+            <div class="slds-p-left_medium">
+                <span>
+                    <b>
+                            <lightning:icon size="xx-small" iconName="utility:info" alternativeText="info!" title="info" />
+                            We are working on backend to setting up the workspace and folder for this Matter…!<br/>
+                        	Please wait for few minutes!
+                    </b>
+                </span>
+            </div>
+        </aura:if>
+        
+   
+<!--
+<aura:if isTrue="{!v.WorkspaceId==''}">
+  <div class="slds-p-left_medium">
+    <span>
+    	<b>
+            <aura:if isTrue="{!v.ErrorMessage !='Access'}">
+                <lightning:icon size="xx-small" iconName="utility:info" alternativeText="info!" title="info" />
+            	You are prevented from viewing this iManage workspace due to security settings…!<br/>
+				or iManage username not configured in Symphony. Please contact to Symphony Admin team.
+            </aura:if>
+            
+        </b>
+    </span>
+  </div>
+</aura:if>
+-->
+ 
+       
+        
+<aura:if isTrue="{!v.objFolders.length>0}">
+  
+    <div class="c-container">
+        <lightning:layout multipleRows="true" verticalalign="stretch">
+            <lightning:layoutItem size="12" flexibility="auto" class="file-header-container">
+          <aura:if isTrue="{!v.createdFolderId!=''}">
+        	<div class="slds-p-left_medium slds-p-bottom_medium"> 
+                		
+                             <p class="slds-page-header__name-meta">
+                                <nav role="navigation" aria-label="Breadcrumbs">
+                                    <ol class="slds-breadcrumb slds-list_horizontal slds-wrap">
+                                        <li class="slds-breadcrumb__item">
+                                            <a href="javascript:void(0);">Home</a>
+                                        </li>
+                                        <aura:iteration items="{!v.Path}" var="p">
+                                            <li class="slds-breadcrumb__item">
+                                                <a href="javascript:void(0);" data-id="{!p.id}" onclick="{!c.handleSelectNode}">
+                                                    <aura:if isTrue="{!v.createdFolderId== p.id}">
+                                                    	<b>{!p.title}</b>
+                                                	</aura:if> 
+                                                    <aura:if isTrue="{!v.createdFolderId !=p.id}">
+                                                    	{!p.title}
+                                                	</aura:if> 
+                                                    
+                                                </a>
+                                            </li>
+                                        </aura:iteration>
+                                    </ol>
+                                </nav>
+                            </p> 
+                        
+                
+                <p>
+                	<b>
+                	  <lightning:icon size="small" iconName="utility:open_folder" alternativeText="{!v.iManageFolderName}" title="{!v.iManageFolderName}" />
+                        {!v.iManageFolderName}<br/>
+                        Last Sync <lightning:formattedDateTime value="{!v.FolderSyncLastModifiedDate}"
+                                                     year="numeric"
+        										     month="numeric"
+                                                     day="numeric"
+        											 hour="2-digit"
+                                                     minute="2-digit"
+                                                     time-zone-name="UTC">
+                        </lightning:formattedDateTime>
+                        
+                        <!--
+                        &nbsp;<lightning:buttonIcon value="{!v.createdFolderId}" size="medium" iconName="utility:sync" variant="bare" alternativeText="Sync" title="Sync" onclick="{!c.OnSyncSubFolderDocuments}" />    
+						-->
+                        
+                    </b>
+                </p>
+                
+           </div>
+ 			</aura:if>     
+       
+   </lightning:layoutItem>
+            
+            <lightning:layoutItem padding="around-small" size="12" flexibility="auto">
+                <lightning:layout multipleRows="true" verticalAlign="stretch">
+                    <lightning:layoutItem padding="around-small" size="3" flexibility="auto" class="file-tree-container">
+                      
+                        
+                  <aura:if isTrue="{!v.IsMatterDocuments!=true}">
+                     	<aura:if isTrue="{!v.IsEmails==true}">
+                        <aura:if isTrue="{!v.IsiManageEmails!=true}">
+                         <div class="slds-tree__item">
+                    		<lightning:buttonIcon iconName="utility:chevronright"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OniManageEmails}" />
+                            <span class="slds-grid">
+                        		<lightning:icon size="x-small" iconName="utility:inbox" class="slds-m-right_x-small"/>
+                        		<span class="slds-has-flexi-truncate">
+                            		<span class="slds-tree__item-label slds-truncate" title="{!v.iManagedEmail}">{!v.iManagedEmail}</span>
+                        		</span>
+                    		</span>
+                        </div>    
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsiManageEmails==true}">
+                            
+                            <div class="slds-tree__item">
+                    		<lightning:buttonIcon iconName="utility:chevrondown"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OniManageEmails}" />
+                            <span class="slds-grid" onclick="{!c.OnEmails}">
+                        		<lightning:icon size="x-small" iconName="utility:inbox" class="slds-m-right_x-small"/>
+                        		<span class="slds-has-flexi-truncate">
+                            		<span class="slds-tree__item-label slds-truncate" title="{!v.iManagedEmail}">{!v.iManagedEmail}</span>
+                        		</span>
+                    		</span>
+                        </div>  
+                           
+                            <div class="leftNav" role="navigation">
+                                <c:cmpAPiManagedEmails aura:id="treeView" recordId="{!v.recordId}" selectedFolderId="{!v.createdFolderId }"/>
+                            </div>
+                       </aura:if>     
+                    </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsDocuSign==true}">
+                        <aura:if isTrue="{!v.IsDocuSignConfigured!=true}">
+                         <div class="slds-tree__item">
+                    		<lightning:buttonIcon iconName="utility:chevronright"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnDocuSignConfigured}" />
+                            <span class="slds-grid">
+                        		<lightning:icon size="x-small" iconName="utility:inbox" class="slds-m-right_x-small"/>
+                        		<span class="slds-has-flexi-truncate">
+                            		<span class="slds-tree__item-label slds-truncate" title="{!v.iManagedIsDocuSign}">{!v.iManagedIsDocuSign}</span>
+                        		</span>
+                    		</span>
+                        </div>    
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsDocuSignConfigured==true}">
+                            
+                            <div class="slds-tree__item">
+                    		<lightning:buttonIcon iconName="utility:chevrondown"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnDocuSignConfigured}" />
+                            <span class="slds-grid" onclick="{!c.OnDocuSignConfigured}">
+                        		<lightning:icon size="x-small" iconName="utility:inbox" class="slds-m-right_x-small"/>
+                        		<span class="slds-has-flexi-truncate">
+                            		<span class="slds-tree__item-label slds-truncate" title="{!v.iManagedIsDocuSign}">{!v.iManagedIsDocuSign}</span>
+                        		</span>
+                    		</span>
+                        </div>  
+                          
+                       </aura:if>     
+                    </aura:if>
+
+						<aura:if isTrue="{!v.IsSDocs==true}">
+                        <aura:if isTrue="{!v.IsSDocsConfigured!=true}">
+                         <div class="slds-tree__item">
+                    		<lightning:buttonIcon iconName="utility:chevronright"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSDocsConfigured}" />
+                            <span class="slds-grid">
+                        		<lightning:icon size="x-small" iconName="utility:inbox" class="slds-m-right_x-small"/>
+                        		<span class="slds-has-flexi-truncate">
+                            		<span class="slds-tree__item-label slds-truncate" title="{!v.iManagedSDocs}">{!v.iManagedSDocs}</span>
+                        		</span>
+                    		</span>
+                        </div>    
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsSDocsConfigured==true}">
+                            
+                            <div class="slds-tree__item">
+                    		<lightning:buttonIcon iconName="utility:chevrondown"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OnSDocsConfigured}" />
+                            <span class="slds-grid" onclick="{!c.OnSDocsConfigured}">
+                        		<lightning:icon size="x-small" iconName="utility:inbox" class="slds-m-right_x-small"/>
+                        		<span class="slds-has-flexi-truncate">
+                            		<span class="slds-tree__item-label slds-truncate" title="{!v.iManagedSDocs}">{!v.iManagedSDocs}</span>
+                        		</span>
+                    		</span>
+                        </div>  
+                          
+                       </aura:if>     
+                    </aura:if>
+                   </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsiManageConfigured!=true}">
+                            
+                       <!--
+                         <div class="slds-tree__item">
+                    		<lightning:buttonIcon iconName="utility:chevronright"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OniManageConfigured}" />
+                            <span class="slds-grid">
+                        		<lightning:icon size="x-small" iconName="utility:open_folder" class="slds-m-right_x-small"/>
+                        		<span class="slds-has-flexi-truncate">
+                            		<span class="slds-tree__item-label slds-truncate" title="{!v.iManagedUSPTO}">{!v.WorkspaceName}</span>
+                        		</span>
+                    		</span>
+                        </div>    
+						-->
+                        </aura:if>
+                        
+                        <aura:if isTrue="{!v.IsiManageConfigured==true}">
+                            
+                            <!--
+                            <div class="slds-tree__item">
+                    		<lightning:buttonIcon iconName="utility:chevrondown"  size="small" variant="bare" alternativeText="Expand" onclick="{!c.OniManageConfigured}" />
+                            <span class="slds-grid">
+                        		<lightning:icon size="x-small" iconName="utility:open_folder" class="slds-m-right_x-small"/>
+                        		<span class="slds-has-flexi-truncate">
+                            		<span class="slds-tree__item-label slds-truncate" title="{!v.iManagedUSPTO}">{!v.WorkspaceName}</span>
+                        		</span>
+                    		</span>
+                        	</div>  
+                           -->
+                            
+                            <div class="leftNav" role="navigation">
+                                <c:cmpAPiManagedFolders aura:id="treeView" recordId="{!v.recordId}" selectedFolderId="{!v.createdFolderId }"/>
+                            </div>
+                            
+                        </aura:if>
+                      
+                        
+                    </lightning:layoutItem>
+                    
+                    <lightning:layoutItem padding="around-small" size="6" class="file-tree-container">
+                        <div class="page-section page-right">
+                         
+       					<lightning:layout multiplerows="true" class="slds-wrap">
+            <lightning:layoutitem size="12" class="resultsMenu slds-wrap">
+                
+      <aura:if isTrue="{!v.isLoading }">
+        <div class="slds-text-body_small slds-text-color_error">Uploading... 
+         <img src="/auraFW/resources/aura/images/spinner.gif" class="spinner-img" alt="Loading"/>'
+      </div>
+    </aura:if>
+               
+                
+                <aura:if isTrue="{!v.IsMatterDocuments!=true}"> 
+                    <aura:if isTrue="{!v.iManaged=='Emails'}">     
+                        <aura:if isTrue="{!v.tableData.length>0}">
+                            
+                            <table class="slds-table slds-table--bordered">                
+                                <tbody>
+                                    <aura:iteration items="{!v.tableData}" var="Folder">  
+                                        <tr>  
+                                            <td>
+                                                
+                                                <aura:if isTrue="{!not(v.IsEmailsSubject)}">
+                                                    <a href="javascript:void()" Id="{!Folder.Id}" onclick="{!c.OnEmailItemDetailClick}">
+                                                        <lightning:icon size="small" value="{!Folder.Id}" iconName="utility:notebook" alternativeText="{!Folder.name}" title="{!Folder.name}" onclick="{!c.OnDivFunction}"/>
+                                                        &nbsp;{!Folder.name}
+                                                        &nbsp;<lightning:buttonIcon  value="{!Folder.Id}" size="medium" iconName="utility:new_window" variant="bare" alternativeText="expand to view the email" title="expand to view the email" onclick="{!c.OnEmailRedirectClick}" /><br/>
+                                                    </a>
+                                                    From &nbsp;{!Folder.size} &nbsp;
+                                                    Last Sync 
+                                                    <lightning:formattedDateTime
+                                                                                 value="{!Folder.LastModifiedDate}"
+                                                                                 year="numeric"
+                                                                                 month="numeric"
+                                                                                 day="numeric"
+                                                                                 hour="2-digit"
+                                                                                 minute="2-digit"
+                                                                                 time-zone-name="UTC">
+                                                    </lightning:formattedDateTime>
+                                                    &nbsp;{!Folder.last_user}<br/>
+                                                    <b>Message Content</b><br/>
+                                                    <ui:outputRichText value="{!Folder.version}"/>
+                                                </aura:if>
+                                                
+                                                <aura:if isTrue="{!Folder.IsiManageProcessed !=true}"> 
+                                                    <div align="right">
+                                                        
+                                                        <aura:if isTrue="{!v.IsEmailsSubject}">
+                                                            <lightning:input value="{!Folder.name}" onblur="{!c.OnEmailsSubjectDocuments}" onclick="{!c.OnEmailsSubjectDocuments}"/>&nbsp;
+                                                            <lightning:buttonIcon iconName="utility:save"  value="{!Folder.Id}" variant="bare" size="medium" onclick="{!c.OnEmailsSubjectsaveInput}" />&nbsp;
+                                                            <lightning:buttonIcon iconName="utility:clear" value="{!Folder.Id}" variant="bare" size="medium" onclick="{!c.OnEmailsSubjectcancelEdit}" />&nbsp;
+                                                        </aura:if>
+                                                        
+                                                        
+                                                        <aura:if isTrue="{!not(v.IsEmailsSubject)}">
+                                                            <lightning:buttonIcon iconName="utility:edit" variant="bare" value="{!Folder.Id}" size="medium" onclick="{!c.OnEmailsSubjectstartEdit}" />&nbsp;
+                                                            
+                                                            
+                                                            &nbsp;<lightning:buttonIcon  value="{!Folder.Id}" 
+                                                                                        size="medium" 
+                                                                                        iconName="utility:upload" 
+                                                                                        variant="bare" 
+                                                                                        alternativeText="Send as a Document to iManage" 
+                                                                                        title="Send as a Document to iManage" 
+                                                                                        onclick="{!c.OnEmailItemExpandClick}" />
+                                                        </aura:if>
+                                                        
+                                                    </div>
+                                                </aura:if>
+                                                
+                                                <aura:if isTrue="{!Folder.IsiManageProcessed ==true}"> 
+                                                    <div align="right">
+                                                        &nbsp;<lightning:buttonIcon  value="{!Folder.Id}" size="medium" iconName="utility:check" variant="border-filled" alternativeText="Processed to iManage as a document" title="Processed to iManage as a document"  />
+                                                    </div>
+                                                </aura:if>
+                                                
+                                                
+                                            </td> 
+                                        </tr>  
+                                    </aura:iteration>  
+                                </tbody>  
+                            </table>  
+                            
+                        </aura:if>
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.iManaged=='DocuSign'}">     
+                        <aura:if isTrue="{!v.tableData.length>0}">
+                            <table class="slds-table slds-table--bordered">                
+                                <tbody>
+                                    <aura:iteration items="{!v.tableData}" var="Folder">  
+                                        <tr>  
+                                            <td>
+                                                
+                                                <aura:if isTrue="{!Folder.Title=='false'}">
+                                                    <a href="javascript:void()" Id="{!Folder.ContentDocumentId}" onclick="{!c.OnDocuSignItemDetailClick}">
+                                                        <lightning:icon size="small" value="{!Folder.ContentDocumentId}" iconName="utility:file" alternativeText="{!Folder.PathOnClient}" title="{!Folder.PathOnClient}"/>
+                                                        &nbsp;{!Folder.PathOnClient}<br/>
+                                                    </a>
+                                                </aura:if>
+                                                
+                                                <aura:if isTrue="{!Folder.Title!='false'}">
+                                                    <a href="javascript:void()" Id="{!Folder.ContentDocumentId}" onclick="{!c.OnDocuSignItemDetailClick}">
+                                                        <lightning:icon size="small" value="{!Folder.ContentDocumentId}" iconName="utility:file" alternativeText="{!Folder.Title}" title="{!Folder.Title}"/>
+                                                        &nbsp;{!Folder.Title}<br/>
+                                                    </a>
+                                                </aura:if>
+                                                
+                                                
+                                                Last Sync 
+                                                <lightning:formattedDateTime
+                                                                             value="{!Folder.LastModifiedDate}"
+                                                                             year="numeric"
+                                                                             month="numeric"
+                                                                             day="numeric"
+                                                                             hour="2-digit"
+                                                                             minute="2-digit"
+                                                                             time-zone-name="UTC">
+                                                </lightning:formattedDateTime>
+                                                &nbsp;{!Folder.ContentSize} KB
+                                                
+                                            </td> 
+                                        </tr>  
+                                    </aura:iteration>  
+                                </tbody>  
+                            </table>  
+                        </aura:if>
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.iManaged=='SDocs'}">     
+                        <aura:if isTrue="{!v.tableData.length>0}">
+                            <table class="slds-table slds-table--bordered">                
+                                <tbody>
+                                    <aura:iteration items="{!v.tableData}" var="Folder">  
+                                        <tr>  
+                                            <td>
+                                                <a href="javascript:void()" Id="{!Folder.ContentDocumentId}" onclick="{!c.OnSDocsItemDetailClick}">
+                                                    <lightning:icon size="small" value="{!Folder.ContentDocumentId}" iconName="utility:file" alternativeText="{!Folder.name}" title="{!Folder.name}"/>
+                                                    &nbsp;{!Folder.name}<br/>
+                                                </a>
+                                                Last Sync 
+                                                <lightning:formattedDateTime
+                                                                             value="{!Folder.LastModifiedDate}"
+                                                                             year="numeric"
+                                                                             month="numeric"
+                                                                             day="numeric"
+                                                                             hour="2-digit"
+                                                                             minute="2-digit"
+                                                                             time-zone-name="UTC">
+                                                </lightning:formattedDateTime>
+                                                &nbsp;{!Folder.size} KB
+                                                
+                                            </td> 
+                                        </tr>  
+                                    </aura:iteration>  
+                                </tbody>  
+                            </table>  
+                        </aura:if>
+                    </aura:if>
+                </aura:if>     
+          
+                <aura:if isTrue="{!v.iManaged=='Folders'}">     
+            <aura:if isTrue="{!v.tableData.length>0}">
+                <table class="slds-table slds-table--bordered">                
+                        <tbody>
+                            <aura:iteration items="{!v.tableData}" var="Folder">  
+                                <tr>  
+                                    <td>
+                                        
+                                        <aura:if isTrue="{!v.IsCollaborationDocument}">
+                                        <lightning:input type="checkbox" 
+                                                    name="{!Folder.Id}" 
+                                                    value="{!Folder.Id}" 
+                                                    onchange="{!c.handleCollaborationCheckboxChange}"
+                                                    checked="{!Folder.selectedItems__c}"
+                                                    label="{!Folder.name}"/>
+                                        </aura:if>
+                                        
+                                     <aura:if isTrue="{!v.IsCollaborationDocument!=true}">
+                                        <a href="javascript:void()" Id="{!Folder.Id}" onclick="{!c.OnItemDetailClick}">
+                                        	<lightning:icon size="small" value="{!Folder.Id}" iconName="utility:file" alternativeText="{!Folder.name}" title="{!Folder.name}" onclick="{!c.OnDivFunction}"/>
+                                        	&nbsp;{!Folder.name}<br/>
+                                        </a>
+                                    </aura:if>
+                                        
+                                        Last Sync 
+                                        <lightning:formattedDateTime
+                                                     value="{!Folder.LastModifiedDate}"
+                                                     year="numeric"
+        											 month="numeric"
+                                                     day="numeric"
+        											 hour="2-digit"
+                                                     minute="2-digit"
+                                                     time-zone-name="UTC">
+                                        </lightning:formattedDateTime>
+                                        &nbsp;{!Folder.size} KB
+                                        &nbsp;{!Folder.last_user}
+                                        
+                                    </td> 
+                                </tr>  
+                            </aura:iteration>  
+                        </tbody>  
+                    </table>  
+             </aura:if>
+           </aura:if>
+                
+             <aura:if isTrue="{!or(v.tableData.length==0,v.tableData==null)}">
+                 <div class="DivTextcenter">
+                     <span>iManage file not found</span><br/>
+                     <img src="https://qsyd-perma-bucket.s3-ap-southeast-2.amazonaws.com/file-explorer/images/file200x200.png"></img>
+                 </div>
+                 
+                 <!--
+                 <aura:if isTrue="{!v.createdFolderId !=''}">
+                     <br/><br/>
+                     <b>
+                         <p>
+                         <lightning:buttonIcon iconName="utility:sync" size="medium" variant="bare" alternativeText="Sync" title="Sync" onclick="{!c.doInit}" />    
+                         Click Sync button to fetch the documents from iManage cloud.
+                         </p>
+                     </b>
+               		
+             	</aura:if> 
+                --> 
+             </aura:if>
+                
+            </lightning:layoutitem>
+        </lightning:layout>
+
+                         
+                        </div>
+                    </lightning:layoutItem>
+                   
+                    <aura:if isTrue="{!v.IsMatterDocuments!=true}">
+                    <lightning:layoutItem padding="around-small" size="3" flexibility="auto" class="file-tree-container">
+                        <div class="file-detail">
+                            <div class="forceContentFileCard">
+                             
+                                <aura:if isTrue="{!v.IsMatterDocuments!=true}">
+                                    <aura:if isTrue="{!v.iManaged=='SDocs'}">  
+                                        <aura:if isTrue="{!v.IsSDocsConfigured}">
+                                            <aura:iteration items="{!v.ObjDocumentDetail}" var="Folder">  
+                                                <span>
+                                                    
+                                                    &nbsp;{!Folder.name}<br/>
+                                                    &nbsp;FileExtension {!Folder.FileExtension}<br/>
+                                                    &nbsp;Last Sync 
+                                                    <lightning:formattedDateTime
+                                                                                 value="{!Folder.LastModifiedDate}"
+                                                                                 year="numeric"
+                                                                                 month="numeric"
+                                                                                 day="numeric"
+                                                                                 hour="2-digit"
+                                                                                 minute="2-digit"
+                                                                                 time-zone-name="UTC">
+                                                    </lightning:formattedDateTime><br/>
+                                                    &nbsp;iManaged Status {!Folder.iManagedStatus}<br/>
+                                                    
+                                                    
+                                                    
+                                                    <aura:if isTrue="{!v.IsSDocsEditing}">
+                                                        <lightning:input value="{!Folder.Title}" onblur="{!c.OnEmailDocuments}" onclick="{!c.OnEmailDocuments}"/>&nbsp;
+                                                        <lightning:buttonIcon iconName="utility:save"  value="{!Folder.Id}" variant="bare" size="medium" onclick="{!c.OnIsSDocssaveInput}" />
+                                                        <lightning:buttonIcon iconName="utility:clear" value="{!Folder.Id}" variant="bare" size="medium" onclick="{!c.OnIsSDocscancelEdit}" />
+                                                    </aura:if>
+                                                    
+                                                    
+                                                    <aura:if isTrue="{!not(v.IsSDocsEditing)}">
+                                                        <lightning:buttonIcon iconName="utility:edit" variant="bare" value="{!Folder.Id}" size="medium" onclick="{!c.OnIsSDocstartEdit}" />
+                                                        
+                                                        <aura:if isTrue="{!Folder.iManagedStatus!='Success'}">
+                                                            <lightning:buttonIcon value="{!Folder.Id}" size="medium" iconName="utility:upload" variant="bare" alternativeText="Document Move to iManage" title="Document Move to iManage" onclick="{!c.OnDocuSignUploadFinished}" />
+                                                        </aura:if>
+                                                        
+                                                        <lightning:buttonIcon value="{!Folder.ContentDocumentId}" size="medium" iconName="utility:preview" variant="bare" alternativeText="Preview" title="Preview" onclick="{!c.OnPreviewEmailDocument}" />
+                                                        <lightning:buttonIcon value="{!Folder.Id}" size="medium" iconName="utility:download" variant="bare" alternativeText="Download" title="Download" onclick="{!c.OnEmailAttachmentDownloadClick}" />
+                                                        
+                                                        
+                                                        
+                                                        <aura:if isTrue="{!Folder.iManagedStatus=='Success'}">
+                                                            <lightning:buttonIcon  value="{!Folder.Id}" size="medium" iconName="utility:check" variant="bare" alternativeText="Processed to iManage as a document" title="Processed to iManage as a document"  />
+                                                        </aura:if>
+                                                        
+                                                    </aura:if>
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    <hr/> 
+                                                    
+                                                </span>
+                                            </aura:iteration> 
+                                        </aura:if>
+                                        
+                                        <aura:if isTrue="{!v.IsSDocsConfigured!=true}">
+                                            <div class="DivTextcenter">
+                                                <span>iManage file Preview</span>
+                                                <img src="https://qsyd-perma-bucket.s3-ap-southeast-2.amazonaws.com/file-explorer/images/file200x200.png"></img>
+                                            </div>
+                                        </aura:if>
+                                        
+                                    </aura:if>
+                                    
+                                    <aura:if isTrue="{!v.iManaged=='DocuSign'}">  
+                                        <aura:if isTrue="{!v.IsDocuSignDocumentId}">
+                                            <aura:iteration items="{!v.ObjDocumentDetail}" var="Folder">  
+                                                <span>
+                                                    <!--
+           <lightning:fileCard fileId="{!Folder.ContentDocumentId}" description="{!Folder.name}"/>
+          -->
+                                                    &nbsp;{!Folder.name}<br/>
+                                                    &nbsp;FileExtension {!Folder.FileExtension}<br/>
+                                                    &nbsp;Last Sync 
+                                                    <lightning:formattedDateTime
+                                                                                 value="{!Folder.LastModifiedDate}"
+                                                                                 year="numeric"
+                                                                                 month="numeric"
+                                                                                 day="numeric"
+                                                                                 hour="2-digit"
+                                                                                 minute="2-digit"
+                                                                                 time-zone-name="UTC">
+                                                    </lightning:formattedDateTime><br/>
+                                                    &nbsp;iManaged Status {!Folder.iManagedStatus}<br/>
+                                                    
+                                                    
+                                                    <aura:if isTrue="{!Folder.iManagedStatus!='Success'}">
+                                                        <lightning:buttonIcon value="{!Folder.Id}" iconName="utility:upload" variant="bare" size="medium" alternativeText="Upload to iManage" title="Upload to iManage" onclick="{!c.OnDocuSignUploadFinished}" />
+                                                        
+                                                        <aura:if isTrue="{!v.IsEmailsEditing}">
+                                                            <lightning:input value="{!Folder.name}" onblur="{!c.OnDocuSignDocuments}" onclick="{!c.OnDocuSignDocuments}"/>&nbsp;
+                                                            <lightning:buttonIcon iconName="utility:save"  value="{!Folder.Id}" variant="bare" size="medium" onclick="{!c.OnDocuSignsaveInput}" />
+                                                            <lightning:buttonIcon iconName="utility:clear" value="{!Folder.Id}" variant="bare" size="medium" onclick="{!c.OnDocuSigncancelEdit}" />
+                                                        </aura:if>
+                                                        
+                                                        
+                                                        <aura:if isTrue="{!not(v.IsEmailsEditing)}">
+                                                            <lightning:buttonIcon iconName="utility:edit" variant="bare" value="{!Folder.Id}" size="medium" onclick="{!c.OnEmailstartEdit}" />
+                                                        </aura:if>
+                                                        
+                                                        <aura:if isTrue="{!Folder.is_checked_out!='true'}">
+                                                            <lightning:buttonIcon value="{!Folder.Id}" size="medium" iconName="utility:move" variant="bare" alternativeText="Document Move" title="Document Move" onclick="{!c.OnItemDetailMoveFile}" />
+                                                        </aura:if>
+                                                        
+                                                    </aura:if>
+                                                    
+                                                    <aura:if isTrue="{!Folder.iManagedStatus=='Success'}">
+                                                        <lightning:buttonIcon value="{!Folder.Id}" size="medium" iconName="utility:download" variant="bare" alternativeText="Download" title="Download" onclick="{!c.OnEmailAttachmentDownloadClick}" />
+                                                        <lightning:Icon  value="{!Folder.Id}" size="medium" iconName="utility:check" variant="bare" />
+                                                    </aura:if>
+                                                    
+                                                    
+                                                    
+                                                    <hr/> 
+                                                    
+                                                </span>
+                                            </aura:iteration> 
+                                        </aura:if>
+                                        
+                                        <aura:if isTrue="{!v.IsDocuSignDocumentId!=true}">
+                                            <div class="DivTextcenter">
+                                                <span>iManage file Preview</span>
+                                                <img src="https://qsyd-perma-bucket.s3-ap-southeast-2.amazonaws.com/file-explorer/images/file200x200.png"></img>
+                                            </div>
+                                        </aura:if>
+                                        
+                                    </aura:if>
+                                    
+                                    <aura:if isTrue="{!v.iManaged=='Emails'}">  
+                                        <aura:if isTrue="{!v.IsiManageDocumentId}">
+                                            
+                                            <aura:if isTrue="{!v.IsMultiEmailDocument}">
+                                                <div align="right">
+                                                    <lightning:buttonIcon iconName="utility:upload" variant="brand" alternativeText="upload" title="upload" onclick="{!c.OnMultiEmailDocument}" />    
+                                                </div>
+                                            </aura:if> 
+                                            
+                                            <aura:iteration items="{!v.ObjDocumentDetail}" var="Folder">  
+                                                <span>
+                                                    
+                                                    
+                                                    
+                                                    <br/>
+                                                    <aura:if isTrue="{!not(v.IsEmailsEditing)}">
+                                                        <lightning:input type="checkbox" 
+                                                                         name="{!Folder.Id}" 
+                                                                         value="{!Folder.Id}" 
+                                                                         onchange="{!c.handleCheckboxChange}"
+                                                                         checked="{!Folder.selectedItems__c}"
+                                                                         label="{!Folder.Title}" />
+                                                    </aura:if>
+                                                    
+                                                    
+                                                    <aura:if isTrue="{!v.IsEmailsEditing}">
+                                                        <lightning:input value="{!Folder.Title}" onblur="{!c.OnEmailDocuments}" onclick="{!c.OnEmailDocuments}"/>&nbsp;
+                                                        <lightning:buttonIcon iconName="utility:save"  value="{!Folder.Id}" variant="bare" size="medium" onclick="{!c.OnEmailsaveInput}" />
+                                                        <lightning:buttonIcon iconName="utility:clear" value="{!Folder.Id}" variant="bare" size="medium" onclick="{!c.OnEmailcancelEdit}" />
+                                                    </aura:if>
+                                                    
+                                                    
+                                                    <aura:if isTrue="{!not(v.IsEmailsEditing)}">
+                                                        <lightning:buttonIcon iconName="utility:edit" variant="bare" value="{!Folder.Id}" size="medium" onclick="{!c.OnEmailstartEdit}" />
+                                                        
+                                                        <aura:if isTrue="{!Folder.iManagedStatus__c!='Success'}">
+                                                            <aura:if isTrue="{!v.IsMultiEmailDocument!=true}">
+                                                                <lightning:buttonIcon value="{!Folder.Id}" size="medium" iconName="utility:upload" variant="bare" alternativeText="Document Move to iManage" title="Document Move to iManage" onclick="{!c.OnEmailAttachmentMoveFile}" />
+                                                            </aura:if>
+                                                        </aura:if>
+                                                        
+                                                        <lightning:buttonIcon value="{!Folder.ContentDocumentId}" size="medium" iconName="utility:preview" variant="bare" alternativeText="Preview" title="Preview" onclick="{!c.OnPreviewEmailDocument}" />
+                                                        <lightning:buttonIcon value="{!Folder.Id}" size="medium" iconName="utility:download" variant="bare" alternativeText="Download" title="Download" onclick="{!c.OnEmailAttachmentDownloadClick}" />
+                                                        
+                                                        
+                                                        
+                                                        <aura:if isTrue="{!Folder.iManagedStatus__c=='Success'}">
+                                                            <lightning:buttonIcon  value="{!Folder.Id}" size="medium" iconName="utility:check" variant="bare" alternativeText="Processed to iManage as a document" title="Processed to iManage as a document"  />
+                                                        </aura:if>
+                                                        
+                                                    </aura:if>
+                                                    
+                                                    
+                                                    <hr/> 
+                                                    
+                                                </span>
+                                            </aura:iteration> 
+                                        </aura:if>
+                                        <aura:if isTrue="{!v.IsiManageDocumentId!=true}">
+                                            <div class="DivTextcenter">
+                                                
+                                                <span>iManage file Preview</span>
+                                                <img src="https://qsyd-perma-bucket.s3-ap-southeast-2.amazonaws.com/file-explorer/images/file200x200.png"></img>
+                                            </div>
+                                        </aura:if>
+                                    </aura:if>
+                                </aura:if>
+                                
+                            	<aura:if isTrue="{!v.iManaged=='Folders'}">  
+                              <aura:if isTrue="{!v.IsiManageDocumentId}">
+                           		<aura:iteration items="{!v.ObjDocumentDetail}" var="Folder">  
+                                 <span>
+                                 
+                                     
+                                     <aura:if isTrue="{!not(v.IsiMngEditing)}">
+                                       <lightning:icon size="small" value="{!Folder.Id}" iconName="utility:file" alternativeText="{!Folder.name__c}" title="{!Folder.name__c}"/>
+                                       &nbsp;{!Folder.name}<br/> 
+                                     </aura:if>
+                                     
+                                     <div class="inline-edit">
+                                         <aura:if isTrue="{!v.IsiMngEditing}">
+                                             <lightning:input value="{!v.iManagedDocumentsName}"/>&nbsp;
+                                             <lightning:buttonIcon iconName="utility:save"  value="{!Folder.Id}" variant="bare" size="medium" onclick="{!c.saveInput}" />
+                                             <lightning:buttonIcon iconName="utility:clear" value="{!Folder.Id}" variant="bare" size="medium" onclick="{!c.cancelEdit}" />
+                                         </aura:if>
+                                         <aura:if isTrue="{!not(v.IsiMngEditing)}">
+                                             <lightning:buttonIcon iconName="utility:edit" variant="bare" value="{!Folder.Id}" size="medium" onclick="{!c.startEdit}" />
+                                         </aura:if>
+                                     </div>
+                                     
+                                       &nbsp;Type {!Folder.type}<br/>
+                                       &nbsp;Version {!Folder.version}<br/>
+                                     
+                                       &nbsp;Last Sync 
+                                        <lightning:formattedDateTime
+                                                     value="{!Folder.LastModifiedDate}"
+                                                     year="numeric"
+        											 month="numeric"
+                                                     day="numeric"
+        											 hour="2-digit"
+                                                     minute="2-digit"
+                                                     time-zone-name="UTC">
+                                     </lightning:formattedDateTime><br/>
+                                        &nbsp;Size {!Folder.size} KB<br/>
+                                        &nbsp;Last User {!Folder.last_user}<br/>
+                                     		
+
+                                     
+                                     		<hr/>
+               								<lightning:buttonIcon value="{!Folder.Id}" size="medium" iconName="utility:download" variant="bare" alternativeText="Download" title="Download" onclick="{!c.OnItemDetailDownloadClick}" />
+                                     
+                                     	 <aura:if isTrue="{!Folder.is_checked_out!='true'}">
+                                     		<lightning:buttonIcon value="{!Folder.Id}" size="medium" iconName="utility:move" variant="bare" alternativeText="Document Move" title="Document Move" onclick="{!c.OnItemDetailMoveFile}" />
+                                         </aura:if>
+                                     
+               								<lightning:buttonIcon value="{!Folder.Id}" size="medium" iconName="utility:sync" variant="bare" alternativeText="Sync" title="Sync" onclick="{!c.OnItemDetaiSyncFolderDocuments}" />    
+                                     
+                                     <!--
+                                     	<aura:if isTrue="{!Folder.is_checked_out!='true'}">
+                                        	<lightning:buttonIcon value="{!Folder.Id}" size="medium" iconName="utility:unlock" variant="bare" alternativeText="Document Check-out" title="Document Check-out" onclick="{!c.OnCheckOut}" />
+                                     	</aura:if>
+                                     
+                                     	<aura:if isTrue="{!Folder.is_checked_out=='true'}">
+                                        	<lightning:buttonIcon value="{!Folder.Id}" size="medium" iconName="utility:lock" variant="bare" alternativeText="Document Check-in" title="Document Check-in" onclick="{!c.OnCheckIn}" />
+                                     	</aura:if>
+                                     -->
+                                     
+                                 </span>
+                                </aura:iteration> 
+                              </aura:if>
+                                <aura:if isTrue="{!v.IsiManageDocumentId!=true}">
+                                 <div class="DivTextcenter">
+                                     <span>iManage file Preview</span>
+                                    <img src="https://qsyd-perma-bucket.s3-ap-southeast-2.amazonaws.com/file-explorer/images/file200x200.png"></img>
+                                 </div>
+                                </aura:if>
+                           </aura:if> 
+                             </div>
+                         </div>
+                    </lightning:layoutItem>
+                  </aura:if>
+                    
+                </lightning:layout>
+            </lightning:layoutItem>
+            
+        </lightning:layout>
+   </div> 
+    
+</aura:if>     
+     
+		<div class="slds-p-left_medium">
+        <aura:if isTrue="{!or(v.WorkspaceId=='',v.IsiManageFolders!=true)}">
+            
+            <aura:if isTrue="{!or(v.tableData.length==0,v.tableData==null)}">
+                
+                <div class="slds-grid">
+         			<div class="slds-col">
+             
+       <span>
+           <b>
+           
+               
+               <aura:if isTrue="{!v.WorkspaceId==''}">
+         		<lightning:icon size="xx-small" iconName="utility:info" alternativeText="info!" title="info" />
+               	 No iManage Workspace found for the current record!<br/>  
+         		 Uploaded files will sync to iManage cloud once workspace created.<br/><br/>
+				 Please validate selected record docket number and iManage workspace name. These should be same. <br/>
+                   
+                   
+              </aura:if>  
+                             
+          </b>
+      </span>
+                     
+                        <!--
+                        <lightning:fileUpload label=""
+                                      name="fileUploader" 
+                                      variant="label-hidden"
+                                      multiple="false" 
+                                      recordId="{!v.recordId}"
+                                      onuploadfinished="{!c.OnUploadFinished}" 
+                                      aura:id="fileUploadAuraId"/>
+                     
+         
+    				<hr/>   
+   					<aura:if isTrue="{!and(v.ObjFiles.length!=0,v.ObjFiles!=null)}">
+      <table cellspacing="10" cellpadding="10" class="maintable" style="width:50%;" align="left" id="tblPending">
+          
+          	<tr>
+    			<th>Action</th>
+    			<th>File Name</th>
+                <th>Document Category</th>
+  				</tr>
+          
+            <aura:iteration items="{!v.ObjFiles}" var="Item">
+                <tr>
+                    <td style="width:10%;" >
+                        <lightning:buttonIcon iconName="utility:download" variant="bare" size="small"  value="{!Item.Id}" onclick="{!c.OnFilesDownloadClick}" />
+                        <lightning:buttonIcon iconName="utility:delete" variant="bare" size="small" value="{!Item.Id}" onclick="{!c.deleteAttachmentsController}" />
+                    </td>
+                    <td style="width:60%;" >
+                        {!Item.Title}.{!Item.FileExtension}
+                    </td>
+                    
+                    <td scope="row" data-label="Document Category" style="width:30%;" >
+                        
+                        <div class="slds-truncate" title="Type">
+                            <lightning:select name="{!Item.Id}" aura:id="ROC0" 
+                                              label=""
+                                              onchange="{!c.OnChangeAppType}" 
+                                              value="{!Item.iManage_Folder_Name__c}"
+                                              class="slds-align_absolute-center">
+                                <option>Not Specified</option>
+                                <aura:iteration items="{!v.doctypevalues}" var="doc">
+                                    <option text="{!doc}" value="{!doc}"
+                                            selected="{!doc==Item.iManage_Folder_Name__c}" />
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                        
+                    </td>
+                    
+                </tr>
+            </aura:iteration>
+        </table>  
+    </aura:if>
+                    -->
+                        
+            		</div>   
+   				</div> 
+                
+            </aura:if>    
+        </aura:if>   
+    </div> 
+        
+        
+   	</div>
+ </div>
+</lightning:card>
+    
+    
+    <aura:if isTrue="{!v.IsCheckOut}">
+        
+        <!-- Modal/Popup Box starts here-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header slds-theme_alert-texture slds-theme_info">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate ">  
+                        Document Check-out
+                    </h2>
+                </header>
+                
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                   <lightning:input name="DocumentCheckOut" aura:id="DocumentCheckOutId" value="{!v.DocumentCheckOutComment}" label="Comment" required="true" />
+                   <lightning:input type="date" name="DocumentCheckOutDueDate" label="Due Date" required="true" value="{!v.DocumentCheckOutDueDate}"/>
+                </div>
+                
+                
+                <!--Modal/Popup Box Footer Starts here-->
+                
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral"
+                                      label="Close"
+                                      title="Close"
+                                      onclick="{!c.closeModel }"/>
+                    
+                    <lightning:button variant="brand"
+                                      label="Check-out"
+                                      title="Check-out"
+                                      onclick="{!c.OnDocumentCheckOut }"/>
+                    
+                    
+                    
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        
+    </aura:if>
+    
+    <aura:if isTrue="{!v.IsEmailAttachedMoved}">
+        <div style="width:100%;height:200px;">
+        <!-- Modal/Popup Box starts here-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header slds-theme_alert-texture slds-theme_info">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate ">  
+                       Documents Move
+                    </h2>
+                </header>
+                
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    
+          <div class="slds-combobox_container">
+            <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open" aura:id="resultsDiv" aria-expanded="true" aria-haspopup="listbox" role="combobox">
+                <div class="slds-input-has-icon slds-input-has-icon_right">
+                    <!-- Icon, Search Bar, Search Icon -->
+                    <lightning:icon class="slds-combobox__input-entity-icon" 
+                                    iconName="{!v.iconName}" 
+                                    size="large" 
+                                    alternativeText="icon"/>
+                    
+                    <lightning:input aura:id="inputLookup" 
+                                     class="inputBox" 
+                                     placeholder="Search for Folder"
+                                     onclick="{!c.OnEmailsearchRecords}" 
+                                     onkeyup="{!c.OnEmailsearchRecords}" 
+                                     value="{!v.searchString}" 
+                                     autoComplete="off" 
+                                     variant="label-hidden" 
+                                     id="combobox-id-1" />
+                    
+                    <lightning:icon class="slds-input__icon" iconName="utility:search" size="x-small" alternativeText="search"/> 
+                    <lightning:spinner class="slds-hide" aura:id="Spinner" alternativeText="Loading" size="small" variant="brand"/>
+                </div>
+            </div>
+        </div>
+                    
+                    <aura:if isTrue="{!v.recordsList.length>0}">
+                        <hr/>
+                        <table cellspacing="10" cellpadding="10" class="maintable" style="width:100%;max-height:200px;" align="left" id="tblPending">
+                            
+                            <tr>
+    						<th>Name</th>
+                			<th>Description</th> 
+    						<th>Folder Type</th>
+  							</tr>
+                            
+                            <aura:iteration items="{!v.recordsList}" var="folderitem">
+                            
+                   <tr>
+                    <td style="width:40%;" >
+                        <a href="javascript:void()" title="{!folderitem.name}" Id="{!folderitem.id}" onclick="{!c.OnEmailMoveSelected}">
+                           <aura:if isTrue="{!folderitem.id==v.iManageSelectedEmailAttachmentId}"> 
+                            	<b>
+                                    {!folderitem.name}
+                               </b>   
+                           </aura:if>  
+                            
+                            <aura:if isTrue="{!folderitem.id !=v.iManageSelectedEmailAttachmentId}"> 
+                                {!folderitem.name}
+                           </aura:if> 
+                            
+                        </a> 
+                    </td>
+
+                    <td style="width:40%;" >
+                        {!folderitem.description}
+                    </td>
+                   
+                    <td style="width:20%;" >
+                      {!folderitem.folder_type}
+                    </td>
+                    
+                </tr>
+                                
+                                
+                            </aura:iteration>
+                        </table>
+                    </aura:if>    
+                        
+                </div>
+                
+                
+                <!--Modal/Popup Box Footer Starts here-->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral"
+                                      label="Close"
+                                      title="Close"
+                                      onclick="{! c.closeModel }"/>
+                 
+                    
+                 <aura:if isTrue="{!v.IsiManageSelectedEmailId}">
+                    <lightning:button variant="brand"
+                                      label="Move"
+                                      title="Move"
+                                      onclick="{! c.OnEmailAttachedMove }"/>
+                </aura:if>
+                    
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+      </div>  
+    </aura:if>
+    
+    <aura:if isTrue="{!v.IsMoved}">
+        <div style="width:100%;height:200px;">
+        <!-- Modal/Popup Box starts here-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header slds-theme_alert-texture slds-theme_info">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate ">  
+                       Documents Move
+                    </h2>
+                </header>
+                
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    
+          <div class="slds-combobox_container">
+            <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open" aura:id="resultsDiv" aria-expanded="true" aria-haspopup="listbox" role="combobox">
+                <div class="slds-input-has-icon slds-input-has-icon_right">
+                    <!-- Icon, Search Bar, Search Icon -->
+                    <lightning:icon class="slds-combobox__input-entity-icon" 
+                                    iconName="{!v.iconName}" 
+                                    size="large" 
+                                    alternativeText="icon"/>
+                    
+                    <lightning:input aura:id="inputLookup" 
+                                     class="inputBox" 
+                                     placeholder="Search for Folder"
+                                     onclick="{!c.searchRecords}" 
+                                     onkeyup="{!c.searchRecords}" 
+                                     value="{!v.searchString}" 
+                                     autoComplete="off" 
+                                     variant="label-hidden" 
+                                     id="combobox-id-1" />
+                    
+                    <lightning:icon class="slds-input__icon" iconName="utility:search" size="x-small" alternativeText="search"/> 
+                    <lightning:spinner class="slds-hide" aura:id="Spinner" alternativeText="Loading" size="small" variant="brand"/>
+                </div>
+            </div>
+        </div>
+                    
+                    <aura:if isTrue="{!v.recordsList.length>0}">
+                        <hr/>
+                        <table cellspacing="10" cellpadding="10" class="maintable" style="width:100%;max-height:200px;" align="left" id="tblPending">
+                            
+                            <tr>
+    						<th>Name</th>
+                			<th>Description</th> 
+    						<th>Folder Type</th>
+  							</tr>
+                            
+                            <aura:iteration items="{!v.recordsList}" var="folderitem">
+                            
+                   <tr>
+                    <td style="width:40%;" >
+                        <a href="javascript:void()" title="{!folderitem.name}" Id="{!folderitem.id}" onclick="{!c.OnFolderMoveSelected}">
+                           <aura:if isTrue="{!folderitem.id==v.iManageSelectedFolderId}"> 
+                            	<b>
+                                    {!folderitem.name}
+                               </b>   
+                           </aura:if>  
+                            
+                            <aura:if isTrue="{!folderitem.id !=v.iManageSelectedFolderId}"> 
+                                {!folderitem.name}
+                           </aura:if> 
+                            
+                        </a> 
+                    </td>
+
+                    <td style="width:40%;" >
+                        {!folderitem.description}
+                    </td>
+                   
+                    <td style="width:20%;" >
+                      {!folderitem.folder_type}
+                    </td>
+                    
+                </tr>
+                                
+                                
+                            </aura:iteration>
+                        </table>
+                    </aura:if>    
+                        
+                </div>
+                
+                
+                <!--Modal/Popup Box Footer Starts here-->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral"
+                                      label="Close"
+                                      title="Close"
+                                      onclick="{! c.closeModel }"/>
+                 
+                    
+                 <aura:if isTrue="{!v.IsiManageSelectedFolderId}">
+                     
+                      <aura:if isTrue="{!v.IsMultiEmailDocument}">
+                              <lightning:button variant="brand"
+                                      label="Move"
+                                      title="Move"
+                                      onclick="{! c.OnMultiEmailDocumentToiManage }"/>       
+                      </aura:if> 
+                     
+                    
+                      <aura:if isTrue="{!v.IsMultiEmailDocument!=true}">
+                     <lightning:button variant="brand"
+                                      label="Move"
+                                      title="Move"
+                                      onclick="{! c.OnDocMove }"/>
+                   </aura:if> 
+                </aura:if>
+                    
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+      </div>  
+    </aura:if>
+    
+    <aura:if isTrue="{!v.IsFileShow}">
+        
+        <!-- Modal/Popup Box starts here-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header slds-theme_alert-texture slds-theme_info">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate ">  
+                       Documents Preview
+                    </h2>
+                </header>
+                
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning:fileCard fileId="{!v.ContentDocumentId}" description="{!v.ContentDocumenttitle}"/>
+                </div>
+                
+                
+                <!--Modal/Popup Box Footer Starts here-->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral"
+                                      label="Close"
+                                      title="Close"
+                                      onclick="{! c.closeModel }"/>
+                    
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        
+    </aura:if>
+    
+    <aura:if isTrue="{!v.IsShow}">
+        
+        <!-- Modal/Popup Box starts here-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header slds-theme_alert-texture slds-theme_info">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate ">  
+                        Upload File to iManage
+                    </h2>
+                </header>
+                
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    
+                    <aura:if isTrue="{!or(v.objAttachments.length==0,v.objAttachments==null)}">
+                        
+                    <p>
+                        <b>
+                            <lightning:icon size="xx-small" iconName="utility:warning" alternativeText="Warning!" title="Warning" />
+                            This file might have error if exceeds the maximum size limit of 10MB.
+                        </b>
+                    </p>
+                    
+                    <br/>
+                    <lightning:fileUpload label=""
+                                      name="fileUploader"
+                                      variant="label-hidden"
+                                      recordId="{!v.iManageFoldersId}"
+                                      onuploadfinished="{!c.handleUploadFinished}" 
+                                      aura:id="fileUploadAuraId"
+                                      multiple="false"/>
+                        
+                  
+                     <hr/> 
+                 </aura:if>
+                    
+   <aura:if isTrue="{!and(v.objAttachments.length!=0,v.objAttachments!=null)}">
+      <table cellspacing="10" cellpadding="10" class="maintable" style="width:80%;" align="left" id="tblPending">
+          
+          	<tr>
+    			<th>Action</th>
+    			<th>File Name</th>
+  				</tr>
+          
+            <aura:iteration items="{!v.objAttachments}" var="Item">
+                <tr>
+                    <td style="width:10%;" >
+                        <lightning:buttonIcon iconName="utility:download" variant="bare" size="small"  value="{!Item.Id}" onclick="{!c.OnFilesDownloadClick}" />
+                        <lightning:buttonIcon iconName="utility:delete" variant="bare" size="small" value="{!Item.Id}" onclick="{!c.OndeleteAttachmentsController}" />
+                        <lightning:buttonIcon iconName="utility:sync" variant="bare" size="small" value="{!Item.ContentDocumentId}" onclick="{!c.OnAttachmentSync}" />
+                    </td>
+                    <td style="width:80%;" >
+                        {!Item.Title}.{!Item.FileExtension}
+                    </td>
+                    
+                    
+                </tr>
+            </aura:iteration>
+        </table>  
+    </aura:if>
+                    
+                </div>
+                
+                
+                <!--Modal/Popup Box Footer Starts here-->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral"
+                                      label="Close"
+                                      title="Close"
+                                      onclick="{! c.closeModel }"/>
+                    
+                 <aura:if isTrue="{!and(v.objAttachments.length!=0,v.objAttachments!=null)}">  
+                    <lightning:button variant="brand"
+                                      label="Upload"
+                                      title="Upload"
+                                      onclick="{!c.OnAttachmentUpload}"/>
+                   </aura:if>
+                    
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        
+    </aura:if>
+   
+    <aura:if isTrue="{!v.IsNew}">
+        
+        <!-- Modal/Popup Box starts here-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header slds-theme_alert-texture slds-theme_info">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate ">  
+                        Create New Folder
+                    </h2>
+                </header>
+                
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                   <lightning:input name="foldername" 
+                                    aura:id="folderId" 
+                                    value="{!v.iManageNewFolderName}" 
+                                    label="iManage Folder Name" 
+                                    required="true" />
+
+                </div>
+                
+                
+                <!--Modal/Popup Box Footer Starts here-->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral"
+                                      label="Create New Folder"
+                                      title="Create New Folder"
+                                      onclick="{! c.OnCreateNewFolder }"/>
+                    
+                    <lightning:button variant="neutral"
+                                      label="Close"
+                                      title="Close"
+                                      onclick="{! c.closeModel }"/>
+                    
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        
+    </aura:if>
+    
+    <aura:if isTrue="{!v.IsDeleted}">
+        
+        <!-- Modal/Popup Box starts here-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header slds-theme_alert-texture slds-theme_warning">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate ">  
+                        Delete Document
+                    </h2>
+                </header>
+                
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                   <p>
+                        <b>
+                            <lightning:icon size="xx-small" iconName="utility:warning" alternativeText="Warning!" title="Warning" />
+                            Are you sure you want to delete your Document? <br/>
+                            Document could not recover once deleted!
+                        </b>
+                    </p>
+
+                </div>
+                
+                <!--Modal/Popup Box Footer Starts here-->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="destructive"
+                                      label="Delete Document"
+                                      title="Delete Document"
+                                      onclick="{!c.OnDeletedDocumentsCtrl }"/>
+                    
+                    <lightning:button variant="neutral"
+                                      label="Close"
+                                      title="Close"
+                                      onclick="{! c.closeModel }"/>
+                    
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        
+    </aura:if>
+    
+    
+    
+</aura:component>

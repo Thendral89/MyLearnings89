@@ -1,0 +1,91 @@
+<!--
+  @description       : LWC Layout
+  @last modified on  : 02-25-2025
+-->
+<template>
+    <lightning-card>
+        <!-- Spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-text-align_center slds-m-top_medium">
+                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Task Content -->
+        <div class="task-container"> 
+            <template if:true={taskData}>
+                <!-- Header -->
+                <div class="task-header">
+                    <p class="subject">{taskData.Subject}</p>
+                    <p class="date">{formattedDate}</p>
+                </div>
+        
+                <!-- <div class="task-metadata">
+                    <p>
+                        <strong>
+                            <span class="bold-name">{taskData.SymphonyIPM__Title__c}</span>
+                        </strong>
+                    </p>
+                </div> -->
+                
+                <!-- Sender and Recipients -->
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-2 task-metadata">
+                        <div class="metadata-row">
+                            <span class="metadata-label"><strong>Status :</strong></span>
+                            <span class="metadata-value">{taskData.Status}</span>
+                        </div>
+                        <div class="metadata-row">
+                            <span class="metadata-label"><strong>Priority :</strong></span>
+                            <span class="metadata-value">{taskData.Priority}</span>
+                        </div>
+                        <div class="metadata-row">
+                            <span class="metadata-label"><strong>Assigned To :</strong></span>
+                            <span class="metadata-value">{assignedToName}</span>
+                        </div>
+                        <div class="metadata-row">
+                            <span class="metadata-label"><strong>Due Date :</strong></span>
+                            <!-- <span class="metadata-value">{taskData.ActivityDate}</span> -->
+                            <span class="metadata-value">{formattedActivityDate}</span>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 task-metadata">
+                        <div class="metadata-row">
+                            <span class="metadata-label"><strong>Comment :</strong></span>
+                            <lightning-formatted-rich-text class="metadata-value" style="white-space: pre-wrap;" value={taskData.Description}></lightning-formatted-rich-text>
+                        </div>
+                    </div>
+                    <!-- <div class="slds-col slds-size_1-of-2 task-metadata">
+                        <div class="metadata-row">
+                            <span class="metadata-label"><strong>Paralegal Comment :</strong></span>
+                            <lightning-formatted-rich-text class="metadata-value" style="white-space: pre-wrap;" value={taskData.Paralegal_Comment__c}></lightning-formatted-rich-text>
+                        </div>
+                        <div class="metadata-row">
+                            <span class="metadata-label"><strong>Attorney Comment :</strong></span>
+                            <lightning-formatted-rich-text style="white-space: pre-wrap;" class="metadata-value" value={taskData.Attorney_Comment__c}></lightning-formatted-rich-text>
+                        </div>
+                        <div class="metadata-row">
+                            <span class="metadata-label"><strong>Agent Comment :</strong></span>
+                            <lightning-formatted-rich-text class="metadata-value" style="white-space: pre-wrap;" value={taskData.Agent_Comment__c}></lightning-formatted-rich-text>
+                        </div>
+                    </div> -->
+                </div>
+        
+                <template if:true={hasRelatedFiles}>
+                    <c-mass-files-download object-api-name="Task" record-id={recordId}></c-mass-files-download>
+                </template>
+            </template>
+        </div>
+        
+        
+        <!-- Error Message -->
+        <template if:false={isLoading}>
+            <template if:false={taskData}>
+                <div class="slds-text-align_center slds-text-color_error slds-m-top_medium">
+                    <lightning-icon icon-name="utility:error" size="large" alternative-text="Error"></lightning-icon>
+                    <p class="slds-text-title_bold">Task data is unavailable or inaccessible.</p>
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>

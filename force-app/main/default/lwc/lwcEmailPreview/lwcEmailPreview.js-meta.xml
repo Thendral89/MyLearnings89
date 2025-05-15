@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<apiVersion>58.0</apiVersion>
+	<isExposed>true</isExposed>
+	<targets>
+		
+		<target>lightning__FlowScreen</target>
+
+	</targets>
+	 <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="selectedRecords" type="String[]" label="toIds"></property>
+			<property name="selectedRecordsToOutput" type="String[]" label="toIdsOutput" role="outputOnly" ></property>
+			<property name="selectedRecordsCCOutput" type="String[]" label="ccIdsOutput" role="outputOnly" ></property>
+			<property name="contentIds" type="String[]" label="contentIds" role="outputOnly" ></property>
+			<property name="selectedRecordsCC" type="String[]" label="ccIds" role="inputOnly" ></property>
+			<property name="myVal" type="String" label="body" ></property>
+			<property name="subValue" type="String" label="Subject" ></property>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,257 @@
+<!--
+  @description       : Collaboration
+  @last modified on  : 04-26-2025
+-->
+<template>
+    <!-- <lightning-accordion allow-multiple-sections-open="false" active-section-name="" onsectiontoggle={handleSectionToggle}>
+        <lightning-accordion-section name="A" label="Collaboration">
+    <template if:true={isSectionACollapsed}> -->
+        <c-reusable-spinner-with-text-cmp if:true={isSpinner} spinner-text="Please wait while we fetch the data ">
+        </c-reusable-spinner-with-text-cmp>
+        
+        <lightning-card>
+            <!--Collaboration Cards-->
+            <!-- <div class="slds-m-top_medium slds-p-left_small slds-p-right_small slds-grid slds-gutters slds-wrap space">
+                <div class="slds-col bg-secondary slds-p-around_small slds-m-around_small mouseHover" data-filtertype="aggregateCollaborations" onclick={handleFilters}>
+                    <div class="slds-text-align_center slds-text-heading_medium white-color">COLLABORATIONS</div>
+                    <div class="slds-text-align_center slds-text-heading_large white-color">
+                        {wiredCollaborationCounts.aggregateCollaborations}
+                    </div>
+                </div>
+    
+                <div class="slds-col bg-primary slds-p-around_small slds-m-around_small mouseHover" data-filtertype="aggregateEmails" onclick={handleFilters}>
+                    <div class="slds-text-align_center slds-text-heading_medium white-color">EMAILS</div>
+                    <div class="slds-text-align_center slds-text-heading_large white-color">
+                        {wiredCollaborationCounts.aggregateEmails}
+                    </div>
+                </div>
+    
+                <div class="slds-col bg-success slds-p-around_small slds-m-around_small mouseHover" data-filtertype="aggregateTasks" onclick={handleFilters}>
+                    <div class="slds-text-align_center slds-text-heading_medium white-color">TASKS</div>
+                    <div class="slds-text-align_center slds-text-heading_large white-color">
+                        {wiredCollaborationCounts.aggregateTasks}</div>
+                </div>
+                <div class="slds-col bg-info slds-p-around_small slds-m-around_small mouseHover" data-filtertype="aggregateEmailReceived" onclick={handleFilters}>
+                    <div class="slds-text-align_center slds-text-heading_medium white-color">IN</div>
+                    <div class="slds-text-align_center slds-text-heading_large white-color">
+                        {wiredCollaborationCounts.aggregateEmailReceived}
+                    </div>
+                </div>
+                <div class="slds-col bg-danger slds-p-around_small slds-m-around_small mouseHover" data-filtertype="aggregateEmailsOut" onclick={handleFilters}>
+                    <div class="slds-text-align_center slds-text-heading_medium white-color">OUT </div>
+                    <div class="slds-text-align_center slds-text-heading_large white-color">
+                        {wiredCollaborationCounts.aggregateEmailsOut}</div>
+                </div>
+                <div class="slds-col bg-final-document  slds-p-around_small slds-m-around_small mouseHover" data-filtertype="aggregateFinalDocument" onclick={handleFilters}>
+                    <div class="slds-text-align_center slds-text-heading_medium white-color">FINAL DOCUMENTS</div>
+                    <div class="slds-text-align_center slds-text-heading_large white-color">
+                        {wiredCollaborationCounts.aggregateFinalDocument}</div>
+                </div>
+                <div class="slds-col slds-p-around_small slds-m-around_small mouseHover">
+                    <div class="slds-grid slds-grid_vertical-align-center slds-p-around_small">
+                        <div class="slds-grid slds-grid_align-center slds-p-around_xx-small">
+                            <lightning-button label="Email" title="Email"
+                                icon-name="utility:email"
+                                variant="brand"
+                                onclick={newOpenEmailComposer}
+                                class="button-icon"></lightning-button>
+                        </div>       
+                        <div class="slds-grid slds-grid_align-center slds-p-around_xx-small">
+                            <lightning-button label="Task" title="Task"
+                                icon-name="action:new_task"
+                                variant="success"
+                                onclick={initiateNewTask}
+                                class="button-icon"></lightning-button>
+                        </div>
+                        <lightning-button label="File Upload" title="File Upload"
+                            icon-name="utility:upload"
+                            variant="neutral"  
+                            onclick={newOpenFinalDocuments}
+                            class="button-icon">
+                        </lightning-button>
+                        <lightning-button if:true={showDonotEngageButton} variant="destructive"
+                            label="Expand" title="Expand" onclick={expandScreen}
+                            class="slds-m-left_x-small"></lightning-button>
+                    </div>
+                </div>
+            </div> -->
+    
+            <div class="slds-grid slds-wrap slds-grid_vertical-align-center slds-p-horizontal_small tile-row">
+        
+                <!-- Collaborations Tile -->
+                <div class="tile slds-col slds-m-horizontal_x-small bg-collaborations mouseHover"
+                     data-filtertype="aggregateCollaborations"
+                     onclick={handleFilters}>
+                    <div class="circle-count">
+                        {wiredCollaborationCounts.aggregateCollaborations}
+                    </div>
+                    <span class="tile-label">
+                        COLLABORATIONS
+                    </span>
+                </div>
+        
+                <!-- Emails Tile -->
+                <div class="tile slds-col slds-m-horizontal_x-small bg-emails mouseHover"
+                     data-filtertype="aggregateEmails"
+                     onclick={handleFilters}>
+                    <div class="circle-count">
+                        {wiredCollaborationCounts.aggregateEmails}
+                    </div>
+                    <span class="tile-label">
+                        EMAILS
+                    </span>
+                </div>
+        
+                <!-- Tasks Tile -->
+                <div class="tile slds-col slds-m-horizontal_x-small bg-tasks mouseHover"
+                     data-filtertype="aggregateTasks"
+                     onclick={handleFilters}>
+                    <div class="circle-count">
+                        {wiredCollaborationCounts.aggregateTasks}
+                    </div>
+                    <span class="tile-label">
+                        TASKS
+                    </span>
+                </div>
+        
+                <!-- IN Tile -->
+                <div class="tile slds-col slds-m-horizontal_x-small bg-in mouseHover"
+                     data-filtertype="aggregateEmailReceived"
+                     onclick={handleFilters}>
+                    <div class="circle-count">
+                        {wiredCollaborationCounts.aggregateEmailReceived}
+                    </div>
+                    <span class="tile-label">
+                        IN
+                    </span>
+                </div>
+        
+                <!-- OUT Tile -->
+                <div class="tile slds-col slds-m-horizontal_x-small bg-out mouseHover"
+                     data-filtertype="aggregateEmailsOut"
+                     onclick={handleFilters}>
+                    <div class="circle-count">
+                        {wiredCollaborationCounts.aggregateEmailsOut}
+                    </div>
+                    <span class="tile-label">
+                        OUT
+                    </span>
+                </div>
+        
+                <!-- FINAL DOCUMENTS Tile -->
+                <!-- <div class="tile slds-col slds-m-horizontal_x-small bg-final-docs mouseHover"
+                     data-filtertype="aggregateFinalDocument"
+                     onclick={handleFilters}>
+                    <div class="circle-count">
+                        {wiredCollaborationCounts.aggregateFinalDocument}
+                    </div>
+                    <span class="tile-label">
+                        FINAL DOCUMENTS
+                    </span>
+                </div> -->
+        
+                <!-- Button Group: Email, Task, File Upload -->
+                <div class="slds-col slds-grid slds-grid_align-center">
+                    <lightning-button 
+                        label="Email" 
+                        icon-name="utility:email" 
+                        variant="brand"
+                        class="slds-m-right_x-small"
+                        onclick={newOpenEmailComposer}>
+                    </lightning-button>
+                    <lightning-button 
+                        label="Task" 
+                        icon-name="action:new_task" 
+                        variant="success"
+                        class="slds-m-right_x-small"
+                        onclick={initiateNewTask}>
+                    </lightning-button>
+                    <!-- <lightning-button 
+                        label="File Upload" 
+                        icon-name="utility:upload" 
+                        variant="neutral"
+                        onclick={newOpenFinalDocuments}>
+                    </lightning-button> -->
+                </div>
+        
+            </div>
+            
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_12-of-12">
+                    <div class="topDiv">
+                        <div class="mainDiv">
+                            <div class="mainheader">
+                                <div style="display:flex;justify-content:center;">
+                                    <div style="width:100%;" class="footerBox">
+                                        
+                                        <BR>
+                                        <div class="slds-col slds-size_12-of-12">
+                                            <span data-id="selectedRecordId" class="selectedRecord">
+                                                <div class="tabulator-container">
+                                                    <div lwc:dom="manual" class="slds-m-around_medium" data-id="dynamicCollaboration">
+                                                    </div>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </lightning-card>
+    
+        <template if:true={showNewTaskModal}>
+            <c-task-form-l-w-c related-record-id={recordId} onaction={handleNewTaskClose} onsavecomplete={handleTaskSaveComplete}></c-task-form-l-w-c>
+        </template>
+        <template if:true={showEditTaskModal}>
+            <c-task-form-l-w-c record-id={taskId} onaction={handleEditTaskClose} onsavecomplete={handleTaskSaveComplete}></c-task-form-l-w-c>
+        </template>
+        <!-- <template if:true={showEditFinalDocModal}>
+            <c-final-doc-form-l-w-c record-id={taskId} onclosemodal={handleCloseModal} onfinaldocsave={handleFinalDocSave}></c-final-doc-form-l-w-c>
+        </template> -->
+    
+        <template if:true={showNewEmailModal}>
+            <section class="slds-modal slds-fade-in-open" aria-hidden="false">
+                <div class="slds-modal__container custom-width">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">{headerLabel}</h2>
+                        <lightning-button 
+                            style="right: 1rem;top: 1rem;position: absolute;"
+                            label="Cancel" 
+                            variant="neutral" 
+                            class="slds-m-left_auto"
+                            title="Cancel" 
+                            onclick={handleNewEmailClose}>
+                        </lightning-button>
+                    </header>
+                    <div class="slds-modal__content" style="overflow: visible;">
+                        <c-mv-email-composer
+                            key={emailComposerKey}
+                            record-id={recordId}
+                            object-type={objectApiName}
+                            email-message-id={emailMessageId}
+                            action-type={emailAction}
+                            onclose={handleNewEmailClose}
+                            onsubjectchange={handleSubjectChange}
+                            onemailsent={handleEmailSent}>
+                        </c-mv-email-composer>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <!-- <template if:true={showNewFinalDocuments}>
+                        <c-cmp-n-a-documents
+                            key={emailComposerKey}
+                            record-id={recordId}
+                            object-api-name={objectApiName}
+                            onclose={handleFinalDocumentClose}>
+                        </c-cmp-n-a-documents>
+        </template> -->
+    <!-- </template> 
+    </lightning-accordion-section>
+    </lightning-accordion> -->
+</template>

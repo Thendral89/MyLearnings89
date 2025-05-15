@@ -1,0 +1,77 @@
+<template>  
+    <lightning-card >
+        <div class="slds-m-around_medium ">
+            <lightning-tabset variant="scoped" class="tab-active" >
+                <lightning-tab label="Post">
+                    <c-post-component onclose={closeRichText} current-record-id={recordId} type={type} placeholder="Share an update..." show-share-button=true></c-post-component>
+                </lightning-tab>
+                <lightning-tab label="Poll">
+                    <c-poll-component></c-poll-component>
+                </lightning-tab>
+                <lightning-tab label="Question">
+                    <c-question-component></c-question-component>
+                </lightning-tab>
+            </lightning-tabset>
+        </div>
+        <div class="slds-m-around_medium chatterBody">
+            <!-- Loader -->
+            <template if:true={isLoading}>
+                <div class="slds-spinner_container">
+                    <lightning-spinner
+                        alternative-text="Loading"
+                        size="medium"
+                        variant="brand">
+                    </lightning-spinner>
+                </div>
+            </template>
+
+            <!-- Body header starts here -->
+            <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-p-around_x-small bodyHeader slds-size_full">
+                <div class="slds-col ">
+                    <lightning-button-menu alternative-text="filters" variant="brand-outline" class="circleButton">
+                        <lightning-menu-item value="Latest Posts" label="Latest Posts" onclick={handleFilters}></lightning-menu-item>
+                        <lightning-menu-item value="Most Recent Activity" label="Most Recent Activity" onclick={handleFilters}></lightning-menu-item>
+                    </lightning-button-menu>
+                </div>
+                <div class="slds-col">
+                    <div class="slds-grid slds-grid_vertical-align-center">
+                        <div class="slds-col slds-m-horizontal_small ">
+                            <lightning-input
+                                name="enter-search"
+                                type="search"
+                                variant="label-hidden"
+                                placeholder="Search"    
+                                class="circleInput"
+                                value={Searchterm}
+                                onchange={handleSearch}
+                                oncommit={handleClearSearch}
+                            ></lightning-input>
+                        </div>
+                        <div class="slds-col">
+                            <lightning-button-icon 
+                                icon-name="utility:refresh"  
+                                alternative-text="Refresh" 
+                                title="Refresh"
+                                variant="brand-outline"
+                                class="circleButton"
+                                onclick={handleRefresh}>
+                            </lightning-button-icon>
+                        </div>
+                    </div>
+                </div> 
+            </div> 
+            <!-- Body Starts Here -->
+            <div class="slds-feed bodyContent">
+                <ul class="slds-feed__list">
+                    <template if:true={feedData}>
+                        <template for:each={feedData} for:item="feed">
+                            <li key={feed.feedItem.Id} data-id={feed.feedItem.Id} class="slds-feed__item elementWrapper">
+                                <c-chatter-body-component values={feed}></c-chatter-body-component>
+                            </li>
+                        </template>
+                    </template>  
+                </ul>      
+            </div> 
+        </div>
+    </lightning-card>
+</template>

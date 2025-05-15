@@ -1,0 +1,9 @@
+/* .lightning-studio{
+	color : blue;
+} */
+.readonly-input input {
+    background-color: #f3f2f2; /* Light grey box */
+    color: #000000;           /* Black text */
+    pointer-events: none;     /* Prevent editing */
+    border: 1px solid #d8dde6;
+}

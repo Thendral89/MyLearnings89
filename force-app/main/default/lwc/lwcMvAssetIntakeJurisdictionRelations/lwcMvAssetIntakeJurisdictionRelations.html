@@ -1,0 +1,34 @@
+<template>
+    <template if:true={isTableLoaded}>
+    <div class="slds-card slds-p-around_medium slds-m-around_medium">
+        Personnel
+        <c-lwc-mv-datatable class="lwcMvDataTableClientEngagementModels" height="auto" columns={clientEngagementModelsColumns} data-id="clientEngagementModelsTable"
+                records={clientEngagementModelsData}>
+        </c-lwc-mv-datatable>
+    </div>
+    <div class="slds-card slds-p-around_medium slds-m-around_medium">
+        Applicants
+        <c-lwc-mv-datatable class="lwcMvDataTableApplicants" height="auto" columns={applicantsColumns} data-id="applicantsTable"
+                 records={applicantsData}>
+        </c-lwc-mv-datatable>
+    </div>
+
+        <template if:true={showInventors}>
+        <div class="slds-card slds-p-around_medium slds-m-around_medium">
+            Innovators
+            <c-lwc-mv-datatable class="lwcMvDataTableInventors" height="auto" columns={inventorsColumns} data-id="inventorsTable"
+                     records={inventorsData}>
+            </c-lwc-mv-datatable>
+        </div>
+        </template>
+
+        <template if:true={showClasses}>
+            <div class="slds-card slds-p-around_medium slds-m-around_medium">
+                Classes &amp; Goods
+                <c-lwc-mv-datatable class="lwcMvDataTableClasses" height="auto" columns={classesColumns} data-id="classesTable"
+                         records={classesData}>
+                </c-lwc-mv-datatable>
+            </div>
+        </template>
+    </template>
+</template>

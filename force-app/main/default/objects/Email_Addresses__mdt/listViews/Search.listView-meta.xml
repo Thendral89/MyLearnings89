@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Search</fullName>
+    <columns>TO__c</columns>
+    <columns>TemplateDeveloperName__c</columns>
+    <columns>CC_Address__c</columns>
+    <columns>BCC__c</columns>
+    <columns>Object_Name__c</columns>
+    <columns>Query__c</columns>
+    <columns>DeveloperName</columns>
+    <columns>MasterLabel</columns>
+    <columns>NamespacePrefix</columns>
+    <columns>Parent_Object_Type__c</columns>
+    <columns>Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>Search</label>
+    <language>en_US</language>
+</ListView>

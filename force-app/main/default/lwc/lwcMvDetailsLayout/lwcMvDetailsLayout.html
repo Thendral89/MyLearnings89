@@ -1,0 +1,85 @@
+<template>
+    <div class="slds-card sticky">
+
+    <template if:true={accordionToFields}>
+        <lightning-record-edit-form 
+            record-id={recordId} 
+            object-api-name={objectApiName}
+            onsubmit={handleSubmit}
+            onsuccess={handleSuccess}
+            onerror={handleError}
+        >
+        
+        <lightning-accordion allow-multiple-sections-open
+        active-section-name={activeSections}
+        >
+            <template for:each={accordionToFields} for:item="accordion">
+                <lightning-accordion-section key={accordion.accordionName} name={accordion.accordionName} label={accordion.accordionLabel} class="accordionTitle newStyleForAccordionSection">
+                    <div class="slds-grid slds-wrap">
+                        <template for:each={accordion.fieldSetData} for:item="field">
+                            <div key={field.fieldApiName} class="slds-col slds-size_1-of-3 slds-col-underline">
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_1-of-3 slds-p-around_xx-small">
+                                        <span>{field.label}</span>
+                                    </div>
+                                    <div class="slds-col slds-size_2-of-3 slds-p-around_xx-small">
+                                        <template lwc:if={field.editMode}>
+                                            <div>
+                                                <lightning-input-field class="bold-text" field-name={field.fieldApiName} variant="label-hidden"></lightning-input-field>
+                                            </div>
+                                            
+                                        </template>
+                                        <template lwc:else>
+                                            <div data-fieldapiname={field.fieldApiName} class="slds-grid" onclick={handleEdit}>
+                                                <div class="slds-col slds-badge">
+                                                    <lightning-output-field  class="bold-text slds-line-clamp" variant="label-hidden" field-name={field.fieldApiName}></lightning-output-field>
+                                                </div>
+                                                
+                                                <div class="slds-col_bump-left">
+                                                    <div class={field.isEditableCss}>
+                                                        <lightning-button-icon icon-name="utility:edit"  size="small"   variant="bare" alternative-text="View More"></lightning-button-icon>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </lightning-accordion-section>
+            </template>
+        </lightning-accordion>     
+        
+        <template lwc:if={editMode}>
+            <div class={footerCss}>
+                <lightning-button
+                    class="slds-m-top_small"
+                    label="Cancel"
+                    variant="destructive"
+                    onclick={handleReset}
+                ></lightning-button>
+                <lightning-button
+                    class="slds-m-top_small slds-m-left_medium"
+                    type="submit"
+                    label="Save"
+                    variant="brand"
+                ></lightning-button>
+            </div>
+        </template>
+        <template lwc:else></template>
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+         
+        </lightning-record-edit-form>
+    </template>
+
+    <template if:true={error}>
+        <div class="slds-text-color_error">
+            Error loading field set: {error.body.message}
+        </div>
+    </template>
+</div>
+</template>

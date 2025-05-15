@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>SymphonyLF__Docketing_Activity__c</baseObject>
+    <category>other</category>
+    <deployed>true</deployed>
+    <description>activities</description>
+    <label>MEM Activities</label>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Docketing Activity ID</displayNameOverride>
+            <field>Id</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Owner</displayNameOverride>
+            <field>Owner</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <displayNameOverride>Symphony ID</displayNameOverride>
+            <field>Name</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Created Date</displayNameOverride>
+            <field>CreatedDate</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Created By</displayNameOverride>
+            <field>CreatedBy</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Last Modified Date</displayNameOverride>
+            <field>LastModifiedDate</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Last Modified By</displayNameOverride>
+            <field>LastModifiedBy</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Last Activity Date</displayNameOverride>
+            <field>LastActivityDate</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Action Date</displayNameOverride>
+            <field>SymphonyLF__Action_Date__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Action Initiated By</displayNameOverride>
+            <field>SymphonyLF__Action_Initiated_By__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Action Initiated Date</displayNameOverride>
+            <field>SymphonyLF__Action_Initiated_Date__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Activity Date</displayNameOverride>
+            <field>SymphonyLF__Activity_Date__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Agreement and Contract</displayNameOverride>
+            <field>SymphonyLF__Agreement_and_Contract__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Assigned To (Team)</displayNameOverride>
+            <field>SymphonyLF__Assigned_To_Team__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Assigned To (User)</displayNameOverride>
+            <field>SymphonyLF__Assigned_To_User__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Classification</displayNameOverride>
+            <field>SymphonyLF__Classification__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Closed By</displayNameOverride>
+            <field>SymphonyLF__Closed_By__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Closed Date</displayNameOverride>
+            <field>SymphonyLF__Closed_Date__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Comments</displayNameOverride>
+            <field>SymphonyLF__Comments__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Closed/Completed By</displayNameOverride>
+            <field>SymphonyLF__Completed_By__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Completion Date</displayNameOverride>
+            <field>SymphonyLF__Completion_Date__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Copyright</displayNameOverride>
+            <field>SymphonyLF__Copyright__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>De-Docketed By</displayNameOverride>
+            <field>SymphonyLF__De_Docketed_By__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Deadline Type</displayNameOverride>
+            <field>SymphonyLF__Deadline_Type__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Delegated From Date</displayNameOverride>
+            <field>SymphonyLF__Delegated_From_Date__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Delegated To Date</displayNameOverride>
+            <field>SymphonyLF__Delegated_To_Date__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Delegated To</displayNameOverride>
+            <field>SymphonyLF__Delegated_To__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Design</displayNameOverride>
+            <field>SymphonyLF__Design__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Dispute/Opposition</displayNameOverride>
+            <field>SymphonyLF__Dispute_Opposition__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Docketed by</displayNameOverride>
+            <field>SymphonyLF__Docketed_by__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Due Date</displayNameOverride>
+            <field>SymphonyLF__Due_Date__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Event Date</displayNameOverride>
+            <field>SymphonyLF__Event_Date__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Event Name</displayNameOverride>
+            <field>SymphonyLF__Event_Name__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Four Eye Check Status</displayNameOverride>
+            <field>SymphonyLF__Four_Eye_Check_Status__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Four Eye Check Assignment (Team)</displayNameOverride>
+            <field>SymphonyLF__Four_eye_Check_Assignment_Team__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Four Eye Check Assignment (User)</displayNameOverride>
+            <field>SymphonyLF__Four_eye_Check_Assignment_User__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Four Eye Rule Check</displayNameOverride>
+            <field>SymphonyLF__Four_eye_Rule_Check__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>General Matter</displayNameOverride>
+            <field>SymphonyLF__General_Matter__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>IP Matter Type</displayNameOverride>
+            <field>SymphonyLF__IP_Matter__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Importance</displayNameOverride>
+            <field>SymphonyLF__Importance__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Is AutoDocketed</displayNameOverride>
+            <field>SymphonyLF__Is_AutoDocketed__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Is Closed</displayNameOverride>
+            <field>SymphonyLF__Is_Closed__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Is Completed</displayNameOverride>
+            <field>SymphonyLF__Is_Completed__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Is DueDate Updated</displayNameOverride>
+            <field>SymphonyLF__Is_Due_Date_Updated__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Zero days rule</displayNameOverride>
+            <field>SymphonyLF__Is_Zero_days_rule__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Legal Event</displayNameOverride>
+            <field>SymphonyLF__Legal_Event__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Life Cycle Stage</displayNameOverride>
+            <field>SymphonyLF__Life_Cycle_Stage__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Parallel Check</displayNameOverride>
+            <field>SymphonyLF__Parallel_Check__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Patent</displayNameOverride>
+            <field>SymphonyLF__Patent__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Reason to Close</displayNameOverride>
+            <field>SymphonyLF__Reason_to_Close__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Closure Summary</displayNameOverride>
+            <field>SymphonyLF__Reason_to_Complete__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Reason to Update</displayNameOverride>
+            <field>SymphonyLF__Reason_to_Update__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Reminder Cascading Rule</displayNameOverride>
+            <field>SymphonyLF__Reminder_Cascading_Rule__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Reminder For</displayNameOverride>
+            <field>SymphonyLF__Reminder_For__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Reminder Type</displayNameOverride>
+            <field>SymphonyLF__Reminder_Type__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Reminder</displayNameOverride>
+            <field>SymphonyLF__Reminder__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Renewal</displayNameOverride>
+            <field>SymphonyLF__Renewal__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Review Status</displayNameOverride>
+            <field>SymphonyLF__Review_Status__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Status</displayNameOverride>
+            <field>SymphonyLF__Status__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Term Id</displayNameOverride>
+            <field>SymphonyLF__Term_Id__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Term Name</displayNameOverride>
+            <field>SymphonyLF__Term_Name__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Trademark</displayNameOverride>
+            <field>SymphonyLF__Trademark__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Trigger Type</displayNameOverride>
+            <field>SymphonyLF__Trigger_Type__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Trigger</displayNameOverride>
+            <field>SymphonyLF__Trigger__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Verified By</displayNameOverride>
+            <field>SymphonyLF__Verified_By__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Badge</displayNameOverride>
+            <field>SymphonyLF__Badge_For_Due_Date__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Days to Deadline</displayNameOverride>
+            <field>SymphonyLF__Days_to_Deadline__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Extension Number</displayNameOverride>
+            <field>SymphonyLF__Extension_Number__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Due Date Modified</displayNameOverride>
+            <field>SymphonyLF__Manual_Date_Indicator__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Unique Id</displayNameOverride>
+            <field>SymphonyLF__UniqueId__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>IP Matter Docket Number</displayNameOverride>
+            <field>SymphonyLF__IP_Matter_Docket_Number__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>IP Matter ID</displayNameOverride>
+            <field>SymphonyLF__IP_Matter_ID__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Recordal Jurisdiction</displayNameOverride>
+            <field>SymphonyLF__Recordal_Jurisdiction__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>IP Matter</displayNameOverride>
+            <field>SymphonyLF__IP_Matter1__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Docket Type</displayNameOverride>
+            <field>Docket_Type__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Legacy ID</displayNameOverride>
+            <field>Legacy_ID__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Matter Engagement Model Group</displayNameOverride>
+            <field>MEM_Group__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Matter Docket Number</displayNameOverride>
+            <field>Matter_Docket_Number__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Comments</displayNameOverride>
+            <field>Comments__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Client Reporting</displayNameOverride>
+            <field>Reported__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Docket_Report_External__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Client__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Formatted_Event_Date__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Formatted_Due_Date__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <masterLabel>Docketing Activities</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.Agreement_Contract__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.Attorney__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.Copyright__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.CreatedBy</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.CreatedDate</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.Design__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.Dispute_Opposition__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.General_Matter__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.LastActivityDate</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.LastModifiedBy</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.LastModifiedDate</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_1__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_10__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_11__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_12__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_13__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_14__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_15__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_16__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_17__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_18__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_19__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_2__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_3__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_4__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_5__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_6__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_7__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_8__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.MEM_9__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.Id</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.Name</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.Owner</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.Paralegals__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.Patent__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.Show_to_User__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.Trademark__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MEM_Group__c.Working_Attorneys__c</field>
+            <table>SymphonyLF__Docketing_Activity__c</table>
+        </columns>
+        <masterLabel>MEM</masterLabel>
+    </sections>
+</ReportType>

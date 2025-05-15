@@ -1,0 +1,59 @@
+<template>
+    <div lwc:dom="manual"></div>
+    <lightning-record-edit-form record-id={recordId} object-api-name={objectName} onsubmit={handleSubmit}
+        onsuccess={handleSuccess}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true">
+            <template if:true={isEditable}>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_11-of-12">
+                        <lightning-input-field field-name={updateableFieldName} data-field={updateableFieldName}
+                            variant="label-hidden"></lightning-input-field>
+                    </div>
+                    <template lwc:if={hasEditAccess}>
+                        <div class="slds-col slds-size_1-of-12">
+                            <lightning-button-icon icon-name="utility:save" type="submit" variant="bare"
+                                onclick={handleSave}>
+                            </lightning-button-icon>
+                        </div>
+                    </template>
+                    <template lwc:else>
+
+                    </template>
+                </div>
+            </template>
+
+            <template if:false={isEditable}>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_11-of-12">
+                        <template if:true={applyGreenTag}>
+
+                            <span class='greentag' style='font-weight:bold;'>Reported to Client</span>
+                        </template>
+                        <template if:false={applyGreenTag}> 
+                            <template if:true={isFormattedText}>
+                                <lightning-formatted-text class="applyGreenTag" value={value}>
+                                </lightning-formatted-text>
+                            </template>
+                            <template if:false={isFormattedText}>
+                                <lightning-output-field field-name={fieldName}
+                                    variant="label-hidden"></lightning-output-field>
+                            </template>
+                        </template>
+                    </div>
+                    <template lwc:if={hasEditAccess}>
+                        <div class="slds-col slds-size_1-of-12">
+                            <lightning-button-icon icon-name="utility:edit" variant="bare" onclick={handleEdit}>
+                            </lightning-button-icon>
+                        </div>
+                    </template>
+                    <template lwc:else>
+
+                    </template>
+                </div>
+
+            </template>
+        </section>
+    </lightning-record-edit-form>
+
+
+</template>

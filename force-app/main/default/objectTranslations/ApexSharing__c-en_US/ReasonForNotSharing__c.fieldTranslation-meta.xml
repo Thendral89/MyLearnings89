@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Reason For Not Sharing --></label>
+    <name>ReasonForNotSharing__c</name>
+    <picklistValues>
+        <masterLabel>Group Missing</masterLabel>
+        <translation><!-- Group Missing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Key Mismatch Between Person Record And User Record</masterLabel>
+        <translation><!-- Key Mismatch Between Person Record And User Record --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Key Missing On Person/ User</masterLabel>
+        <translation><!-- Key Missing On Person/ User --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>User Is Inactive</masterLabel>
+        <translation><!-- User Is Inactive --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>User Record Absent</masterLabel>
+        <translation><!-- User Record Absent --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

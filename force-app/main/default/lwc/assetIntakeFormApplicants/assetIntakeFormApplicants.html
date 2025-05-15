@@ -1,0 +1,136 @@
+<template>
+    <lightning-messages></lightning-messages>
+    <lightning-card>
+        <!-- <h3 slot="title" style="white-space: normal; word-wrap: break-word;">
+            <lightning-icon icon-name="action:info" size="small"></lightning-icon>
+            &nbsp;&nbsp;Search the existing applicant below. If you need to create a new Applicant, click on Add
+            Applicant. The Applicant selection and creation are automatically saved as Draft.
+        </h3> -->
+        <h3 slot="title" style="margin: 0; font-size: 0.875rem;"> 
+                    <div style="display: flex; align-items: flex-start;">
+                        <div style="flex-shrink: 0; margin-right: 0.4rem;">
+                            <lightning-icon icon-name="action:info" size="xx-small"></lightning-icon>
+                        </div>
+                            <div style="white-space: normal; word-wrap: break-word;font-size: 0.875rem;">
+                                Search the existing applicant below. If you need to create a new Applicant, click on Add Applicant. The Applicant selection and creation are automatically saved as Draft.                            </div>
+                        </div>
+                </h3>
+        <div class="slds-grid">
+            <div class="slds-size_4-of-4 div-border">
+
+                <lightning-card>
+                    <h3 slot="title">
+                        <lightning-icon icon-name="utility:groups" size="small"></lightning-icon>
+                        &nbsp;&nbsp;Selected Applicant(s)
+                    </h3>
+                    <template if:true={draftRecordsExists}>
+                        <c-lwc-mv-datatable class="lwcMvDataTableApplicants" 
+                                            custom-settings={currentFeatureSettings} 
+                                            columns={draftColumns}
+                                            records={assetIntakeApplicantDrafts}
+                                            timezone={timezone}
+                                            userlocale={userlocale}> 
+                        </c-lwc-mv-datatable> 
+                    </template>
+                    <div class="slds-m-vertical_xx-large"></div>
+                </lightning-card>
+                
+            </div>
+            <template if:true={addApplicantModal}>
+                <!-- <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                    aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open"> -->
+                      <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                    aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_medium"> <!-- This class makes the modal large -->
+                    <div class="slds-modal__container">
+                        <!-- modal header start -->
+                        <header class="slds-modal__header">
+                            <!-- <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                title="Close" onclick={hideModalBox}> 
+                                <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                                    size="small"></lightning-icon><span class="slds-assistive-text">Close</span>
+                            </button>-->
+                            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Add Applicant</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <lightning-card>
+                                <h3 slot="title">
+                                    <lightning-icon icon-name="custom:custom18" size="small"></lightning-icon>
+                                    &nbsp;&nbsp;New Applicant
+                                </h3>
+                               <lightning-record-edit-form data-id="addApplicantRecordForm" object-api-name={assetIntakeApplicantObject}
+                            record-id={assetIntakeApplicantId} onsuccess={handleAddApplicantSuccess}
+                            onerror={handleAddApplicantError}>
+    <div class="slds-grid slds-wrap">
+        <!-- First column -->
+        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+            <div class="slds-hide">
+                <lightning-input-field data-id="addApplicantRecordFormField" field-name="Asset_Intake_Form__c" value={assetIntakeId}>
+                </lightning-input-field>
+            </div>
+            <lightning-input-field data-id="addApplicantRecordFormField" field-name="Applicant_Name__c" required>
+            </lightning-input-field>          
+            <lightning-input-address 
+                data-id="addressField" 
+                address-label="Address" 
+                street-label="Street" 
+                city-label="City" 
+                country-label="Country"
+                province-label="State" 
+                postal-code-label="PostalCode" 
+                street={applicantStreet}
+                city={applicantCity} 
+                province={applicantState} 
+                country={applicantCountry}  
+                country-options={getCountryOptions}
+                province-options={getProvinceOptions}
+                postal-code={applicantPostalCode} 
+                show-address-lookup 
+                onchange={addressInputChange} 
+                required>
+</lightning-input-address>
+
+              <lightning-input-field data-id="addApplicantRecordFormField" field-name="US_CA_Entity_Size__c" required>
+            </lightning-input-field>
+        </div>
+
+        <!-- Second column -->
+        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+            <lightning-input-field data-id="addApplicantRecordFormField" field-name="Client_Classification__c" required>
+            </lightning-input-field>
+            <lightning-input-field data-id="addApplicantRecordFormField" field-name="Currency__c" value={defaultCurrencyId} required>
+            </lightning-input-field>
+            <lightning-input label="Client Group Number" field-name="Client_Group_Number__c" value={clientGroupNumber} required>
+            </lightning-input>
+            
+        </div>
+    </div>
+</lightning-record-edit-form>
+
+                            </lightning-card>
+                        </div>
+                        <!-- modal footer start-->
+                        <footer class="slds-modal__footer">
+                            <button class="slds-button slds-button_neutral" aria-label="Cancel and close"  onclick={hideModalBox}>Cancel</button>
+                            <button class="slds-button slds-button_brand" onclick={addNewApplicant}>Save</button>
+                        </footer>
+
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+        </div>
+        <div class="slds-docked-form-footer slds-m-top_medium slds-align_absolute-center">
+            <lightning-button class="slds-m-top_small slds-m-left_medium" onclick={handleAddApplicant}
+                label="Add Applicant" variant="brand-outline"
+                disabled={isSaving}></lightning-button>
+            <lightning-button class="slds-m-top_small slds-m-left_medium" label="Cancel" variant="destructive"
+                onclick={handleReset}></lightning-button>
+                <lightning-button class="slds-m-top_small slds-m-left_medium" onclick={handleBack}
+                label="Back" variant="brand"
+                disabled={isSaving}></lightning-button>
+            <lightning-button class="slds-m-top_small slds-m-left_medium" onclick={handleSaveDraft} label="Save & Next"
+                disabled={isSaving}
+                variant="brand"></lightning-button>
+        </div>
+    </lightning-card>
+</template>

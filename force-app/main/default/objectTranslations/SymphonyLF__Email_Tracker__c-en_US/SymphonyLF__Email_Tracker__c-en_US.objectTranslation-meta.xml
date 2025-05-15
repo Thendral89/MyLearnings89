@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Email Message Details --></label>
+        <name>Email_Message_Details</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Information --></label>
+        <name>Information</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Review Details --></label>
+        <name>Review_Details</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- System Information --></label>
+        <name>System_Information</name>
+    </fieldSets>
+</CustomObjectTranslation>

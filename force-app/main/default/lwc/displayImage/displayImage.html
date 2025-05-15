@@ -1,0 +1,27 @@
+<!--Copyright © 2022 MaxVal Group. All Rights Reserved.
+Unauthorized copying of this file, via any medium is strictly prohibited
+Proprietary and confidential
+Written by Tarang V, April 2022-->
+
+ <template>
+    <template if:true={file}>
+        <div style="display: flex;justify-content: center;">
+        <c-preview-file-modal
+        url={file.downloadUrl}>
+        </c-preview-file-modal>       
+        <div
+            class="slds-file slds-has-title"
+            style="width: max-content;"
+            onclick={filePreview}>
+            <figure>
+                <a class="slds-file">
+                    <img src={file.downloadUrl} alt={file.title} style="max-width:64px;
+                    max-height:64px;
+                    width:auto;
+                    height:auto;" />
+                </a>
+            </figure>
+        </div>
+    </div>
+    </template>
+</template>

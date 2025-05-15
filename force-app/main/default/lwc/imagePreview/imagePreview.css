@@ -1,0 +1,12 @@
+.box{
+    border-style: none;
+    border-radius: 0px;
+    background:#032D60;
+    color:aliceblue;
+}
+.slds-backdrop {
+    background: rgba(0, 0, 0, 0.896) !important; /* Darker overlay */
+}
+.preview-box-header{
+    border-style: none;
+}

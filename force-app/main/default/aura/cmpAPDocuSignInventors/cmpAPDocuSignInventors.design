@@ -1,0 +1,5 @@
+<design:component>
+	<design:attribute name="LabelName" label="Header Name" />
+    <design:attribute name="IsPatent" label="IsPatent" />
+    <design:attribute name="strSelectedInventorIds" label="strSelectedInventorIds" />
+</design:component>

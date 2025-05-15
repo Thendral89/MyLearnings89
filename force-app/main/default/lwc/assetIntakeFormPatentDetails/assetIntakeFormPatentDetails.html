@@ -1,0 +1,72 @@
+<template>
+        <lightning-messages></lightning-messages>
+
+        <div class="slds-grid">
+            <div class="slds-size_2-of-4 div-border">
+
+                <lightning-card>
+                    <h3 slot="title">
+                        <lightning-icon icon-name="custom:custom18" size="small"></lightning-icon>
+                        &nbsp;&nbsp;New Family
+                    </h3>
+                    <lightning-record-edit-form object-api-name={assetIntakeObject} record-id={assetIntakeId} onsuccess={handleAddIntakeSuccess}
+                    onerror={handleIntakeError}>
+                        <lightning-input-field field-name="New_Patent_Family__c" value={newPatentFamilyName} onchange={handleNewFamilyValue}>
+                        </lightning-input-field>
+                        <lightning-input-field field-name="Department__c" value={departmentValue} onchange={handleDepartmentChange}>
+                        </lightning-input-field>
+                    </lightning-record-edit-form>
+                </lightning-card>
+            </div>
+            <div class="slds-size_2-of-4 div-border">
+
+                <lightning-card>
+                    <h3 slot="title">
+                        <lightning-icon icon-name="custom:custom18" size="small"></lightning-icon>
+                        &nbsp;&nbsp;Existing Family
+                    </h3>
+                    <lightning-record-edit-form object-api-name={assetIntakeObject} record-id={assetIntakeId} onsuccess={handleAddIntakeSuccess}
+                    onerror={handleIntakeError}>
+                        <lightning-input-field field-name="Patent_Family__c" value={patentFamily} onchange={handleExistingFamilyValue}>
+                        </lightning-input-field>
+                        <!-- <lightning-output-field field-name="Department__c" value={departmentValue}> -->
+                    </lightning-record-edit-form>
+                </lightning-card>
+            </div>
+        </div>
+        <template if:true={draftRecordsExists}>
+        <div class="slds-grid">
+            <div class="slds-size_4-of-4 div-border">
+
+                <lightning-card>
+                    <h3 slot="title">
+                        <lightning-icon icon-name="custom:custom18" size="small"></lightning-icon>
+                        &nbsp;&nbsp;Draft
+                    </h3>
+                    <c-lwc-mv-datatable class="lwcMvDataTable" 
+                                        custom-settings={currentFeatureSettings} 
+                                        columns={draftColumns}
+                                        records={assetIntakeDrafts}
+                                        timezone={timezone}                                        
+                                        userlocale={userlocale}>
+                    </c-lwc-mv-datatable>
+                </lightning-card>
+            </div>
+        </div>
+        </template>
+        <div class="slds-docked-form-footer slds-m-top_medium slds-align_absolute-center">
+            <lightning-button
+                class="slds-m-top_small"
+                label="Cancel"
+                variant="destructive"
+                onclick={handleReset}
+            ></lightning-button>
+            <lightning-button
+                class="slds-m-top_small slds-m-left_medium"
+                onclick={handleSaveDraft}
+                label="Save & Next"
+                variant="brand"
+            ></lightning-button>
+        </div>
+
+</template>

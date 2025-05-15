@@ -1,0 +1,59 @@
+<template>
+    <div>
+        <div >
+            <lightning-textarea 
+                name="Question"
+                label="Question"
+                placeholder="What would you like to ask?"
+                class="slds-form-element_small"
+                onchange={handleQuestionChange}
+                value={question}
+            ></lightning-textarea>
+            <template for:each={options} for:item="option">
+                <div class="slds-grid slds-container_fluid slds-grid_vertical-align-end" key={option.id}>
+                    <lightning-input 
+                        data-id={option.id}
+                        name={option.label}
+                        label={option.label}
+                        class="slds-grow "
+                        value={option.value}
+                        onchange={handleOptionChange}
+                    ></lightning-input>
+                    
+                    <lightning-button-icon 
+                        data-id={option.id}
+                        class="slds-m-left_small"
+                        icon-name="utility:delete"  
+                        onclick={handleRemoveOption}>
+                    </lightning-button-icon>
+                    
+                </div>
+            </template>
+        </div>
+        <div>
+            <div class="slds-grid slds-grid_align-spread slds-m-top_small">
+                <div class="slds-col ">
+                    <lightning-button 
+                        variant="brand" 
+                        label="Add new option" 
+                        title="Add new option" 
+                        icon-name="utility:add"
+                        onclick={handleAddOption}>
+                    </lightning-button>
+                </div>
+                <div class="slds-col">
+                    <lightning-button 
+                        variant="brand" 
+                        label="Ask" 
+                        title="Ask"
+                        disabled={isAskDisabled}
+                        onclick={handleAsk}>
+                    </lightning-button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    
+</template>

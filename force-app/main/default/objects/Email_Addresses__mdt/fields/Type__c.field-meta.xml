@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <description>Email Templates Type</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>APPLICATION AS FILED</fullName>
+                <default>true</default>
+                <label>APPLICATION AS FILED</label>
+            </value>
+            <value>
+                <fullName>ABANDONMENT FORMALITIES</fullName>
+                <default>false</default>
+                <label>ABANDONMENT FORMALITIES</label>
+            </value>
+            <value>
+                <fullName>AGREEMENTS / TM LICENSES</fullName>
+                <default>false</default>
+                <label>AGREEMENTS / TM LICENSES</label>
+            </value>
+            <value>
+                <fullName>AMENDED CLAIMS</fullName>
+                <default>false</default>
+                <label>AMENDED CLAIMS</label>
+            </value>
+            <value>
+                <fullName>ANNUITY</fullName>
+                <default>false</default>
+                <label>ANNUITY</label>
+            </value>
+            <value>
+                <fullName>APPEAL</fullName>
+                <default>false</default>
+                <label>APPEAL</label>
+            </value>
+            <value>
+                <fullName>APPLICATION</fullName>
+                <default>false</default>
+                <label>APPLICATION</label>
+            </value>
+            <value>
+                <fullName>ASSIGNMENT</fullName>
+                <default>false</default>
+                <label>ASSIGNMENT</label>
+            </value>
+            <value>
+                <fullName>ABANDONMENT</fullName>
+                <default>false</default>
+                <label>ABANDONMENT</label>
+            </value>
+            <value>
+                <fullName>BIOLOGICAL DEPOSIT</fullName>
+                <default>false</default>
+                <label>BIOLOGICAL DEPOSIT</label>
+            </value>
+            <value>
+                <fullName>CORRESPONDENCE</fullName>
+                <default>false</default>
+                <label>CORRESPONDENCE</label>
+            </value>
+            <value>
+                <fullName>CUSTOM REGISTRATION</fullName>
+                <default>false</default>
+                <label>CUSTOM REGISTRATION</label>
+            </value>
+            <value>
+                <fullName>EXAMINATION</fullName>
+                <default>false</default>
+                <label>EXAMINATION</label>
+            </value>
+            <value>
+                <fullName>EXTENSION</fullName>
+                <default>false</default>
+                <label>EXTENSION</label>
+            </value>
+            <value>
+                <fullName>EXTENSION OF TIME</fullName>
+                <default>false</default>
+                <label>EXTENSION OF TIME</label>
+            </value>
+            <value>
+                <fullName>FILE HISTORY</fullName>
+                <default>false</default>
+                <label>FILE HISTORY</label>
+            </value>
+            <value>
+                <fullName>FILING CORRESPONDENCE</fullName>
+                <default>false</default>
+                <label>FILING CORRESPONDENCE</label>
+            </value>
+            <value>
+                <fullName>FILING FORMALITIES</fullName>
+                <default>false</default>
+                <label>FILING FORMALITIES</label>
+            </value>
+            <value>
+                <fullName>FILING RECEIPT</fullName>
+                <default>false</default>
+                <label>FILING RECEIPT</label>
+            </value>
+            <value>
+                <fullName>FORMALITIES</fullName>
+                <default>false</default>
+                <label>FORMALITIES</label>
+            </value>
+            <value>
+                <fullName>GRANT DETAILS</fullName>
+                <default>false</default>
+                <label>GRANT DETAILS</label>
+            </value>
+            <value>
+                <fullName>HISTORY (SEARCH STRATEGY)</fullName>
+                <default>false</default>
+                <label>HISTORY (SEARCH STRATEGY)</label>
+            </value>
+            <value>
+                <fullName>INFORMATION DISCLOSURE</fullName>
+                <default>false</default>
+                <label>INFORMATION DISCLOSURE</label>
+            </value>
+            <value>
+                <fullName>INVOICE</fullName>
+                <default>false</default>
+                <label>INVOICE</label>
+            </value>
+            <value>
+                <fullName>ISSUE-GRANT NOTICE</fullName>
+                <default>false</default>
+                <label>ISSUE-GRANT NOTICE</label>
+            </value>
+            <value>
+                <fullName>LEGAL DOCUMENTS</fullName>
+                <default>false</default>
+                <label>LEGAL DOCUMENTS</label>
+            </value>
+            <value>
+                <fullName>MAINTENANCE FORMALITIES (EG AFU DAU DIU E=TC)</fullName>
+                <default>false</default>
+                <label>MAINTENANCE FORMALITIES (EG AFU DAU DIU E=TC)</label>
+            </value>
+            <value>
+                <fullName>OFFICE ACTION</fullName>
+                <default>false</default>
+                <label>OFFICE ACTION</label>
+            </value>
+            <value>
+                <fullName>OUTSOURCING</fullName>
+                <default>false</default>
+                <label>OUTSOURCING</label>
+            </value>
+            <value>
+                <fullName>POWER OF ATTORNEY</fullName>
+                <default>false</default>
+                <label>POWER OF ATTORNEY</label>
+            </value>
+            <value>
+                <fullName>PROSECUTION</fullName>
+                <default>false</default>
+                <label>PROSECUTION</label>
+            </value>
+            <value>
+                <fullName>PUBLICATION</fullName>
+                <default>false</default>
+                <label>PUBLICATION</label>
+            </value>
+            <value>
+                <fullName>REGISTRATION CERTIFICATE</fullName>
+                <default>false</default>
+                <label>REGISTRATION CERTIFICATE</label>
+            </value>
+            <value>
+                <fullName>REMINDER</fullName>
+                <default>false</default>
+                <label>REMINDER</label>
+            </value>
+            <value>
+                <fullName>RENEWAL CERTIFICATE</fullName>
+                <default>false</default>
+                <label>RENEWAL CERTIFICATE</label>
+            </value>
+            <value>
+                <fullName>RENEWAL FORMALITIES</fullName>
+                <default>false</default>
+                <label>RENEWAL FORMALITIES</label>
+            </value>
+            <value>
+                <fullName>REPORT</fullName>
+                <default>false</default>
+                <label>REPORT</label>
+            </value>
+            <value>
+                <fullName>REQUEST</fullName>
+                <default>false</default>
+                <label>REQUEST</label>
+            </value>
+            <value>
+                <fullName>SEARCH REPORT/WRITTEN OPINION</fullName>
+                <default>false</default>
+                <label>SEARCH REPORT/WRITTEN OPINION</label>
+            </value>
+            <value>
+                <fullName>SEARCH REPORT SUPPLEMENTARY INFORMATION</fullName>
+                <default>false</default>
+                <label>SEARCH REPORT SUPPLEMENTARY INFORMATION</label>
+            </value>
+            <value>
+                <fullName>SEARCH REQUEST SUPPLEMENTARY INFORMATION&lt;=</fullName>
+                <default>false</default>
+                <label>SEARCH REQUEST SUPPLEMENTARY INFORMATION&lt;=</label>
+            </value>
+            <value>
+                <fullName>SEQUENCE LISTING</fullName>
+                <default>false</default>
+                <label>SEQUENCE LISTING</label>
+            </value>
+            <value>
+                <fullName>SPECIFICATION</fullName>
+                <default>false</default>
+                <label>SPECIFICATION</label>
+            </value>
+            <value>
+                <fullName>STATUS INFORMATION</fullName>
+                <default>false</default>
+                <label>STATUS INFORMATION</label>
+            </value>
+            <value>
+                <fullName>STATUS REQUEST</fullName>
+                <default>false</default>
+                <label>STATUS REQUEST</label>
+            </value>
+            <value>
+                <fullName>TRANSLATION</fullName>
+                <default>false</default>
+                <label>TRANSLATION</label>
+            </value>
+            <value>
+                <fullName>USE EVIDENCE</fullName>
+                <default>false</default>
+                <label>USE EVIDENCE</label>
+            </value>
+            <value>
+                <fullName>USE EVIDENCE / INFORMATION</fullName>
+                <default>false</default>
+                <label>USE EVIDENCE / INFORMATION</label>
+            </value>
+            <value>
+                <fullName>SEARCH INSTRUCTIONS</fullName>
+                <default>false</default>
+                <label>SEARCH INSTRUCTIONS</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

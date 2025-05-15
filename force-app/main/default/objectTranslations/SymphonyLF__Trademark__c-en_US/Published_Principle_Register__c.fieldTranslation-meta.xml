@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Published Principle Register? --></label>
+    <name>Published_Principle_Register__c</name>
+    <picklistValues>
+        <masterLabel>Principal</masterLabel>
+        <translation><!-- Principal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Supplemental</masterLabel>
+        <translation><!-- Supplemental --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

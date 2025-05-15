@@ -1,0 +1,8 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:availableForFlowActions,force:hasRecordId" access="global" >
+     <lightning:workspaceAPI aura:id="myworkspace"/>
+     <c:cmpAPRefreshTab onpagereload="{!c.invoke}" recordId="{!v.recordId}"/>
+	 <aura:attribute name="IsMsgShow" type="boolean" default="false" />    
+     <aura:attribute name="IsWindowRefresh" type="boolean" default="false" />
+     <aura:attribute name="focusedTabId" type="String" access="global" />
+    
+</aura:component>

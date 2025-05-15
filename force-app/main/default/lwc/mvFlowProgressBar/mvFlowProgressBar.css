@@ -1,0 +1,34 @@
+.font-style {
+    /*font-family: SF Pro Display;*/
+    font-style: normal;
+    /*font-size: 12px;*/
+    line-height: 21px;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 0.75rem;
+    color: #444444;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.progressbar {
+    padding-top: 16px;
+    /*padding-bottom: 16px;*/
+}
+
+.selected {
+    font-weight: bold;
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+    .font-style {
+        font-size: 1.5rem;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+    .font-style {
+        font-size: 1.5rem;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    }
+}

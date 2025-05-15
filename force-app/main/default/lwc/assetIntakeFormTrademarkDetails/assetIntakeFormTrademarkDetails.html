@@ -1,0 +1,122 @@
+<template>
+    <lightning-messages></lightning-messages>
+
+    <div class="slds-grid">
+        <div class="slds-size_2-of-4 div-border">
+
+            <lightning-card>
+                <h3 slot="title">
+                    <lightning-icon icon-name="custom:custom18" size="small"></lightning-icon>
+                    &nbsp;&nbsp;New Mark
+                </h3>
+                <lightning-record-edit-form object-api-name={assetIntakeObject} record-id={assetIntakeId} onsuccess={handleAddIntakeSuccess}
+                onerror={handleIntakeError}>
+                    <lightning-input-field field-name="New_Mark_Title__c" value={newMarkName} onchange={handleNewFamilyValue}>
+                    </lightning-input-field>
+                    <template if:false={existingMark}>
+                        <lightning-input-field field-name="Mark_Type__c" value={selectedMarkTypes} onchange={handleMarkTypeChange}>
+                        </lightning-input-field>
+                    </template>
+                </lightning-record-edit-form>
+                <!-- lightning-file-upload -->
+                <template if:true={hideImageUpload}>
+                    <lightning-card>
+                        <div class="slds-m-left_x-small">
+                            <h3 slot="title">
+                                <lightning-icon icon-name="utility:upload" size="small"></lightning-icon>
+                                &nbsp;&nbsp; Upload Image
+                            </h3>
+                            <lightning-file-upload
+                                label=" Upload Image"
+                                name="imageUploader"
+                                accept=".jpg,.jpeg,.png,.gif"
+                                record-id={assetIntakeId}
+                                onuploadfinished={handleFileUpload}>
+                            </lightning-file-upload>
+                        </div>
+                    </lightning-card>
+                </template>
+                <!--Display Uploaded Image -->
+                <template if:true={imageUploaded} if>
+                    <lightning-card title="Uploaded Image" >
+                        <div class="slds-align_absolute-center">
+                            <img src={imageUrl} alt="Uploaded Image" class="uploaded-image"/>
+                        </div>
+                        <div class="slds-m-top_small slds-align_absolute-center">
+                            <lightning-button 
+                                variant="destructive" 
+                                label="Remove Image" 
+                                icon-name="utility:delete" 
+                                onclick={handleRemoveImage}>
+                            </lightning-button>
+                        </div>
+                    </lightning-card>
+                </template>
+                <!-- Display Uploaded Files -->
+                </lightning-card>
+            </div>
+        <div class="slds-size_2-of-4 div-border">
+
+            <lightning-card>
+                <h3 slot="title">
+                    <lightning-icon icon-name="custom:custom18" size="small"></lightning-icon>
+                    &nbsp;&nbsp;Existing Mark
+                </h3>
+                <lightning-record-edit-form object-api-name={assetIntakeObject} record-id={assetIntakeId} onsuccess={handleAddIntakeSuccess}
+                onerror={handleIntakeError}>
+                    <lightning-input-field field-name="Mark__c" value={existingMark} onchange={handleExistingFamilyValue}>
+                    </lightning-input-field>
+                    <template if:true={existingMarkImage}>
+                        <lightning-input-field field-name="Mark_Type__c" value={selectedMarkTypes} onchange={handleMarkTypeChange}>
+                        </lightning-input-field>
+                    </template>
+                </lightning-record-edit-form>
+                <!--Display Uploaded Image -->
+                <template if:true={existingMarkImage}>
+                    <lightning-card title="Uploaded Image" >
+                        <div class="slds-align_absolute-center">
+                            <img src={imageUrl} alt="Uploaded Image" class="uploaded-image"/>
+                        </div>
+                    </lightning-card>
+                </template>
+                <!--Display Uploaded Image -->
+            </lightning-card>
+            
+        </div>
+    </div>
+    <template if:true={draftRecordsExists}>
+    <div class="slds-grid">
+        <div class="slds-size_4-of-4 div-border">
+
+            <lightning-card>
+                <h3 slot="title">
+                    <lightning-icon icon-name="custom:custom18" size="small"></lightning-icon>
+                    &nbsp;&nbsp;Draft
+                </h3>
+                <c-lwc-mv-datatable class="lwcMvDataTable" 
+                                    custom-settings={currentFeatureSettings} 
+                                    columns={draftColumns}
+                                    records={assetIntakeDrafts}
+                                    timezone={timezone}                                        
+                                    userlocale={userlocale}>
+                </c-lwc-mv-datatable>
+            </lightning-card>
+        </div>
+    </div>
+    </template>
+    <div class="slds-docked-form-footer slds-m-top_medium slds-align_absolute-center">
+        <lightning-button
+            class="slds-m-top_small"
+            label="Cancel"
+            variant="destructive"
+            onclick={handleReset}
+        ></lightning-button>
+        <lightning-button
+            class="slds-m-top_small slds-m-left_medium"
+            onclick={handleSaveDraft}
+            label="Save & Next"
+            variant="brand"
+        ></lightning-button>
+    </div>
+
+</template>

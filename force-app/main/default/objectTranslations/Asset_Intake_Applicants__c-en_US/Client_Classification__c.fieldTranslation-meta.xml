@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Client Classification --></label>
+    <name>Client_Classification__c</name>
+    <picklistValues>
+        <masterLabel>Applicant</masterLabel>
+        <translation><!-- Applicant --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Assignee</masterLabel>
+        <translation><!-- Assignee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Assignor</masterLabel>
+        <translation><!-- Assignor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Licensee</masterLabel>
+        <translation><!-- Licensee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Licensor</masterLabel>
+        <translation><!-- Licensor --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

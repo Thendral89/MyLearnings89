@@ -1,0 +1,487 @@
+.tile-row {
+    flex-wrap: wrap;
+}
+
+.tile {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.5rem;
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s;
+    cursor: pointer;
+    min-width: 5rem;
+    justify-content: center;
+}
+
+.tile:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.circle-count {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-right: 1.5rem; */
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: black;
+}
+
+.tile-label {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-left: 0.5rem;
+}
+
+/* Color classes for each tile */
+.bg-collaborations {
+    background-color: #413b7f; 
+}
+.bg-emails {
+    background-color: #007bff; 
+}
+.bg-tasks {
+    background-color: #28a745; 
+}
+.bg-in {
+    background-color: #17a2b8; 
+}
+.bg-out {
+    background-color: #dc3545; 
+}
+.bg-final-docs {
+    background-color: #4b0082; 
+}
+
+.reviewAnnouncement {
+    border: 1px solid #333333;
+    font-weight: normal;
+    size: 1rem;
+    background-color: #fdc68360;
+    margin-bottom: 1px;
+    color: #181818;
+}
+
+.doNotEngageBadge {
+    background-color: red;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.footerBox {
+    font-size: 0.8rem;
+    margin-bottom: 3rem;
+}
+
+.footerBoxAnnouncement {
+    font-size: 0.8rem;
+}
+
+.mainheader {
+    border: 1px rgb(255, 255, 255);
+    border-radius: 0.1rem;
+}
+
+.mainDiv {
+    background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(255, 255, 255);
+    border-left: 1px solid rgb(255, 255, 255);
+    border-right: 1px solid rgb(255, 255, 255);
+    border-radius: 2pt;
+    font-family: 'Segoe UI', sans-serif;
+    width: 100% !important;
+}
+
+.topDiv {
+    display: flex;
+    justify-content: center;
+    width: 100% !important;
+}
+
+.inputPadding {
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.custom-checkbox-cell input {
+    border: 2px solid blue;
+}
+
+
+
+/*----------------------*/
+div.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+
+    /*height: 350px;
+    position: fixed;
+    bottom: 0; */
+}
+
+div.scrollmenu span {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Force scrollbars to be visible */
+.scrollable-container::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+
+.scrollable-container::-webkit-scrollbar:horizontal {
+    height: 11px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white;
+    /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+/* For Firefox */
+@-moz-document url-prefix() {
+    .scrollable-container {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.1);
+    }
+}
+
+.wrap-text {
+    white-space: normal;
+    /* Allow text to wrap */
+    word-break: break-word;
+    /* Break long words */
+    overflow-wrap: break-word;
+    /* Ensure long words break inside cells */
+}
+
+.app-container {
+    min-height: 100vh;
+    background: #fff;
+    color: #9d9d9d;
+    padding-bottom: 1rem;
+}
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+.only-table-page .tabulator-container {
+    height: auto !important;      
+    max-height: none !important; 
+    overflow: visible !important; 
+}
+
+@media (min-width: 48em) {
+    .slds-modal__container.custom-width {
+        margin: 0 auto;
+        width: 80%; 
+        max-width: none; 
+        min-width: 0; /* Adjust minimum width as needed */
+        padding-top: 2%;
+    }
+}
+
+.uiModal--medium .modal-container,
+.uiModal--medium .modal-container.slds-modal__container,
+.uiModal--medium .modal-container.slds-modal__container.slds-modal__container,
+.uiModal--medium .slds-modal__container.custom-width,
+.uiModal--medium .slds-modal__container.custom-width.slds-modal__container {
+    width: 80% !important;  
+    max-width: none !important; 
+    min-width: 20rem !important; /* Optional: Adjust min-width as necessary */
+}
+.uiModal--medium .slds-modal__container.custom-width,
+.uiModal--medium .slds-modal__container.custom-width.slds-modal__container {
+    width: 80% !important;    /* Set to 90% of screen width */
+    max-width: none !important; /* Remove max-width constraint */
+    min-width: 20rem !important; /* Optional: Adjust min-width */
+}
+.slds-modal__header {
+    background: #f4f6f9;
+    color: #333; 
+    text-align: center; 
+    padding: 1rem;
+    font-size: 1.25em;
+}
+
+.slds-modal__footer {
+    background: #f4f6f9;
+    text-align: center; 
+    padding: 1rem;
+}
+.slds-modal__header header,
+.slds-modal__footer footer {
+    all: unset;
+}
+
+
+header,
+footer {
+    grid-area: header;
+    text-align: center;
+    margin: 0;
+    padding: 0.5em;
+    background: #222;
+    color: #9d9d9d;
+    font-size: 1.5em;
+}
+
+.bg-primary {
+    background-color: #007bff;
+}
+
+.bg-warning {
+    background-color: #dd9105;
+}
+
+.bg-success {
+    background-color: #28a745;
+}
+
+.bg-danger {
+    background-color: #dc3545;
+}
+.bg-final-document {
+    background-color: #4b0082;
+}
+
+.font-primary {
+    color: #007bff;
+}
+.font-success {
+    color: #28a745;
+}
+.font-final-document {
+    color: #4b0082;
+}
+
+.bg-ignore {
+    background-color: grey;
+}
+
+.bg-info {
+    background-color: #17a2b8;
+}
+
+.bg-secondary {
+    background-color: #413b7f;
+}
+
+.bg-light {
+    background-color: #2664a2 !important;
+}
+
+.white-color {
+    color: white;
+}
+
+.space {
+    justify-content: space-between;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    background: #fff;
+}
+
+table {
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+.table-bordered thead td,
+.table-bordered thead th {
+    border-bottom-width: 2px;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    background: #1b262c;
+    color: white;
+
+}
+
+.table-bordered td,
+.table-bordered th {
+    border: 1px solid #dee2e6;
+}
+
+.table td,
+.table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    font-size: 1rem;
+}
+
+th {
+    text-align: inherit;
+}
+
+.table-bordered td,
+.table-bordered th {
+    border: 1px solid #dee2e6;
+}
+
+.table td,
+.table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700px;
+}
+
+.lgc-bg {
+    background-color: #0f4c81;
+
+}
+
+.label-text {
+    color: #fff !important;
+    font-size: 1rem;
+}
+
+
+lightning-input.label-text.slds-form-element label {
+    color: #fff;
+}
+
+/**table colors**/
+.activeColumnClass {
+    background-color: #fe346e;
+    color: #fff;
+}
+
+.recoveredColumnClass {
+    background-color: #5b8c5a;
+    color: #fff;
+}
+
+.fatalityColumnClass-success {
+    background-color: #1eb2a6;
+    color: #fff;
+}
+
+.fatalityColumnClass-danger {
+    background-color: #d63447;
+    color: #fff;
+}
+
+.recoveryColumnClass-warning {
+    background-color: #ffac41;
+    color: #fff;
+}
+
+.recoveryColumnClass-success {
+    background-color: #48c774;
+    color: #fff;
+
+}
+
+.countryName {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/**toggle switch**/
+.toggle-container {
+    display: flex;
+    justify-content: flex-end;
+
+    color: #fff;
+}
+
+.toggle-container>div {
+    padding: 0.5rem 1rem;
+    background: #fff;
+    border: 1px solid #212529;
+    color: #000;
+}
+
+.toggle-container>div.active {
+    background: #28a745;
+    color: #fff;
+}
+
+.box-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+}
+
+.tabulator-container {
+    width: 100%;
+    height: calc(100vh - 320px);
+    border: 1px solid #dcdcdc;
+    box-sizing: border-box;
+}
+.tabulator[tabulator-layout="fitColumns"] {
+    /* display: contents; */
+    padding: 1px 5px 12px 1px;
+}
+.mouseHover:hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
+
+.textFormatting {
+    font-weight: bold !important;
+    color: black !important;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f9;
+    margin: 0;
+    padding: 20px;
+}
+
+caption {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.selected {
+    cursor: not-allowed;
+    box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45), 25px 0 20px -20px rgba(0, 0, 0, 0.45), 0px 25px 20px -20px rgba(0, 0, 0, 0.45), -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+}

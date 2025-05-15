@@ -1,0 +1,22 @@
+<!-- fileUploader.html -->
+<template>
+   
+    <div class="file-uploader-container">
+        <input 
+            type="file"
+            class="fileInput"
+            accept={acceptedFormats}
+            onchange={handleFileChange} 
+            style="display:none;"
+            multiple
+            name="Upload File"
+        />
+        <lightning-button 
+            label="Upload Files" 
+            title="Upload Files" 
+            icon-name="utility:upload" 
+            class="slds-m-left_x-small"
+            onclick={openFileInput}
+        ></lightning-button>
+    </div>
+</template>

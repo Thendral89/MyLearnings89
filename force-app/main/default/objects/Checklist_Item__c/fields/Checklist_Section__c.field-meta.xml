@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Checklist_Section__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Checklist Section</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Checklist_Section__c.Checklist__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Checklist__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Checklist_Section__c</referenceTo>
+    <relationshipLabel>Checklist Item</relationshipLabel>
+    <relationshipName>Checklist_Item</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

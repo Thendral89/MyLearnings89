@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Share Object --></label>
+    <name>ShareObject__c</name>
+    <picklistValues>
+        <masterLabel>SymphonyLF__Copyright__Share</masterLabel>
+        <translation><!-- SymphonyLF__Copyright__Share --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SymphonyLF__Patent__Share</masterLabel>
+        <translation><!-- SymphonyLF__Patent__Share --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

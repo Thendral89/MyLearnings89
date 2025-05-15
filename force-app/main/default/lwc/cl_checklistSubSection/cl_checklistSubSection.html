@@ -1,0 +1,78 @@
+<template>
+    <div class="slds-size_1-of-1">
+        <lightning-card icon-name={_subSectionData.iconName} title={_subSectionData.label}>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-1 slds-p-around_small">
+                    <table class="slds-table slds-table_cell-buffer slds-table_fixed-layout slds-table_bordered slds-table_col-bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="slds-cell-wrap slds-size_6-of-12" scope="col">
+                                    <div>#</div>
+                                </th>
+                                <th class="slds-cell-wrap slds-size_1-of-12" scope="col">
+                                    <div>Secretary</div>
+                                </th>
+                                <th class="slds-cell-wrap slds-size_1-of-12" scope="col">
+                                    <div>Attorney</div>
+                                </th>
+                                <th class="slds-cell-wrap slds-size_1-of-12" scope="col">
+                                    <div>Double Checker</div>
+                                </th>
+                                <th class="slds-cell-wrap slds-size_3-of-12" scope="col">
+                                    <div></div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={_subSectionData.itemList} for:item="item" for:index="itemIndex">
+                                <tr key={item.id} class="slds-hint-parent">
+                                    <td class="slds-cell-wrap slds-size_6-of-12">
+                                        <div>{item.displayText} <lightning-helptext class="tooltip" if:true={item.helpText} content={item.helpText}></lightning-helptext></div>
+                                    </td>
+                                    <td class="slds-cell-wrap slds-size_1-of-12">
+                                        <div class="slds-align_absolute-center">
+                                            <lightning-input if:true={_subSectionData.submitBySecretory}
+                                                onchange={handleChange} data-field="secretoryCompleted" disabled={isSecretaryDisabled}
+                                                data-index={itemIndex} checked={item.secretoryCompleted}
+                                                type="checkbox"></lightning-input>
+                                        </div>
+                                    </td>
+                                    <td class="slds-cell-wrap slds-size_1-of-12">
+                                        <div class="slds-align_absolute-center">
+                                            <lightning-input if:true={_subSectionData.submitByAttorney}
+                                                onchange={handleChange} data-field="attorneyCompleted" disabled={isAttorneyDisabled}
+                                                data-index={itemIndex} checked={item.attorneyCompleted}
+                                                type="checkbox"></lightning-input>
+                                        </div>
+                                    </td>
+                                    <td class="slds-cell-wrap slds-size_1-of-12">
+                                        <div class="slds-align_absolute-center">
+                                            <lightning-input if:true={_subSectionData.submitByDoubleChecker}
+                                                onchange={handleChange} data-field="doubleCheckerCompleted" disabled={isDoubleCheckerDisabled}
+                                                data-index={itemIndex} checked={item.doubleCheckerCompleted}
+                                                type="checkbox"></lightning-input>
+                                        </div>
+                                    </td>
+                                    <td class="slds-cell-wrap slds-size_3-of-12">
+                                        <div if:true={item.isSelected}>
+                                            <template for:each={item.dynamicFields} for:item="field">
+                                                <c-cl_checklist-dynamic-field disabled={isDisabled} key={field.apiName} field-data={field} checklist-instance-item-id={item.id}
+                                                is-secretary={isSecretary} is-attorney={isAttorney} is-double-checker={isDoubleChecker}
+                                                submit-by-secretory={_subSectionData.submitBySecretory} submit-by-attorney={_subSectionData.submitByAttorney} submit-by-double-checker={_subSectionData.submitByDoubleChecker}></c-cl_checklist-dynamic-field>
+                                            </template>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                    <template if:true={_subSectionData.sectionNotes}>
+                        <div class="slds-p-top_small">
+                            <lightning-formatted-text value={_subSectionData.sectionNotes}></lightning-formatted-text>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </lightning-card>
+    </div>
+</template>

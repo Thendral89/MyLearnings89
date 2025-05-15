@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Additional Sub Status --></label>
+    <name>Additional_Sub_Status__c</name>
+    <picklistValues>
+        <masterLabel>Monitoring</masterLabel>
+        <translation><!-- Monitoring --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Paris convention filing</masterLabel>
+        <translation><!-- Paris convention filing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Track one (prioritized)</masterLabel>
+        <translation><!-- Track one (prioritized) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transition</masterLabel>
+        <translation><!-- Transition --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

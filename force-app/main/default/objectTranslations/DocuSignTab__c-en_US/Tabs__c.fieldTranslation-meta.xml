@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Tabs --></label>
+    <name>Tabs__c</name>
+    <picklistValues>
+        <masterLabel>checkboxTabs</masterLabel>
+        <translation><!-- checkboxTabs --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>dateSignedTabs</masterLabel>
+        <translation><!-- dateSignedTabs --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>noteTabs</masterLabel>
+        <translation><!-- noteTabs --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>signHereTabs</masterLabel>
+        <translation><!-- signHereTabs --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>textTabs</masterLabel>
+        <translation><!-- textTabs --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

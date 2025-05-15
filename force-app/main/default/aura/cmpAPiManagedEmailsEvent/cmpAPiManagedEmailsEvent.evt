@@ -1,0 +1,7 @@
+<aura:event type="COMPONENT" description="File Explorer Path Changed">
+    <aura:attribute name="path" type="List"/>
+    <aura:attribute name="IsExpanded" type="Boolean" default="false" />
+    <aura:attribute name="SubselectedFolderId" type="String"/>
+    <aura:attribute name="selectedFolderId" type="String"/>
+    <aura:attribute name="title" type="String"/>
+</aura:event>

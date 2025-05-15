@@ -1,0 +1,74 @@
+<template>
+    <lightning-card>
+    <template if:true={isLoaded}>
+    <!-- <c-lwc-mv-highlights-panel record-id={clientId} read-only=true field-set-name="HIGHLIGHTSPANEL"
+        object-api-name="SymphonyLF__Client__c"></c-lwc-mv-highlights-panel> -->
+        <c-highlights-panel record-id={clientId} header-field="Name" sub-header-field="SymphonyLF__Client_Number_New__c" field-set-name="MATTERINTAKEVIEW"
+        object-api-name="SymphonyLF__Client__c"></c-highlights-panel>
+
+    <template if:true={isPatent}>
+        <c-navigation-manager navigation-elements={breadcrumb} show-index={showIndex} navigation-width="width:20%">
+        </c-navigation-manager>
+        <!--<template if:true={showBasicDetails}>
+            <c-asset-intake-form-patent-details client-id={clientId} conflict-check-id={conflictCheckId} onnext={handleNext} onactionnavigation = {handleActionNavigation} is-patent={isPatent} is-trademark ={isTrademark} ></c-asset-intake-form-patent-details>
+        </template>-->
+        <template if:true={showBasicDetails}>
+            <c-asset-intake-form-baisc-details client-id={clientId} tab-id={tabId} conflict-check-id={conflictCheckId} onnext={handleNext} onactionnavigation = {handleActionNavigation} is-patent={isPatent} is-trademark ={isTrademark} client-reference-number={clientReferenceNumber} matter-title={matterTitle}></c-asset-intake-form-baisc-details>
+        </template>
+        <template if:true={showPersonnelDetails}>
+            <c-asset-intake-form-personnel-details  client-id={clientId} is-new-family={isNewFamily}  asset-intake-id={assetIntakeId} onback={handleBack}  onnext={handleNext} ></c-asset-intake-form-personnel-details>
+        </template>
+        <template if:true={showApplicantDetails}>
+            <c-asset-intake-form-applicants  client-id={clientId}  is-new-family={isNewFamily} asset-intake-id={assetIntakeId} onback={handleBack} onnext={handleNext} client-group-number={clientGroupNumber} onaddressselected={handleAddressSelected}></c-asset-intake-form-applicants>    
+        </template>
+        <template if:true={showInventorDetails}>
+            <c-asset-intake-form-inventors  client-id={clientId} asset-intake-id={assetIntakeId} onback={handleBack} onnext={handleNext} address-data={selectedAddress}></c-asset-intake-form-inventors>    
+        </template>
+        <template if:true={showJurisdictionDetails}>
+            <c-lwc-mv-intake-form-jurisdiction  client-id={clientId} asset-intake-id={assetIntakeId} onback={handleBack} asset-type={assetType} client-reference-number={clientReferenceNumber}></c-lwc-mv-intake-form-jurisdiction>    
+        </template>
+    </template>
+    <template if:true={isTrademark}>
+        <c-navigation-manager navigation-elements={breadcrumb} navigation-width="width:20%">
+        </c-navigation-manager>
+        <!-- <template if:true={showBasicDetails}>
+            <c-asset-intake-form-trademark-details client-id={clientId} conflict-check-id={conflictCheckId} onassetintakecreated={assetIntakeCreated} onnavigatetojurisdictiondetails={navigatetojurisdictiondetails} onnavigatetopersonneldetails={navigatetopersonneldetails} onnavigatepersonnel={navigatetopersonneldetails} onnavigatetoapplicantdetails={navigatetoapplicantdetails} onnavigatetoinventordetails={navigatetoinventordetails}></c-asset-intake-form-trademark-details>
+        </template> -->
+        <template if:true={showBasicDetails}>
+            <c-asset-intake-form-baisc-details client-id={clientId} conflict-check-id={conflictCheckId} onnext={handleNext} onactionnavigation = {handleActionNavigation} is-patent={isPatent} is-trademark ={isTrademark} matter-title={matterTitle}></c-asset-intake-form-baisc-details>
+        </template>
+        <template if:true={showPersonnelDetails}>
+            <c-asset-intake-form-personnel-details  client-id={clientId} is-new-family={isNewFamily}  asset-intake-id={assetIntakeId} onnavigatetobasicdetails={navigatetobasicdetails} onnavigatetoapplicantdetails={navigatetoapplicantdetails} onnext={handleNext} onback={handleBack}></c-asset-intake-form-personnel-details>
+        </template>
+        <template if:true={showApplicantDetails}>
+            <c-asset-intake-form-applicants  client-id={clientId}  is-new-family={isNewFamily} asset-intake-id={assetIntakeId} onnavigatetopersonneldetails={navigatetopersonneldetails} onnavigatetoinventordetails={navigatetoinventordetails} onnext={handleNext} onback={handleBack} asset-type={assetType} client-group-number={clientGroupNumber}></c-asset-intake-form-applicants>    
+        </template>
+        <template if:true={showClassesAndGoods}>
+            <c-asset-intake-form-classes-and-goods  client-id={clientId}  is-new-family={isNewFamily} asset-intake-id={assetIntakeId} onnavigatetoapplicantdetails={navigatetoapplicantdetails} onnavigatetojurisdictiondetails={navigatetojurisdictiondetails} onnext={handleNext} onback={handleBack}></c-asset-intake-form-classes-and-goods>
+        </template>
+        <template if:true={showJurisdictionDetails}>
+            <c-lwc-mv-intake-form-jurisdiction  client-id={clientId} asset-intake-id={assetIntakeId} asset-type={assetType} onnavigatetoinventordetails={navigatetoinventordetails} onback={handleBack}  client-reference-number={clientReferenceNumber}></c-lwc-mv-intake-form-jurisdiction>    
+        </template>
+    </template>
+    <template if:true={isDispute}>
+        <c-navigation-manager navigation-elements={breadcrumb} navigation-width="width:20%">
+        </c-navigation-manager>
+        <template if:true={showBasicDetails}>
+            <c-asset-intake-form-dispute-details client-id={clientId} conflict-check-id={conflictCheckId} onassetintakecreated={assetIntakeCreated} onnavigatetojurisdictiondetails={navigatetojurisdictiondetails} onnavigatetopersonneldetails={navigatetopersonneldetails} onnavigatepersonnel={navigatetopersonneldetails} onnavigatetoapplicantdetails={navigatetoapplicantdetails} onnavigatetoinventordetails={navigatetoinventordetails}></c-asset-intake-form-dispute-details>
+        </template>
+        <template if:true={showPersonnelDetails}>
+            <c-asset-intake-form-personnel-details  client-id={clientId} is-new-family={isNewFamily}  asset-intake-id={assetIntakeId} onnavigatetobasicdetails={navigatetobasicdetails} onnavigatetoapplicantdetails={navigatetoapplicantdetails}></c-asset-intake-form-personnel-details>
+        </template>
+        <template if:true={showApplicantDetails}>
+            <c-asset-intake-form-applicants  client-id={clientId}  is-new-family={isNewFamily} asset-intake-id={assetIntakeId} onnavigatetopersonneldetails={navigatetopersonneldetails} onnavigatetoinventordetails={navigatetoinventordetails}></c-asset-intake-form-applicants>    
+        </template>
+        <template if:true={showOtherparties}>
+            <c-asset-intake-form-other-parties  client-id={clientId}  is-new-family={isNewFamily} asset-intake-id={assetIntakeId} onnavigatetoapplicantdetails={navigatetoapplicantdetails} onnavigatetojurisdictiondetails={navigatetojurisdictiondetails}></c-asset-intake-form-other-parties>
+        </template>
+        <template if:true={showJurisdictionDetails}>
+            <c-lwc-mv-intake-form-jurisdiction  client-id={clientId} asset-intake-id={assetIntakeId} asset-type={assetType} onnavigatetoinventordetails={navigatetoinventordetails}></c-lwc-mv-intake-form-jurisdiction>    
+        </template>
+    </template>
+    </template>
+    </lightning-card>
+</template>

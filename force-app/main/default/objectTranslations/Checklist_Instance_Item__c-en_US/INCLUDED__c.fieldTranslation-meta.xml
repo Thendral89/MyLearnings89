@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- INCLUDED --></label>
+    <name>INCLUDED__c</name>
+    <picklistValues>
+        <masterLabel>Formal</masterLabel>
+        <translation><!-- Formal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Informal  (NOT suitable for publication)</masterLabel>
+        <translation><!-- Informal  (NOT suitable for publication) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Informal  (Suitable for publication)</masterLabel>
+        <translation><!-- Informal  (Suitable for publication) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,29 @@
+.containerclass {
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.intakeflow-background {
+    background: white;
+    border-bottom: 4px solid gray;
+}
+
+.processing-spinner::after {
+    position: absolute;
+    content: 'Processing';
+    width: 100%;
+    text-align: center;
+    top: 1em;
+}
+
+.spacer {
+    min-height: calc(100vh - 250px);
+    white-space: pre-wrap;
+}
+
+.debug-content {
+    white-space: pre-wrap;
+    text-align: center;
+}

@@ -1,0 +1,21 @@
+.THIS .slds-file-selector{
+    display: flex;
+}
+
+.THIS .hide-label .slds-form-element__label {
+	display: none !important;
+}
+
+.THIS .slds-file-selector__dropzone{
+    /*height: 110px;
+    width: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin: auto;*/
+}
+
+.THIS .slds-file-selector__dropzone .slds-file-selector__text{ /*the right label*/
+    font-size: 100%;
+}

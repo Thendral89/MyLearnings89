@@ -1,0 +1,33 @@
+.tile {
+    display: inline-block;
+    position: relative;
+    padding: 12px 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.notification {
+    background-color: #fa3e3e;
+    border-radius: 2px;
+    color: white;
+    padding: 1px 3px;
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.padding {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.object-logo {
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 50%;
+    /* Circular logo */
+    background-color: black;
+
+}
