@@ -1,6 +1,7 @@
 import { LightningElement, api, track } from 'lwc';
 import { createRecord } from 'lightning/uiRecordApi';
 import addKeywords from '@salesforce/apex/KeywordsController.addKeywords';
+// import addKeywordsAssets from '@salesforce/apex/KeywordsController.addKeywordsAssets';
 import removeKeywordAssociations from '@salesforce/apex/KeywordsController.removeKeywordAssociations';
 import getKeywords from '@salesforce/apex/KeywordsController.getKeywords';
 import KEYWORD_OBJECT from '@salesforce/schema/SymphonyLF__Keyword__c';
@@ -22,9 +23,15 @@ export default class LwcMvKeywords extends LightningElement {
     addIcon = true;
     @api noResultMsg = 'No result found.Press Enter to add new keyword';
 
+    @api assetType;
+ //   @api listOfRecordIds;
+
+    @track renderSelector = true;
+
+
     connectedCallback(){
        try{
-           this.fetchKeywords();
+            this.fetchKeywords();
        }catch(err){
            console.error('JS Error ::  :: connectedCallback')
            console.error(err)
@@ -92,11 +99,22 @@ export default class LwcMvKeywords extends LightningElement {
             let keywordList = [];
             keywordList.push(keywordRecord.id);
             this.addTheKeyword(keywordList);
+
+            this.disableAutoDropdown = true;
+           
+            this.renderSelector = false;
+            // async so the DOM can tear down first
+            Promise.resolve().then(() => {
+            this.renderSelector = true;
+            });
+            
             //this.handleAddKeyword({ detail: eventDetail });
 
         }
          
     }
+
+    
 
     handleAddKeyword(event){
        try{
@@ -132,11 +150,31 @@ console.log('B existingKeywordsSet', JSON.stringify(existingKeywordsSet));
                 console.log('No new keywords to add.');
             }
            this.selectedCaseId = existingKeywords.join(',');
+           this.disableAutoDropdown = true;
+
+           this.renderSelector = false;
+            // async so the DOM can tear down first
+            Promise.resolve().then(() => {
+            this.renderSelector = true;
+            });
+
+           
+                
        }catch(err){
            console.error('JS Error ::  :: handleSelectExistingSearchCase')
            console.error(err)
-       }
+       }finally {
+            setTimeout(() => {
+            const combo = /** @type {HTMLElement} **/(
+                event.currentTarget  
+            );
+            combo.blur();
+
+            this.disableAutoDropdown = false;
+            }, 0);
+        }
     }
+
 
     addTheKeyword(keywordIds){
         if( (!keywordIds) || keywordIds.length == 0) {
@@ -145,24 +183,45 @@ console.log('B existingKeywordsSet', JSON.stringify(existingKeywordsSet));
         }
        
        try{
+        //console.log('listOfRecordIds:', JSON.stringify(this.listOfRecordIds));
         console.log('recordId : '+this.recordId+'      objectApiName : '+this.objectApiName+'   '+'keywordIds : '+keywordIds+'   '+'keywordIds.length : '+keywordIds.length);
-           addKeywords({
-            "keywordIds": keywordIds,
-            "recordId": this.recordId,
-            "objectApiName": this.objectApiName
-           })
-           .then( response => {
-               try{
-                   this.keywords = response;
-                   console.log('test new array keyword : ',this.keywords);
-               }catch(err){
-                   console.error('JS Error in Server callback ::  :: addTheKeyword');
-               }
-           })
-           .catch( error => {
-               console.error('Server Error ::  :: addTheKeyword :: apexMethod => addKeywords');
-               console.error(JSON.stringify(error));
-           })
+        // if (this.assetType === 'Copyright') {
+        //     if (!this.listOfRecordIds.length) {
+        //         console.warn('No recordIds provided for Copyright');
+        //         return;
+        //     }
+        //     addKeywordsAssets({
+        //         keywordIds: keywordIds,
+        //         recordIds : this.listOfRecordIds,
+        //         objectApiName: this.objectApiName
+        //     })
+        //     .then(response => {
+        //         this.keywords = response;
+        //         console.log('Keywords (assets):', this.keywords);
+        //     })
+        //     .catch(error => {
+        //         console.error('Error in addKeywordsAssets:', JSON.stringify(error));
+        //     });
+        // } else{
+            addKeywords({
+                "keywordIds": keywordIds,
+                "recordId": this.recordId,
+                "objectApiName": this.objectApiName
+               })
+               .then( response => {
+                   try{
+                       this.keywords = response;
+                       console.log('test new array keyword : ',this.keywords);
+                   }catch(err){
+                       console.error('JS Error in Server callback ::  :: addTheKeyword');
+                   }
+               })
+               .catch( error => {
+                   console.error('Server Error ::  :: addTheKeyword :: apexMethod => addKeywords');
+                   console.error(JSON.stringify(error));
+               })
+       // }
+           
        }catch(err){
            console.error('JS Error ::  :: addTheKeyword')
            console.error(err)

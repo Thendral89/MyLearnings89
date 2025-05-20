@@ -6,8 +6,8 @@
                 <lightning-button icon-name="utility:add" variant="base" label="Add" title="Add" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
     
             </h2-->
-    
-            <c-dynamic-search-and-select 
+            <template if:true={renderSelector}>
+                                <c-dynamic-search-and-select 
                                     label="Select Keywords"
                                     object-name="SymphonyLF__Keyword__c" 
                                     placeholder="Search Keywords"
@@ -28,7 +28,8 @@
                                     disable-auto-dropdown={disableAutoDropdown}
                                     limit= 50>  
                                 </c-dynamic-search-and-select>
-    
+            
+            </template>               
             <template lwc:if={keywords}>
                 <template for:each={keywords} for:item="keyword">
                     <!--lightning-badge class="badgeColor" key={keyword.associationId} label={keyword.keywordName} icon-name="utility:priority"></lightning-badge-->
@@ -51,6 +52,7 @@
             </template>
             <template lwc:else></template>
             
+        
         </div>
         </template>
         <template lwc:else></template>
